@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<script>
+			//获取当前日期方法
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				var currentdate = year + seperator1 + month + seperator1 + strDate;
+				return currentdate;
+			}
+			//获取指定日期前一天
+			function getBeforeDay(d) {
+				d = new Date(d);
+				d = +d - 1000 * 60 * 60 * 24;
+				d = new Date(d);
+				var year = d.getFullYear();
+				var mon = d.getMonth() + 1;
+				var day = d.getDate();
+				s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+				return s;
+			}
+			//获取指定日期前七天
+			function getBeforeWeek(d) {
+				d = new Date(d);
+				d = +d - 1000 * 60 * 60 * 24 * 6;
+				d = new Date(d);
+				var year = d.getFullYear();
+				var mon = d.getMonth() + 1;
+				var day = d.getDate();
+				s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+				return s;
+			}
+			//获取指定日期前一个月
+			function getBeforeMonth(d) {
+				d = new Date(d);
+				d = +d - 1000 * 60 * 60 * 24 * 29;
+				d = new Date(d);
+				var year = d.getFullYear();
+				var mon = d.getMonth() + 1;
+				var day = d.getDate();
+				s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+				return s;
+			}
+			
+			//获取指定日期前一个年
+			this.getBeforeYear = function (d) {
+				d = new Date(d); 
+				var year = d.getFullYear()-1;
+				var mon = d.getMonth() + 1;
+				var day = d.getDate();
+				s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+				return s;
+			}
+			 
+			console.log("当前时间：：")
+			console.log(getNowFormatDate())
+			
+			console.log("一天前：：")
+			console.log(getBeforeDay( getNowFormatDate() ))
+			
+			console.log("一周前：：")
+			console.log(getBeforeWeek( getNowFormatDate() ))
+			
+			console.log("一月前：：")
+			console.log(getBeforeMonth( getNowFormatDate() ))
+			
+			console.log("一年前：：")
+			console.log(getBeforeYear( getNowFormatDate() ))
+		</script>
+	</body>
+</html>

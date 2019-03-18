@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="shake"> 防抖提交 </div>
+		<div id="throttle"> 节流提交 </div>
+		<script>
+			/**
+			 * 事件节流 规定时间内只运行一次，相同操作
+			 * 
+			 * 事件防抖 多次操作，只取最后一次的操作
+			 */
+			
+			//********* 防抖 **************
+			
+			/**
+			 * 通用    防抖函数
+			 * @param callback 防抖结束执行的回调函数
+			 * @param delay 间隔时间  --  这个其实我们可以给它默认一个值
+			 * @param ...args 所有额外的参数
+			 */
+			function debounce(callback, delay, ...args){
+
+				let timer = null; 
+				return function(){
+
+					let _this = this; 
+
+					if(timer){
+						clearTimeout(timer);
+					}
+					
+					timer = setTimeout(function(){
+						callback.call(_this, ...args);
+					}, delay)
+				}
+				
+			}
+			
+			//点击按钮后执行的函数
+			function shakeClickFun(){
+				console.log("运行点击事件操作");
+				console.log(this);
+				console.log(arguments)
+			}
+			
+			//这是错误的！！ this指向有问题
+			document.getElementById('shake').addEventListener('click',debounce(()=>{ console.log(this) },1000), false)
+ 
+			//这是对的，不传参数 和 传参数的方式
+			//document.getElementById('shake').addEventListener('click', debounce(shakeClickFun, 1000 ), false)
+			document.getElementById('shake').addEventListener('click',debounce(shakeClickFun, 1000,"aaa","bbb"), false)
+
+
+
+
+			// ******** 节流 *********
+			
+
+			/**
+			 * 通用    节流函数
+			 * @param callback 防抖结束执行的回调函数
+			 * @param delay 间隔时间  -- 这个参数我们也可以内定
+			 * @param ...args 所有额外的参数
+			*/
+			function throttle(callback, delay, ...args){
+				let lastTime = 0;
+
+				return function(){
+					let _this = this; 
+					let nowTime = new Date();
+
+					if(nowTime - lastTime >= delay){
+						lastTime = nowTime;
+						callback.call(_this, ...args);
+					}
+				}
+			}
+
+			//点击按钮后执行的函数
+			function throttleClickFun(){
+				console.log("节流了啊啊啊啊");
+				console.log(this);
+				console.log(arguments)
+			}
+
+			//这是错误的！！ this指向有问题
+			//document.getElementById('throttle').addEventListener('click',throttle(()=>{ console.log(this) },1000), false)
+
+			//这是对的，不传参数 和 传参数的方式
+			//document.getElementById('throttle').addEventListener('click', throttle(throttleClickFun, 1000 ), false)
+			document.getElementById('throttle').addEventListener('click',throttle(throttleClickFun, 1000,"aaa","bbb"), false)
+
+		</script>
+	</body>
+</html>

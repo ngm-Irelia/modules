@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#basediv {
+				margin: 20px;
+				border: 1px solid #666666;
+				width:300px;
+				height: 400px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="basediv"></div>
+		
+		<div id="showMsg"></div>
+		
+		<script>
+			let showHtml = '';
+			let basediv = document.getElementById('basediv'); 
+			let showMsg = document.getElementById('showMsg'); 
+			
+			showHtml = `
+			  ${basediv.offsetWidth}    ---dom.offsetWidth:当前对象的宽度。（width+padding+border） <br/>
+			  ${basediv.offsetHeight}   ---dom.offsetHeight:当前对象的高度。（Height+padding+border）<br/>
+			  ${basediv.clientWidth}    ---dom.clientWidth:获取对象可见内容的宽度，不包括滚动条，不包括边框；<br/>
+				${basediv.clientHeight}   ---dom.clientHeight:获取对象可见内容的高度，不包括滚动条，不包括边框；<br/>
+				${basediv.clientLeft}     ---dom.clientLeft:获取对象的border宽度 <br/>
+				${basediv.clientTop}      ---dom.clientTop:获取对象的border高度 <br/>
+				
+				     -------浏览器各宽高------- <br/>
+				${document.body.clientWidth} document.body.clientWidth; ---网页可见区域宽(body) <br/> 
+							
+				${document.body.clientHeight};   ---document.body.clientHeight;   ---网页可见区域高(body) <br/> 
+				${document.body.offsetWidth};    ---document.body.offsetWidth ;    ---网页可见区域宽(body)，包括border、margin等 <br/> 
+				${document.body.offsetHeight};   ---document.body.offsetHeight ;   ---网页可见区域宽(body)，包括border、margin等 <br/> 
+				${document.body.scrollWidth};    ---document.body.scrollWidth ;    ---网页正文全文宽，包括有滚动条时的未见区域 <br/> 
+				${document.body.scrollHeight};   ---document.body.scrollHeight ;   ---网页正文全文高，包括有滚动条时的未见区域 <br/> 
+				${document.body.scrollTop};      ---document.body.scrollTop ;      ---网页被卷去的Top(滚动条) <br/> 
+				${document.body.scrollLeft};     ---document.body.scrollLeft ;     ---网页被卷去的Left(滚动条) <br/> 
+				${window.screenTop};             ---window.screenTop ;             ---浏览器距离Top <br/> 
+				${window.screenLeft};            ---window.screenLeft ;            ---浏览器距离Left <br/> 
+				${window.screen.height};         ---window.screen.height ;         ---屏幕分辨率的高 <br/> 
+				${window.screen.width};          ---window.screen.width ;          ---屏幕分辨率的宽 <br/> 
+				${window.screen.availHeight};    ---window.screen.availHeight ;    ---屏幕可用工作区的高 <br/> 
+				${window.screen.availWidth};     ---window.screen.availWidth ;     ---屏幕可用工作区的宽<br/> 
+			
+			${window.outerHeight} ---window.outerHeight 浏览器高度。<br/> 
+			${window.outerWidth}  ---window.outerWidth 浏览器宽度。<br/> 
+			${window.innerHeight} ---window.innerHeigh 浏览器内页面可用高度；此高度包含了水平滚动条的高度(若存在)。可表示为浏览器当前高度去除浏览器边框、工具条后的高度。<br/> 
+			${window.innerWidth}  ---window.innerWidt 浏览器内页面可用宽度；此宽度包含了垂直滚动条的宽度(若存在)。可表示为浏览器当前宽度去除浏览器边框后的宽度。<br/> 
+			${window.outerHeight - window.innerHeight} ---window.outerHeight - window.innerHeight : 工具栏高/宽度 ：包含了地址栏、书签栏、浏览器边框等范围。 <br/> 
+			`;
+			
+			showMsg.innerHTML = showHtml;
+			
+			/*
+			
+			js获取页面坐标数据
+			1.client系列 
+			event.clientX :设置或获取鼠标指针位置相对于当前窗口的 x 坐标，其中客户区域不包括窗口自身的控件和滚动条。 
+			event.clientY: 设置或获取鼠标指针位置相对于当前窗口的 y 坐标，其中客户区域不包括窗口自身的控件和滚动条。
+
+			2.screen系列 
+			event.screenX： 设置或获取获取鼠标指针位置相对于用户屏幕的 x 坐标。 
+			event.screenY： 设置或获取鼠标指针位置相对于用户屏幕的 y 坐标。
+
+			3.offset系列 
+			event.offsetX：,鼠标相比较于触发事件的元素的X位置,以元素盒子模型的内容区域的左上角为参考点,如果有boder,可能出现负值。 
+			event.offsetY：同上，Y位置。
+
+			4.layer系列（IE8以及以下版本没有） 
+			event.layerX：鼠标相比较于当前坐标系的X位置,即如果触发元素没有设置绝对定位或相对定位,以页面为参考点,如果有,将改变参考坐标系,从触发元素盒子模型的border区域的左上角为参考点
+			event.layerY：同上，Y位置。
+
+			5.XY系列（FF没有） 
+			event.x：相对可视区域的X坐标 
+			event.y：相对可视区域的Y坐标
+
+			6.page系列 （IE8以及以下版本没有） 
+			类似于event.clientX、event.clientY，但它们使用的是文档坐标而非窗口坐标。。 
+			event.pageX：设置或获取鼠标指针位置相对于当前文档的 x 坐标 
+			event.pageY：设置或获取鼠标指针位置相对于当前文档的 y 坐标 
+			
+			*/
+			
+		</script>
+	</body>
+</html>

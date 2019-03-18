@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			img {
+				margin-left: 20%;
+				width: 60%;
+				min-width: 600px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<article>
+				<p>
+					分析难点：1.如何判断元素的位置，是否在可视区域呢
+					        2.懒加载的方式
+									3.性能优化，函数节流
+				</p>
+			</article>
+		</section>
+		
+		<section >
+			<article class="showImg">
+				<img id="testimg" aa="hahaha" data-lazyload="../image/1.png" />
+				<img data-lazyload="../image/2.png" />
+				<img data-lazyload="../image/3.png" />
+				<img data-lazyload="../image/4.png" />
+				<img data-lazyload="../image/5.png" />
+				<img data-lazyload="../image/6.png" />
+				<img data-lazyload="../image/7.png" />
+				<img data-lazyload="../image/8.png" />
+				<img data-lazyload="../image/9.png" />
+				<img data-lazyload="../image/10.png" />
+				<img data-lazyload="../image/11.png" />
+				<img data-lazyload="../image/12.png" />
+				<img data-lazyload="../image/13.png" />
+				<img data-lazyload="../image/14.png" />
+				<img data-lazyload="../image/15.png" />
+			</article>
+		</section>
+		
+		
+		<script>
+			//加载 符合要求的图片
+			function checkImgs(){
+				let imgs = document.getElementsByTagName('img'); 
+				Array.from(imgs).map( elem => {
+					if( isInShow(elem) ){
+						console.log(elem)
+						loadImg(elem);
+					}
+				})
+			}			
+			
+			//查看哪些图片符合要求
+			function isInShow(elem){ // 增加一条新的判断,如果img已经加载就不要再让他 重复加载了,.在img元素上增加一个属性,控制
+				let imgClient = elem.getBoundingClientRect();
+				if(!elem.getAttribute("loaded")){
+					// 滚动加载
+					return imgClient.top < window.innerHeight+100;
+				}else{
+				  return false; // 不用加载就可以	
+				} 
+			}
+			
+			//加载某个图片
+			function loadImg(elem){
+				elem.src = elem.dataset.lazyload;
+				elem.setAttribute('loaded','true');
+			}
+			
+			//滚动事件 函数节流 
+			//使用 时间date
+			// 我们在初始的时候定义一个begin开始时间，当时间间隔超过duration时，则执行一次函数，这样我们做到了不重复调用，又能保证500秒执行一次。
+			function throttle(method,delay,duration){
+				var timer=null;
+				var begin=new Date();    
+				return function(){                
+						var context=this, args=arguments;
+						//console.log(this); // 看下这个this到底是啥
+						var current=new Date();        
+						clearTimeout(timer);
+						if(current-begin>=duration){
+								method.apply(context,args); //为什么要这么写呢,是为了能给兼容任何方法!!!
+								//method(); // 嘿,我这么写也是没问题
+								//checkImgs(); // 嘿,我直接这么写也是可以的饿
+								begin=current;
+						}else{
+								timer=setTimeout(function(){
+										method.apply(context,args);
+								},delay);
+						}
+				}
+			}
+			
+			/* function testThrottle (method){
+				var start = new Date();
+				var timeout = null;
+				return function(){
+					var _this = this;
+					var args = arguments;
+					var current = new Date();
+					clearInterval(timeout);
+					
+					if(current - start >= 500 ){
+						method.apply(_this,args);
+						start = current;
+					}else{
+						
+					}
+				}
+			} */
+			
+			
+			// 未使用
+			var scrollFunc = function (e) {
+				var direct = 0;
+				e = e || window.event;
+				if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+						if (e.wheelDelta > 0) { //当滑轮向上滚动时
+								//$("#footer").hide();
+						}
+						if (e.wheelDelta < 0) { //当滑轮向下滚动时
+							 /* $("#footer").show();*/
+						}
+				} else if (e.detail) {  //Firefox滑轮事件
+						if (e.detail> 0) { //当滑轮向上滚动时
+								$("#footer").hide();
+						}
+						if (e.detail< 0) { //当滑轮向下滚动时
+							 /* $("#footer").show();*/
+						}
+				} 
+			};
+			
+						
+			// js 实现逻辑
+			document.addEventListener('DOMContentLoaded',function(){
+				//加载图片
+				checkImgs(); 
+				//页面滚动事件
+				window.onscroll=throttle(checkImgs,100,500);
+				
+				 
+				//给页面绑定滑轮滚动事件
+// 				if (document.addEventListener) {
+// 					document.addEventListener('DOMMouseScroll', scrollFunc, false);
+// 				}
+				//滚动滑轮触发scrollFunc方法
+// 				window.onmousewheel = document.onmousewheel = function (){  
+// 					throttle(checkImgs,100,500);
+// 				};
+			})
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

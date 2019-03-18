@@ -1,0 +1,300 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>地图分布动画特效</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+</style>
+</head>
+ 
+<body style="background:transparent">
+	<div id="mainMap" style="height:100%;width: 100%;background:transparent">
+	</div>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script> 
+<script src="js/echarts3.js" charset="UTF-8"></script>
+<!-- <script src="js/echarts.js" charset="UTF-8"></script> -->
+<script type="text/javascript">
+	$('#document').ready(function(){
+		 getEcharts();
+	 });
+</script>
+ 
+<script type="text/javascript"> 
+  function getEcharts(){ 
+       $.get('js/china.json', function(chinaJson) { 
+       	echarts.registerMap('china', chinaJson);
+       	var chart = echarts.init(document.getElementById('mainMap'));
+       
+       	var geoCoordMap = {
+       		"西安": [112.91, 27.87],
+       		"金坛": [119.64, 29.12],
+       		"岳阳": [113.09, 29.37],
+       		"长沙": [113, 28.21],
+       		"衢州": [118.88, 28.97],
+       		"廊坊": [116.7, 39.53],
+       		"合肥": [117.27, 31.86],
+       		"武汉": [114.31, 30.52],
+       		"大庆": [125.03, 46.58]
+       	};
+       
+       	var convertData = function(data) {
+       		var res = [];
+       		for (var i = 0; i < data.length; i++) {
+       			var geoCoord = geoCoordMap[data[i].name];
+       			if (geoCoord) {
+       				res.push(geoCoord.concat(data[i]));
+       			}
+       		}
+       		return res;
+       	};
+       
+       	option = {
+       		geo: {
+       			map: 'china',
+       			top:'15%',
+       			left:'right',
+       			roam:false,
+       			center: [115.97, 29.71],
+       			label: {
+       				normal: {
+       					show: true,
+       					color: '#CEE3FE'
+       				},
+       				emphasis: {
+       					show: false,
+       					color: '#CEE3FE'
+       				},
+       			},
+       			itemStyle: {
+       				normal: {
+       					areaColor: '#10182A',
+       					borderColor: '#155DA3',
+       					borderWidth: 1.5,
+       					shadowColor: 'rgba(20,64,111, 1)',
+       					shadowBlur: 5,
+       					shadowOffsetX: 1
+       				},
+       				emphasis: {
+       					areaColor: '#10182A', //2a333d
+       					color: '#CEE3FE'
+       				}
+       			}
+       		},
+					series : [
+						{
+							name: '全国',
+							type: 'map',
+							roam: true,
+							hoverable: false,
+							mapType: 'china',
+							itemStyle:{
+								normal:{
+									borderColor:'rgba(100,149,237,1)',
+									borderWidth:0.4,
+									areaStyle:{
+										color: '#1b1b1b'
+									}
+								}
+							},
+							data:[],
+							markLine : {
+								smooth:true,
+								symbol: ['none', 'circle'],  
+								symbolSize : 1,
+								itemStyle : {
+									normal: {
+										color:'#fff',
+										borderWidth:1,
+										borderColor:'rgba(30,144,255,0.5)'
+									}
+								},
+								data : [
+								],
+							},
+							geoCoord: {
+								'上海': [121.4648,31.2891],
+							},
+							markPoint : {
+								symbol:'emptyCircle',
+								symbolSize : function (v){
+									return 8 + v/16
+								},
+								effect : {
+									show: true,
+									shadowBlur : 0
+								},
+								itemStyle:{
+									normal:{
+										label:{show:false}
+									},
+									emphasis: {
+										label:{position:'top'}
+									}
+								},
+								data : [
+									{name:'上海',value:95}
+								]
+							}
+						},
+						{
+							name: '北京 Top10',
+							type: 'map',
+							mapType: 'china',
+							data:[], 
+							markPoint : {
+								symbol:'emptyCircle',
+								symbolSize : function (v){
+									return 0.1
+								},
+								effect : {
+									show: false,
+									shadowBlur : 0
+								},
+								itemStyle:{
+									normal:{
+										label:{show:true,
+											  position:'top',
+											  textStyle: {
+														fontSize: 14
+													}
+											  }
+									},
+									emphasis: {
+										label:{show:false}
+									}
+								},
+								data : [
+									{name:'上海',value:95}
+								]
+							}
+						}
+					]
+//        		series: [{
+//        			name: 'yh',
+//        			type: 'scatter',
+//        			coordinateSystem: 'geo',
+//        			data: convertData([{
+//        					name: "西安",
+//        					value: 61
+//        				},
+//        				{
+//        					name: "金坛",
+//        					value: 62
+//        				},
+//        				{
+//        					name: "大庆",
+//        					value: 279
+//        				}
+//        			]),
+//        			symbolSize: 12
+//        		}],
+       
+       	};
+       	chart.setOption(option);
+       	  
+       		
+       	})
+       };
+            
+      myChart2.setOption({ 
+				series : [
+					{
+						name: '全国',
+						type: 'map',
+						roam: true,
+						hoverable: false,
+						mapType: 'china',
+						itemStyle:{
+							normal:{
+								borderColor:'rgba(100,149,237,1)',
+								borderWidth:0.4,
+								areaStyle:{
+									color: '#1b1b1b'
+								}
+							}
+						},
+						data:[],
+						markLine : {
+							smooth:true,
+							symbol: ['none', 'circle'],  
+							symbolSize : 1,
+							itemStyle : {
+								normal: {
+									color:'#fff',
+									borderWidth:1,
+									borderColor:'rgba(30,144,255,0.5)'
+								}
+							},
+							data : [
+							],
+						},
+						geoCoord: {
+							'上海': [121.4648,31.2891],
+						},
+						markPoint : {
+							symbol:'emptyCircle',
+							symbolSize : function (v){
+								return 8 + v/16
+							},
+							effect : {
+								show: true,
+								shadowBlur : 0
+							},
+							itemStyle:{
+								normal:{
+									label:{show:false}
+								},
+								emphasis: {
+									label:{position:'top'}
+								}
+							},
+							data : [
+								{name:'上海',value:95}
+							]
+						}
+					},
+					{
+						name: '北京 Top10',
+						type: 'map',
+						mapType: 'china',
+						data:[], 
+						markPoint : {
+							symbol:'emptyCircle',
+							symbolSize : function (v){
+								return 0.1
+							},
+							effect : {
+								show: false,
+								shadowBlur : 0
+							},
+							itemStyle:{
+								normal:{
+									label:{show:true,
+										  position:'top',
+										  textStyle: {
+													fontSize: 14
+												}
+										  }
+								},
+								emphasis: {
+									label:{show:false}
+								}
+							},
+							data : [
+								{name:'上海',value:95}
+							]
+						}
+					}
+				]
+        });  
+
+    </script>
+ 
+ 
+ 
+</div>
+</body>
+</html>

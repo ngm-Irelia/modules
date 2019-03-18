@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//T1.创建对象有几种方法？
+			//1. 通过字面量的方式：
+
+			var obj1 = {
+				name: 'obj1'
+			};
+			//或者使用new
+			var obj12 = new Object({
+				name: 'obj12'
+			});
+
+			//把这两个归为一类的原因，我们通过浏览器输出下，就能看出原因
+			console.log(obj1);
+			console.log(obj12);
+			//2.通过构造函数方式：
+
+			function Ob() {
+				this.name = 'obj2'
+			};
+			var obj2 = new Ob();
+			console.log(obj2);
+			//3.通过Object.create() 方式：
+
+			var o = {
+				name: "obj3"
+			};
+			var obj3 = Object.create(o);
+			console.log(obj3);
+
+
+			//-------  继承的实现方式 -----------
+
+			function Animal(name) {
+				this.name = name;
+				this.baseType = "animal";
+				this.arr = [47, 94, 8];
+			}
+			Animal.prototype.speak = function() {
+				console.log('i can speak!');
+			}
+
+			console.log(new Animal("动物"))
+			//1. 通过构造函数实现继承：
+
+			function Dog(name) {
+				Animal.call(this, name);
+				this.type = 'dog';
+			}
+
+			var dog = new Dog('汪汪');
+			console.log(dog);
+			console.log(dog.name);
+			// dog.speak();  //报错,因为没有这个属性
+
+			//2.通过原型链实现继承
+			/* function Cat(name) {
+				this.type = 'cat';
+			}
+			Cat.prototype = new Animal("猫");
+			Cat.prototype.constructor = Cat;
+
+			var cat = new Cat("猫猫");
+			console.log(cat);
+			console.log(cat.name);
+			cat.speak(); */
+
+
+			//测试缺点
+			// 			var cat1 = new Cat();
+			// 			console.log(cat1.arr);
+			// 			var cat2 = new Cat();
+			// 			console.log(cat2.arr);
+			// 
+			// 			cat1.arr.push(210);
+			// 
+			// 			console.log(cat1.arr);
+			// 			console.log(cat2.arr);
+
+
+			//3. 组合继承
+			/* function Duck(name) {
+				Animal.call(this, name);
+				this.type = 'duck';
+			}
+			Duck.prototype = new Animal('鸭');
+			Duck.prototype.constructor = Duck;
+			//注： new Animal() 并没有constructor属性，我们手动给加上
+
+			var duck = new Duck("ya"); */
+
+			//4. 使用子类的原型 指向 父类的原型
+
+			/* function Duck(name) {
+				Animal.call(this, name);
+				this.type = 'duck';
+			}
+			Duck.prototype = Animal.prototype;
+			Duck.prototype.constructor = Duck;
+			//注： new Animal() 并没有constructor属性，我们手动给加上
+
+			var duck = new Duck("ya");
+
+			function Fish(name) {
+				Animal.call(this, name);
+				this.type = 'fish';
+			}
+			Fish.prototype = Animal.prototype;
+			//Fish.prototype.constructor = Fish;
+
+			var fish = new Fish('fish');
+			fish.arr.push(210);
+			console.log(duck);
+			console.log(fish) */
+
+
+			//5. 通过Object.create() 实现
+
+			function Bird(name) {
+				Animal.call(this, name);
+				this.type = 'bird';
+			}
+			Bird.prototype = Object.create(Animal.prototype);
+			Bird.prototype.constructor = Bird; //这里，虽然bird的__proto__有constructor属性，但是却是指向它的父类Animal，并不是我们想要的，所以加上这一句。
+		
+			var bird = new Bird('birds');
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var twoSum = function(nums, target) {
+
+				let outArr = nums.slice(0,nums.length-1);
+				console.log("outArr === ");
+				console.log(outArr)
+				
+				let getArr = outArr.map((numX, x) => {
+					// 这个内层应该是不全面的才对
+					let innerArr = nums.slice(x+1);
+					
+					console.log("innerArr === ");
+					console.log(innerArr)
+					
+					let arr = innerArr.some((numY, y) => {
+						if ((numX + numY) === target) {
+							return [x, y+1];
+						}
+					});
+
+					return arr;
+				});
+
+				return getArr;
+			};
+			
+			console.log(twoSum([2,7,11,15],9))
+		</script>
+	</body>
+</html>

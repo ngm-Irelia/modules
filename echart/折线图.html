@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#showBar {
+				width: 400px;
+				height: 400px;
+				margin-top: 100px;
+				margin-left: 100px;
+				border: 1px solid #666666;
+			}
+			body {
+				    background-color: rgba(19, 21, 34, 1);
+			}
+		</style>
+		<script src="echarts.min.js"></script>
+	</head>
+	<body>
+		<div id="showBar"></div>
+
+		<script type="text/javascript">
+			var dom = document.getElementById("showBar");
+			var myChart = echarts.init(dom);
+
+			let chartDatas = {
+				"name": "问题金额",
+				"value": [{
+						"value": [
+							"2018/09",
+							"126624"
+						]
+					},
+					{
+						"value": [
+							"2018/10",
+							"126602"
+						]
+					},
+					{
+						"value": [
+							"2018/11",
+							"148542"
+						]
+					},
+					{
+						"value": [
+							"2018/12",
+							"176125"
+						]
+					},
+					{
+						"value": [
+							"2019/01",
+							"129811"
+						]
+					},
+					{
+						"value": [
+							"2019/02",
+							"164819"
+						]
+					},
+					{
+						"value": [
+							"2019/03",
+							"4286"
+						]
+					}
+				]
+			};
+			var onedata = chartDatas.value;
+
+			let runsize = 0;
+
+			option = {
+				title: {
+					text: ''
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				color: ['rgb(89,202,250)', 'rgb(242,156,56)'],
+				legend: {
+					top: 40,
+					data: [{
+						name: chartDatas.name,
+						icon: 'circle',
+						textStyle: {
+							color: 'rgb(89,202,250)'
+						}
+					}]
+				},
+				xAxis: {
+					type: 'category', //category
+					//nameLocation: 'end',
+					boundaryGap: false,
+					nameTextStyle: {
+						color: '#fff'
+					},
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						lineStyle: {
+							type: 'solid',
+							color: '#333333', //左边线的颜色
+							width: '2' //坐标线的宽度
+						}
+					},
+					axisLabel: {
+						textStyle: {
+							color: '#CEE3FE', //坐标值得具体的颜色
+						},
+						/* formatter: function (value, index) {
+							// 格式化成月/日，只在第一个刻度显示年份
+							var date = new Date(value);
+							var texts = (date.getMonth() + 1) + "月";
+							return texts;
+						}  */
+					}
+				},
+				yAxis: {
+					type: 'value',
+					boundaryGap: [0, '100%'],
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						lineStyle: {
+							type: 'solid',
+							color: '#333333', //左边线的颜色
+							width: '2' //坐标线的宽度
+						}
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: true,
+						margin: 0,
+						align: 'right',
+						fontSize: 10,
+						textStyle: {
+							color: '#fff', //坐标值得具体的颜色
+							align: 'right',
+							margin: 0
+						}
+					}
+				},
+				series: [{
+					name: chartDatas.name,
+					type: 'line',
+					smooth: 0.3,
+					showSymbol: false,
+					hoverAnimation: false,
+					lineStyle: {
+						color: 'rgb(89,202,250)'
+					},
+					areaStyle: {
+						color: 'rgb(89,202,250)',
+						opacity: 0.3
+					},
+					data: onedata.slice(runsize, runsize + 12)
+				}]
+			};
+
+			  
+
+			myChart.setOption(option);
+		</script>
+	</body>
+</html>

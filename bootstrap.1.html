@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="https://unpkg.com/bootstrap-table@1.13.2/dist/bootstrap-table.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script src="https://unpkg.com/bootstrap-table@1.13.2/dist/bootstrap-table.min.js"></script>
+		
+	</head>
+	<body>
+		
+		<div id="toolbar">
+			<button id="button" class="btn btn-secondary">getAllSelections</button>
+		</div>
+		<table id="table">
+			<thead>
+				<tr>
+					<th data-field="state" data-checkbox="true"></th>
+					<th data-field="id">ID</th>
+					<th data-field="name">Item Name</th>
+					<th data-field="price">Item Price</th>
+				</tr>
+			</thead>
+		</table>
+		<script>
+			var $table = $('#table')
+			 
+
+			$(function() {
+				var data = [
+					{
+						'id': 0,
+						'name': 'Item 0',
+						'price': '$0',
+						'base':'base0'
+					},
+					{
+						'id': 1,
+						'name': 'Item 1',
+						'price': '$1',
+						'base':'base1'
+					},
+					{
+						'id': 2,
+						'name': 'Item 2',
+						'price': '$2',
+						'base':'base2'
+					},
+					{
+						'id': 3,
+						'name': 'Item 3',
+						'price': '$3',
+						'base':'base3'
+					},
+					{
+						'id': 4,
+						'name': 'Item 4',
+						'price': '$4',
+						'base':'base4'
+					},
+					{
+						'id': 5,
+						'name': 'Item 5',
+						'price': '$5',
+						'base':'base5'
+					}
+				]
+				$table.bootstrapTable({data: data})
+			})
+			
+			var $button = $('#button')
+
+			$(function() {
+				$button.click(function () {
+					alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getAllSelections')))
+				})
+			})
+		</script>
+	</body>
+</html>

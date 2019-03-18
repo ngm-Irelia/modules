@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			
+			/**
+			 * var rs = {
+						h: ["id", "name"], 
+						d: [ [100, "Tom"], [101, "Jane"] ] 
+					};
+					var arr = rs2Array(rs); 
+
+					// 结果为
+					arr = [
+						{id: 100, name: "Tom"},
+						{id: 101, name: "Jane"} 
+					];
+			 */
+			
+			
+			var rs = {
+				h: ["id", "name"], 
+				d: [ [100, "Tom"], [101, "Jane"] ] 
+			};
+			
+			function rs2Array(json){
+				let { h:key , d:value } = json;  // key value
+				
+				let dealArr = value.map( item => {
+					let dealJson = {};
+					item.map( (itemOne,index) => { 
+						dealJson[key[index]] = itemOne; 
+					})
+					return dealJson;
+				});
+				
+				console.log(dealArr)
+				return dealArr;
+			}
+			var arr = rs2Array(rs);
+			
+			
+			
+		</script>
+	</body>
+</html>

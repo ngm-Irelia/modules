@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			section {
+				margin-top: 10px;
+			}
+			
+			.float-left{
+				float: left;
+				background-color: #86E01E;
+			}
+			
+			.clear-float {
+				background-color: #AAAAAA;
+				width: 100%; 
+			}
+			
+			/* bfc方式 */
+			.clear-float-bfc { 
+				/* overflow: hidden; */
+				overflow: auto;
+			}
+			
+			/* 设置空的兄弟元素属性clear:both; */
+			.sibling {
+				background-color: #F2B01E;
+				width: 100%;
+				clear:both;
+			}
+			
+			/* 伪元素来清除浮动 */
+			.float-left-after:after {
+				content: " ";
+				height: 0;
+				visibility: hidden;
+				display: block; 
+				clear: both;
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<!-- 清除浮动的几种方式 -->
+		
+		<!-- 1.BFC（块级元素格式化上下文） 1.父元素设置overflow:hidden -->
+		<section>
+			<article class="clear-float clear-float-bfc">
+				<div class="float-left">
+					<p>BFC清除浮动</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+				</div> 
+			</article>
+		</section>
+		
+		<!-- 2.额外标签法 父标签内部最下面增加标签，使用clean:both -->
+		<section>
+			<article class="clear-float">
+				<div class="float-left">
+					<p>额外标签法</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+				</div>
+				<div class="sibling">  </div>
+			</article>
+		</section>
+		
+		<!-- 3.使用伪元素清除浮动 -->
+		<section>
+			<article class="clear-float float-left-after">
+				<div class="float-left">
+					<p>伪元素清除浮动</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+					<p>我是浮动中的内容</p>
+				</div>
+			</article>
+		</section>
+		
+		<!-- 更多：4. 手动设置父元素高度 -->
+		<!-- 5. 父元素也浮动 -->
+		
+	</body>
+</html>

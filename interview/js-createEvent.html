@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			var event = document.createEvent('Event');
+			event.initEvent("test",true,true);
+			
+			document.addEventListener("test",function(){
+				
+				console.log("test event runing ...");
+			},false)
+			
+			document.dispatchEvent(event);
+			
+		</script>
+	</body>
+</html>

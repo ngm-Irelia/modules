@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		let a = {};
+		a.size = "json";
+		
+		function setSize(s){
+			let size = Symbol();
+			 
+			a[size] = s;
+			console.log(a);
+			console.log(a[size]); 
+		}
+		setSize(12);
+		setSize(23);
+		
+		let str = "123aqw234";
+		console.log(parseInt(str));
+		
+		let str1 = 'aa1234';
+		console.log(parseInt(str1))
+// 		console.log(a.size);
+// 		console.log(a[size]); 
+	</script>
+	<script src="../js/jquery-3.3.1.js"></script>
+</html>

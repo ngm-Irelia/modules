@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<style>
+			
+			.left, .right, .center {
+				height:200px;
+			}
+			
+			.layout-float {
+				height: 200px;
+			}
+			
+			.layout-float .left {
+				background-color: #86E01E;
+				
+				width:300px;
+				float:left;
+			}
+			
+			.layout-float .right {
+				background-color: #F2B01E;
+				
+				width:300px;
+				float:right;
+				
+			}
+			
+			.layout-float .center {
+				background-color: #AAAAAA;
+			}
+			
+			/* --position 样式 */
+			.layout-position {
+				position: relative;
+				height: 200px;
+			}
+			
+			.layout-position .left {
+				background-color: #2A2A2A;
+				width: 300px;
+				position: absolute;
+				left: 0px;
+			}
+			
+			.layout-position .right {
+				background-color: #86E01E;
+				width: 300px;
+			  position: absolute;
+				right: 0px;
+			}
+			
+			.layout-position .center {
+				background-color: #F2D31B;
+				position: absolute;
+				left: 300px;
+				right: 300px;
+			}
+			
+			
+			/* flex 布局样式 */
+			.layout-flex {
+				display: flex;
+			}
+			
+			.layout-flex .left {
+				background-color: aquamarine;
+				width: 300px; 
+			}
+			
+			.layout-flex .right {
+				background-color: #86E01E;
+				width: 300px; 
+			}
+			
+			.layout-flex .center {
+				background-color: #F2D31B;
+				flex: 1;
+			}
+			
+			/* table-cell 布局样式 */
+			.layout-table-cell {
+				display: table;
+				width: 100%;
+			}
+			
+			.layout-table-cell .left {
+				display: table-cell;
+				background-color: aquamarine;
+				width: 300px; 
+			}
+			
+			.layout-table-cell .right {
+				display: table-cell;
+				background-color: #86E01E;
+				width: 300px; 
+			}
+			
+			.layout-table-cell .center {
+				display: table-cell;
+				background-color: #F2D31B; 
+			}
+			
+			/* grid网格 布局样式 */
+			.layout-grid {
+				display: grid;
+				width: 100%;
+				
+				grid-template-row: 100px;
+				grid-template-columns: 300px auto 300px;
+			}
+			
+			.layout-grid .left { 
+				background-color: aquamarine;
+				width: 300px; 
+			}
+			
+			.layout-grid .right { 
+				background-color: #86E01E;
+				width: 300px; 
+			}
+			
+			.layout-grid .center { 
+				background-color: #F2D31B; 
+			}
+		</style>
+	</head>
+	<body>
+		<section class="layout">
+			<article class="layout-float">
+				<div class="left">左左左float</div>
+				<div class="right">右右右float</div>
+				<div class="center">
+					float浮动解决三列布局 -----------------------------
+				</div>
+			</article>
+		</section>
+		
+		<section class="layout">
+			<article class="layout-position">
+				<div class="left">左左左position</div>
+				<div class="right">右右右position</div>
+				<div class="center">
+					position解决三列布局  -----------------------------
+				</div>
+			</article>
+		</section>
+		
+		<section class="layout">
+			<article class="layout-flex">
+				<div class="left">左左左flex</div>
+				<div class="center">
+					flex解决三列布局  -----------------------------
+				</div>
+				<div class="right">右右右flex</div> 
+			</article>
+		</section>
+		
+		<section class="layout">
+			<article class="layout-table-cell">
+				<div class="left">左左左table-cell</div>
+				<div class="center">
+					table-cell解决三列布局  -----------------------------
+				</div>
+				<div class="right">右右右table-cell</div> 
+			</article>
+		</section>
+		
+		<section class="layout">
+			<article class="layout-grid">
+				<div class="left">左左左grid</div>
+				<div class="center">
+					grid解决三列布局  -----------------------------
+				</div>
+				<div class="right">右右右grid</div> 
+			</article>
+		</section>
+		
+	</body>
+</html>

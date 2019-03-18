@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		// this的使用场景
+		
+		//1 在构造函数中使用  this指向新建的对象
+		function Foo(name){
+			this.name = name;
+			console.log(this);  //A 这俩输出相同
+		}
+		
+		var f = new Foo('fff');
+		console.log(f);   //A  这俩输出相同
+		
+		//2 this在对象属性中执行  this指向 对象obj
+		var obj = {
+			name:"AAA",
+			printName:function(){
+				console.log(this);
+				console.log(this.name);
+			}
+		}
+		obj.printName();
+		
+		//3 this在普通函数中执行
+		function func(){
+			console.log(this);
+			console.log(this.obj);
+		}
+		func();
+		
+		//4 this在call apply bind 时使用
+		function fn(name){
+			console.log(this);
+			
+		}
+		fn.call({X:100} , '王五')
+		
+	</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#otherPage {
+				width: 100%;
+				height: 600px;
+				background: #666666;
+			}
+			
+		</style>
+	</head>
+	<body>
+		 <iframe src="./webWorker-target.html" id="otherPage"></iframe> 
+		  <input type="text" id="message"><input type="button" 
+             value="Send to child.com" onclick="sendIt()" /> 
+		<script>
+			/**
+			 *  postMessage 跨页面通信 ~~  
+			 * 其实iframe 可以通过contentWindow，去调用子页面的方法
+			 */
+			 
+			
+			function sendIt(){ 
+				
+				let iframeWindow = document.getElementById("otherPage").contentWindow;
+				console.log(iframeWindow);
+				iframeWindow.say(" here ~~");
+				 // 通过 postMessage 向子窗口发送数据
+				iframeWindow.postMessage( document.getElementById("message").value, "http://127.0.0.1:8848"); 
+			} 
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

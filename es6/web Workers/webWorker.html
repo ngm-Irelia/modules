@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			// ----------------  学习 web Worker -------------
+			//单页面, 通过worker调用其他js的函数
+			
+			const worker = new Worker("./worker-one.js"); //启动webworker
+			
+			worker.onmessage = function (event) { 
+				console.log("html worker.onmessage ----- ");
+				console.log(event);
+			};
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

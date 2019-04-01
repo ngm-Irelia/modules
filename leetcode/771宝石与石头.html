@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * @param {string} J
+			 * @param {string} S
+			 * @return {number}
+			 */
+			var numJewelsInStones = function(J, S) {
+				let number = 0;
+
+				let Jarr = J.split('');
+				let Sarr = S.split('');
+				let jarrLen = Jarr.length;
+				let sarrLen = S.length;
+
+				for (let i = 0; i < jarrLen; i++) {
+					for (let j = 0; j < sarrLen; j++) {
+						if (S.charAt(j) === Jarr[i]) {
+							number++;
+						}
+
+					}
+				}
+
+				return number;
+			};
+
+
+			/* var numJewelsInStones = function(J, S) {
+				let number = 0;
+				let sarrLen = S.length;
+
+				for (let j = 0; j < sarrLen; j++) {
+					if (J.includes(S.charAt(j))) {
+						number++;
+					}
+				}
+
+				return number;
+			}; */
+
+			let J = "aA";
+			let S = "aAAbbbb";
+			console.log(numJewelsInStones(J, S));
+		</script>
+	</body>
+</html>

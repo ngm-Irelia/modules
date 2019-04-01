@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello D3</title>
+        <script src="../js/d3.v3.min.js"></script>
+        <style></style>
+    </head>
+    <body>
+        <script>
+            var dataset = [{
+                name: "桂林",
+                source: 0,
+                target: 1
+            }, {
+                name: "广州",
+                source: 1,
+                target: 2
+            }, {
+                name: "厦门",
+                source: 2,
+                target: 3
+            }, {
+                name: "杭州",
+                source: 3,
+                target: 4
+            }, {
+                name: "上海",
+                source: 4,
+                target: 5
+            }, {
+                name: "青岛",
+                source: 5,
+                target: 6
+            }, {
+                name: "天津",
+                source: 6,
+                target: 0
+            }];
+
+            var width = 400;
+            var height = 400;
+
+            var force = d3.layout.force().nodes(dataset)//指定节点数组
+            .links(dataset)//指定连线数组
+            .size([width, height])//指定范围
+            .linkDistance(180)//指定连线长度
+			.linkStrength(0.1)
+			.friction(0.1)
+            .charge([-1000]);//相互之间的作用力
+
+   
+            var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+
+            //添加连线
+            var svg_edges = svg.selectAll("line").data(dataset).enter().append("line").style("stroke", "#ccc").style("stroke-width", 1);
+
+            var color = d3.scale.category20();
+
+            //添加节点
+            var svg_nodes = svg.selectAll("circle").data(dataset).enter().append("circle").attr("r", 20).style("fill", function(d, i) {
+                return color(i);
+            }).call(force.drag);
+            //使得节点能够拖动
+
+            //添加描述节点的文字
+            var svg_texts = svg.selectAll("text").data(dataset).enter().append("text").style("fill", "black").attr("dx", 20).attr("dy", 8).text(function(d) {
+                return d.name;
+            });
+
+			force.start();//开始作用
+			
+            force.on("tick", function() {
+                //对于每一个时间间隔
+				console.log("aaaaaaaaa")
+                //更新连线坐标
+                svg_edges.attr("x1", function(d) {
+                    return d.source.x;
+                }).attr("y1", function(d) {
+                    return d.source.y;
+                }).attr("x2", function(d) {
+                    return d.target.x;
+                }).attr("y2", function(d) {
+                    return d.target.y;
+                });
+
+                //更新节点坐标
+                svg_nodes.attr("cx", function(d) {
+                    return d.x;
+                }).attr("cy", function(d) {
+                    return d.y;
+                });
+
+                //更新文字坐标
+                svg_texts.attr("x", function(d) {
+                    return d.x;
+                }).attr("y", function(d) {
+                    return d.y;
+                });
+            });
+			
+			for (let i = 1; i < 95; ++i) {
+				force.tick();
+			}
+			force.stop();
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		.base {
+			margin: 100px;
+			border: 1px solid #007FFF;
+
+			width: 500px;
+			height: 500px;
+		}
+
+		select,
+		option {
+			
+			/*很关键：将默认的select选择框样式清除*/
+			appearance: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			
+		}
+
+		select {
+			border: 0;
+			width: 200px;
+			border: 1px solid blue;
+			margin: 20px;
+			
+		}
+		
+		select::-webkit-scrollbar {
+			width:0px;
+			height:0px;
+			display: none;
+		}
+
+		option {
+			padding-top: 20px;
+			line-height: 30px;
+		}
+		/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+		select::-ms-expand {
+			display: none;
+		}
+	</style>
+	
+	<script src="../js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="base">
+			<select style="height: 40px;" class="choose" >
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数大学网奥数</option>
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数</option>
+			</select>
+		</div>
+		
+		<div class="base">
+			<select style="height: 40px;" class="choose" >
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数大学网奥数</option>
+			</select>
+		</div>
+
+
+<style>
+ .bloc { display:inline-block; vertical-align:top; overflow:hidden; border:solid grey 1px; }
+ .bloc select { padding:10px; margin:-5px -20px -5px -5px; }
+</style>
+
+<!-- Années -->
+<div class="bloc">
+  <select name="year" size="5">
+    <option value="2010" >2010</option>
+    <option value="2011" >2011</option>
+    <option value="2012" SELECTED>2012</option>
+    <option value="2013" >2013</option>
+    <option value="2014" >2014</option>
+   </select>
+</div>
+
+		<script>
+			$(".choose").bind("mousedown",function(){
+				let childLen = $(this)[0].children.length;
+				if(childLen>0){
+					$(this).css("height","");
+					$(this).attr("size",childLen+1);
+				}
+			})
+			
+			$(".choose").bind("change",function(){
+				//this.size=0,this.style.height='40px'
+				$(this).css("height","40px");
+				$(this).attr("size",0);
+			})
+
+			$(".choose").bind("blur",function(){
+				$(this).css("height","40px");
+				$(this).attr("size",0);
+			})
+			
+			
+			
+			console.log("addddd")
+            setTimeout(function(){
+                $(".rule-container select").css("height","40px");
+
+                $(".rule-container select").unbind("mousedown").bind("mousedown",function(){
+                    let childLen = $(this)[0].children.length;
+                    if(childLen>0){
+                        $(this).css("height","");
+                        $(this).attr("size",childLen);
+                    }
+                })
+                $(".rule-container select").unbind("change").bind("change",function(){
+                    $(this).css("height","40px");
+                    $(this).attr("size",0);
+                })
+
+                $(".rule-container select").unbind("blur").bind("blur",function(){
+                    $(this).css("height","40px");
+                    $(this).attr("size",0);
+                })
+            },10)
+		</script>
+	</body>
+</html>
+

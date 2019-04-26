@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		.base {
+			margin: 100px;
+			border: 1px solid #007FFF;
+
+			width: 500px;
+			height: 500px;
+		}
+
+		select,
+		option {
+			
+			/*很关键：将默认的select选择框样式清除*/
+			/* appearance: none;
+			-moz-appearance: none;
+			-webkit-appearance: none; */
+			
+		}
+
+		select {
+			
+			width: 200px;
+			border: 1px solid blue;
+			margin: 20px;
+		}
+
+		option {
+			padding-top: 20px;
+			line-height: 30px;
+		}
+		/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+		select::-ms-expand {
+			display: none;
+		}
+	</style>
+	<body>
+		<div class="base">
+			<select style="height: 40px;" class="choose" onmousedown="if(this.options.length>6){this.style.height='',this.size=this.options.length}"
+			 onblur="this.size=0,this.style.height='40px'" onchange="this.size=0,this.style.height='40px'">
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数大学网奥数</option>
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数</option>
+			</select>
+		</div>
+
+
+	</body>
+</html>

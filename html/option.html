@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body,
+			input,
+			select,
+			checkbox {
+				font-family: 'Avenir Lt Std', AppleGothic, 'century gothic', Verdana, sans-serif;
+				font-size: 15px;
+				font-weight: 200;
+				line-height: 18px;
+			}
+
+			input,
+			select {
+				color: #4c2a18;
+				border: 1px solid #cfc8b4;
+				background-color: #ffffff;
+				-moz-border-radius: 0;
+				-webkit-border-radius: 0;
+				border-radius: 0;
+				margin: 0;
+			}
+
+			option {
+				height: 35px;
+				padding: 5px;
+				line-height: 35px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="article-start-box">
+			<span class="categery">分类栏目</span>
+			<select style="position: absolute;z-index: 1;margin-left: 40px;" class="choose" onmousedown="if(this.options.length>6){this.size=this.options.length}"
+			 onblur="this.size=0" onchange="this.size=0">
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数大学网奥数</option>
+				<option value="volvo">文学集</option>
+				<option value="saab">哲学</option>
+				<option value="opel">雅思</option>
+				<option value="audi">大学网奥数</option>
+			</select>
+		</div>
+	</body>
+</html>

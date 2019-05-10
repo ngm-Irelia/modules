@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		X-Content-Type-OptionsHTTP Header
+		浏览器不会再去推断内容类型，而是强制按照图片进行渲染，
+		那么因为实际上这是一段JS脚本而非真实的图片，
+		因此这段脚本就会被浏览器当作是一个已经损坏或者格式不正确的图片来处理，
+		而不是当作JS脚本来处理，从而最终防止了安全问题的发生。
+		
+		 CSP安全策略
+	</body>
+</html>

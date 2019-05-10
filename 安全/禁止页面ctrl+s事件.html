@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//window.removeEventListener("keydown",function(){})
+			window.addEventListener("keydown", function(e) {
+				var key =  e.which || e.keyCode;
+				if (key == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+					console.log("111");
+					e.preventDefault();
+				}
+			}, false);
+			
+			//window.removeEventListener('keydown', function(){}, false);
+			 
+		</script>
+	</body>
+</html>

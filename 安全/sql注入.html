@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			var sQuery="aaaaaaaaa1 111111111111111";
+			let re=/select|update|delete|truncate|join|union|exec|insert|drop|count|'|"|;|>|<|%/i ;
+			if(re.test(sQuery)){
+				console.log("请勿输入非法字符");
+			}else{
+				console.log("正常");
+			}
+		</script>
+	</body>
+</html>

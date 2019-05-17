@@ -1,3 +1,18 @@
+/**
+ * @fileoverview 组件-横向柱状图 
+ * v1.0 简单实现功能，用户自定义各种效果后续开发
+ * 示例文件 first.html
+ * 基于原生js
+ *
+ * @author NGM
+ * @version 1.0
+ */
+
+/** 
+ * @namespace component的所有类均放在Component命名空间下
+ */
+var Component = window.Component = Component || {};
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
 	class CommonLineChart {
@@ -33,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					<div class="common-showLineChart-innerLine" style="background-color:${_that.innerLineColorArr(i)};"></div>
 					<div class="common-showLineChart-index-background" style="border-color:${_that.indexColorArr(i)} transparent transparent transparent;"></div>
 					<div class="common-showLineChart-index">${i+1}</div>
-					<div class="common-showLineChart-title">${data[i].name}</div>
-					<div class="common-showLineChart-number">${data[i].number}</div>
+					<div class="common-showLineChart-title">${showdata[i].name}</div>
+					<div class="common-showLineChart-number">${showdata[i].number}</div>
 				</div>`;
 			}
 			 
@@ -69,49 +84,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 	//使用方式如下
-	window.commonLineChart = new CommonLineChart();
-
-	// 使用时，传入对应参数，使用即可
-	//模拟data
-	var data = [
-		{
-			id:"111",
-			name:"中国",
-			number:1399
-		},{
-			id:"999",
-			name:"中国2",
-			number:999
-		},{
-			id:"888",
-			name:"中国",
-			number:888
-		},{
-			id:"777",
-			name:"中国",
-			number:777
-		},{
-			id:"666",
-			name:"中国",
-			number:666
-		},{
-			id:"555",
-			name:"中国",
-			number:555
-		},{
-			id:"444",
-			name:"中国",
-			number:444
-		}
-	]
-	
-	/**
-	 * 加载函数
-	 * @param showId 数据需要显示的父id
-	 * @param data 显示的数据
-	 */
-	commonLineChart.run("showarea",data);
-
-
+	Component.CommonLineChart = CommonLineChart;
 
 });

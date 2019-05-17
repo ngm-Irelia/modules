@@ -1,4 +1,13 @@
-.common-showLineChart {
+/**
+ * @fileoverview 组件-所有样式 使用时引入~~
+ *
+ * @author NGM
+ * @version 1.0
+ */
+
+ 
+ /*barChart*/
+ .common-showLineChart {
 	padding: 10px;
 }
 .common-showLineChart-outLine {
@@ -50,3 +59,5 @@
 	right:8px;
 	font-size: 12px;
 }
+
+ /*barChart end*/

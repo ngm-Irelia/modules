@@ -13,8 +13,7 @@
  */
 var Component = window.Component = Component || {};
 
-
-document.addEventListener("DOMContentLoaded", function(event) {
+(function(){
 
 	class PictureVirtual {
 		constructor() {
@@ -85,4 +84,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	Component.PictureVirtual = PictureVirtual;
 
-});
+})()
+

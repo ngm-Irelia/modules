@@ -39,6 +39,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
    * @param data 显示的数据
    */
 
-  let cl = new Component.CommonLineChart();
+  let cl = new Component.BarChart();
   cl.run("showarea",data);
 });

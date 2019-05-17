@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				`;
 				
 				ele.innerHTML = html;
-				console.log(ele.getElementsByTagName("img"));
 				
 				let VImg = ele.getElementsByClassName("virtual-img")[0];
 				let CImg = ele.getElementsByClassName("clear-img")[0];

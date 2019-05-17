@@ -13,9 +13,8 @@
  */
 var Component = window.Component = Component || {};
 
-document.addEventListener("DOMContentLoaded", function(event) {
-
-	class CommonLineChart {
+(function(){
+	class BarChart {
 		constructor() {
 			this.showId = "";//显示的id
 			this.showData = '';
@@ -80,10 +79,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	}
 
-
-
-
-	//使用方式如下
-	Component.CommonLineChart = CommonLineChart;
-
-});
+	Component.BarChart = BarChart;
+})()
+	
+ 

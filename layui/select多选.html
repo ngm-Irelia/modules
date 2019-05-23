@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>builder</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="./assets/layui/css/layui.css" media="all">
+		<style>
+			#showdiv {
+				width: 500px;
+				height: 500px;
+				margin:50px;
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<th>
+						<div id="showdiv" class="layui-form">
+
+							<div class="layui-unselect layui-form-select multi layui-form-selected layui-form-selectup">
+								<div class="layui-select-title"><input type="text" placeholder="请选择一个城市" value="" readonly="" class="layui-input layui-unselect"><i
+									 class="layui-edge"></i></div>
+								<dl class="layui-anim layui-anim-upbit" style="">
+									<dd lay-value="" class="layui-select-tips"><input type="checkbox" lay-skin="primary" title="请选择一个城市" disabled="">
+										<div class="layui-unselect layui-form-checkbox layui-checkbox-disbaled layui-disabled" lay-skin="primary"><span>请选择一个城市</span><i
+											 class="layui-icon layui-icon-ok"></i></div>
+									</dd>
+									<dd lay-value="010" class=""><input type="checkbox" lay-skin="primary" title="北京">
+										<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>北京</span><i class="layui-icon layui-icon-ok"></i></div>
+									</dd>
+									<dd lay-value="021" class=""><input type="checkbox" lay-skin="primary" title="上海">
+										<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>上海</span><i class="layui-icon layui-icon-ok"></i></div>
+									</dd>
+									<dd lay-value="0571" class="layui-this"><input type="checkbox" lay-skin="primary" title="杭州">
+										<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>杭州</span><i class="layui-icon layui-icon-ok"></i></div>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</th>
+				</tr>
+			</thead>
+		</table>
+
+
+		<script src="../js/jquery-3.3.1.js" charset="utf-8"></script>
+		<script src="./assets/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="multiSelect.js"></script>
+		<script>
+			let html =
+				`<select name="city" multiple="multiple">
+			  <option value="">请选择</option>
+			  <option value="010" selected="selected">北京</option>
+			  <option value="021">上海</option>
+			  <option value="0571">杭州</option>
+			  </select>`;
+			$("#showdiv").html(html);
+			//Demo
+			layui.use(['form'], function() {
+				var form = layui.form;
+			});
+
+			// 		layui.use(['multiSelect'],function(){
+			// 		  var multiSelect = layui.multiSelect;
+			// 		  // 如果异步操作了数据，比如在下拉项追加了一项，使用multiSelect.render(type, filter);type, filter参数跟layui官方的form.render(type, filter)一毛一样，可前往查看
+			// 		  multiSelect.render(type, filter);
+			// 		})
+		</script>
+
+	</body>
+</html>

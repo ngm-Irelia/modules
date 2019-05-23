@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <body>
+        分享到新浪微博功能实现之截图 是不小贺啊小贺
+        http://netsos.cnblogs.com/
+		<span>hahah</span>
+        分享到新浪微博啊分享到新浪<span>hahah</span>微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪
+		<div>分享</div>
+		微博分享到新浪微博分享到新浪微博分享到新浪微博
+    <script>
+        var funcGetSelectText = function(){
+            var txt = '';
+            if(document.selection){
+                txt = document.selection.createRange().text;//ie
+            }else{
+                txt = document.getSelection();
+            }
+			console.log(txt.getRangeAt(0))
+            return txt.toString();
+        }
+		
+		function replaceSelection() {
+            if (window.getSelection) {
+                var selecter = window.getSelection();
+                var selectStr = selecter.toString();
+                if (selectStr.trim != "") {
+                    var rang = selecter.getRangeAt(0);
+                    var temp = $("<b>" + selectStr + "<b/>");
+                    rang.surroundContents(temp[0]);
+                }
+            } else if (document.selection) {//ie
+                var selecter = document.selection.createRange();
+                selecter.select();
+                var selectStr = selecter.text;
+                selecter.pasteHTML("<b>" + selectStr + "<b/>");
+            }
+        }
+		
+        var container = container || document;
+        container.onmouseup = function(){
+            //var txt = funcGetSelectText();
+           // console.log(txt)
+			
+			replaceSelection();
+        }
+    </script>
+    </body>
+</html>

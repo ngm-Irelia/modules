@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>builder</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="./assets/layui/css/layui.css" media="all">
+	</head>
+	<body>
+
+		常用两级表头：
+
+		<table class="layui-table" lay-data="{width:800, url:'./testJsons/demo.json', page: true, limit: 6, limits:[6]}">
+			<thead>
+				<tr>
+					<th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>
+					<th lay-data="{field:'username', width:150}" rowspan="2">联系人</th>
+					<th lay-data="{align:'center'}" colspan="3">地址2222</th>
+					
+					<!-- <th lay-data="{align:'center'}" colspan="1">地址</th>
+					<th lay-data="{align:'center'}" colspan="1">地址</th>
+					<th lay-data="{align:'center'}" colspan="1">地址</th> -->
+					<th lay-data="{width:120}" colspan="2">金额</th>
+					 
+					<th lay-data="{width: 160, align: 'center', toolbar: '#barDemo'}" rowspan="2">操作</th>
+				</tr>
+				<tr>
+					<th lay-data="{field:'province', width:120}">省</th>
+					<th lay-data="{field:'city', width:120}">市</th>
+					
+					<th lay-data="{field:'zone', width:200}">区</th>
+					<th lay-data="{field:'amount', width:120}">金额</th>
+					<th lay-data="{field:'zone', width:0}">区</th>
+				</tr>
+			</thead>
+		</table>
+
+		<script type="text/html" id="barDemo">
+			<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">按钮1</a>
+			<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">按钮2</a>
+		</script>
+		<p style="color: #999">注：上述例子读取的均是静态模拟数据</p>
+
+		<script src="./assets/layui/layui.js" charset="utf-8"></script>
+
+		<script>
+		layui.use('table', function(){
+			var table = layui.table;
+			
+		});
+		</script>
+
+	</body>
+</html>

@@ -30,11 +30,6 @@
                     var temp = $("<b>" + selectStr + "<b/>");
                     rang.surroundContents(temp[0]);
                 }
-            } else if (document.selection) {//ie
-                var selecter = document.selection.createRange();
-                selecter.select();
-                var selectStr = selecter.text;
-                selecter.pasteHTML("<b>" + selectStr + "<b/>");
             }
         }
 		

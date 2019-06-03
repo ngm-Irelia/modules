@@ -7,26 +7,26 @@
  */
 
 /** 
- * @namespace component的所有类均放在Component命名空间下
+ * @namespace Components的所有类均放在Components命名空间下
  */
-var Component = window.Component = Component || {};
+var Components = window.Components = Components || {};
 
 (function(){
 	
-	Component = function(){
-		return new Component.ct.init();
+	Components = function(){
+		return new Components.ct.init();
 	}
 	
 	//从此以后使用ct
-	Component.ct = Component.prototype = {
-		constructor: Component,
+	Components.ct = Components.prototype = {
+		constructor: Components,
 		init:function(){
 			return this;
 		}
 	}
 	
-	//这一句是重中重
-	Component.ct.init.prototype = Component.ct;
+	//这一句是重中重  // 改变指向
+	Components.ct.init.prototype = Components.ct;
 	
 	
 	
@@ -35,11 +35,25 @@ var Component = window.Component = Component || {};
 	// ok 前端基础代码完成了 ~~
 	//接下来是具体的功能性代码咯
 	
+	Components.extend =  Components.ct.extend = function () {
+	  let args = arguments[0] || {};
+	  let target = this;
+	  if (typeof args === "object" || typeof args === "function") {
+	
+	    for (name in args) {
+	      target[name] = args[name];
+	    }
+	
+	  }
+	  return target;
+	}
+
+	
 	/**
 	 * Promise 动态加载js
 	 * @param {*} url 要加载的js
 	 */
-	Component.ct.loadScriptPromise = function(url) {
+	let loadScriptPromise = function(url) {
 	  return new Promise(function(resolve, reject) {
 	    var script = document.createElement("script");
 	    script.type = "text/javascript";
@@ -64,10 +78,231 @@ var Component = window.Component = Component || {};
 	  })
 	}
 	
+	/**
+	 * 处理接口的通用类
+	 */
+	let getData = function () {
+		this.getAjaxBase = function (urls,param,type,tradit) {
+			return new Promise(function (resolve,reject) {
+				let getTradit = tradit? true:false;
+				$.ajax({
+					url: urls,
+					traditional: getTradit, //是否自动解析数组
+					type: type,
+					data: param,
+					//dataType: "json",
+					success: function(data) {
+						if (data){
+							resolve(data);
+						}else{
+							reject("接口出错!");
+						}
+					},
+					error: function(error) {
+						reject("未查询到数据!");
+					}
+				})
+			});
+		}
+	};
+
+
+	/**
+	 * only a example !!
+	 * @param param 发送请求，需要的参数
+	 */
+	getData.prototype.getMaterialProTable = function(param){
+		let _thatData = this;
+		return new Promise(function(resolve, reject) {
+			_thatData.getAjaxBase('search/card',param,'GET').then(function (data) {
+				resolve(data);
+			}).catch(function(){
+				reject(false);
+			})
+		}) 
+	};
+
+
+
+
+	
+	/**
+	 * 处理时间的通用类
+	 */
+	let getTime = function(){
+		//获取当前日期方法
+		this.getNowFormatDate = function () {
+			var date = new Date();
+			var seperator1 = "-";
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = year + seperator1 + month + seperator1 + strDate;
+			return currentdate;
+		}
+		//获取当前日期，包括时分秒
+		this.getNowFormatDateHMS = function () {
+			var date = new Date();
+			var seperator1 = "-";
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			var hour = date.getHours();       //获取当前小时数(0-23)
+			var minute = date.getMinutes();   //获取当前分钟数(0-59)
+			var second = date.getSeconds();   //获取当前秒数(0-59)
+			
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+
+			if (hour >= 0 && hour <= 9) {
+				hour = "0" + hour;
+			}
+			if (minute >= 0 && minute <= 9) {
+				minute = "0" + minute;
+			}
+			if (second >= 0 && second <= 9) {
+				second = "0" + second;
+			}
+
+			var currentdate = year + seperator1 + month + seperator1 + strDate+" "+hour+ ":" + minute + ":" +second;
+			return currentdate;
+		}
+		
+		//获取指定日期前一天
+		this.getBeforeDay = function (d) {
+			d = new Date(d);
+			d = +d - 1000 * 60 * 60 * 24;
+			d = new Date(d);
+			var year = d.getFullYear();
+			var mon = d.getMonth() + 1;
+			var day = d.getDate();
+			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			return s;
+		}
+		//获取指定日期前七天
+		this.getBeforeWeek = function (d) {
+			d = new Date(d);
+			d = +d - 1000 * 60 * 60 * 24 * 6;
+			d = new Date(d);
+			var year = d.getFullYear();
+			var mon = d.getMonth() + 1;
+			var day = d.getDate();
+			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			return s;
+		}
+		//获取指定日期前一个月
+		this.getBeforeMonth = function (d) {
+			d = new Date(d);
+			d = +d - 1000 * 60 * 60 * 24 * 29;
+			d = new Date(d);
+			var year = d.getFullYear();
+			var mon = d.getMonth() + 1;
+			var day = d.getDate();
+			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			return s;
+		}
+		//获取指定日期前一个年
+		this.getBeforeYear = function (d) {
+			d = new Date(d); 
+			var year = d.getFullYear()-1;
+			var mon = d.getMonth() + 1;
+			var day = d.getDate();
+			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			return s;
+		}
+	
+	}
+	
+	/**
+	 * 获取当前日期的函数
+	 */
+	getTime.prototype.getNowTime = function(){
+		return this.getNowFormatDate();
+	}
+	/**
+	 * 根据字段，处理对应的时间范围
+	 * @param {*} time 时间范围字符串 { day|week|month|year }
+	 * @return jsonData {
+	 * 		startTime:" ",
+	 * 		endTime:" "
+	 * }
+	 */
+	getTime.prototype.getTimeByString = function(time){
+		let _that = this;
+		
+		switch(time){
+			case "day" : {
+				return _that.getBeforeDay(_that.getNowFormatDate());
+			}
+			
+		case "week" : {
+			return _that.getBeforeWeek(_that.getNowFormatDate());
+			}
+		
+		case "month" : {
+			return _that.getBeforeMonth(_that.getNowFormatDate());
+		}
+		case "year" : {
+			return _that.getBeforeYear(_that.getNowFormatDate());
+		}
+		}
+	}
+	
+	Components.extend({ 
+		getData:new getData(),
+		getTime:new getTime(),
+		loadScriptPromise:loadScriptPromise,
+		/**
+		 * 解析search的值，转为json对象
+		 * @param {*} search window.location.search
+		 */
+		dealSearch:function (search){
+			if(search && search.indexOf("?")!=-1) { 
+				var str = search.substring(1);
+				var strs = str.split("&"); 
+				var searchJson = {};
+				for(var i=0;i<strs.length;i++){ 
+					searchJson[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+				}
+				return searchJson;
+			}
+		},
+		
+		/**
+		 * 禁止文字选择 
+		 */
+		selectText : function () {
+			"getSelection" in window
+				?
+				window.getSelection().removeAllRanges() :
+				document.selection.empty();
+		},
+
+		
+	});  //在这独立扩展工具方法
 	
 	
+	// here ~ 为防止开发冲突，每个开发人员自己写自己的 extend
 	
+	// example
 	
+	// 人员1
+	Components.extend({ });  //在这独立扩展工具方法
+	Components.ct.extend({ });     //在这独立扩展实例方法
+	
+	//人员2
+	Components.extend({ });  //在这独立扩展工具方法
+	Components.ct.extend({ });     //在这独立扩展实例方法
 	
 	
 })()
@@ -156,7 +391,7 @@ var Component = window.Component = Component || {};
 
 	}
 
-	Component.prototype.BarChart = new BarChart();
+	Components.prototype.BarChart = new BarChart();
 })();
 
 /**
@@ -231,7 +466,7 @@ var Component = window.Component = Component || {};
 
 	}
 
-	Component.prototype.PictureVirtual = new PictureVirtual();
+	Components.prototype.PictureVirtual = new PictureVirtual();
 
 })()
 
@@ -298,7 +533,7 @@ var Component = window.Component = Component || {};
 		}
 	}
 
-	Component.prototype.PictureVirtualByClass = new PictureVirtualByClass(); 
+	Components.prototype.PictureVirtualByClass = new PictureVirtualByClass(); 
 
 })();
 

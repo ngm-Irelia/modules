@@ -1,0 +1,11 @@
+.show-color {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.show-color .sc{
+  width: 100px;
+  height: 50px;
+  margin: 20px;
+  line-height: 50px;
+}

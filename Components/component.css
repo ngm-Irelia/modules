@@ -1,0 +1,155 @@
+/**
+ * @fileoverview 所有样式 必须引入~~
+ *
+ * @author NGM
+ * @version 1.0
+ */
+
+/*页面通用的样式*/
+ html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing:border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+} 
+
+html, body {
+	height: 100%;
+	color:#555;
+}
+
+
+/*页面通用的样式 end*/
+
+.c-primary {
+	background-color: #fff;
+	color:#555;
+	border: 1px solid #C9C9C9;
+	text-align: center;
+}
+
+.c-normal {
+	background-color: #33d0ff;
+	color:#fff;
+	border: none;
+	text-align: center;
+}
+
+.c-warning {
+	background-color: #ffc000;
+	color:#fff;
+	border: none;
+	text-align: center;
+}
+
+.c-danger {
+	background-color: #e60012;
+	color:#fff;
+	border: none;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*后面是不同的组件的样式*/ 
+ 
+ /*barChart*/
+.common-showLineChart {
+	padding: 10px;
+}
+.common-showLineChart-outLine {
+	background-color: #e6e6e6;
+	position: relative;
+	height: 30px;
+	margin: 8px 0;
+}
+
+.common-showLineChart-innerLine {
+	height: 30px;
+	position: absolute;
+	width:0px;
+	transition: width 2s;
+}
+
+.common-showLineChart-index, .common-showLineChart-title, .common-showLineChart-number {
+	position: absolute;
+	height: 100%;
+	line-height: 30px;
+}
+
+.common-showLineChart-index {
+	left: 5px;
+	top: -5px;
+	width: 28px;
+	height: 28px;
+	font-size: 12px;
+	background-color: rgba(0,0,0,0);
+	 
+}
+.common-showLineChart-index-background {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width:30px 30px 30px 0;
+	border-style:solid;
+}
+
+.common-showLineChart-title {
+	left:30px;
+	width: 78%;
+	font-size: 14px;
+}
+
+.common-showLineChart-number {
+	right:8px;
+	font-size: 12px;
+}
+
+ /*barChart end*/

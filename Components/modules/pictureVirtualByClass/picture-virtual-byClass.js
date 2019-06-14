@@ -13,7 +13,7 @@
 /** 
  * @namespace component的所有类均放在Component命名空间下
  */
-var Component = window.Component = Component || {};
+window.Components = window.Components || {};
 
 (function(){
 
@@ -75,6 +75,6 @@ var Component = window.Component = Component || {};
 		}
 	}
 
-	Component.PictureVirtualByClass = PictureVirtualByClass; 
+	Components.PictureVirtualByClass = PictureVirtualByClass; 
 
 })();

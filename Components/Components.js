@@ -29,17 +29,13 @@ var Components = window.Components = Components || {};
 	Components.ct.init.prototype = Components.ct;
 
 
-
-
-
 	// ok 前端基础代码完成了 ~~
 	//接下来是具体的功能性代码咯
 
 	Components.extend = Components.ct.extend = function() {
 		let args = arguments[0] || {};
 		let target = this;
-		if (typeof args === "object" || typeof args === "function") {
-
+		if ( typeof args === "object" && !(typeof args === "function") && !(args instanceof Array) ) {
 			for (name in args) {
 				target[name] = args[name];
 			}
@@ -48,114 +44,36 @@ var Components = window.Components = Components || {};
 		return target;
 	}
 
-
-	/**
-	 * Promise 动态加载js
-	 * @param {*} url 要加载的js
-	 */
-	let loadScriptPromise = function(url) {
-		return new Promise(function(resolve, reject) {
-			var script = document.createElement("script");
-			script.type = "text/javascript";
-			if (script.readyState) { // ie
-				script.onreadystatechange = function() {
-					if (script.readyState === "loaded" || script.readyState === "complete") {
-						script.onreadystatechange = null;
-						resolve();
-					}
-				};
-			} else { //Others: Firefox, Safari, Chrome, and Opera
-				script.onload = function() {
-					resolve();
-				};
-			}
-
-			if (!url) {
-				reject('url is error!');
-			}
-			script.src = url;
-			document.body.appendChild(script);
-		})
-	}
-
-	/**
-	 * 处理接口的通用类
-	 */
-	let getData = function() {
-		this.getAjaxBase = function(urls, param, type, tradit) {
-			return new Promise(function(resolve, reject) {
-				let getTradit = tradit ? true : false;
-				$.ajax({
-					url: urls,
-					traditional: getTradit, //是否自动解析数组
-					type: type,
-					data: param,
-					//dataType: "json",
-					success: function(data) {
-						if (data) {
-							resolve(data);
-						} else {
-							reject("接口出错!");
-						}
-					},
-					error: function(error) {
-						reject("未查询到数据!");
-					}
-				})
-			});
-		}
-	};
-
-
-	/**
-	 * only a example !!
-	 * @param param 发送请求，需要的参数
-	 */
-	getData.prototype.getMaterialProTable = function(param) {
-		let _thatData = this;
-		return new Promise(function(resolve, reject) {
-			_thatData.getAjaxBase('search/card', param, 'GET').then(function(data) {
-				resolve(data);
-			}).catch(function() {
-				reject(false);
-			})
-		})
-	};
-
-
-
-
-
 	/**
 	 * 处理时间的通用类
 	 */
 	let getTime = function() {
 		//获取当前日期方法
 		this.getNowFormatDate = function() {
-			var date = new Date();
-			var seperator1 = "-";
-			var year = date.getFullYear();
-			var month = date.getMonth() + 1;
-			var strDate = date.getDate();
+			let date = new Date();
+			let seperator1 = "-";
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let strDate = date.getDate();
 			if (month >= 1 && month <= 9) {
 				month = "0" + month;
 			}
 			if (strDate >= 0 && strDate <= 9) {
 				strDate = "0" + strDate;
 			}
-			var currentdate = year + seperator1 + month + seperator1 + strDate;
-			return currentdate;
+			
+			return year + seperator1 + month + seperator1 + strDate;
 		}
 		//获取当前日期，包括时分秒
 		this.getNowFormatDateHMS = function() {
-			var date = new Date();
-			var seperator1 = "-";
-			var year = date.getFullYear();
-			var month = date.getMonth() + 1;
-			var strDate = date.getDate();
-			var hour = date.getHours(); //获取当前小时数(0-23)
-			var minute = date.getMinutes(); //获取当前分钟数(0-59)
-			var second = date.getSeconds(); //获取当前秒数(0-59)
+			let date = new Date();
+			let seperator1 = "-";
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let strDate = date.getDate();
+			let hour = date.getHours(); //获取当前小时数(0-23)
+			let minute = date.getMinutes(); //获取当前分钟数(0-59)
+			let second = date.getSeconds(); //获取当前秒数(0-59)
 
 			if (month >= 1 && month <= 9) {
 				month = "0" + month;
@@ -174,100 +92,76 @@ var Components = window.Components = Components || {};
 				second = "0" + second;
 			}
 
-			var currentdate = year + seperator1 + month + seperator1 + strDate + " " + hour + ":" + minute + ":" + second;
+			let currentdate = year + seperator1 + month + seperator1 + strDate + " " + hour + ":" + minute + ":" + second;
 			return currentdate;
 		}
-
+		//根据数字，获取对应日期
+		this.getFormatDateByNumber = function(d){
+			let nowDate = new Date();
+			d = nowDate - (1000 * 60 * 60 * 24)*d;
+			d = new Date(d);
+			let year = d.getFullYear();
+			let mon = d.getMonth() + 1;
+			let day = d.getDate();
+			let s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			return s;
+		}
 		//获取指定日期前一天
 		this.getBeforeDay = function(d) {
 			d = new Date(d);
-			d = +d - 1000 * 60 * 60 * 24;
+			d = d - 1000 * 60 * 60 * 24;
 			d = new Date(d);
-			var year = d.getFullYear();
-			var mon = d.getMonth() + 1;
-			var day = d.getDate();
-			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			let year = d.getFullYear();
+			let mon = d.getMonth() + 1;
+			let day = d.getDate();
+			let s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
 			return s;
 		}
 		//获取指定日期前七天
 		this.getBeforeWeek = function(d) {
 			d = new Date(d);
-			d = +d - 1000 * 60 * 60 * 24 * 6;
+			d = d - 1000 * 60 * 60 * 24 * 6;
 			d = new Date(d);
-			var year = d.getFullYear();
-			var mon = d.getMonth() + 1;
-			var day = d.getDate();
-			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			let year = d.getFullYear();
+			let mon = d.getMonth() + 1;
+			let day = d.getDate();
+			let s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
 			return s;
 		}
 		//获取指定日期前一个月
 		this.getBeforeMonth = function(d) {
 			d = new Date(d);
-			d = +d - 1000 * 60 * 60 * 24 * 29;
+			d = d - 1000 * 60 * 60 * 24 * 29;
 			d = new Date(d);
-			var year = d.getFullYear();
-			var mon = d.getMonth() + 1;
-			var day = d.getDate();
-			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			let year = d.getFullYear();
+			let mon = d.getMonth() + 1;
+			let day = d.getDate();
+			let s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
 			return s;
 		}
 		//获取指定日期前一个年
 		this.getBeforeYear = function(d) {
 			d = new Date(d);
-			var year = d.getFullYear() - 1;
-			var mon = d.getMonth() + 1;
-			var day = d.getDate();
-			var s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
+			let year = d.getFullYear() - 1;
+			let mon = d.getMonth() + 1;
+			let day = d.getDate();
+			let s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
 			return s;
 		}
 
 	}
 
-	/**
-	 * 获取当前日期的函数
-	 */
-	getTime.prototype.getNowTime = function() {
-		return this.getNowFormatDate();
-	}
-	/**
-	 * 根据字段，处理对应的时间范围
-	 * @param {*} time 时间范围字符串 { day|week|month|year }
-	 * @return jsonData {
-	 * 		startTime:" ",
-	 * 		endTime:" "
-	 * }
-	 */
-	getTime.prototype.getTimeByString = function(time) {
-		let _that = this;
-
-		switch (time) {
-			case "day":
-				{
-					return _that.getBeforeDay(_that.getNowFormatDate());
-				}
-
-			case "week":
-				{
-					return _that.getBeforeWeek(_that.getNowFormatDate());
-				}
-
-			case "month":
-				{
-					return _that.getBeforeMonth(_that.getNowFormatDate());
-				}
-			case "year":
-				{
-					return _that.getBeforeYear(_that.getNowFormatDate());
-				}
-		}
-	}
-
 	let compGetTime = new getTime();
-	
-	
+
+	//扩展工具方法
 	Components.extend({
 		/**
-		 * 对接口的封装, 测试
+		 * 对接口的封装
+		 * 
+		 * @param urls	   请求的url	
+		 * @param param	   请求的参数
+		 * @param type	   请求的类型GET POST 等
+		 * @param tradit	 是否自动解析数组
 		 */
 		getData: function(urls, param, type, tradit) {
 			return new Promise(function(resolve, reject) {
@@ -293,12 +187,17 @@ var Components = window.Components = Components || {};
 		},
 		/**
 		 * 对时间的相关处理
-		 * @params time 字符串 { '' | 'now' | 'day' | 'week' | 'month' | 'year' }
+		 * @params time 字符串 { '' | 'now' | 'day' | 'week' | 'month' | 'year', 数字 }
 		 */
 		getTime: function(time) {
-			if(!time){
-				return compGetTime.getNowFormatDate();
+			if (!time) {
+				return compGetTime.getNowFormatDateHMS();
 			}
+
+			if(typeof time === 'number'){
+				return compGetTime.getFormatDateByNumber(time);
+			}
+
 			switch (time) {
 				case "now":
 					{
@@ -312,7 +211,7 @@ var Components = window.Components = Components || {};
 					break;
 				case "week":
 					{
-						return _that.getBeforeWeek(compGetTime.getNowFormatDate());
+						return compGetTime.getBeforeWeek(compGetTime.getNowFormatDate());
 					}
 					break;
 				case "month":
@@ -330,23 +229,45 @@ var Components = window.Components = Components || {};
 		/**
 		 * 动态加载js
 		 */
-		loadScriptPromise: loadScriptPromise,
+		loadScriptPromise: function(url) {
+			return new Promise(function(resolve, reject) {
+				let script = document.createElement("script");
+				script.type = "text/javascript";
+				if (script.readyState) { // ie
+					script.onreadystatechange = function() {
+						if (script.readyState === "loaded" || script.readyState === "complete") {
+							script.onreadystatechange = null;
+							resolve();
+						}
+					};
+				} else { //Others: Firefox, Safari, Chrome, and Opera
+					script.onload = function() {
+						resolve();
+					};
+				}
+
+				if (!url) {
+					reject('url is error!');
+				}
+				script.src = url;
+				document.body.appendChild(script);
+			})
+		},
 		/**
 		 * 解析search的值，转为json对象
 		 * @param {*} search window.location.search
 		 */
-		dealSearch: function(search) {
+		getSearch: function(search) {
 			if (search && search.indexOf("?") != -1) {
-				var str = search.substring(1);
-				var strs = str.split("&");
-				var searchJson = {};
-				for (var i = 0; i < strs.length; i++) {
+				let str = search.substring(1);
+				let strs = str.split("&");
+				let searchJson = {};
+				for (let i = 0; i < strs.length; i++) {
 					searchJson[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
 				}
 				return searchJson;
 			}
 		},
-
 		/**
 		 * 禁止文字选择 
 		 */
@@ -356,52 +277,124 @@ var Components = window.Components = Components || {};
 				window.getSelection().removeAllRanges() :
 				document.selection.empty();
 		},
-		
-		//邮箱监测
-		CheckEmail : function (email){
-			var reyx= /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-			return(reyx.test(email));
+
+		/**
+		 * 解析cookie 转为json对象
+		 */
+		getCookie : function () {
+			let decodedCookie = decodeURIComponent(document.cookie);
+			let ca = decodedCookie.split(';');
+			let cm = {};
+
+			for(let i = 0; i <ca.length; i++) {
+				let c = ca[i];
+
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				
+				let ci = c.indexOf('=');
+				if (ci >= 0) {
+					cm[c.substring(0, ci)] = c.substring(ci+1, c.length);
+				}
+			}
+
+			return cm;
+		},
+
+		/** 
+		* 检测是否是IE、Edge浏览器
+		*/
+		isIE: function () {
+			if (window.ActiveXObject || "ActiveXObject" in window || navigator.userAgent.includes("Edge")) return true;
+			else return false;
+		},
+
+	}); 
+  
+
+	//扩展工具方法  正则实现的相关的操作
+	Components.extend({
+		/**
+		 * 邮箱监测
+		 * @param {*} email 
+		 */
+		CheckEmail: function(email) {
+			let regexp = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/;
+			
+			return (regexp.test(email));
+		},
+		/**
+		 * 身份证检测
+		 * @param {*} card 
+		 */
+		checkIDCard: function (card){
+			let regexp = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+			
+			return (regexp.test(card));
+		},
+		/**
+		 * 正则表达式 去除两侧空格
+		 * @param {*} v 要处理的字符串
+		 */
+		trim: function (v) {
+			return v.replace(/(^\s*)|(\s*$)/g, "");
 		},
 
 
-	}); //在这独立扩展工具方法
-
-
-	// here ~ 为防止开发冲突，每个开发人员自己写自己的 extend
-
-	// example
-
-	// 人员1
-	Components.extend({}); //在这独立扩展工具方法
-	Components.ct.extend({}); //在这独立扩展实例方法
-
-	//人员2
-	Components.extend({}); //在这独立扩展工具方法
-	Components.ct.extend({}); //在这独立扩展实例方法
-
-
-})()
+	}); 
 
 
 
+	//扩展实例方法 
+	//扩展工具方法
+	Components.ct.extend({
+		
+		/**
+		 * 切换主题   
+		 * 
+		 * link元素 上 必须有  class='theme' title="xxxx" 属性; class不变，title为对应主题
+		 * 需要每份主题的css都写在html中，通过获得theme，给link添加disabled属性来控制
+		 * 
+		 * @param {*} theme 主题类型
+		 * 如果传theme，根据其 切换主题；  如果不传theme，去获取cookie中的theme属性，显示其对应主题
+		 */
+		switchTheme: function (theme){
+			if(theme){
+				$("link[class='theme'][title='"+theme+"']").removeAttr("disabled");
+				$("link[class='theme'][title!='"+theme+"']").attr("disabled","disabled");
+			}else{
+				let ctheme = Components.getCookie().theme;
+				if(ctheme){ 
+					theme = ctheme; 
+					$("link[class='theme'][title='"+theme+"']").removeAttr("disabled");
+					$("link[class='theme'][title!='"+theme+"']").attr("disabled","disabled");
+				}
+				
+			}
+
+			
+		}
 
 
+	}); 
 
 
+	// ----------------------------  以上 为 ngm 开发的内容 -------------------------------------- //
+
+	// ----------------------------  以下 为 xxx 开发的内容 -------------------------------------- //
 
 
+	// ----------------------------  以上 为 xxx 开发的内容 -------------------------------------- //
 
 
+	/**
+	* here 一些组件放在这，不到2万行，暂时不分文件
+	*/
 
-/**
- * here 一些组件放在这，不到2万行，不分文件
- */
-
-/**
- * 组件-横向柱状图 v1.0 用户自定义各种效果后续开发
- */
-;
-(function() {
+	/**
+	* 组件-横向柱状图 v1.0 用户自定义各种效果后续开发
+	*/
 	class BarChart {
 		constructor() {
 			this.showId = ""; //显示的id
@@ -432,7 +425,7 @@ var Components = window.Components = Components || {};
 
 			let html = `<div class="common-showLineChart">`;
 
-			for (var i = 0; i < showdata.length; i++) {
+			for (let i = 0; i < showdata.length; i++) {
 				html +=
 					`<div class="common-showLineChart-outLine">
 					<div class="common-showLineChart-innerLine" style="background-color:${_that.innerLineColorArr(i)};"></div>
@@ -448,8 +441,8 @@ var Components = window.Components = Components || {};
 			document.getElementById(_that.showId).innerHTML = html;
 
 			setTimeout(function() {
-				var doms = document.getElementsByClassName('common-showLineChart-innerLine');
-				for (var i = 0; i < doms.length; i++) {
+				let doms = document.getElementsByClassName('common-showLineChart-innerLine');
+				for (let i = 0; i < doms.length; i++) {
 					doms[i].style.width = (showdata[i].number / showdata[0].number) * 100 + '%';
 				}
 			}, 0);
@@ -474,15 +467,12 @@ var Components = window.Components = Components || {};
 
 	}
 
-	Components.prototype.BarChart = new BarChart();
-})();
+	Components.ct.BarChart = new BarChart();
 
-/**
- * #图片虚化组件 v1.0  注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件
- */
-;
-(function() {
 
+	/**
+	 * #图片虚化组件 v1.0  注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件
+	 */
 	class PictureVirtual {
 		constructor() {
 			this.showId = ""; //显示的id
@@ -550,17 +540,13 @@ var Components = window.Components = Components || {};
 
 	}
 
-	Components.prototype.PictureVirtual = new PictureVirtual();
-
-})()
-
-/**
- *  #图片虚化组件-通过class【picture-virtual】定义 v1.0  注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件
- */
-;
-(function() {
+	Components.ct.PictureVirtual = new PictureVirtual();
 
 
+
+	/**
+	*  #图片虚化组件-通过class【picture-virtual】定义 v1.0  注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件
+	*/
 	class PictureVirtualByClass {
 		constructor() {}
 		/**
@@ -577,7 +563,7 @@ var Components = window.Components = Components || {};
 		 */
 		loadImg() {
 			let _that = this;
-			for (var i = 0; i < _that.elems.length; i++) {
+			for (let i = 0; i < _that.elems.length; i++) {
 				let ele = _that.elems[i];
 				_that.width = ele.clientWidth;
 				_that.height = ele.clientHeight;
@@ -617,6 +603,20 @@ var Components = window.Components = Components || {};
 		}
 	}
 
-	Components.prototype.PictureVirtualByClass = new PictureVirtualByClass();
+	Components.ct.PictureVirtualByClass = new PictureVirtualByClass();
 
-})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+})()
+

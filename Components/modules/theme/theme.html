@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+    <link id="theme" class='theme' title="white" rel="stylesheet" type="text/css" href="css/white/index.css" disabled="disabled"/>
+    <link id="theme" class='theme' title="blue" rel="stylesheet" type="text/css" href="css/blue/index.css" disabled="disabled"/>
+    <link id="theme" class='theme' title="brown" rel="stylesheet" type="text/css" href="css/brown/index.css" disabled="disabled"/>
+    
+    <style>
+      ul#styles{
+        margin-top:10px
+      }
+
+      ul#styles li{
+        float:left; width:50px; height:40px; line-height:40px; padding:2px; 
+        margin-left:10px; border:1px solid #fff; text-align:center; color:#fff; cursor:pointer
+      }
+
+      ul#styles li.cur{
+        border:1px solid #369; background-image:url(images/selected.gif); 
+        background-repeat:no-repeat; background-position:4px 32px
+      }
+
+      ul#styles li#white{
+        background-color:#162934;
+      }
+
+      ul#styles li#blue{
+        background-color:#90c5e7
+      }
+
+      ul#styles li#brown{
+        background-color:#601f00
+      }
+    
+    </style>
+
+	</head>
+	<body>
+		
+
+		
+    <ul id="styles">
+      <li id="white">经典</li>
+      <li id="blue">淡蓝</li>
+      <li id="brown">棕色</li>
+    </ul>
+
+
+		
+		
+		<script src="../../assets/jquery-3.3.1.min.js"></script>
+		<script src="../../Components.js"></script>
+		<script>
+		
+		  /* $("#styles li").click(function(){
+		    var style = $(this).attr("id");
+       //css/white/theme.css
+        new_href = "css/"+style+"/index.css";//形成新路径
+        $("#theme").attr("href",new_href);//赋给<link>标签的href
+      }); */
+      
+
+
+      /* $("#styles li").click(function(){
+        var style = $(this).attr("id");
+        $("link[class='theme'][title='"+style+"']").removeAttr("disabled");
+        $("link[class='theme'][title!='"+style+"']").attr("disabled","disabled");
+       
+      });
+
+      console.log($("link[class='theme'][title='white']"))
+      let cookie_style = "blue";
+      if(cookie_style==null){
+        $("link[class='theme'][title='white']").removeAttr("disabled");
+      }else{
+        $("link[class='theme'][title='"+cookie_style+"']").removeAttr("disabled");
+        $("link[class='theme'][title!='"+cookie_style+"']").attr("disabled","disabled");
+      } */
+          
+		
+		 
+		
+		
+		</script>
+		
+		
+		
+	</body>
+</html>

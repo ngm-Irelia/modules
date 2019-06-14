@@ -11,7 +11,7 @@
 /** 
  * @namespace component的所有类均放在Component命名空间下
  */
-var Component = window.Component = Component || {};
+window.Components = window.Components || {};
 
 (function(){
 	class BarChart {
@@ -79,7 +79,7 @@ var Component = window.Component = Component || {};
 
 	}
 
-	Component.BarChart = BarChart;
+	Components.BarChart = BarChart;
 })()
 	
  

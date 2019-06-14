@@ -59,38 +59,281 @@ html, body {
 
 /*页面通用的样式 end*/
 
-.c-primary {
+/*
+	Components 通用的样式 。 
+	因为没有使用 预处理语言， 没法把一些配置提取出来作为参数， 可惜！
+*/
+
+/* 通用的颜色 */
+.casia-primary {
 	background-color: #fff;
 	color:#555;
-	border: 1px solid #C9C9C9;
-	text-align: center;
+	border: 1px solid #c0c4cc;
 }
 
-.c-normal {
-	background-color: #33d0ff;
+.casia-normal {
+	background-color: #33d0ff;/*409EFE*/
 	color:#fff;
-	border: none;
-	text-align: center;
 }
 
-.c-warning {
-	background-color: #ffc000;
+.casia-warning {
+	background-color: #ffc000;/*E6A23A*/
 	color:#fff;
-	border: none;
-	text-align: center;
 }
 
-.c-danger {
+.casia-danger {
 	background-color: #e60012;
 	color:#fff;
-	border: none;
+}
+
+/* 通用的颜色 end*/
+
+
+/* 通用的按钮 */
+
+/* 为了使用尽可能少些class，这里不拆成
+.casia-btn .btn-primary 这种格式 
+虽然现在这样，多写很多样式，但是使用少写class*/
+
+/* 默认按钮 */
+.casia-btn-primary {
+	display: inline-block;
+	border: 1px solid #c0c4cc;
+	background-color: #fff;
+	color:#555;
+	border-radius: 2px;
+	width: 72px;
+	height: 30px;
 	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-btn-normal {
+	display: inline-block;
+  background-color: #33d0ff;/*409EFE*/
+	color:#fff;
+	border-radius: 2px;
+	width: 72px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-btn-warning {
+	display: inline-block;
+	background-color: #ffc000;/*E6A23A*/
+	color:#fff;
+	border-radius: 2px;
+	width: 72px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-btn-danger {
+	display: inline-block;
+	background-color: #e60012;
+	color:#fff;
+	border-radius: 2px;
+	width: 72px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+/* 默认按钮 end*/
+
+/* 圆角按钮 */
+.casia-angle-btn-primary {
+	display: inline-block;
+	border: 1px solid #c0c4cc;
+	background-color: #fff;
+	color:#555;
+	border-radius: 15px;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-angle-btn-normal {
+	display: inline-block;
+  background-color: #33d0ff;/*409EFE*/
+	color:#fff;
+	border-radius: 15px;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-angle-btn-warning {
+	display: inline-block;
+	background-color: #ffc000;/*E6A23A*/
+	color:#fff;
+	border-radius: 15px;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-angle-btn-danger {
+	display: inline-block;
+	background-color: #e60012;
+	color:#fff;
+	border-radius: 15px;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	user-select: none;
+}
+/* 圆角按钮 end*/
+
+/* 圆按钮 */
+.casia-circle-btn-primary {
+	display: inline-block;
+	border: 1px solid #c0c4cc;
+	background-color: #fff;
+	color:#555;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-circle-btn-normal {
+	display: inline-block;
+  background-color: #33d0ff;/*409EFE*/
+	color:#fff;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-circle-btn-warning {
+	display: inline-block;
+	background-color: #ffc000;/*E6A23A*/
+	color:#fff;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.casia-circle-btn-danger {
+	display: inline-block;
+	background-color: #e60012;
+	color:#fff;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	user-select: none;
+}
+/* 圆按钮 end */
+
+/* 通用的按钮 end*/
+
+
+/* 通用的input框*/
+.casia-input {
+	border: 1px solid #c0c4cc;
+	height: 30px;
+	padding: 0 15px;
+	border-radius: 5px;
+}
+
+.casia-area {
+	border: 1px solid #c0c4cc;
+	height: 50px;
+	padding: 15px;
+	border-radius: 5px;
+	color: #333;
+	font-size: 14px;
+}
+/* 通用的input框 end*/
+
+
+/* 通用单选框，多选框 */
+
+.casia-checkbox::before {
+	position: absolute;
+	content: '\2610';
+	width: 14px;
+	height: 14px;
+	margin-left: -1px;
+	border: 0px #33d0ff solid;
+	background-color: #fff;
+	line-height: 14px;
+	color: #33d0ff;
+	font-size: 20px;
+}
+
+.casia-checkbox[type=checkbox]:checked::before {
+	content: '\2611';
+	/* color: #fff;
+	background-color: #33d0ff; */
+}
+
+.casia-radio::before {
+	position: absolute;
+	content: '';
+	width: 12px;
+	height: 12px;
+	margin-left: -1px;
+	border: 1px #33d0ff solid;
+	border-radius: 50%;
+	background-color: #fff;
+	line-height: 14px;
+	text-align: center;
+	font-size: 16px;
+}
+
+.casia-radio[type=radio]:checked::before {
+	content: "\2022";
+	color: #fff;
+	background-color: #33d0ff;
+}
+
+/* 通用单选框，多选框 end*/
+
+
+.casia-border {
+	border: 1px solid #c0c4cc;
 }
 
 
 
 
-
+/* 按钮动画， 大小， loading动画 */
 
 
 
@@ -105,7 +348,7 @@ html, body {
 	padding: 10px;
 }
 .common-showLineChart-outLine {
-	background-color: #e6e6e6;
+	background-color: #c0c4cc;
 	position: relative;
 	height: 30px;
 	margin: 8px 0;

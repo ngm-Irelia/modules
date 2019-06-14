@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>全面兼容的Iframe 与父页面交互操作</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script language="javascript" type="text/javascript">
+			function fatherFunction() {
+				alert("我是父页面的方法,\n调用成功！");
+			}
+
+			/*
+			 *父页面通过 iframe Name 调用子页面的函数或者获取子页面元素的内容
+			 */
+			function one() {
+				var ifreame = window.frames["childPage1"];
+				if (ifreame != null && ifreame != undefined) {
+					ifreame.childFunction();
+				}
+			}
+
+			function two() {
+				var ifreame = window.frames["childPage1"];
+				if (ifreame != null && ifreame != undefined) {
+					var myValue = ifreame.document.getElementById("childPage");
+
+					alert(myValue.innerHTML);
+				}
+			}
+
+
+			/*
+			 *父页面通过 iframe Id 调用子页面的函数或者获取子页面元素的内容
+			 */
+			function three() {
+				var ifreame = window.top.document.getElementById("childPage2").contentWindow;
+				if (ifreame != null && ifreame != undefined) {
+					ifreame.childFunction();
+				}
+			}
+
+			function four() {
+				var ifreame = window.top.document.getElementById("childPage2").contentWindow;
+				if (ifreame != null && ifreame != undefined) {
+					var myValue = ifreame.document.getElementById("childPage");
+
+					alert(myValue.innerHTML);
+				}
+			}
+		</script>
+	</head>
+	<body style="margin: auto;">
+		<fieldset>
+			<legend>父页面通过 iframe Name 调用子页面的函数或者获取子页面元素的内容</legend>
+			<dl>
+				<dt>
+					<input type="button" value="通过ifrme Name 调用子页面的脚本" onclick="one();" />    
+					<input type="button" value="通过ifrme Name 获取子页面元素的内容" onclick="two();" />
+				</dt>
+				<dt>
+					<div style="width: 100%; height: 250px;">
+						<iframe name="childPage1" src="Child1.html" frameborder="0" scrolling="no" width="100%" height="250"></iframe>
+					</div>
+				</dt>
+			</dl>
+		</fieldset>
+		<br />
+		<fieldset>
+			<legend>父页面通过 iframe Id 调用子页面的函数或者获取子页面元素的内容</legend>
+			<dl>
+				<dt>
+					<input type="button" value="通过ifrme Id 调用子页面的脚本" onclick="three();" />    
+					<input type="button" value="通过ifrme Id 获取子页面元素的内容" onclick="four();" />
+				</dt>
+				<dt>
+					<div style="width: 100%; height: 250px;">
+						<iframe id="childPage2" src="Child2.html" frameborder="0" scrolling="no" width="100%" height="250"></iframe>
+					</div>
+				</dt>
+			</dl>
+		</fieldset>
+	</body>
+</html>

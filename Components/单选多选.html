@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>html</title>
+  </head>
+  <style>
+    /* 单选框样式 */
+    .radio input {
+      display: none;
+    }
+    .radio label:active {
+      color: #000;
+    }
+    .radio label {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      position: relative;
+      line-height: 50px;
+      color: #999;
+      padding-left: 50px;
+    }
+    .radio label:after {
+      content: "";  
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid green;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      border-radius: 20px;
+    }
+    .radio input:checked + label:after {
+      background-color: green;
+    }
+
+    /* 多选框的样式 */
+    /* .checkbox input {
+      display: none;
+    }
+    .checkbox label {
+      width: 100%;
+      height: 50px;
+      display: inline-block;
+      line-height: 50px;
+      position: relative;
+      padding-left: 50px;
+	  user-select: none;
+    }
+    
+    .checkbox label:after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border: 1px solid green;
+      display: inline-block;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+    .checkbox input:checked + label:before {
+      content: "\2713";
+      height: 20px;
+      position: absolute;
+      top: 0;
+      left: 20px;
+    } */
+	
+	 
+	
+	#dealinput::before {
+	  position: absolute;
+	  content: '';
+	  width: 14px;
+	  height: 14px;
+	  margin-left: -1px;
+	  border: 1px #33d0ff solid;
+	  background-color: #fff;
+	}
+
+	#dealinput[type=checkbox]:checked::before {
+	  content: "\2714";
+	  color: red;
+	  background-color: #33d0ff;
+	}
+  </style>
+  <body>
+    <h1>2018 09 16</h1>
+
+    <div class="radio">
+      性别： <input type="" name="sex" checked id="man" />
+      <label for="man">男</label> <input type="radio" name="sex" id="lady" />
+      <label for="lady">女</label>
+    </div>
+
+    <!-- <div class="checkbox">
+      爱好： 
+	  <input type="checkbox" id="read" /> <label for="read">读书</label>
+      <input type="checkbox" id="swiming" /> <label for="swiming">读书</label>
+      <input type="checkbox" id="basketball" />  <label for="basketball">读书</label>
+	  -->
+	  
+	  <input type="checkbox" id="dealinput" /> <label for="dealinput">读书</label>
+    </div>
+  </body>
+</html>

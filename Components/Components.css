@@ -395,4 +395,82 @@ html, body {
 	font-size: 12px;
 }
 
- /*barChart end*/
+/*barChart end*/
+
+/*loading*/
+.loading-model {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 999;
+	background-color: rgba(222, 222, 222, 0.2);
+}
+
+.loading-model svg{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+/*loading end*/
+
+
+/*alert*/
+#ct_page_alert {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 1001;
+}
+
+#ct_page_alert_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  min-height: 170px;
+  margin: -210px 0 0 -150px;
+  background-color: #fff;
+}
+
+#ct_page_alert_title {
+  height: 48px;
+  margin-top: 12px;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: #09a5ee;
+}
+
+#ct_page_alert_content {
+  min-height: 106px;
+  padding: 24px 24px 60px 24px;
+  line-height: 22px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+#ct_page_alert_button {
+  width: 80px;
+	position: absolute;
+	right: 30px;
+	bottom: 20px;
+  height: 24px;
+  background-color: #fff;
+  border: 1px #09a5ee solid;
+	outline: none;
+	border-radius: 2px;
+}
+
+#ct_page_alert_button:hover {
+  background: #edfaff;
+}
+/*alert end*/

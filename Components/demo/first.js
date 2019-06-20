@@ -24,4 +24,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		console.log("catch ...")
 	}) */
 
+	//loading 组件
+	Components().loading("loading-demo");//"loading-demo"
+	Components().loading("loading-demo2");
+	setTimeout(function(){
+		Components().loading("loading-demo",false);
+	},3000)	
+
+
+
+	//loading 组件
+	$("#alert1").bind("click",function(){
+		Components().alert({
+			title:"标题",
+			content:"弹框内容-支持html"
+		});
+
+	})
+
+
+
 });

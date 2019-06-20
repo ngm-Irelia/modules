@@ -153,7 +153,7 @@ var Components = window.Components = Components || {};
 
 	let compGetTime = new getTime();
 
-	//扩展工具方法
+	//扩展工具方法 通用的一些方法
 	Components.extend({
 		/**
 		 * 对接口的封装
@@ -329,7 +329,7 @@ var Components = window.Components = Components || {};
 		 * @param {*} card 
 		 */
 		checkIDCard: function (card){
-			let regexp = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
+			let regexp = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
 			
 			return (regexp.test(card));
 		},
@@ -604,6 +604,134 @@ var Components = window.Components = Components || {};
 	}
 
 	Components.ct.PictureVirtualByClass = new PictureVirtualByClass();
+
+	/**
+	 * 
+	 * @param {*} id  需要加载的父元素  如果为空，则全页面覆盖的loading，不为空则为局部loading
+	 * @param {boolean} sign  false 清除，true和 空 ，添加loading
+	 */
+	Components.ct.loading = function (id,sign){
+		if(typeof sign === "boolean"){
+			if(!sign){//清除
+				let fatherL;
+				let loaddiv;
+				if(id && typeof id === "string"){
+					fatherL = document.getElementById(id);
+					loaddiv=document.getElementById(id+"-loading");//找到子元素    
+				}else if(id == null){
+					fatherL = document.body;
+					loaddiv=document.getElementById("components-body-loading");//找到子元素    
+				}
+				
+				fatherL.removeChild(loaddiv);
+				return '';  
+			}else{
+				//no deal
+			}
+		}
+
+		let loadhtml = `<svg x="0px" y="0px" width="70px" height="150px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+				<rect x="0" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				<rect x="10" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				<rect x="20" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				
+			</svg>`;
+
+			let divL = document.createElement("div");
+			divL.setAttribute("class", "loading-model");
+			divL.innerHTML = loadhtml;
+
+		if(id && typeof id === "string"){
+			let fatherL = document.getElementById(id);
+			
+			if(fatherL.style.position && fatherL.style.position != "static"){
+				//no deal
+			}else{
+				fatherL.style.position = 'relative';
+			}
+
+			divL.setAttribute("id", id+"-loading");
+			fatherL.appendChild(divL);
+
+		}else if(id == null){//body add loading
+			divL.setAttribute("id", "components-body-loading");
+			document.body.appendChild(divL);
+		}else if(typeof id === "boolean"){// boolean
+			if(id){ //加载
+				divL.setAttribute("id", "components-body-loading");
+				document.body.appendChild(divL);
+			}else{ //清除
+				let fatherL = document.body;
+				let loaddiv=document.getElementById("components-body-loading");//找到子元素 
+				
+				fatherL.removeChild(loaddiv);
+			}
+		}
+	}
+
+
+
+
+	/**
+	 * 
+	 * @param {*} config  弹框需要的字段信息
+	 */
+	Components.ct.alert = function(config){
+		if(typeof title === "boolean"){
+			document.body.removeChild(document.getElementById("ct_page_alert"));
+			return '';
+		}
+		let showtitle = config.title?config.title:'提示';
+		let showcontent = config.content?config.content:' ';
+		let showcolor = config.color ? config.color:'#09a5ee';
+		let alertHtml = `<div id="ct_page_alert_box">
+				<h6 id="ct_page_alert_title" style="color:${showcolor}">${showtitle}</h6>
+				<div id="ct_page_alert_content">${showcontent}</div>
+				<button type="button" id="ct_page_alert_button" >确定</button>
+			</div>`;
+
+		let divL = document.createElement("div");
+		divL.setAttribute("id", "ct_page_alert");
+		divL.innerHTML = alertHtml;
+		document.body.appendChild(divL);
+
+
+		//绑定事件
+		document.getElementById("ct_page_alert_button").addEventListener("click",function(){
+			document.body.removeChild(document.getElementById("ct_page_alert"));
+		})
+
+	}
+
+
+
+
+
+
+
+
+
 
 
 

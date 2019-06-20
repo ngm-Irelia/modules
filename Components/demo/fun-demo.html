@@ -128,8 +128,8 @@
 						<div class="sf-title">Components().PictureVirtual.run(showId, Img)</div>
 						<div class="sf-header"> 图片虚化组件  -注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件</div>
 						<div class="sf-content">	
-								@param showId 放组件的盒子id
-								<br>@param Img	图片
+								@param showId 放组件的盒子id<br>
+								@param Img	图片
 						</div>
 				</div>
 
@@ -138,10 +138,48 @@
 						<div class="sf-header"> 图片虚化组件-通过class【picture-virtual】定义</div>
 						<div class="sf-content">	
 								父元素上设置  class="picture-virtual" data-src="imgurl" <br>
-								运行： Components.PictureVirtual.run();  即可<br><br>
+								运行： Components().PictureVirtual.run();  即可<br><br>
 							
-								若是动态加载的DOM元素，需要在元素选然后再次调用 run()
+								若是动态加载的DOM元素，需要在元素加载完成后再次调用 run()
 						</div>
+				</div>
+
+
+				<div class="sf" style="height: 517px;">
+					<div class="sf-title">Components().loading(id,clean)</div>
+					<div class="sf-header"> loading加载组件</div>
+					<div class="sf-content">
+						@param id 选填，需要加载的父元素  如果为空，则全页面覆盖的loading，不为空则为局部loading<br>
+						@param {boolean} clean  选填； false清除loading，true和 空 ，添加loading<br>
+						运行： Components().loading(参数)<br><br>
+		
+					</div>
+					<div class="sf-demo" id="loading-demo">
+						loading-demo
+					</div>
+					<div class="sf-demo" id="loading-demo2">
+						loading-demo2
+					</div>
+				</div>
+
+
+				<div class="sf" style="height: 337px;">
+					<div class="sf-title">Components().alert(config)</div>
+					<div class="sf-header"> alert弹框组件</div>
+					<div class="sf-content">
+						@param config 一个对象<br>
+						支持的字段有 <br>
+						{<br>
+							title:"弹框标题-支持html"<br>
+							content:"弹框内容-支持html"<br>
+							color:标题文字颜色<br>
+						}<br>
+						使用方式：<br>
+						<em>Components().alert({ title:"标题", content:"弹框内容-支持html",color:'red' });</em> 
+					</div>
+					<br>
+					<div class="casia-btn-normal" id="alert1">弹框1</div>
+					
 				</div>
 
 			</div>

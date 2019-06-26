@@ -1,9 +1,14 @@
 /**
- * 关系图组件 v1.0 
- * @author ngm
- * 
- * @param suspend 搜索该单词，显示暂时禁掉的功能
-  */
+* 关系图组件 v1.0 
+* @author ngm
+* 
+* @param suspend 搜索该单词，显示暂时禁掉的功能
+*/
+ 
+/** 
+* @namespace Components的所有类均放在Components命名空间下
+*/
+var Components = window.Components = Components || {};
 
 /*主要的关系图谱文件*/
 ; (function () {
@@ -255,7 +260,11 @@
 
 			magicGraph.pathUpdate.selectAll("path.link,text")
 			.filter(function (y) {
-				return (y.source.id === d.id) || (y.target.id === d.id);
+				if(d){
+					return (y.source.id === d.id) || (y.target.id === d.id);
+				}else{
+					return true;
+				}
 			})
 			.style("opacity", "1")
 			.each(function (dLinks, iLinks) {
@@ -3343,7 +3352,6 @@
 
 	}
 
-	window.Components = window.Components || {};
 
 	Components.analytic = new Analytic();
 

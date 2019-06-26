@@ -284,6 +284,10 @@ html, body {
 
 /* 通用单选框，多选框 */
 
+.casia-checkbox {
+	position: relative;
+}
+
 .casia-checkbox::before {
 	position: absolute;
 	content: '\2610';
@@ -302,6 +306,11 @@ html, body {
 	/* color: #fff;
 	background-color: #33d0ff; */
 }
+
+.casia-radio {
+	position: relative;
+}
+
 
 .casia-radio::before {
 	position: absolute;
@@ -440,10 +449,10 @@ html, body {
 }
 
 #ct_page_alert_title {
-  height: 48px;
-  margin-top: 12px;
-  line-height: 48px;
-  font-size: 24px;
+  height: 40px;
+  margin-top: 10px;
+  line-height: 40px;
+  font-size: 20px;
   font-weight: 400;
   text-align: center;
   color: #09a5ee;
@@ -451,7 +460,7 @@ html, body {
 
 #ct_page_alert_content {
   min-height: 106px;
-  padding: 24px 24px 60px 24px;
+  padding: 10px 20px 60px;
   line-height: 22px;
   font-size: 14px;
   text-align: center;

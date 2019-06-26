@@ -103,6 +103,9 @@
 		<div class="header-line">
 				Components 现有 实例方法 介绍：
 			</div>
+			
+			
+			
 			<div class="show-func">
 
 				<div class="sf">
@@ -165,14 +168,15 @@
 
 				<div class="sf" style="height: 337px;">
 					<div class="sf-title">Components().alert(config)</div>
-					<div class="sf-header"> alert弹框组件</div>
+					<div class="sf-header"> 提示信息：alert弹框组件</div>
 					<div class="sf-content">
-						@param config 一个对象<br>
+						@param config 一个对象 or false ； 为false，去掉弹框<br>
 						支持的字段有 <br>
 						{<br>
 							title:"弹框标题-支持html"<br>
 							content:"弹框内容-支持html"<br>
 							color:标题文字颜色<br>
+							time:弹框过time时间后，隐藏<br>
 						}<br>
 						使用方式：<br>
 						<em>Components().alert({ title:"标题", content:"弹框内容-支持html",color:'red' });</em> 

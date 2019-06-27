@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+
+		<script type="text/javascript">
+			 let arr = ["aaa","bbb","ccc","ddd"];
+
+			 arr.forEach( (val,index,arr)=>{
+				console.log(val,index,arr)
+			 })
+
+			 console.log(arr.indexOf("bbb"))
+
+
+
+			 //测试拷贝的方式
+			  let name = {
+					firstname:"fname"
+				}
+
+			 let aa = {
+					aaa:"aaa",
+					name:name
+			 };
+
+			 let bb = aa;
+
+			 //浅拷贝
+			 /* bb.name.firstname = "bname";
+			 console.log(bb.name.firstname )
+			 console.log(aa.name.firstname ) */
+
+
+			 //浅拷贝
+			 /* let cc = Object.assign({},aa);
+			 cc.name.firstname = "cname";
+			 console.log(cc )
+			 console.log(aa ) */
+
+			 //浅拷贝
+			 /* let dd = {...aa};
+			 dd.name.firstname = "dname";
+			 console.log(dd )
+			 console.log(aa ) */
+
+		</script>
+	</body>
+</html>

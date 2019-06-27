@@ -13,75 +13,101 @@
 			 * 
 			 * 事件防抖 多次操作，只取最后一次的操作
 			 */
-			
+
 			//********* 防抖 **************
-			
+
 			/**
 			 * 通用    防抖函数
 			 * @param callback 防抖结束执行的回调函数
 			 * @param delay 间隔时间  --  这个其实我们可以给它默认一个值
 			 * @param ...args 所有额外的参数
 			 */
-			function debounce(callback, delay, ...args){
+			function debounce(callback, delay, ...args) {
 
-				let timer = null; 
-				return function(){
+				let timer = null;
+				return function() {
 
-					let _this = this; 
+					let _this = this;
 
-					if(timer){
+					if (timer) {
 						clearTimeout(timer);
 					}
-					
-					timer = setTimeout(function(){
+
+					timer = setTimeout(function() {
 						callback.call(_this, ...args);
 					}, delay)
 				}
-				
+
 			}
-			
+
 			//点击按钮后执行的函数
-			function shakeClickFun(){
+			function shakeClickFun() {
 				console.log("运行点击事件操作");
 				console.log(this);
 				console.log(arguments)
 			}
-			
+
 			//这是错误的！！ this指向有问题
-			document.getElementById('shake').addEventListener('click',debounce(()=>{ console.log(this) },1000), false)
- 
+			document.getElementById('shake').addEventListener('click', debounce(() => {
+				console.log(this)
+			}, 1000), false)
+
 			//这是对的，不传参数 和 传参数的方式
 			//document.getElementById('shake').addEventListener('click', debounce(shakeClickFun, 1000 ), false)
-			document.getElementById('shake').addEventListener('click',debounce(shakeClickFun, 1000,"aaa","bbb"), false)
+			document.getElementById('shake').addEventListener('click', debounce(shakeClickFun, 1000, "aaa", "bbb"), false)
 
 
 
 
 			// ******** 节流 *********
-			
+
 
 			/**
 			 * 通用    节流函数
 			 * @param callback 防抖结束执行的回调函数
 			 * @param delay 间隔时间  -- 这个参数我们也可以内定
 			 * @param ...args 所有额外的参数
-			*/
-			function throttle(callback, delay, ...args){
+			 */
+			function throttle1111(callback, delay, ...args) {
 				let lastTime = 0;
-
-				return function(){
-					let _this = this; 
+				return function() {
+					let _this = this;
 					let nowTime = new Date();
 
-					if(nowTime - lastTime >= delay){
+					if (nowTime - lastTime >= delay) {
 						lastTime = nowTime;
 						callback.call(_this, ...args);
 					}
 				}
 			}
 
+			var throttle = function(fn, interval) {
+				var __self = fn, // 保存需要被延迟执行的函数引用
+					timer, // 定时器
+					firstTime = true; // 是否是第一次调用
+				return function() {
+					console.log(arguments)
+					var args = arguments,
+						__me = this;
+					if (firstTime) { // 如果是第一次调用，不需延迟执行
+						__self.apply(__me, args);
+						return firstTime = false;
+					}
+					if (timer) { // 如果定时器还在，说明前一次延迟执行还没有完成
+						return false;
+
+					}
+					timer = setTimeout(function() { // 延迟一段时间执行
+						clearTimeout(timer);
+						__self.apply(__me, args);
+						timer = null;
+
+					}, interval || 500);
+				};
+			};
+
 			//点击按钮后执行的函数
-			function throttleClickFun(){
+			function throttleClickFun() {
 				console.log("节流了啊啊啊啊");
 				console.log(this);
 				console.log(arguments)
@@ -92,8 +118,7 @@
 
 			//这是对的，不传参数 和 传参数的方式
 			//document.getElementById('throttle').addEventListener('click', throttle(throttleClickFun, 1000 ), false)
-			document.getElementById('throttle').addEventListener('click',throttle(throttleClickFun, 1000,"aaa","bbb"), false)
-
+			document.getElementById('throttle').addEventListener('click', throttle(throttleClickFun, 1000, "aaa", "bbb"), false)
 		</script>
 	</body>
 </html>

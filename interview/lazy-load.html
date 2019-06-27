@@ -78,42 +78,27 @@
 			// 我们在初始的时候定义一个begin开始时间，当时间间隔超过duration时，则执行一次函数，这样我们做到了不重复调用，又能保证500秒执行一次。
 			function throttle(method,delay,duration){
 				var timer=null;
-				var begin=new Date();    
+				var begin=0;    
 				return function(){                
 						var context=this, args=arguments;
 						//console.log(this); // 看下这个this到底是啥
 						var current=new Date();        
 						clearTimeout(timer);
 						if(current-begin>=duration){
+							console.log("duration ------ ")
 								method.apply(context,args); //为什么要这么写呢,是为了能给兼容任何方法!!!
 								//method(); // 嘿,我这么写也是没问题
 								//checkImgs(); // 嘿,我直接这么写也是可以的饿
 								begin=current;
 						}else{
 								timer=setTimeout(function(){
+									console.log("delay ------ ")
 										method.apply(context,args);
 								},delay);
 						}
 				}
 			}
 			
-			/* function testThrottle (method){
-				var start = new Date();
-				var timeout = null;
-				return function(){
-					var _this = this;
-					var args = arguments;
-					var current = new Date();
-					clearInterval(timeout);
-					
-					if(current - start >= 500 ){
-						method.apply(_this,args);
-						start = current;
-					}else{
-						
-					}
-				}
-			} */
 			
 			
 			// 未使用

@@ -4,6 +4,11 @@
  * 基于原生js
  * @author NGM
  * @version 1.1
+ * 
+ * # 搜索字段 含义  
+ * yh   ： 待优化的部分
+ * todo ： 待做的部分
+ * 
  */
 
 /** 
@@ -14,6 +19,24 @@
 var Components = window.Components = Components || {};
 
 (function() {
+	
+	// 哎呀，超级喜欢这种方式，我们也加上，后面使用 call apply 调用
+	let
+		core_obj = {},
+		core_arr = [],
+		core_str = "ngm",
+	
+		core_from    = core_arr.from,
+		core_concat  = core_arr.concat,
+		core_push    = core_arr.push,
+		core_slice   = core_arr.slice,
+		core_indexOf = core_arr.indexOf,
+		
+		core_toString= core_obj.toString,
+		core_hasOwn  = core_obj.hasOwnProperty,
+		
+		core_trim    = core_str.trim;
+	
 
 	Components = function() {
 		return new Components.ct.init();
@@ -21,6 +44,7 @@ var Components = window.Components = Components || {};
 
 	//从此以后使用ct
 	Components.ct = Components.prototype = {
+		author: "ngm", //哈哈，当然是要把我加上了~
 		constructor: Components,
 		init: function() {
 			return this;
@@ -31,9 +55,8 @@ var Components = window.Components = Components || {};
 	Components.ct.init.prototype = Components.ct;
 
 
-	// ok 前端基础代码完成了 ~~
+	// ok 前面基础代码完成了 ~~
 	//接下来是具体的功能性代码咯
-
 	Components.extend = Components.ct.extend = function() {
 		let args = arguments[0] || {};
 		let target = this;
@@ -41,7 +64,6 @@ var Components = window.Components = Components || {};
 			for (name in args) {
 				target[name] = args[name];
 			}
-
 		}
 		return target;
 	}
@@ -53,7 +75,6 @@ var Components = window.Components = Components || {};
 		//获取当前日期方法
 		this.getNowFormatDate = function() {
 			let date = new Date();
-			let seperator1 = "-";
 			let year = date.getFullYear();
 			let month = date.getMonth() + 1;
 			let strDate = date.getDate();
@@ -64,7 +85,7 @@ var Components = window.Components = Components || {};
 				strDate = "0" + strDate;
 			}
 			
-			return year + seperator1 + month + seperator1 + strDate;
+			return year + "-" + month + "-" + strDate;
 		}
 		//获取当前日期，包括时分秒
 		this.getNowFormatDateHMS = function() {
@@ -318,11 +339,11 @@ var Components = window.Components = Components || {};
 		 */
 		downloadByBlob: function(filename,content){
 			// 创建隐藏的可下载链接
-			var eleLink = document.createElement('a');
+			let eleLink = document.createElement('a');
 			eleLink.download = filename;
 			eleLink.style.display = 'none';
 			// 字符内容转变成blob地址
-			var blob = new Blob([content]);
+			let blob = new Blob([content]);
 			eleLink.href = URL.createObjectURL(blob);
 			// 触发点击
 			document.body.appendChild(eleLink);
@@ -336,9 +357,14 @@ var Components = window.Components = Components || {};
 		 * @param {*} url 下载地址
 		 */
 		downloadByA: function (url) {
-            $('body').append($('<a href="'+url+'" download id="openWin"></a>'))
-            document.getElementById("openWin").click();//点击事件
-            $('#openWin').remove();
+			let eleLink = document.createElement('a');
+			eleLink.href = url;
+			eleLink.style.display = 'none';
+			// 触发点击
+			document.body.appendChild(eleLink);
+			eleLink.click();
+			// 然后移除
+			document.body.removeChild(eleLink);
         }
 		
 	}); 
@@ -365,7 +391,7 @@ var Components = window.Components = Components || {};
 			return (regexp.test(card));
 		},
 		/**
-		 * 正则表达式 去除两侧空格
+		 * 正则表达式 去除两侧空格 ~ 当然，有自带的trim方法了
 		 * @param {*} v 要处理的字符串
 		 */
 		trim: function (v) {
@@ -725,7 +751,7 @@ var Components = window.Components = Components || {};
 
 
 	/**
-	 * 提示信息弹框 
+	 * 提示信息弹框                       yh: 里面的生成元素， divL 可以写成单例模式！！
 	 * @param {*} config  弹框需要的字段信息
 	 * {
 			title:"弹框标题-支持html"

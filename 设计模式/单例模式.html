@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// ****************     普通单例模式         *************************
+			var Singleton = function(name) {
+				this.name = name;
+				this.instance = null;
+			};
+			Singleton.prototype.getName = function() {
+				alert(this.name);
+			};
+			Singleton.getInstance = function(name) {
+				if (!this.instance) {
+					this.instance = new Singleton(name);
+				}
+				return this.instance;
+			};
+
+			var a = Singleton.getInstance('sven1');
+			var b = Singleton.getInstance('sven2');
+			console.log(a === b); // true
+
+
+			//******************** 使用代理 实现 单例模式 ***********************
+
+			var CreateDiv = function(html) {
+				this.html = html;
+				this.init();
+			};
+			CreateDiv.prototype.init = function() {
+				var div = document.createElement('div');
+				div.innerHTML = this.html;
+				document.body.appendChild(div);
+			};
+			var ProxySingletonCreateDiv = (function() {
+				var instance;
+				
+				return function(html) {
+					if (!instance) {
+						instance = new CreateDiv(html);
+					}
+					return instance;
+				}
+			})();
+			
+			var cc = new ProxySingletonCreateDiv('sven1');
+			var dd = new ProxySingletonCreateDiv('sven2');
+			
+			console.log(cc === dd);
+			
+			
+			var Animal = function(html) {
+				this.html = html;
+				this.init();
+			};
+			Animal.prototype.init = function() {
+				var div = document.createElement('div');
+				div.innerHTML = this.html;
+				document.body.appendChild(div);
+			};
+			
+			//*******************  使用proxy 实现单例模式  *********** 
+			var handler = {
+				construct: function(target, args) {
+					if(!this.singleton){
+						this.singleton = new target(...args);
+					}
+					return this.singleton;
+				},
+				singleton:0   // 这个属性是重点,控制单例
+			};
+			
+			var fproxy = new Proxy(function(x, y) {
+				this.propertyX = x;
+				this.propertyY = y;
+			}, handler);
+			
+			let ee = new fproxy(1,2);
+			let ff = new fproxy(1,2);
+			console.log(ee === ff)
+			
+			
+		</script>
+	</body>
+</html>

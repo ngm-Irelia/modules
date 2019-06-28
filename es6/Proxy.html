@@ -8,6 +8,78 @@
 
 
 		<script type="text/javascript">
+
+			//********* 生产dom元素 ********
+			const DOM = new Proxy({},{
+				get(target,property){
+					//property 就是dom.xxx ；就是 xxx DOM元素
+					return function(attr={},...children){
+						const el = document.createElement(property);
+
+						//添加属性
+						for(let key of Object.keys(attr)){
+							el.setAttribute(key,attr[key]);
+						}
+						//添加子元素
+						for(let child of children){
+							if(typeof child == "string"){
+								child = document.createTextNode(child);
+							}
+							el.appendChild(child);
+						}
+
+						return el;
+					}
+				}
+			})
+			let odiv = DOM.div(
+				{id:"div1"},"content ,我是div","哈哈哈",
+				DOM.a( {id:"a1",href:"www.baidu.com"},"我是一个a链接"),
+				"。。。继续。。。"
+			);
+
+			document.body.appendChild(odiv);
+
+
+			// -------------------------------------------
+
+
+			//******************* proxy reflect
+			function sum(a,b){
+				return a+b;
+			}
+
+			let newSum = new Proxy(sum,{
+				apply(target,content,args){
+					return Reflect.apply(...arguments);
+				}
+			})
+
+			// -----------------------
+			
+			;(function learnproxy(){
+
+				console.log("代理proxy 学习：：：");
+
+				let obj = {
+					name:"obj"
+				};
+
+				let newobj = new Proxy(obj,{
+					get(target,property){
+						console.log(" proxy get --- ")
+						console.log(target,property);
+						return target[property]
+					}
+				})
+
+				newobj.name;
+				}())
+
+
+				console.log(Reflect.has(Object,'assign'))
+
+				console.log("===============")
 			var person = {
 				name: "张三"
 			};

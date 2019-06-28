@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+
+		<script type="text/javascript">
+			 function readFile(){
+				// promise 操作，请求等
+				return "111";
+			}
+
+			async function func(){
+				let result = await readFile();
+
+				console.log(result);
+
+				let result2 = await new Promise((resolve,reject)=>{
+					resolve("aaa");
+				})
+				console.log(result2);
+
+				let result3 = await new Promise((resolve,reject)=>{
+					reject("bbbb");
+				})
+				console.log(result3);
+
+			}
+
+			func().then((type)=>{
+				console.log(type)
+			}).catch((data)=>{
+				console.log("catch---")
+				console.log(data)
+			})
+		</script>
+	</body>
+</html>

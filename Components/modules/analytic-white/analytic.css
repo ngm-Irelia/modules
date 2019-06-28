@@ -1,0 +1,559 @@
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
+
+
+
+.search_group {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+.search_group .ul_wrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  border-radius: 4px;
+  text-align: left;
+  background-color: #202b33;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 9;
+}
+.search_group .ul_wrapper ul {
+  padding-bottom: 4px;
+}
+.search_group .ul_wrapper ul li {
+  padding: 2px 8px;
+  line-height: 18px;
+  background-color: #202b33;
+  cursor: pointer;
+  color: #2b363d;
+}
+.search_group .ul_wrapper ul li:nth-child(1) {
+  margin-top: 4px;
+}
+.search_group .ul_wrapper ul li:hover {
+  background-color: #666;
+}
+.headerTipStyle {
+  height: 17px;
+  line-height: 16px;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: absolute;
+  font-size: 12px;
+  text-align: center;
+  background-color: #ffd862;
+  color: #2b363d;
+  top: 30px;
+  display: none;
+}
+
+
+.cross_icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.dataset .node {
+  cursor: pointer;
+}
+.dataset .node text,
+.dataset .more text {
+  font: 10px sans-serif; /* 10/16 */
+  stroke: none;
+  fill: #2b363d;
+}
+.datasetTip {
+  stroke: #dedede;
+  stroke-width: 1;
+  fill-opacity: 0;
+  stroke-opacity: 1;
+  fill: #fff;
+}
+.datasetTipText {
+  fill-opacity: 1;
+  fill: #2b363d;
+  -webkit-transition: fill-opacity 0.5s;
+  -moz-transition: fill-opacity 0.5s;
+  -o-transition: fill-opacity 0.5s;
+  transition: fill-opacity 0.5s;
+}
+.datasetTipTextHide {
+  fill-opacity: 0;
+}
+
+.dst_content p {
+  font-size: 14px;
+  line-height: 3em;
+  text-align: center;
+  padding-left: 0.5em;
+}
+#dataset_save_tip .dst_footer {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+.dst_footer label {
+  font-size: 12px;
+  display: inline-block;
+  line-height: 26px;
+  margin: 0.7em 0.6em 0.6em;
+}
+.dst_footer button {
+  float: right;
+}
+svg {
+  cursor: default;
+}
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+.time_axis .tick text,
+.legendTitle {
+  fill: #2b363d;
+}
+.topo_network {
+  background-color: #fff;
+}
+.tool-parent-right {
+  padding: 0 0 0 0;
+}
+.thumbnail_small {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.gbox {
+  cursor: pointer;
+}
+.thumbnail_big {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: none;
+}
+.thumbnail_big:before {
+  font-size: 16px;
+}
+.brushRect:hover {
+  cursor: pointer;
+}
+#topo_mapMoveBar:hover {
+  cursor: pointer;
+  color: #f00;
+}
+g.node:hover,
+.topoMenu:hover,
+.topoMenu_one:hover,
+.topoMenu_two:hover,
+.topoMenu_three:hover {
+  cursor: pointer;
+}
+.nodes_select {
+  stroke-width: 5px;
+}
+.clear {
+  clear: both;
+}
+line {
+  fill: #ccc;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+.pie text {
+  fill: #fff;
+  font-weight: bold;
+}
+path.linktext {
+  cursor: pointer;
+}
+.resolved {
+  stroke-dasharray: 0, 2 1;
+}
+path.link.resolved {
+  stroke-dasharray: 0, 2 1;
+}
+path.overlay {
+  cursor: pointer;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+/**
+g.node.selected circle,
+g.node.filtered circle {
+  filter: url("#blue-glow");
+}
+*/
+path.links.hidden {
+  stroke-width: 0;
+}
+path.dragline {
+  stroke-width: 1px;
+  stroke: #626b73;
+}
+.relationSvg text {
+  font: 12px "微软雅黑";
+  pointer-events: none;
+  fill: #2b363d;
+}
+.relationSvg textPath {
+  fill: #2b363d;
+}
+text.shadow {
+  stroke: none;
+  stroke-width: 3px;
+  stroke-opacity: 0.8;
+}
+.topoMenu_inring {
+  stroke-width: 1px;
+  fill: #cbcdd4;
+  stroke: #a6a8af;
+}
+.topoMenu_inring_over {
+  fill: #27657a;
+}
+.topoMenu_inring_enter {
+  fill: #2da5da;
+}
+.topoMenu_inring_onmenu {
+  fill: #2da5da;
+}
+.topoMenu_outring {
+  fill: #a6a8af;
+}
+.topoMenu_outring_over {
+  fill: #2da5da;
+}
+.toponode_text {
+  fill: #2b363d;
+}
+.brush .extent,
+.topo_brush .extent {
+  fill: #2da5da;
+  stroke-width: 0;
+  fill-opacity: 0.15;
+  shape-rendering: crispEdges;
+}
+.topo_brush .extent {
+  stroke: #2da5da;
+  stroke-width: 2px;
+  fill-opacity: 0.3;
+}
+.resize rect {
+  visibility: visible;
+  stroke: #2da5da;
+  stroke-width: 2px;
+}
+.time_selected {
+  fill: #2da5da;
+}
+.time_axis path,
+.time_axis line {
+  fill: none;
+  stroke: #6c7881;
+  shape-rendering: crispEdges;
+}
+.timeline-axis path,
+.timeline-axis line {
+  fill: none;
+  stroke: #6c7881;
+  shape-rendering: crispEdges;
+}
+.time_axis text,
+.timeline-axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+.dot {
+  stroke: #000;
+}
+.legend {
+  padding: 5px;
+  -webkit-box-shadow: 2px 2px 1px #888;
+  box-shadow: 2px 2px 1px #888;
+}
+#topology_timeline {
+  width: 100%;
+  height: 150px;
+}
+.event_selected {
+  width: 100px;
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+.axisList {
+  white-space: nowrap;
+  width: auto;
+  position: relative;
+  cursor: pointer;
+}
+.nodetext {
+  fill: #2b363d;
+}
+.datasetTip {
+  stroke: #dedede;
+  stroke-width: 1;
+  fill-opacity: 0.000001;
+  stroke-opacity: 1;
+  fill: #fff;
+}
+.datasetTipText {
+  fill-opacity: 1;
+  fill: #2b363d;
+}
+.datasetTipTextHide {
+  fill-opacity: 0.000001;
+}
+#topology_timeline_axis {
+  width: 90%;
+  height: 150px;
+  position: absolute;
+  top: 0;
+  left: 140px;
+}
+.way_error,
+.r_errors,
+.nodes_error,
+.relation_error {
+  font-size: 14px;
+  color: #33d0ff;
+  margin-left: 20px;
+  display: inline-block;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.r_errors {
+  position: absolute;
+  top: 48px;
+  right: 115px;
+}
+#save_screenShot_modalBox > h4 {
+  margin-top: 10px;
+  color: #33d0ff;
+  font-size: 16px;
+}
+.event_selected p#event_title {
+/*  margin-left: -10px;*/
+  font-size: 16px;
+  color: #2b363d;
+}
+.event_selected p#event_title:hover {
+  cursor: pointer;
+}
+.event_selected i#event_icon {
+  display: inline-block;
+  margin-right: 5px;
+  line-height: 10px;
+  font-style: normal;
+  font-size: 14px;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #2b363d;
+  color: #2b363d;
+}
+.forceText {
+  stroke: none;
+}
+.pathcolors {
+  position: absolute;
+  top: 53px;
+  left: 60px;
+}
+.path_colors {
+  position: absolute;
+  top: -4px;
+  left: 110px;
+}
+.pathstyle {
+  position: absolute;
+  top: 5px;
+  left: 60px;
+}
+.pathsWork {
+  display: none;
+}
+.path_style {
+  position: absolute;
+  top: -5px;
+  left: 110px;
+  width: 35px;
+  height: 50px;
+}
+.path_width text:hover {
+  color: #33d0ff;
+}
+.pathwidth {
+  position: absolute;
+  top: 80px;
+  left: 32px;
+}
+.path_width {
+  position: absolute;
+  top: 25px;
+  left: 110px;
+}
+/*可能的路径模态框*/
+
+
+ 
+/*******主要内容从这里开始******/
+
+#topo_network {
+  width: 100%;
+  height: 100%;
+}
+
+
+/*缩略图*/
+/*时间轴样式*/
+#topology_relative_timeline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top: 2px #f0f0f0 solid;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  z-index: 100;
+}
+#topology_timeline_taggle {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: #f0f0f0;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+}
+#topology_timeline_taggle:before {
+  font-size: 20px;
+}
+#topology_timeline_box {
+  width: 100%;
+  height: 150px;
+}
+/*右边信息样式#181b21*/
+
+
+/*遮罩层*/
+
+.closeDetailBox {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.showLinkList {
+  width: 100%;
+  height: 1px;
+  margin: 20px auto;
+  background-color: #293742;
+}
+.timeline-layout {
+  width: 100%;
+  height: 130%;
+  background-color: #181b21;
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 110;
+}
+.timeLinesvgBox {
+  width: 88%;
+  height: 68%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.closeTimelineBox {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -12px;
+  right: 43%;
+  z-index: 100;
+}
+.timeLineFilter {
+  width: 12%;
+  height: 68%;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  border-left: 1px solid #6c7881;
+  border-top: 1px solid #6c7881;
+}
+.titleFilter {
+  position: absolute;
+  top: 36px;
+  right: 3%;
+  color: #33d0ff;
+  font-size: 16px;
+}
+.lists {
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  top: 110px;
+  right: 0;
+}
+.myRadio {
+  padding: 10px 0 5px 0;
+}
+.myRadio p {
+  padding: 0 0 0 10px;
+}
+.radiocomponent {
+  display: inline-block;
+}
+.choseDirection {
+  width: 100px;
+  color: #33c5f4;
+  font-size: 14px;
+  margin-right: 60px;
+  margin-left: 15px;
+  padding-left: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.choseDirection p {
+  color: #fff;
+}
+
+.timeLineLayout {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}

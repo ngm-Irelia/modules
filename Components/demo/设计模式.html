@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../Components.css" />
+		<style>
+		
+			.show-color {
+				display: flex;
+				flex-wrap: wrap;
+			}
+	
+			.show-color .sc{
+				width: 120px;
+				height: 50px;
+				margin: 20px;
+				line-height: 50px;
+				text-align: center;
+			}
+	
+			.show-btn{
+				display: flex;
+				flex-wrap: wrap;
+			}
+	
+			.show-btn>div{
+				width: 20%;
+				margin: 30px 0 ;
+				text-align: center;
+			}
+	
+			.show-btn .show-btn-title {
+				margin: 10px 0 0 0;
+			}
+	
+	
+			.header-line {
+				text-align: center;
+				color: #fff;
+				background: #33d0ff;
+				font-size: 18px;
+				margin: 20px;
+				padding: 10px;
+			}
+	
+			
+	
+			.show-func .sf{
+				border: 1px solid gray;
+				margin: 20px;
+				padding: 10px;
+			}
+	
+			.sf-title {
+				height: 24px;
+				line-height: 24px;
+				text-align: left;
+				color:#33d0ff;
+			}
+	
+			.sf-content {
+				line-height: 24px;
+				text-align: left;
+				
+			}
+	
+			.sf-header {
+				line-height: 24px;
+				text-align: left;
+				font-weight: 700;
+				
+			}
+	
+			.sf-demo {
+				width: 500px;
+				height: 350px;
+				float: left;
+			}
+	
+	
+			</style>
+	</head>
+	<body>
+		
+
+
+    <div style="position:absolute;background:blue" id="div111">
+      策略模式
+    </div>
+	 
+
+		<script type="text/javascript" src="../assets/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../Components.js"></script>
+    
+    <script>
+      // ---------------  单例模式 -------------------------
+      let pxy = function(x, y, z) {
+				this.propertyX = x;
+        this.propertyY = y;
+        this.propertyZ = z;
+      };
+      
+      
+      let aa = Components.singleTon(pxy,1,2,3);
+      console.log(aa)
+      /* let bb = Components.singleTon(pxy,3,4,5);
+      console.log(bb) */
+      let cc = new pxy(4,5,6)
+      console.log(cc)
+      // ----------------  策略模式 缓动动画 -----------------
+      Components.AnimateStrategy("div111")
+      .run('left', 500, 1000, 'strongEaseOut')
+      .run('top', 500, 1000, 'strongEaseOut');
+      
+    </script>
+	</body> 
+</html>

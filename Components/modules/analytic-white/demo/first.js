@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	// 简单模式
 	// 模拟数据 
-	let testdata = [
+	let testdata11 = [
 		{
 			source: {
 				id: "aaa",
@@ -59,36 +59,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			},
 			id: "aaaccc",
 			relationId: "relation222",
-			relationIds: [],
-			relationTypeName: "师徒",
-			relationNumber: 1,
-			time:'2019-06-01'
-		},
-		{
-			source: {
-				id: "zzz",
-				nodeId: "zzz",
-				name: "郑和",
-				conceptId: "csry",
-				conceptName: "测试",
-				confirm: true,
-				fill: "#e60012",
-				stroke: "rgb(51, 208, 255)",
-				icon: false,
-			},
-			target: {
-				id: "ccc",
-				nodeId: "ccc",
-				name: "曾国藩",
-				conceptId: "csry",
-				conceptName: "测试",
-				confirm: true,
-				fill: "#e60012",
-				stroke: "rgb(51, 208, 255)",
-				icon: false,
-			},
-			id: "ccczzz",
-			relationId: "relationzzz",
 			relationIds: [],
 			relationTypeName: "师徒",
 			relationNumber: 1,
@@ -190,61 +160,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	//window.Components.analytic.run("showarea", testdata);
 	
-	
+	let testdata = [{
+			source: {
+				id: "aaa",
+				nodeId: "aaa",
+				name: "李鸿章",
+				conceptId: "csry",
+				conceptName: "测试",
+				confirm: true,
+				fill: "#e60012",
+				stroke: "rgb(51, 208, 255)",
+				icon: false,
+			}
+		}]
 	//分析模式
 	window.Components.analytic.run("showarea", {
 		type:"analytic",
-		search:false,
-		timeaxis:false,
+		search:true,
+		timeaxis:true,
 		data:testdata
 	});
-
-	//单纯的添加节点
-	window.Components.analytic.addNewNode([{
-		id: "zgd",
-		nodeId: "zgd",
-		name: "中国队",
-		conceptId: "csry",
-		conceptName: "测试",
-		confirm: true,
-		fill: "#2da5da",
-		stroke: "rgb(51, 208, 255)",
-		icon: false,
-	}])
 	
-	//只显示某个节点相关的节点，  不传参数，是显示所有节点
+	//只显示某个节点相关的节点
 	//Components.analytic.showItem({ 	id: "aaa" });
 	
-	setTimeout(function(){
-		Components.analytic.showItem({ 	id: "aaa" });
-	},2000)
-	setTimeout(function(){
-		Components.analytic.showItem();
-	},4000)
-
 	/**
-	 * 获得 点击的节点信息 mouseDown
+	 * 获得 点击的节点信息
 	 * @param function 回调函数
 	 */
-	Components.analytic.setMouseDownNode(function(data){
+	Components.analytic.getClickNode(function(data){
 		
-		console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
-		console.log(data);
+		//console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
+		//console.log(data);
 
 	});
-
-	/**
-	 * 获得 点击的节点信息 mouseUp
-	 * @param function 回调函数
-	 */
-	Components.analytic.setMouseUpNode(function(data){
-		
-		console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
-		console.log(data);
-
-	});
-
-	
 	
 	
 	

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<body>
+			<div style="position:absolute;background:blue" id="div">元素</div>
+		</body>
+
+		<script>
+			// ****************     策略模式         *************************
+
+			// 实现缓动动画
+			//缓动算法
+			/**
+			 * 动画已消耗的时间、
+			 * 小球原始位置、
+			 * 小 11 球目标位置、
+			 * 动画持续的总时间，
+			 * @return 动画元素应该处在的当前位置
+			 */
+			var tween = {
+				linear: function(t, b, c, d) {
+					return c * t / d + b;
+				},
+				easeIn: function(t, b, c, d) {
+					return c * (t /= d) * t + b;
+				},
+				strongEaseIn: function(t, b, c, d) {
+					
+					return c * (t /= d) * t * t * t * t + b;
+				},
+				strongEaseOut: function(t, b, c, d) {
+					return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+				},
+				sineaseIn: function(t, b, c, d) {
+					return c * (t /= d) * t * t + b;
+				},
+				sineaseOut: function(t, b, c, d) {
+					return c * ((t = t / d - 1) * t * t + 1) + b;
+				}
+			};
+
+
+			var Animate = function(dom) {
+				this.dom = dom; // 进行运动的 dom 节点
+				this.startTime = 0; // 动画开始时间
+				this.startPos = 0; // 动画开始时，dom 节点的位置，即 dom 的初始位置
+				this.endPos = 0; // 动画结束时，dom 节点的位置，即 dom 的目标位置
+				this.propertyName = null; // dom 节点需要被改变的 css 属性名
+				this.easing = null; // 缓动算法
+				this.duration = null; // 动画持续时间
+			};
+
+			/**
+			 * propertyName：要改变的 CSS 属性名，比如'left'、'top'，分别表示左右移动和上下移动。
+			 * endPos：      小球运动的目标位置。
+			 * duration：    动画持续时间。  
+			 * easing：      缓动算法。
+			 */
+			Animate.prototype.start = function(propertyName, endPos, duration, easing) {
+				this.startTime = +new Date; // 动画启动时间
+				this.startPos = this.dom.getBoundingClientRect()[propertyName]; // dom 节点初始位置
+				this.propertyName = propertyName; // dom 节点需要被改变的 CSS 属性名
+				this.endPos = endPos; // dom 节点目标位置
+				this.duration = duration; // 动画持续事件
+				this.easing = tween[easing]; // 缓动算法
+				var self = this;
+				var timeId = setInterval(function() { // 启动定时器，开始执行动画
+					if (self.step() === false) { // 如果动画已结束，则清除定时器
+						clearInterval(timeId);
+					}
+				}, 19);
+			};
+			
+			
+			Animate.prototype.step = function(){ 
+				var t = +new Date; // 取得当前时间 5 
+				if ( t >= this.startTime + this.duration ){ // 动画运行结束 操作
+					this.update( this.endPos ); // 更新小球的 CSS 属性值
+					return false; 
+				} 
+				
+				var pos = this.easing( t - this.startTime, this.startPos, 
+				this.endPos - this.startPos, this.duration ); 
+				// pos 为小球当前位置
+				this.update( pos ); // 更新小球的 CSS 属性值  
+			};
+			
+			
+			Animate.prototype.update = function( pos ){ 
+				this.dom.style[ this.propertyName ] = pos + 'px'; 
+			}; 
+			//test 
+			//var div = document.getElementById( 'div' ); 
+			//var animate = new Animate( div ); 
+			//animate.start( 'left', 500, 1000, 'strongEaseOut' );
+			//animate.start( 'top', 500, 1000, 'strongEaseIn' );
+			
+			
+			
+			//缺点:  要想实现同时修改多个属性的动画,现在是做不到的! 
+			//需求： 修改为 可以同时变化元素的不同属性
+			//原因： 上面不成功的原因是: 使用同一个对象,一些属性共用了
+			//方法： 解决办法,把共用的属性改为私有. 可以使用 代理模式实现
+			
+			function DomAnimate(dom){
+				this.dom = dom; // 进行运动的 dom 节点
+			}
+			
+			DomAnimate.prototype.start = function( ...args ){
+				var animate = new Animate( this.dom );
+				animate.start( ...args );
+			}
+			
+			var div = document.getElementById( 'div' ); 
+			var domAnimate = new DomAnimate( div ); 
+			domAnimate.start( 'left', 500, 1000, 'strongEaseOut' );
+			domAnimate.start( 'top', 500, 1000, 'strongEaseOut' );
+			
+			
+		</script>
+	</body>
+</html>

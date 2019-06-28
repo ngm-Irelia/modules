@@ -365,8 +365,96 @@ var Components = window.Components = Components || {};
 			eleLink.click();
 			// 然后移除
 			document.body.removeChild(eleLink);
-        }
+    },
 		
+		/**
+		 * 文件上传功能 包括：上传进度等获取
+		 * @param urls	   请求的url	
+		 * @param param	   请求的参数  document.getElementById("file").files[0]  //获取文件对象
+		 * @param type	   请求的类型GET POST 等
+		 */
+		uploadFile:function(urls, param, type){
+			let xhr;
+			let ot;
+			xhr = new XMLHttpRequest();   // XMLHttpRequest 对象
+			xhr.open(type, urls, true);   //true 该参数规定请求是否异步处理。
+			xhr.onload = successFunc;  //请求完成
+			xhr.onerror =  failFunc;  //请求失败
+		
+			xhr.upload.onprogress = progressFunction;//调用 上传进度 方法 
+			xhr.upload.onloadstart = function(){//上传开始执行方法
+				ot = new Date().getTime();   //设置上传开始时间
+				oloaded = 0;//设置上传开始时，以上传的文件大小为0
+			};
+		
+			xhr.send(param); //开始上传,参数
+			
+			//上传成功响应
+			function successFunc(evt) {
+			    var data = JSON.parse(evt.target.responseText);//服务断接收完文件返回的结果
+			    if(data.success) {
+			        Components().alert({
+						title:"提示",
+						content:"上传成功！"
+					})
+			    }else{
+			        Components().alert({
+			        	title:"提示",
+			        	content:"上传失败！",
+						color:"red"
+			        })
+			    }
+			
+			}
+			//上传失败
+			function failFunc(evt) {
+			    Components().alert({
+			    	title:"提示",
+			    	content:"上传失败！",
+			    	color:"red"
+			    })
+			}
+			//取消上传
+			function cancleUploadFile(){
+			    xhr.abort();
+			}
+			
+			
+			//上传进度 方法
+			function progressFunction(evt) {
+			    var progressBar = document.getElementById("progressBar");
+			    var percentageDiv = document.getElementById("percentage");
+			    // event.total是需要传输的总字节，event.loaded是已经传输的字节。如果event.lengthComputable不为真，则event.total等于0
+			    if (evt.lengthComputable) {//
+			        progressBar.max = evt.total;
+			        progressBar.value = evt.loaded;
+			        percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
+			    }
+			    var time = document.getElementById("time");
+			    var nt = new Date().getTime();//获取当前时间
+			    var pertime = (nt-ot)/1000; //计算出上次调用该方法时到现在的时间差，单位为s
+			    ot = new Date().getTime(); //重新赋值时间，用于下次计算
+			    var perload = evt.loaded - oloaded; //计算该分段上传的文件大小，单位b
+			    oloaded = evt.loaded;//重新赋值已上传文件大小，用以下次计算
+			    //上传速度计算
+			    var speed = perload/pertime;//单位b/s
+			    var bspeed = speed;
+			    var units = 'b/s';//单位名称
+			    if(speed/1024>1){
+			        speed = speed/1024;
+			        units = 'k/s';
+			    }
+			    if(speed/1024>1){
+			        speed = speed/1024;
+			        units = 'M/s';
+			    }
+			    speed = speed.toFixed(1);
+			    //剩余时间
+			    var resttime = ((evt.total-evt.loaded)/bspeed).toFixed(1);
+			    time.innerHTML = '，速度：'+speed+units+'，剩余时间：'+resttime+'s';
+			    if(bspeed==0) time.innerHTML = '上传已取消';
+			}
+		}
 	}); 
   
 
@@ -402,9 +490,129 @@ var Components = window.Components = Components || {};
 	}); 
 
 
+	// ------------- 涉及到 设计模式的封装 ------------- 
 
-	//扩展实例方法 
-	//扩展工具方法
+	//扩展工具方法 动画相关的操作：
+	//缓动策略算法
+	let tween = {
+		linear: function(t, b, c, d) {
+			return c * t / d + b;
+		},
+		easeIn: function(t, b, c, d) {
+			return c * (t /= d) * t + b;
+		},
+		strongEaseIn: function(t, b, c, d) {
+			
+			return c * (t /= d) * t * t * t * t + b;
+		},
+		strongEaseOut: function(t, b, c, d) {
+			return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+		},
+		sineaseIn: function(t, b, c, d) {
+			return c * (t /= d) * t * t + b;
+		},
+		sineaseOut: function(t, b, c, d) {
+			return c * ((t = t / d - 1) * t * t + 1) + b;
+		}
+	};
+
+	class DomAnimate{
+		constructor(dom){
+			this.dom = dom; // 进行运动的 dom 节点
+			this.startTime = 0; // 动画开始时间
+			this.startPos = 0; // 动画开始时，dom 节点的位置，即 dom 的初始位置
+			this.endPos = 0; // 动画结束时，dom 节点的位置，即 dom 的目标位置
+			this.propertyName = null; // dom 节点需要被改变的 css 属性名
+			this.easing = null; // 缓动算法
+			this.duration = null; // 动画持续时间
+		}
+
+		start (propertyName, endPos, duration, easing) {
+			this.startTime = +new Date; // 动画启动时间
+			this.startPos = this.dom.getBoundingClientRect()[propertyName]; // dom 节点初始位置
+			this.propertyName = propertyName; // dom 节点需要被改变的 CSS 属性名
+			this.endPos = endPos; // dom 节点目标位置
+			this.duration = duration; // 动画持续事件
+			this.easing = tween[easing]; // 缓动算法
+			var self = this;
+			var timeId = setInterval(function() { // 启动定时器，开始执行动画
+				if (self.step() === false) { // 如果动画已结束，则清除定时器
+					clearInterval(timeId);
+				}
+			}, 19);
+		}
+
+		step (){ 
+			var t = +new Date; // 取得当前时间 5 
+			if ( t >= this.startTime + this.duration ){ // 动画运行结束 操作
+				this.update( this.endPos ); // 更新小球的 CSS 属性值
+				return false; 
+			} 
+			
+			var pos = this.easing( t - this.startTime, this.startPos, 
+			this.endPos - this.startPos, this.duration ); 
+			// pos 为小球当前位置
+			this.update( pos ); // 更新小球的 CSS 属性值  
+		}
+
+		update ( pos ){ 
+			this.dom.style[ this.propertyName ] = pos + 'px'; 
+		}
+
+	}
+
+	Components.extend({
+		singleTon: function(fn, ...args){
+			
+			var fproxy = new Proxy(fn, {
+				construct: function(target, args) {
+					if(!this.singleton){
+						this.singleton = new target(...args);
+					}
+					return this.singleton;
+				},
+				singleton:0   // 这个属性是重点,控制单例
+			});
+
+			return new fproxy(...args);
+
+		},
+		/**
+		 * 哈哈，提供 链式调用~~
+		 * 策略模式-代理模式-暴露式模块模式，实现缓动动画。
+		 * @param { string } domid 元素的id
+		 */
+		AnimateStrategy: function(domid){
+			let dom = document.getElementById( domid );
+			let _self = this;
+			return {
+				/**
+				 * 
+				 * @param  {...any} args  
+				 * propertyName：要改变的 CSS 属性名，比如'left'、'top'，分别表示左右移动和上下移动。
+				 * endPos：      小球运动的目标位置。
+				 * duration：    动画持续时间。  
+				 * easing：      缓动算法。
+				 */
+				run:function(...args){
+					(new DomAnimate( dom )).start( ...args );
+					return _self.AnimateStrategy(domid);
+				}
+			}
+		},
+		/**
+		 * 策略模式-Proxy，实现缓动动画。
+		 */
+		AnimateProxy: function(){
+			//todo Proxy construct监听 new方法 。  
+			//实现后，意义不大~
+		}
+
+	})
+
+
+
+	//扩展实例方法
 	Components.ct.extend({
 		
 		/**
@@ -436,6 +644,146 @@ var Components = window.Components = Components || {};
 
 	}); 
 
+
+	//扩展实例方法 
+		/**
+	 * 
+	 * @param {*} id  需要加载的父元素  如果为空，则全页面覆盖的loading，不为空则为局部loading
+	 * @param {boolean} sign  false 清除，true和 空 ，添加loading
+	 */
+	Components.ct.loading = function (id,sign){
+		if(typeof sign === "boolean"){
+			if(!sign){//清除
+				let fatherL;
+				let loaddiv;
+				if(id && typeof id === "string"){
+					fatherL = document.getElementById(id);
+					loaddiv=document.getElementById(id+"-loading");//找到子元素    
+				}else if(id == null){
+					fatherL = document.body;
+					loaddiv=document.getElementById("components-body-loading");//找到子元素    
+				}
+				
+				fatherL.removeChild(loaddiv);
+				return '';  
+			}else{
+				//no deal
+			}
+		}
+
+		let loadhtml = `<svg x="0px" y="0px" width="70px" height="150px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+				<rect x="0" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				<rect x="10" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				<rect x="20" y="13" width="4" height="5" fill="#F56C6C">
+					<animate attributeName="height" attributeType="XML"
+						values="5;21;5" 
+						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+					<animate attributeName="y" attributeType="XML"
+						values="13; 5; 13"
+						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+				</rect>
+				
+			</svg>`;
+
+			let divL = document.createElement("div");
+			divL.setAttribute("class", "loading-model");
+			divL.innerHTML = loadhtml;
+
+		if(id && typeof id === "string"){
+			let fatherL = document.getElementById(id);
+			
+			if(fatherL.style.position && fatherL.style.position != "static"){
+				//no deal
+			}else{
+				fatherL.style.position = 'relative';
+			}
+
+			divL.setAttribute("id", id+"-loading");
+			fatherL.appendChild(divL);
+
+		}else if(id == null){//body add loading
+			divL.setAttribute("id", "components-body-loading");
+			document.body.appendChild(divL);
+		}else if(typeof id === "boolean"){// boolean
+			if(id){ //加载
+				divL.setAttribute("id", "components-body-loading");
+				document.body.appendChild(divL);
+			}else{ //清除
+				let fatherL = document.body;
+				let loaddiv=document.getElementById("components-body-loading");//找到子元素 
+				
+				fatherL.removeChild(loaddiv);
+			}
+		}
+	}
+
+
+
+
+	/**
+	 * 提示信息弹框                       yh: 里面的生成元素， divL 可以写成单例模式！！
+	 * @param {*} config  弹框需要的字段信息
+	 * {
+			title:"弹框标题-支持html"
+			content:"弹框内容-支持html"
+			color:标题文字颜色
+			time:弹框过time时间后，隐藏
+			btn:"确定"
+		}
+	 */
+	Components.ct.alert = function(config){
+		if(typeof title === "boolean"){
+			document.body.removeChild(document.getElementById("ct_page_alert"));
+			return '';
+		}
+		let showtitle = config.title?config.title:'提示';
+		let showcontent = config.content?config.content:'';
+		let showcolor = config.color ? config.color:'#09a5ee';
+		let showTime = config.time?config.time:'';
+		let showBtn = config.btn?config.btn:'确定';
+		let alertHtml = `<div id="ct_page_alert_box">
+				<div id="ct_page_alert_title" style="color:${showcolor}">${showtitle}</div>
+				<div id="ct_page_alert_content">${showcontent}</div>
+				<button type="button" id="ct_page_alert_button" >${showBtn}</button>
+			</div>`;
+
+		let divL = document.createElement("div");
+		divL.setAttribute("id", "ct_page_alert");
+		divL.innerHTML = alertHtml;
+		document.body.appendChild(divL);
+
+
+		let timeout = '';
+		//绑定事件
+		document.getElementById("ct_page_alert_button").addEventListener("click",function(){
+			document.body.removeChild(document.getElementById("ct_page_alert"));
+			
+			if(timeout){
+				clearTimeout(timeout);
+			}
+			
+		})
+		if(showTime){
+			timeout = setTimeout(function(){
+				document.body.removeChild(document.getElementById("ct_page_alert"));
+			},showTime)
+		}
+
+	}
 
 	// ----------------------------  以上 为 ngm 开发的内容 -------------------------------------- //
 
@@ -662,144 +1010,7 @@ var Components = window.Components = Components || {};
 
 	Components.ct.PictureVirtualByClass = new PictureVirtualByClass();
 
-	/**
-	 * 
-	 * @param {*} id  需要加载的父元素  如果为空，则全页面覆盖的loading，不为空则为局部loading
-	 * @param {boolean} sign  false 清除，true和 空 ，添加loading
-	 */
-	Components.ct.loading = function (id,sign){
-		if(typeof sign === "boolean"){
-			if(!sign){//清除
-				let fatherL;
-				let loaddiv;
-				if(id && typeof id === "string"){
-					fatherL = document.getElementById(id);
-					loaddiv=document.getElementById(id+"-loading");//找到子元素    
-				}else if(id == null){
-					fatherL = document.body;
-					loaddiv=document.getElementById("components-body-loading");//找到子元素    
-				}
-				
-				fatherL.removeChild(loaddiv);
-				return '';  
-			}else{
-				//no deal
-			}
-		}
 
-		let loadhtml = `<svg x="0px" y="0px" width="70px" height="150px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-				<rect x="0" y="13" width="4" height="5" fill="#F56C6C">
-					<animate attributeName="height" attributeType="XML"
-						values="5;21;5" 
-						begin="0s" dur="0.6s" repeatCount="indefinite" />
-					<animate attributeName="y" attributeType="XML"
-						values="13; 5; 13"
-						begin="0s" dur="0.6s" repeatCount="indefinite" />
-				</rect>
-				<rect x="10" y="13" width="4" height="5" fill="#F56C6C">
-					<animate attributeName="height" attributeType="XML"
-						values="5;21;5" 
-						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-					<animate attributeName="y" attributeType="XML"
-						values="13; 5; 13"
-						begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-				</rect>
-				<rect x="20" y="13" width="4" height="5" fill="#F56C6C">
-					<animate attributeName="height" attributeType="XML"
-						values="5;21;5" 
-						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-					<animate attributeName="y" attributeType="XML"
-						values="13; 5; 13"
-						begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-				</rect>
-				
-			</svg>`;
-
-			let divL = document.createElement("div");
-			divL.setAttribute("class", "loading-model");
-			divL.innerHTML = loadhtml;
-
-		if(id && typeof id === "string"){
-			let fatherL = document.getElementById(id);
-			
-			if(fatherL.style.position && fatherL.style.position != "static"){
-				//no deal
-			}else{
-				fatherL.style.position = 'relative';
-			}
-
-			divL.setAttribute("id", id+"-loading");
-			fatherL.appendChild(divL);
-
-		}else if(id == null){//body add loading
-			divL.setAttribute("id", "components-body-loading");
-			document.body.appendChild(divL);
-		}else if(typeof id === "boolean"){// boolean
-			if(id){ //加载
-				divL.setAttribute("id", "components-body-loading");
-				document.body.appendChild(divL);
-			}else{ //清除
-				let fatherL = document.body;
-				let loaddiv=document.getElementById("components-body-loading");//找到子元素 
-				
-				fatherL.removeChild(loaddiv);
-			}
-		}
-	}
-
-
-
-
-	/**
-	 * 提示信息弹框                       yh: 里面的生成元素， divL 可以写成单例模式！！
-	 * @param {*} config  弹框需要的字段信息
-	 * {
-			title:"弹框标题-支持html"
-			content:"弹框内容-支持html"
-			color:标题文字颜色
-			time:弹框过time时间后，隐藏
-			btn:"确定"
-		}
-	 */
-	Components.ct.alert = function(config){
-		if(typeof title === "boolean"){
-			document.body.removeChild(document.getElementById("ct_page_alert"));
-			return '';
-		}
-		let showtitle = config.title?config.title:'提示';
-		let showcontent = config.content?config.content:'';
-		let showcolor = config.color ? config.color:'#09a5ee';
-		let showTime = config.time?config.time:'';
-		let showBtn = config.btn?config.btn:'确定';
-		let alertHtml = `<div id="ct_page_alert_box">
-				<div id="ct_page_alert_title" style="color:${showcolor}">${showtitle}</div>
-				<div id="ct_page_alert_content">${showcontent}</div>
-				<button type="button" id="ct_page_alert_button" >${showBtn}</button>
-			</div>`;
-
-		let divL = document.createElement("div");
-		divL.setAttribute("id", "ct_page_alert");
-		divL.innerHTML = alertHtml;
-		document.body.appendChild(divL);
-
-
-		let timeout = '';
-		//绑定事件
-		document.getElementById("ct_page_alert_button").addEventListener("click",function(){
-			document.body.removeChild(document.getElementById("ct_page_alert"));
-			
-			if(timeout){
-				clearTimeout(timeout);
-			}
-			
-		})
-		if(showTime){
-			timeout = setTimeout(function(){
-				document.body.removeChild(document.getElementById("ct_page_alert"));
-			},showTime)
-		}
-
-	}
 
 
 

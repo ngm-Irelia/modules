@@ -29,11 +29,7 @@ var Components = window.Components = Components || {};
 			//analytic 模拟数据
 			this.analyticData = [ ];
 			
-			this.setMouseDownNodeCallBack = {};  // MouseDown节点的回调函数
-			this.setMouseUpNodeCallBack = {};    // MouseUp节点的回调函数
-
-			window.nodes = [];
-			window.links = [];
+			this.clickNodeCallBack = {};  // 点击节点的回调函数
 		}
 
 		/**
@@ -106,15 +102,8 @@ var Components = window.Components = Components || {};
 		 * @param show { 	id: "aaa" }
 		 */
 		showItem(d){
-			
 			let _that = this;
 			let magicGraph = _that.magicGraph;
-
-			if(!d){
-				magicGraph.pathUpdate.selectAll("path.link,text").filter(function (y) { return true; }).style("opacity", "1");
-				magicGraph.enterNodes.filter(function (t, i) { return true; }).style("opacity", "1");
-				return "";
-			};
 			
 			magicGraph.enterNodes.style("opacity", 0.2);
 			magicGraph.pathUpdate.selectAll("path.link,text").style("opacity", 0);
@@ -148,47 +137,18 @@ var Components = window.Components = Components || {};
 		}
 
 		/**
-		 * 获得 MouseDown点击 节点的信息
+		 * 获得 点击 节点的信息
 		 * @param callback function 回调函数
 		 */
-		setMouseDownNode(callback){
+		getClickNode(callback){
 			let _that = this;
 			
 			if(typeof callback === 'function'){
-				_that.setMouseDownNodeCallBack = callback;
-			}
-			
-		}
-
-		/**
-		 * 获得 MouseUp点击 节点的信息
-		 * @param callback function 回调函数
-		 */
-		setMouseUpNode(callback){
-			let _that = this;
-			
-			if(typeof callback === 'function'){
-				_that.setMouseUpNodeCallBack = callback;
+				_that.clickNodeCallBack = callback;
 			}
 			
 		}
 		
-		/**
-		 * 单纯的新增 节点
-		 */
-		addNewNode(nodeList){
-			let _that = this;
-			
-			setTimeout(()=>{
-				console.log(nodes);
-				let newnodes = nodes.concat(nodeList);
-				console.log(newnodes)
-				_that.magicFunctions.loadSvgStart(newnodes, links);
-			},20)
-			
-
-		}
-
 		/**
 		 * 绑定事件
 		 */
@@ -411,7 +371,8 @@ var Components = window.Components = Components || {};
 					}
 				})
 				.on("zoom", magicFunctions.zoom);
-			
+			window.nodes = [];
+			window.links = [];
 
 			//功能函数集合
 			function MagicFunctions() {
@@ -686,10 +647,10 @@ var Components = window.Components = Components || {};
 				},
 
 					// here 入口！！！
-					this.loadSvgStart = (nodedata, linkdata,id) => {
+					this.loadSvgStart = (data, id) => {
 
 						localStorage.setItem("saveState", false);
-						calculatePos(nodedata, linkdata, null);//, null, "isHistory"
+						calculatePos([data], [], null);//, null, "isHistory"
 
 						//进入页面。自动扩展一层
 						/* _that.pageData().getExtendData({
@@ -864,9 +825,9 @@ var Components = window.Components = Components || {};
 
 						link.type = link.type ? link.type : 'virtual',
 
-						link.relationParentType = link.relationParentType ? link.relationParentType : "virtualType", //关系的父类
+							link.relationParentType = link.relationParentType ? link.relationParentType : "virtualType", //关系的父类
 
-						parseNodes.push(link.target);
+							parseNodes.push(link.target);
 						parseNodes.push(link.source);
 					});
 					noRepeatNodes = removeRepeatArray(parseNodes, "nodeId");
@@ -1346,8 +1307,8 @@ var Components = window.Components = Components || {};
 				nodeMouseDown: function () {
 					return function (d, i) {
 						
-						if(typeof _that.setMouseDownNodeCallBack === 'function'){
-							_that.setMouseDownNodeCallBack.call(this, d);
+						if(typeof _that.clickNodeCallBack === 'function'){
+							_that.clickNodeCallBack.call(this, d);
 						}
 
 						d.fixed = true;
@@ -1435,10 +1396,6 @@ var Components = window.Components = Components || {};
 						return ''; 
 					}
 					return function (d, i) {
-						if(typeof _that.setMouseUpNodeCallBack === 'function'){
-							_that.setMouseUpNodeCallBack.call(this, d);
-						}
-
 						if (!magicGraph.mousedown_node) {
 							return;
 						} else if (magicGraph.isMove) {
@@ -2998,30 +2955,16 @@ var Components = window.Components = Components || {};
 			console.log("调用接口 start");
 
 			let testId = "testId";
-			if(_that.useType === "easy"){
-				magicFunctions.loadSvgStart([_that.showData[0].source],[], testId);
-			}else if(_that.useType === "analytic"){
-				reqLeavesApi.creatLinks(_that.analyticData);
-				 
-				if(_that.timeAxisSign){  // 时间轴 显示
-					timeAxis.resetAxis();  //这里注掉了时间轴的操作！！！ suspend
+			_that.pageData().getInformation({ id: testId }).then(function (data) {
+				if (data) {
+					magicFunctions.loadSvgStart(data, testId);
+
+					if(_that.timeAxisSign){  // 时间轴 显示
+						timeAxis.resetAxis();  //这里注掉了时间轴的操作！！！ suspend
+					}
+					
 				}
-			}
-
-				/* magicFunctions.loadSvgStart([{
-					id: "yyy",
-					nodeId: "yyy",
-					name: "洋务派",
-					conceptId: "csry",
-					conceptName: "测试",
-					confirm: true,
-					fill: "#e60012",
-					stroke: "rgb(51, 208, 255)",
-					icon: false,
-				}], [], testId); */
-
-				 
-				
+			})
 
 
 

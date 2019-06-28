@@ -54,7 +54,7 @@
         function progressFunction(evt) {
             var progressBar = document.getElementById("progressBar");
             var percentageDiv = document.getElementById("percentage");
-            // event.total是需要传输的总字节，event.loaded是已经传输的字节。如果event.lengthComputable不为真，则event.total等于0
+            // evt.total是需要传输的总字节，evt.loaded是已经传输的字节。如果evt.lengthComputable不为真，则evt.total等于0
             if (evt.lengthComputable) {//
                 progressBar.max = evt.total;
                 progressBar.value = evt.loaded;

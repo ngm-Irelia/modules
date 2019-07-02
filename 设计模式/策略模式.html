@@ -113,12 +113,12 @@
 			DomAnimate.prototype.start = function( ...args ){
 				var animate = new Animate( this.dom );
 				animate.start( ...args );
+				return this;
 			}
 			
 			var div = document.getElementById( 'div' ); 
 			var domAnimate = new DomAnimate( div ); 
-			domAnimate.start( 'left', 500, 1000, 'strongEaseOut' );
-			domAnimate.start( 'top', 500, 1000, 'strongEaseOut' );
+			domAnimate.start( 'left', 500, 1000, 'strongEaseOut' ).start( 'top', 500, 1000, 'strongEaseOut' );
 			
 			
 		</script>

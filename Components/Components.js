@@ -391,19 +391,19 @@ var Components = window.Components = Components || {};
 			
 			//上传成功响应
 			function successFunc(evt) {
-			    var data = JSON.parse(evt.target.responseText);//服务断接收完文件返回的结果
-			    if(data.success) {
-			        Components().alert({
-						title:"提示",
-						content:"上传成功！"
+				let data = JSON.parse(evt.target.responseText);//服务断接收完文件返回的结果
+				if (data.success) {
+					Components().alert({
+						title: "提示",
+						content: "上传成功！"
 					})
-			    }else{
-			        Components().alert({
-			        	title:"提示",
-			        	content:"上传失败！",
-						color:"red"
-			        })
-			    }
+				} else {
+					Components().alert({
+						title: "提示",
+						content: "上传失败！",
+						color: "red"
+					})
+				}
 			
 			}
 			//上传失败
@@ -422,37 +422,37 @@ var Components = window.Components = Components || {};
 			
 			//上传进度 方法
 			function progressFunction(evt) {
-			    var progressBar = document.getElementById("progressBar");
-			    var percentageDiv = document.getElementById("percentage");
-			    // event.total是需要传输的总字节，event.loaded是已经传输的字节。如果event.lengthComputable不为真，则event.total等于0
-			    if (evt.lengthComputable) {//
-			        progressBar.max = evt.total;
-			        progressBar.value = evt.loaded;
-			        percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
-			    }
-			    var time = document.getElementById("time");
-			    var nt = new Date().getTime();//获取当前时间
-			    var pertime = (nt-ot)/1000; //计算出上次调用该方法时到现在的时间差，单位为s
-			    ot = new Date().getTime(); //重新赋值时间，用于下次计算
-			    var perload = evt.loaded - oloaded; //计算该分段上传的文件大小，单位b
-			    oloaded = evt.loaded;//重新赋值已上传文件大小，用以下次计算
-			    //上传速度计算
-			    var speed = perload/pertime;//单位b/s
-			    var bspeed = speed;
-			    var units = 'b/s';//单位名称
-			    if(speed/1024>1){
-			        speed = speed/1024;
-			        units = 'k/s';
-			    }
-			    if(speed/1024>1){
-			        speed = speed/1024;
-			        units = 'M/s';
-			    }
-			    speed = speed.toFixed(1);
-			    //剩余时间
-			    var resttime = ((evt.total-evt.loaded)/bspeed).toFixed(1);
-			    time.innerHTML = '，速度：'+speed+units+'，剩余时间：'+resttime+'s';
-			    if(bspeed==0) time.innerHTML = '上传已取消';
+				let progressBar = document.getElementById("progressBar");
+				let percentageDiv = document.getElementById("percentage");
+				// event.total是需要传输的总字节，event.loaded是已经传输的字节。如果event.lengthComputable不为真，则event.total等于0
+				if (evt.lengthComputable) {//
+					progressBar.max = evt.total;
+					progressBar.value = evt.loaded;
+					percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
+				}
+				let time = document.getElementById("time");
+				let nt = new Date().getTime();//获取当前时间
+				let pertime = (nt - ot) / 1000; //计算出上次调用该方法时到现在的时间差，单位为s
+				ot = new Date().getTime(); //重新赋值时间，用于下次计算
+				let perload = evt.loaded - oloaded; //计算该分段上传的文件大小，单位b
+				oloaded = evt.loaded;//重新赋值已上传文件大小，用以下次计算
+				//上传速度计算
+				let speed = perload / pertime;//单位b/s
+				let bspeed = speed;
+				let units = 'b/s';//单位名称
+				if (speed / 1024 > 1) {
+					speed = speed / 1024;
+					units = 'k/s';
+				}
+				if (speed / 1024 > 1) {
+					speed = speed / 1024;
+					units = 'M/s';
+				}
+				speed = speed.toFixed(1);
+				//剩余时间
+				let resttime = ((evt.total - evt.loaded) / bspeed).toFixed(1);
+				time.innerHTML = '，速度：' + speed + units + '，剩余时间：' + resttime + 's';
+				if (bspeed == 0) time.innerHTML = '上传已取消';
 			}
 		}
 	}); 
@@ -516,6 +516,9 @@ var Components = window.Components = Components || {};
 		}
 	};
 
+	/**
+	 * dom动画
+	 */
 	class DomAnimate{
 		constructor(dom){
 			this.dom = dom; // 进行运动的 dom 节点
@@ -534,8 +537,8 @@ var Components = window.Components = Components || {};
 			this.endPos = endPos; // dom 节点目标位置
 			this.duration = duration; // 动画持续事件
 			this.easing = tween[easing]; // 缓动算法
-			var self = this;
-			var timeId = setInterval(function() { // 启动定时器，开始执行动画
+			let self = this;
+			let timeId = setInterval(function() { // 启动定时器，开始执行动画
 				if (self.step() === false) { // 如果动画已结束，则清除定时器
 					clearInterval(timeId);
 				}
@@ -543,13 +546,13 @@ var Components = window.Components = Components || {};
 		}
 
 		step (){ 
-			var t = +new Date; // 取得当前时间 5 
+			let t = +new Date; // 取得当前时间 5 
 			if ( t >= this.startTime + this.duration ){ // 动画运行结束 操作
 				this.update( this.endPos ); // 更新小球的 CSS 属性值
 				return false; 
 			} 
 			
-			var pos = this.easing( t - this.startTime, this.startPos, 
+			let pos = this.easing( t - this.startTime, this.startPos, 
 			this.endPos - this.startPos, this.duration ); 
 			// pos 为小球当前位置
 			this.update( pos ); // 更新小球的 CSS 属性值  
@@ -561,10 +564,80 @@ var Components = window.Components = Components || {};
 
 	}
 
+	/**
+	 * 发布订阅模式 
+	 * 
+	 * 发布者
+	 */
+	class Publisher{
+		constructor(){
+			this.listenList = []; //订阅队列
+		}
+
+		/**
+		 * 订阅方法
+		 * @param {*} key 
+		 * @param {*} fn 
+		 */
+		listen(key, fn){
+			let _that = this;
+
+			if (!_that.listenList[key]) {
+				_that.listenList[key] = [];
+			}
+			_that.listenList[key].push(fn);
+		}
+
+		/**
+		 * 发布方法
+		 */
+		trigger() {
+			let _that = this;
+
+			let key = Array.prototype.shift.call(arguments),
+				fns = _that.listenList[key];
+			if (!fns || fns.length === 0) {
+				return false;
+			}
+			for (let i = 0, fn; fn = fns[i++];) {
+				fn.apply(this, arguments);
+			}
+		}
+
+		/**
+		 * 取消订阅方法
+		 * @param {*} key 
+		 * @param {*} fn 
+		 */
+		remove(key, fn) {
+			let _that = this;
+
+			let fns = _that.listenList[key];
+			if (!fns) {
+				return false;
+			}
+
+			if (!fn) {
+				fns && (fns.length = 0);
+			} else {
+				for (let l = fns.length - 1; l >= 0; l--) {
+					if (fns[l] === fn) {
+						fns.splice(l, 1);
+					}
+				}
+			}
+		}
+
+
+	}
+
 	Components.extend({
+		/**
+		 * 单例模式 
+		 */
 		singleTon: function(fn, ...args){
 			
-			var fproxy = new Proxy(fn, {
+			let fproxy = new Proxy(fn, {
 				construct: function(target, args) {
 					if(!this.singleton){
 						this.singleton = new target(...args);
@@ -577,6 +650,7 @@ var Components = window.Components = Components || {};
 			return new fproxy(...args);
 
 		},
+		
 		/**
 		 * 哈哈，提供 链式调用~~
 		 * 策略模式-代理模式-暴露式模块模式，实现缓动动画。
@@ -600,12 +674,22 @@ var Components = window.Components = Components || {};
 				}
 			}
 		},
+		
 		/**
 		 * 策略模式-Proxy，实现缓动动画。
 		 */
 		AnimateProxy: function(){
 			//todo Proxy construct监听 new方法 。  
 			//实现后，意义不大~
+		},
+
+		/**
+		 * 发布-订阅模式 
+		 * Publisher / Subscriber
+		 * 
+		 */
+		Publisher: function(){
+			return new Publisher();
 		}
 
 	})

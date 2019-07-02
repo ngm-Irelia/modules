@@ -95,7 +95,7 @@
     
     <script>
       // ---------------  单例模式 -------------------------
-      let pxy = function(x, y, z) {
+      function pxy(x, y, z) {
 				this.propertyX = x;
         this.propertyY = y;
         this.propertyZ = z;
@@ -104,14 +104,46 @@
       
       let aa = Components.singleTon(pxy,1,2,3);
       console.log(aa)
-      /* let bb = Components.singleTon(pxy,3,4,5);
-      console.log(bb) */
+      let bb = Components.singleTon(pxy,3,4,5);
+      console.log(bb)
       let cc = new pxy(4,5,6)
-      console.log(cc)
+			console.log(cc)
+			
       // ----------------  策略模式 缓动动画 -----------------
       Components.AnimateStrategy("div111")
       .run('left', 500, 1000, 'strongEaseOut')
-      .run('top', 500, 1000, 'strongEaseOut');
+			.run('top', 500, 1000, 'strongEaseOut');
+			
+
+			// ----------------  发布订阅 模式 --------------------
+			//新建一个发布订阅  短信提醒成绩单：pub
+			let pub = Components.Publisher();
+
+			//小明 订阅  短信提醒
+			pub.listen("语文",function(time){
+				console.log("小明：语文考试时间为："+time);
+			})
+
+			let redYuWenFun = function(time){
+				console.log("小红：语文考试时间为："+time);
+			};
+
+			let redMathFun = function(time){
+				console.log("小红：数学考试时间为："+time);
+			};
+			//小红 订阅  短信提醒
+			pub.listen("语文",redYuWenFun);
+			pub.listen("数学",redMathFun);
+
+			//发布
+			pub.trigger("语文","09:50");
+			pub.trigger("数学","16:00");
+
+			//取消订阅
+			pub.remove("语文",redYuWenFun);
+
+			//发布
+			pub.trigger("语文","19:50");
       
     </script>
 	</body> 

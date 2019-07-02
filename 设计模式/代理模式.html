@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var mult = function() {
+				var a = 1;
+				for (var i = 0, l = arguments.length; i < l; i++) {
+					a = a * arguments[i];
+				}
+				console.log("mult 计算乘积")
+				return a;
+			};
+			
+			var proxyMult = (function() {
+				var cache = {};
+				return function() {
+					var args = Array.prototype.join.call(arguments, ',');
+					console.log("cache ===== ");
+					console.log(cache);
+					console.log("args =====");
+					console.log(args);
+					console.log(args in cache);
+					if (args in cache) {
+						return cache[args];
+					}
+					return cache[args] = mult.apply(this, arguments);
+				}
+			})();
+			proxyMult(1, 2, 3, 4); // 输出：24 
+			proxyMult(1, 2, 3); // 输出：24
+		</script>
+	</body>
+</html>

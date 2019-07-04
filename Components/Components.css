@@ -519,3 +519,31 @@ html, body {
   background: #edfaff;
 }
 /*alert end*/
+
+/*notice*/
+#ct_page_notice {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 90%;
+	color: #999999;
+	position: relative;
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#ct_page_notice_body {
+	white-space: nowrap;
+	display: inline;
+	position:absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#ct_page_notice_title, #ct_page_notice_content {
+	white-space: nowrap;
+	display: inline;
+}
+
+/*notice end*/

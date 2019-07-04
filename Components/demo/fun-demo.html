@@ -78,7 +78,15 @@
 				float: left;
 			}
 	
-	
+			#notice {
+				height: 35px;
+				width: 500px;
+				background: aliceblue;
+				position: relative;
+				left: 100px;
+				top: -33px;
+			}
+
 			</style>
 	</head>
 	<body>
@@ -241,7 +249,7 @@
 				</div>
 
 
-				<div class="sf" style="height: 337px;">
+				<div class="sf" style="height: 360px;">
 					<div class="sf-title">Components().alert(config)</div>
 					<div class="sf-header"> 提示信息：alert弹框组件</div>
 					<div class="sf-content">
@@ -258,6 +266,28 @@
 					</div>
 					<br>
 					<div class="casia-btn-normal" id="alert1">弹框1</div>
+					
+				</div>
+
+
+				<div class="sf" style="height: 400px;">
+					<div class="sf-title">Components().notice(config)</div>
+					<div class="sf-header"> 公告栏：notice组件</div>
+					<div class="sf-content">
+						@param config<br>
+						支持的字段有 <br>
+						{<br>
+							title:"弹框标题-支持html"<br>
+							content:"弹框内容-支持html"<br>
+							color:标题文字颜色<br>
+							time:弹框过time时间后，隐藏<br>
+						}<br>
+						使用方式：<br>
+						<em>Components().notice({ title:"标题", content:"弹框内容-支持html",color:'red' });</em> 
+					</div>
+					<br>
+					<div class="casia-btn-normal" id="notice-btn">公告</div>
+					<div id="notice"></div>
 					
 				</div>
 

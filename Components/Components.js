@@ -728,8 +728,9 @@ var Components = window.Components = Components || {};
 
 	}); 
 
+	// 简单模块   扩展实例方法 
+	//包括 等待loading ， 提示框alert ， 
 
-	//扩展实例方法 
 		/**
 	 * 
 	 * @param {*} id  需要加载的父元素  如果为空，则全页面覆盖的loading，不为空则为局部loading
@@ -815,9 +816,6 @@ var Components = window.Components = Components || {};
 		}
 	}
 
-
-
-
 	/**
 	 * 提示信息弹框                       yh: 里面的生成元素， divL 可以写成单例模式！！
 	 * @param {*} config  弹框需要的字段信息
@@ -869,12 +867,81 @@ var Components = window.Components = Components || {};
 
 	}
 
-	// ----------------------------  以上 为 ngm 开发的内容 -------------------------------------- //
 
-	// ----------------------------  以下 为 xxx 开发的内容 -------------------------------------- //
+	/**
+	 * 公告栏
+	 * @param {*} config  公告栏需要的字段信息
+	 * {
+			title:"公告标题-支持html",
+			content:"公告内容-支持html",
+			color:"公告文字颜色{string}",
+			speed:"字条滚动速度，毫秒{number}",
+			size:"循环滚动次数{number}",
+			dom:'domid{string}'   
+		}
+	 */
+	Components.ct.notice = function(config){
+		let { title,content,color,speed=50, size:noticeSize=1,dom } = config;
+		console.log(title)
 
+		if(!dom){
+			let noticeHtml = ` 
+			<div id="ct_page_notice_body">
+				<span id="ct_page_notice_title">${title}</span>
+				<span id="ct_page_notice_content">${content}</span>
+			</div>`;
 
-	// ----------------------------  以上 为 xxx 开发的内容 -------------------------------------- //
+			let divL = document.createElement("div");
+			divL.setAttribute("id", "ct_page_notice");
+			divL.innerHTML = noticeHtml;
+
+			document.body.appendChild(divL);
+		}else{
+			let noticeHtml = ` 
+			<div id="ct_page_notice">
+				<div id="ct_page_notice_body">
+					<span id="ct_page_notice_title">${title}</span>
+					<span id="ct_page_notice_content">${content}</span>
+				</div>
+			</div>`;
+
+			document.getElementById(dom).innerHTML = noticeHtml;
+		}
+
+		let MyMar = null; //计时器
+		var scroll_begin = document.getElementById("ct_page_notice_body"); //获取滚动的开头id
+		
+		var scroll_div = document.getElementById("ct_page_notice"); //获取整体的开头id
+		let widthSign = scroll_div.getBoundingClientRect().width;
+		let widthMin = -scroll_begin.getBoundingClientRect().width;
+		//定义一个方法
+		function Marquee() {
+			
+			console.log("widthSign == "+widthSign)
+			if(widthSign>widthMin){
+				widthSign--;
+				scroll_begin.style.left = widthSign+'px';
+				console.log(scroll_begin.style.left)
+			}else{
+				noticeSize--;
+				clearInterval(MyMar);
+				if((noticeSize--)>0){
+					widthSign = scroll_div.getBoundingClientRect().width;
+					MyMar = setInterval(Marquee, speed);
+				}
+				
+			}	
+		}
+		MyMar = setInterval(Marquee, speed); //给上面的方法设置时间  setInterval
+		//鼠标悬停 公告栏的时候,清除上面的方法,让公告栏暂停
+		scroll_div.onmouseover = function() {
+			clearInterval(MyMar);
+		}
+		//鼠标点击其他地方的时候,公告栏继续运动
+		scroll_div.onmouseout = function() {
+			MyMar = setInterval(Marquee, speed);
+		}
+	}
 
 
 	/**

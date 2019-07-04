@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-	//loading 组件
+	//alert 弹框 组件
 	$("#alert1").bind("click",function(){
 		Components().alert({
 			title:"标题",
@@ -41,6 +41,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		});
 
 	})
+
+	//notice 公告栏 组件
+	$("#notice-btn").bind("click",function(){
+		Components().notice({
+			title:"<span style='color:red;'>标题</span>:",
+			content:"弹框内容-支持html",
+			color:"red",
+			speed:10,
+			size:2,
+			dom:'notice'
+		});
+
+	})
+
+
 
 
 

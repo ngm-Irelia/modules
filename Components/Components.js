@@ -882,7 +882,6 @@ var Components = window.Components = Components || {};
 	 */
 	Components.ct.notice = function(config){
 		let { title,content,color,speed=50, size:noticeSize=1,dom } = config;
-		console.log(title)
 
 		if(!dom){
 			let noticeHtml = ` 
@@ -916,12 +915,9 @@ var Components = window.Components = Components || {};
 		let widthMin = -scroll_begin.getBoundingClientRect().width;
 		//定义一个方法
 		function Marquee() {
-			
-			console.log("widthSign == "+widthSign)
 			if(widthSign>widthMin){
 				widthSign--;
 				scroll_begin.style.left = widthSign+'px';
-				console.log(scroll_begin.style.left)
 			}else{
 				noticeSize--;
 				clearInterval(MyMar);
@@ -929,7 +925,6 @@ var Components = window.Components = Components || {};
 					widthSign = scroll_div.getBoundingClientRect().width;
 					MyMar = setInterval(Marquee, speed);
 				}
-				
 			}	
 		}
 		MyMar = setInterval(Marquee, speed); //给上面的方法设置时间  setInterval

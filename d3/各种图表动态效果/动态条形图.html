@@ -53,12 +53,12 @@
 
         //设置SVG的高宽
         var w = 600;
-        var h = 250;
+        var h = 600;
         var barPadding = 1;
         //定义序数比例尺
         var yScale = d3.scale.ordinal()//序数比例尺
             .domain(d3.range(dataset.length))
-            .rangeRoundBands([0, w], 0.05);
+            .rangeRoundBands([0, h], 0.05);
                     
         var xScale = d3.scale.linear()//y仍然是线性比例尺
             .domain([0, d3.max(dataset, function (d) {
@@ -81,7 +81,8 @@
                 .sort(function (a, b) {
                     if (sortOrders) {
                         //对数据集升序排序
-                        return d3.ascending(a.value, b.value);//这个地方注意是键值对所以要加上值的引用b.value
+                        return d3.descending(a.value, b.value);
+                        //return d3.ascending(a.value, b.value);//这个地方注意是键值对所以要加上值的引用b.value
                     } else {
                         //对数据集降序排序
                         return d3.descending(a.value, b.value);
@@ -90,7 +91,7 @@
                 })
                 .transition()
                 .duration(1000)
-                .attr("x", function (d, i) {//对排序之后的横坐标重排
+                .attr("y", function (d, i) {//对排序之后的横坐标重排
                     return yScale(i);
                 });
 
@@ -98,16 +99,17 @@
                 .sort(function (a, b) {
                     if (sortOrders) {
                         //对数据集升序排序
-                        return d3.ascending(a.value, b.value);//这个地方注意是键值对所以要加上值的引用b.value
+                        return d3.descending(a.value, b.value);
+                        //return d3.ascending(a.value, b.value);//这个地方注意是键值对所以要加上值的引用b.value
                     } else {
-                        //对数据集降序排序
+                        //对数据集降序排序 
                         return d3.descending(a.value, b.value);
                     }
 
                 })
                 .transition()
                 .duration(2000)
-                .attr("x", function (d, i) {//对排序之后的横坐标重排
+                .attr("y", function (d, i) {//对排序之后的横坐标重排
                     return yScale(i);
                 });
         };
@@ -124,7 +126,7 @@
             .enter()//数据元素值比前面选中的DOM元素多就创建一个新的DOM元素
             .append("rect")//取得enter的占位元素，并把rect追加到对应的DOM中
             .attr("x", function (d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长
-                return h - xScale(d.value);
+                return 20;//console.log(-(h - xScale(d.value)-200))
             })
             .attr("y", function (d, i) {
                 return yScale(i);//这里使用序数比例尺，自己去找刚才划分好的档位
@@ -150,7 +152,8 @@
             })
             .attr("text-anchor", "middle")
             .attr("x", function (d, i) {
-                return h - xScale(d.value) + 14;
+                //console.log(h - xScale(d.value) + 14)
+                return xScale(d.value);
             })
             .attr("y", function (d,i) {
                 return yScale(i) + yScale.rangeBand() / 2;
@@ -210,7 +213,7 @@
                     })
                     .attr("text-anchor", "middle")
                     .attr("x", function (d, i) {
-                        return h - xScale(d.value) + 14;
+                        return xScale(d.value) + 14;
                     })
                     .attr("y", function (d) {
                         return yScale(i) + yScale.rangeBand() / 2;

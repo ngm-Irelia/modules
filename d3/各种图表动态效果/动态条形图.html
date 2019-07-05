@@ -30,26 +30,26 @@
     <script type="text/javascript">
         //键值对数据集
         var dataset = [
-            { key: 0, value: 5 },
-            { key: 1, value: 10 },
-            { key: 2, value: 13 },
-            { key: 3, value: 19 },
-            { key: 4, value: 21 },
-            { key: 5, value: 25 },
-            { key: 6, value: 22 },
-            { key: 7, value: 18 },
-            { key: 8, value: 15 },
-            { key: 9, value: 13 },
-            { key: 10, value: 11 },
-            { key: 11, value: 12 },
-            { key: 12, value: 15 },
-            { key: 13, value: 20 },
-            { key: 14, value: 18 },
-            { key: 15, value: 17 },
-            { key: 16, value: 16 },
-            { key: 17, value: 18 },
+            { key: 0, value: 915 },
+            { key: 1, value: 910 },
+            { key: 2, value: 813 },
+            { key: 3, value: 719 },
+            { key: 4, value: 621 },
+            { key: 5, value: 525 },
+            { key: 6, value: 522 },
+            { key: 7, value: 518 },
+            { key: 8, value: 515 },
+            { key: 9, value: 513 },
+            { key: 10, value: 511 },
+            { key: 11, value: 412 },
+            { key: 12, value: 315 },
+            { key: 13, value: 220 },
+            { key: 14, value: 218 },
+            { key: 15, value: 217 },
+            { key: 16, value: 216 },
+            { key: 17, value: 118 },
             { key: 18, value: 23 },
-            { key: 19, value: 25 }];
+            { key: 19, value: 5 }];
 
         //设置SVG的高宽
         var w = 600;
@@ -166,62 +166,61 @@
  
         // 更新条形数长短的代码,需要一个button标签配合
         //特别注意：这里选中的元素必须在d3选择器之前，或许要先加载完了元素才能被选中
-        d3.select("button")
-            .on("click", function () {
-                // 新数据集,随机数组
-                var numValues = dataset.length;
-                dataset = [];
-                var maxValue = 75;
-                var newNumber;
-                for (var i = 0; i < numValues; i++) {
-                    newNumber = Math.floor(Math.random() * maxValue);//0-24的整数
-                    //根据i添加一个值
-                    dataset.push({
-                        key: i,
-                        value: newNumber
-                    });
-                }
-
-                // 更新比例尺，免使纵坐标超出范围
-                xScale.domain([0, d3.max(dataset, value)]);//只要更新定义域就行了，映射到的值域不变
+       
+        function animalRun(){
+            // 更新比例尺，免使纵坐标超出范围
+            xScale.domain([0, d3.max(dataset, value)]);//只要更新定义域就行了，映射到的值域不变
                 //更新所有的矩形
                 svg.selectAll("rect")
                     .data(dataset, key)
                     .transition()// 加上过渡动画 
-                    .delay(function (d, i) {
-                        return i / dataset.length * 1000;
+                    .delay(function (d) {
+                        return 1000;
                     })//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果
                     .duration(2000)// 加上动画的持续时间，以毫秒计算
-                    .ease("linear")// 缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）
-                    .attr("y", function (d) {
-                        return xScale(d.value); 
+                    .attr("x", function (d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长
+                        return 20;//console.log(-(h - xScale(d.value)-200))
+                    })
+                    .attr("y", function (d, i) {
+                        return yScale(i);//这里使用序数比例尺，自己去找刚才划分好的档位
                     })
                     .attr("height", function (d) {
-                        return h - xScale(d.value);
+                        return yScale.rangeBand();
                     });
 
                 // 更新条上的数值
                 svg.selectAll("text")
                     .data(dataset, key)
                     .transition()// 加上过渡动画 
-                    .delay(function (d, i) {
-                        return i / dataset.length * 1000+2000;
-                    })//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果
+                    .delay(function (d) {
+                        return 1000;
+                    })
                     .duration(2000)
                     .text(function (d) {
                         return d.value;
                     })
                     .attr("text-anchor", "middle")
                     .attr("x", function (d, i) {
-                        return xScale(d.value) + 14;
+                        return xScale(d.value);
                     })
-                    .attr("y", function (d) {
+                    .attr("y", function (d,i) {
                         return yScale(i) + yScale.rangeBand() / 2;
                     })
                     .attr("font-family", "sans-serif")
                     .attr("font-size", "12px")
                     .attr("fill", "red");
-            });
+        }
+
+
+        dataset[10].value = 555;
+        dataset[8].value = 655;
+
+        animalRun();
+        /* setInterval(function(){
+            dataset[10].value++;
+            dataset[8].value++;
+            animalRun()
+        },1150) */
 
     </script>
 </body>

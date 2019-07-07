@@ -48,6 +48,44 @@
 			 console.log(dd )
 			 console.log(aa ) */
 
+// -----------------   set  -------------
+
+			 let set = new Set();
+
+			 set.add("a");
+			 set.add("b");             // 添加
+
+			 console.log(set) 
+			 console.log(set.size)
+
+			 set.delete("b");          // 删除
+			 set.has('a');             // 是否存在
+			 set.size;                 // set 长度
+
+			 set.clear();              // 清空
+
+
+// ------------------   map -----------
+
+			 let map = new Map();
+
+			 let json = {
+				 a:1,
+				 b:2
+			 }
+
+			 map.set('aa',"aaa");
+
+			 map.set("bbb",json);     // 设置
+
+			console.log(map);
+
+			 map.get("aa");           // 获取
+			 map.delete("aa");        // 删除
+			 map.has("aa");           // 是否有没有
+			 map.clear();             // 清空
+
+
 		</script>
 	</body>
 </html>

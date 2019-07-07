@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>linebar</title>
+		<script type="text/javascript" src="./js/d3.v3.min.js"></script>
+		<style type="text/css">
+			/*鼠标悬停*/
+			rect:hover {
+				fill: red;
+			}
+
+			/*过渡效果*/
+			rect {
+				-moz-transiton: all 0.3s;
+				-o-transiton: all 0.3s;
+				-webkit-transition: all 0.3s;
+				transition: all 0.3s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<br>
+		<p></p>
+		<p></p>
+		<br>
+		<script type="text/javascript">
+			//数据集
+			let dataset = [
+				{
+					key: 0,
+					value: 715,
+					name: "Chrome"
+				},
+				{
+					key: 1,
+					value: 560,
+					name: "360"
+				},
+				{
+					key: 2,
+					value: 422,
+					name: "Opera"
+				},
+				{
+					key: 3,
+					value: 418,
+					name: "Firefox"
+				},
+				{
+					key: 4,
+					value: 315,
+					name: "IE"
+				},
+				{
+					key: 5,
+					value: 313,
+					name: "Safari"
+				},
+				{
+					key: 6,
+					value: 211,
+					name: "MAXTHON"
+				},
+				{
+					key: 7,
+					value: 112,
+					name: "Netscape"
+				}
+			];
+
+			//颜色队列
+			const barColorArray = d3.scale.category10();
+
+			//设置SVG的高宽
+			let w = 1100;
+			let h = 700;
+
+			let yScale = d3.scale.ordinal() //序数比例尺
+				.domain(d3.range(dataset.length))
+				.rangeRoundBands([0, h], 0.05);
+
+			let xScale = d3.scale.linear() //y仍然是线性比例尺
+				.domain([0, d3.max(dataset, function(d) {
+					return d.value;
+				})])
+				.range([0, h]);
+
+
+			//条排序函数
+			let sortBars = function(order) {
+				svg.selectAll("g")
+					.sort(function(a, b) {
+						if (order) {
+							//对数据集升序排序
+							return d3.ascending(a.value, b.value);
+						} else {
+							//对数据集降序排序
+							return d3.descending(a.value, b.value);
+						}
+
+					})
+					.transition()
+					.duration(500)
+					.attr("transform", function(d, i) {
+						return "translate(" + 10 + "," + (i * 80) + ")";
+					});
+			};
+
+			//Create SVG
+			let svg = d3.select("body")  
+				.append("svg") 
+				.attr("width", w) 
+				.attr("height", h); 
+
+			//添加g
+			let bar = svg.selectAll("g")
+				.data(dataset)
+				.enter()
+				.append("g")
+				.attr("transform", function(d, i) {
+					return "translate(" + 10 + "," + (i * 80) + ")";
+				});
+
+
+			//add rect
+			bar.append("rect") 
+				.attr("x", function(d) { 
+					return 150;
+				})
+				.attr("width", function(d) {
+					return xScale(d.value);
+				})
+				.attr("height", 70)
+				.attr("fill", function(d) {
+					let max = d3.max(dataset, function(d) {
+						return d.value;
+					});
+					return barColorArray(10 - Math.floor((d.value / max) * 10));
+				})
+
+			// add name text
+			bar.append("text")
+				.text(function(d) {
+					return d.name;
+				})
+				.attr('class', 'name-text')
+				.attr("text-anchor", "middle")
+				.attr("x", function(d, i) {
+					return 50;
+				})
+				.attr("y", function(d, i) {
+					return 35;
+				})
+				.attr("font-family", "sans-serif")
+				.attr("text-align", "right")
+				.attr("font-size", function(d) {
+					return '20px';
+				})
+				.attr("fill", "black");
+
+			//add num text
+			bar.append("text")
+				.text(function(d) {
+					return d.value;
+				})
+				.attr('class', 'size-text')
+				.attr("text-anchor", "middle")
+				.attr("x", function(d, i) {
+					return xScale(d.value) + 190;
+				})
+				.attr("y", function(d, i) {
+					return 50;
+				})
+				.attr("font-family", "sans-serif")
+				.attr("font-size", function(d) {
+					return 35;
+				})
+				.attr("fill", function(d) { 
+					let max = d3.max(dataset, function(d) {
+						return d.value;
+					});
+					return barColorArray(10 - Math.floor((d.value / max) * 10));
+				});
+
+			//更改数据集 动画
+			function animalRun() {
+				// 更新比例尺，免使纵坐标超出范围
+				xScale.domain([0, d3.max(dataset, function(d) {
+					return d.value;
+				})]);
+				// update rect
+				svg.selectAll("rect")
+					.transition() 
+					.duration(200) 
+					.attr("width", function(d) {
+						return xScale(d.value);
+					})
+					.attr("fill", function(d) {  
+						let max = d3.max(dataset, function(d) {
+							return d.value;
+						});
+						return barColorArray(10 - Math.floor((d.value / max) * 10));
+					});
+
+
+				// update text
+				svg.selectAll(".size-text")
+					.data(dataset, function(d) {
+						return d.key;
+					})
+					.transition()
+					.delay(function(d, i) {
+						return i / dataset.length * 100;
+					})
+					.duration(200)
+					.text(function(d) {
+						return d.value;
+					})
+					.attr("x", function(d, i) {
+						return xScale(d.value) + 190;
+					})
+					.attr("fill", function(d) {
+						let max = d3.max(dataset, function(d) {
+							return d.value;
+						});
+						return barColorArray(10 - Math.floor((d.value / max) * 10));
+					})
+			}
+
+			setInterval(function() {
+				dataset[7].value += 10;
+				dataset[5].value += 4;
+				dataset[3].value += 2;
+				animalRun()
+				sortBars(false)
+			}, 500)
+			
+		</script>
+	</body>
+
+</html>

@@ -442,6 +442,63 @@ html, body {
 
 /*barChart end*/
 
+ /*barChartT2*/
+ .common-showLineChartT2 {
+	padding: 10px;
+}
+.common-showLineChart-outLineT2 {
+	background-color: #c0c4cc;
+	position: relative;
+	height: 10px;
+	margin: 30px 0;
+}
+
+.common-showLineChart-innerLineT2 {
+	height: 10px;
+	position: absolute;
+	width:0px;
+	transition: width 2s;
+}
+
+.common-showLineChart-indexT2, .common-showLineChart-titleT2, .common-showLineChart-numberT2 {
+	position: absolute;
+	height: 100%;
+	line-height: 30px;
+}
+
+.common-showLineChart-indexT2 {
+	left: 5px;
+	top: -25px;
+	width: 28px;
+	height: 28px;
+	font-size: 12px;
+	background-color: rgba(0,0,0,0);
+	 
+}
+.common-showLineChart-index-backgroundT2 {
+	position: absolute;
+	top: -20px;
+	width: 0;
+	height: 0;
+	border-width:30px 30px 30px 0;
+	border-style:solid;
+}
+
+.common-showLineChart-titleT2 {
+	left:30px;
+	top: -25px;
+	width: 78%;
+	font-size: 14px;
+}
+
+.common-showLineChart-numberT2 {
+	right:8px;
+	top: -25px;
+	font-size: 12px;
+}
+
+/*barChartT2 end*/
+
 /*loading*/
 .loading-model {
 	position: absolute;

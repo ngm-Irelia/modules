@@ -1022,6 +1022,83 @@ var Components = window.Components = Components || {};
 
 
 	/**
+	* 组件-横向柱状图 v1.0 Type2(第二种样式) 用户自定义各种效果后续开发
+	*/
+	class BarChartT2 {
+		constructor() {
+			this.showId = ""; //显示的id
+			this.showData = '';
+		}
+		/**
+		 * 加载函数
+		 * @param showId 显示#id
+		 * @param data 显示数据
+		 */
+		run(showId, data) {
+			this.showId = showId;
+			this.showData = data;
+
+			this.showLineChart();
+		}
+
+		/**
+		 * 显示柱状图
+		 */
+		showLineChart() {
+			let _that = this;
+			let showdata = _that.showData;
+
+			if (!showdata) {
+				return '';
+			}
+
+			let html = `<div class="common-showLineChartT2">`;
+
+			for (let i = 0; i < showdata.length; i++) {
+				html +=
+					`<div class="common-showLineChart-outLineT2">
+					<div class="common-showLineChart-innerLineT2" style="background-color:${_that.innerLineColorArr(i)};"></div>
+					<div class="common-showLineChart-index-backgroundT2" style="border-color:${_that.indexColorArr(i)} transparent transparent transparent;"></div>
+					<div class="common-showLineChart-indexT2">${i+1}</div>
+					<div class="common-showLineChart-titleT2">${showdata[i].name}</div>
+					<div class="common-showLineChart-numberT2">${showdata[i].number}</div>
+				</div>`;
+			}
+
+			html += `</div>`;
+
+			document.getElementById(_that.showId).innerHTML = html;
+
+			setTimeout(function() {
+				let doms = document.getElementsByClassName('common-showLineChart-innerLineT2');
+				for (let i = 0; i < doms.length; i++) {
+					doms[i].style.width = (showdata[i].number / showdata[0].number) * 100 + '%';
+				}
+			}, 0);
+
+		}
+
+		innerLineColorArr(index) {
+			let arr = ["#ff7575", "#ff9a9a", "#feb5b5", "#ffc6c6", "#ffc6c6", "#ffc6c6", "#ffc6c6", "#ffc6c6", "#ffc6c6",
+				"#ffc6c6", "#ffc6c6"
+			];
+			return arr[index];
+		}
+
+		indexColorArr(index) {
+			let arr = ["#fe0202", "#e6a23a", "#f5c478", "#c0c4cc", "#c0c4cc", "#c0c4cc", "#c0c4cc", "#c0c4cc", "#c0c4cc",
+				"#c0c4cc", "#c0c4cc"
+			];
+			return arr[index];
+		}
+
+
+
+	}
+
+	Components.ct.BarChartT2 = new BarChartT2();
+
+	/**
 	 * #图片虚化组件 v1.0  注意，现在要求 父盒子必须要有宽高~，后续有时间，在代码中优化下组件
 	 */
 	class PictureVirtual {

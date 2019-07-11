@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试</title>
+		<style>
+			.item_content ul {
+				list-style: none;
+			}
+
+			.item_content ul li {
+				width: 200px;
+				height: 160px;
+				float: left;
+				margin: 10px
+			}
+
+			.item_content {
+				width: 740px;
+				height: auto;
+				border: 1px solid #ccc;
+				float: left;
+			}
+
+			.item_content .item {
+				width: 200px;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				cursor: pointer;
+				background: #ccc;
+			}
+
+			.item_content .item img {
+				width: 200px;
+				height: 120px;
+				border-radius: 6px;
+			}
+
+			.close {
+				display: block;
+				width: 20px;
+				height: 20px;
+				top: 0;
+				right: 0;
+				z-index: 9999;
+				position: absolute;
+				text-align: center;
+				font-size: 16px;
+				cursor: pointer;
+				color: aliceblue
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item_container">
+			<div class="item_content" id="imageChange">
+				<ul>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-1.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-2.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-3.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-4.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-5.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-6.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-7.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-8.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+					<li>
+						<div class="item"> <img src="http://www.jq22.com/img/cs/500x500-9.png" width="150" height="150">
+							<span onclick="removePicture(this)" class="rmPicture close">×</span> </div>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</body>
+</html>
+<script src="../../../js/jquery-3.3.1.js"></script>
+<script>
+
+	$(function() {
+		
+		/**
+		 * 需要 jquery 的支持！！
+		 */
+		class Cdrag {
+			/**
+			 * @param {*} dom juqery获取的需要拖拽的doms 
+			 * 例如 $(".item")
+			 */
+			constructor (doms){
+				this.dragdoms = doms
+			}
+			
+			//获取x , y位置 返回
+			getPointer($dom){
+				return {
+					x: $dom.x,
+					y: $dom.y
+				}
+			}
+			
+			//获取定位的 top , left 返回
+			getPosition($dom){
+				return {
+					left:$dom.position().left,
+					top: $dom.position().top
+				}
+			}
+			
+			//给每个dom添加拖拽相关的方法
+			bindFunc(dom,i){
+				let _that = this;
+				
+				function Pointer(x, y) {
+					this.x = x;
+					this.y = y;
+				}
+				
+				function Position(left, top) {
+					this.left = left;
+					this.top = top;
+				}
+				
+				dom.init = function() {
+					dom.box = $(dom).parent();
+					
+					$(dom).attr("index", i).css({
+						position: "absolute",
+						left: dom.box.offset().left,
+						top: dom.box.offset().top
+					}).appendTo(".item_container");
+					dom.drag();
+				}
+				
+				dom.move = function(callback) { // 移动
+					$(this).stop(true).animate({
+						left: this.box.offset().left,
+						top: this.box.offset().top
+					}, 500, function() {
+						if (callback) {
+							callback.call(this);
+						}
+					});
+				},
+				
+				dom.collisionCheck = function() {
+					var currentItem = this;
+					var direction = null;
+					$(this).siblings(".item").each(function() {
+						if (
+							currentItem.pointer.x > this.box.offset().left &&
+							currentItem.pointer.y > this.box.offset().top &&
+							(currentItem.pointer.x < this.box.offset().left + this.box.width()) &&
+							(currentItem.pointer.y < this.box.offset().top + this.box.height())
+						) {
+							// 返回对象和方向
+							if (currentItem.box.offset().top < this.box.offset().top) {
+								direction = "down";
+							} else if (currentItem.box.offset().top > this.box.offset().top) {
+								direction = "up";
+							} else {
+								direction = "normal";
+							}
+							this.swap(currentItem, direction);
+						}
+					});
+				},
+				dom.swap = function(currentItem, direction) { // 交换位置
+					if (this.moveing) return false;
+					var directions = {
+						normal: function() {
+							var saveBox = this.box;
+							this.box = currentItem.box;
+							currentItem.box = saveBox;
+							this.move();
+							$(this).attr("index", this.box.index());
+							$(currentItem).attr("index", currentItem.box.index());
+						},
+						down: function() {
+							// 移到上方
+							var box = this.box;
+							var node = this;
+							var startIndex = currentItem.box.index();
+							var endIndex = node.box.index();;
+							for (var i = endIndex; i > startIndex; i--) {
+								var prevNode = $(".item_container .item[index=" + (i - 1) + "]")[0];
+								node.box = prevNode.box;
+								$(node).attr("index", node.box.index());
+								node.move();
+								node = prevNode;
+							}
+							currentItem.box = box;
+							$(currentItem).attr("index", box.index());
+						},
+						up: function() {
+							// 移到上方
+							var box = this.box;
+							var node = this;
+							var startIndex = node.box.index();
+							var endIndex = currentItem.box.index();;
+							for (var i = startIndex; i < endIndex; i++) {
+								var nextNode = $(".item_container .item[index=" + (i + 1) + "]")[0];
+								node.box = nextNode.box;
+								$(node).attr("index", node.box.index());
+								node.move();
+								node = nextNode;
+							}
+							currentItem.box = box;
+							$(currentItem).attr("index", box.index());
+						}
+					}
+					directions[direction].call(this);
+				},
+				
+				// 拖拽de 所有操作
+				dom.drag = function() {
+					let oldPosition= {};
+					let oldPointer = {};
+					let isDrag = false;
+					let currentItem = null;
+					$(this).mousedown(function(e) {
+						e.preventDefault(); 
+						oldPosition = _that.getPosition( $(dom) );
+						oldPointer = _that.getPointer( $(dom) );
+						isDrag = true; 
+						currentItem = this; 	
+					});
+					$(document).mousemove(function(e) {
+						var currentPointer = new Pointer(e.clientX, e.clientY);
+						if (!isDrag) return false;
+						$(currentItem).css({
+							"opacity": "0.8",
+							"z-index": 999
+						});
+						var left = currentPointer.x - oldPointer.x + oldPosition.left;
+						var top = currentPointer.y - oldPointer.y + oldPosition.top;
+						$(currentItem).css({
+							left: left,
+							top: top
+						});
+						currentItem.pointer = currentPointer;
+						// 开始交换位置
+								
+						currentItem.collisionCheck();
+								
+								
+					});
+					$(document).mouseup(function() {
+						if (!isDrag) return false;
+						isDrag = false;
+						currentItem.move(function() {
+							$(this).css({
+								"opacity": "1",
+								"z-index": 0
+							});
+						});
+					});
+				}
+				
+				dom.init();
+			}
+				
+			
+			run (){
+				let _that = this;
+				
+				_that.dragdoms.each(function(i) {
+					_that.bindFunc(this,i);
+				});
+			}
+			
+			
+			
+			
+		}
+		
+		let cd = new Cdrag($(".item_container .item"));
+		cd.run();
+		
+	});
+</script>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试</title>
+		<style>
+			.item_content {
+				width: 540px;
+				height: 500px;
+				background: grey;
+				position: absolute;
+				border: 1px solid #ccc;
+				overflow: auto;
+				/* float: left; */
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.item_content .item {
+				margin: 10px;
+				width: 200px;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				cursor: pointer;
+				background: #ccc;
+			}
+
+			.item_content .item img {
+				width: 200px;
+				height: 120px;
+				border-radius: 6px;
+			}
+
+			.close {
+				display: block;
+				width: 20px;
+				height: 20px;
+				top: 0;
+				right: 0;
+				z-index: 9999;
+				position: absolute;
+				text-align: center;
+				font-size: 16px;
+				cursor: pointer;
+				color: aliceblue
+			}
+		</style>
+	</head>
+	<body>
+		<div class="item_container">
+			<div class="item_content" id="imageChange">
+				 <div class="item"> 1 </div>
+				 					 
+				 					 
+				 <div class="item">  2</div>
+				 					 
+				 					 
+				 <div class="item">  3</div>
+				 					 
+				 					 
+				 <div class="item"> 4</div>
+				 					 
+				 					 
+				 <div class="item">  5</div>
+				 					 
+				 					 
+				 <div class="item"> 6 </div>
+				 					 
+				 					 
+				 <div class="item"> 7 </div>
+				 					 
+				 					 
+				 <div class="item"> 8 </div>
+				 					 
+				 					 
+				 <div class="item"> 9 </div>
+				 					 
+					 
+						<div class="item"> 11 </div>
+					 
+					 
+						<div class="item">12</div>
+					 
+					 
+						<div class="item"> 13</div>
+					 
+					 
+						<div class="item">14</div>
+					 
+					 
+						<div class="item"> 15</div>
+					 
+					 
+						<div class="item"> 16 </div>
+					 
+					 
+						<div class="item"> 17 </div>
+					 
+					 
+						<div class="item">18 </div>
+					 
+					 
+						<div class="item">19 </div>
+					 
+				
+
+			</div>
+		</div>
+	</body>
+</html>
+<script src="../../../js/jquery-3.3.1.js"></script>
+<script>
+
+	$(function() {
+		
+		/**
+		 * 需要 jquery 的支持！！
+		 */
+		class Cdrag {
+			/**
+			 * @param {*} dom juqery获取的需要拖拽的doms的class, 必须要一个class，不允许有组合
+			 * 例如 ".item"
+			 */
+			constructor (doms){
+				this.dragdoms = $(doms);
+				this.domsClass = doms;
+			}
+			
+			//获取x , y位置 返回
+			getPointer(e){
+				return {
+					x: e.clientX,
+					y: e.clientY
+				}
+			}
+			
+			//获取定位的 top , left 返回
+			getPosition($dom){
+				return {
+					left:parseInt($dom.css('left')),
+					top: parseInt($dom.css('top'))
+				}
+			}
+			
+			/**
+			 * 交换两个元素
+			 * domSibling   被交换的元素
+			 * currentItem  拖拽的元素
+			 * direction    方向
+			 */
+			swap(domSibling,currentItem, direction) { // 交换位置
+				let _that = this;
+				if (domSibling.moveing) return false;
+				
+				let siblingbox = domSibling.boxoffset;//存放被交换元素信息
+				let currentBox = currentItem.boxoffset;//存放当前拖拽元素信息
+				
+				let directions = {
+					normal: function() {
+						domSibling.boxoffset = currentBox;   //交换
+						currentItem.boxoffset = siblingbox;
+						domSibling.move();
+						$(domSibling).attr("index", domSibling.boxoffset.index);
+						$(currentItem).attr("index", currentItem.boxoffset.index);
+					},
+					down: function() {// 下移
+						for (let i = siblingbox.index; i > currentBox.index; i--) {
+							let prevNode = $(_that.domsClass+"[index=" + (i - 1) + "]")[0];
+							domSibling.boxoffset = prevNode.boxoffset;
+							$(domSibling).attr("index", domSibling.boxoffset.index );
+							domSibling.move();
+							domSibling = prevNode;  // 这里注掉,就是垂直排序
+						}
+						currentItem.boxoffset = siblingbox;
+						$(currentItem).attr("index", siblingbox.index );
+					},
+					up: function() {// 上移
+						for (let i = siblingbox.index; i < currentBox.index; i++) {
+							let nextNode = $(_that.domsClass+"[index=" + (i + 1) + "]")[0];
+							domSibling.boxoffset = nextNode.boxoffset;
+							$(domSibling).attr("index", domSibling.boxoffset.index );
+							domSibling.move();
+							domSibling = nextNode;
+						}
+						currentItem.boxoffset = siblingbox;
+						$(currentItem).attr("index", siblingbox.index );
+					}
+				}
+				
+				directions[direction].call(domSibling); //调用 对应的移动算法
+			}
+			
+			//给每个dom添加拖拽相关的方法
+			bindFunc(dom,i){
+				let _that = this;
+				
+				dom.init = function() {
+					$(dom).attr("index", i).css({
+						position: "absolute",
+						left: dom.boxoffset.left,
+						top: dom.boxoffset.top
+					});
+				
+					dom.drag();
+				}
+				
+				dom.move = function(callback) { // 移动
+				
+					$(this).stop(true).animate({
+						left: this.boxoffset.left,
+						top: this.boxoffset.top
+					}, 500, function() {
+						if (callback) {
+							callback.call(this);
+						}
+					});
+				},
+				
+				dom.collisionCheck = function() {
+					let currentItem = dom;
+					let direction = '';
+					let st = $(".item_content").scrollTop();
+					$(dom).siblings(_that.domsClass).each(function() {
+						let domSibling = this;
+						if (
+							(currentItem.pointer.x) > domSibling.boxoffset.left &&
+							(currentItem.pointer.y+st) > domSibling.boxoffset.top &&
+							((currentItem.pointer.x) < domSibling.boxoffset.left + $(domSibling).width()) &&
+							((currentItem.pointer.y) < domSibling.boxoffset.top + $(domSibling).height()-st)
+						) {
+							// 返回对象和方向
+							if (currentItem.boxoffset.top < domSibling.boxoffset.top) {
+								direction = "down";
+							} else if (currentItem.boxoffset.top > domSibling.boxoffset.top) {
+								direction = "up";
+							} else {
+								direction = "normal";
+							}
+							console.log("交换")
+							//console.log($(currentItem))
+							//console.log(currentItem.boxoffset)
+							_that.swap(domSibling,currentItem, direction);
+						}
+					});
+				},
+				
+				// 拖拽de 所有操作
+				dom.drag = function() {
+					let oldPosition= {};
+					let oldPointer = {};
+					let isDrag = false;
+					let currentItem = null;
+					//鼠标按下
+					$(dom).mousedown(function(e) {
+						e.preventDefault();
+						oldPosition = _that.getPosition( $(dom) );
+						oldPointer = _that.getPointer( e );
+						isDrag = true;
+						currentItem = dom;
+					});
+					//鼠标拖拽
+					$(document).mousemove(function(e) {
+						let currentPointer = _that.getPointer( e );
+						if (!isDrag) return false;
+						$(currentItem).css({
+							"opacity": "0.8",
+							"z-index": 999
+						});
+						let left = currentPointer.x - oldPointer.x + oldPosition.left;
+						
+						let top = currentPointer.y - oldPointer.y + oldPosition.top;
+						
+						
+						/* let left = currentPointer.x - oldPointer.x + currentItem.boxoffset.left;
+						
+						let top = currentPointer.y - oldPointer.y + currentItem.boxoffset.top; */
+						
+						
+						$(currentItem).css({
+							left: left,
+							top: top
+						});
+						currentItem.pointer = currentPointer;
+						// 开始交换位置
+						currentItem.collisionCheck();
+					});
+					//鼠标抬起
+					$(document).mouseup(function() {
+						if (!isDrag) return false;
+						isDrag = false;
+						currentItem.move(function() {
+							$(this).css({
+								"opacity": "1",
+								"z-index": 0
+							});
+						});
+					});
+				}
+				
+				dom.init();
+			}
+				
+			
+			run (){
+				let _that = this;
+				
+				_that.dragdoms.each(function(i) {
+					if(i===15){
+						console.log($(this))
+						console.log($(this).offset())
+					}
+					this.boxoffset = $(this).offset();
+					this.boxoffset.index = i;
+				});
+				
+				_that.dragdoms.each(function(i) {
+					_that.bindFunc(this,i);
+				});
+				
+				
+			}
+			
+		}
+		
+		let cd = new Cdrag(".item");
+		cd.run();
+		
+	});
+</script>

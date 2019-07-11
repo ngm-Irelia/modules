@@ -55,7 +55,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	})
 
+	//modal 模态框 组件
+	$("#modal-btn").bind("click",function(){
+		let saveModal = Components().modal({
+			title:"提示",
+			content:"模块顺序发生变化，是否保存？",
+			btn:["是","否"],
+			btnEvent:[
+				function(){
+					//确定的回调函数
+					saveModal.remove();
+					//todo
+				},
+				function(){
+					//取消的回调函数
+					saveModal.remove();
+					//todo
+				}
+			]
+		});
 
+	})
+
+
+	//drag
+	/* let firstDrag = Components().drag();
+
+	firstDrag.run('.drag-item',document.documentElement,{
+		left:0,
+		top:8270
+	});
+ */
 
 
 

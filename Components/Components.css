@@ -604,3 +604,70 @@ html, body {
 }
 
 /*notice end*/
+
+/*modal*/
+.ct_page_modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 1001;
+}
+
+.ct_page_modal_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  min-height: 190px;
+  margin: -210px 0 0 -150px;
+  background-color: #fff;
+}
+
+.ct_page_modal_title {
+  height: 40px;
+  margin-top: 10px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #09a5ee;
+}
+
+.ct_page_modal_content {
+  min-height: 106px;
+  padding: 10px 20px 60px;
+  line-height: 22px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+.ct_page_modal_footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ct_page_modal_button {
+	width: 70px;
+	margin-right: 10px;
+  background-color: #fff;
+  border: 1px #09a5ee solid;
+	outline: none;
+	border-radius: 2px;
+}
+
+.ct_page_modal_button-sure {
+  width: 70px;
+  background-color: #fff;
+  border: 1px #09a5ee solid;
+	outline: none;
+	border-radius: 2px;
+}
+
+.ct_page_modal_button:hover {
+  background: #edfaff;
+}
+/*modal end*/

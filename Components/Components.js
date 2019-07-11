@@ -1233,7 +1233,324 @@ var Components = window.Components = Components || {};
 
 	Components.ct.PictureVirtualByClass = new PictureVirtualByClass();
 
+	/**
+	 * 弹框组件  放在这：是想把这个功能优化完善，它 可以做更多的事情
+	 * @param {*} config  弹框需要的字段信息
+	 * {
+			title,                             // 弹框标题-支持html
+			content,                           // 弹框内容-支持html
+			btn=[],			                       // 按钮
+			btnEvent=[],                       // 按钮事件
+			area=['300px','190px'],            // modal区域
+			id="modal-"+new Date().getTime()   // modal 唯一 id
+		}
+	 */
+	class Modal {
+		constructor(config){
+			this.config = config;
+		}
 
+		run(){
+			let {
+				title,
+				content,
+				btn=[],
+				btnEvent=[],
+				area=['300px','190px'],
+				id="modal-"+new Date().getTime()
+			} = this.config;
+
+			this.id = id;
+
+			let btnHtml = ``;
+
+			btn.forEach((item,index)=>{
+				btnHtml += `<button type="button" class="ct_page_modal_button" id="${id+index}">${item}</button>`;
+			})
+
+			let modalHtml = `<div class="ct_page_modal_box" style="width:${area[0]}; height:${area[1]};">
+					<div class="ct_page_modal_title"">${title}</div>
+					<div class="ct_page_modal_content">${content}</div>
+					<div class="ct_page_modal_footer">${btnHtml}</div>
+				</div>`;
+
+			let divL = document.createElement("div");
+			divL.setAttribute("id", id);
+			divL.setAttribute("class", 'ct_page_modal');
+			divL.innerHTML = modalHtml;
+			document.body.appendChild(divL);
+
+			//绑定事件
+			btn.forEach((item,index)=>{
+				if(index < btnEvent.length){
+					document.getElementById(id+index).addEventListener("click",btnEvent[index])
+				}
+			})
+		}
+
+		remove(){
+			let _that = this;
+			document.body.removeChild(document.getElementById(_that.id));
+		}
+
+	}
+
+	Components.ct.modal = function(){
+		let newModal = new Modal(...arguments);
+		newModal.run();		
+		
+		return newModal;
+	};
+
+	/**
+	 * # 拖拽组件 v1.0 
+	 * 该组件比较复杂，通用性不够，可能需要针对不同项目具体调整。 后续版本优化
+	 * 需要 jquery 的支持！！
+	 * 
+	 * run方法 需要传一个参数 ：
+	 * @param {*} dom juqery获取的需要拖拽的doms的class, 必须要一个class，不允许有组合
+	 *  例如 ".item"
+	 * 
+	 */
+	class Cdrag {
+		
+		constructor (){
+			this.status = false;
+		}
+		
+		//获取x , y位置 返回
+		getPointer(e){
+			return {
+				x: e.clientX,
+				y: e.clientY
+			}
+		}
+		
+		//获取定位的 top , left 返回
+		getPosition($dom){
+			return {
+				left:parseInt($dom.css('left')),
+				top: parseInt($dom.css('top'))
+			}
+		}
+		
+		/**
+		 * 交换两个元素
+		 * domSibling   被交换的元素
+		 * currentItem  拖拽的元素
+		 * direction    方向
+		 */
+		swap(domSibling,currentItem, direction) { // 交换位置
+			let _that = this;
+			_that.status = true; // 标志 已经拖拽了
+			if (domSibling.moveing) return false;
+			
+			let siblingbox = domSibling.boxoffset;//存放被交换元素信息
+			let currentBox = currentItem.boxoffset;//存放当前拖拽元素信息
+			
+			let directions = {
+				normal: function() {
+					domSibling.boxoffset = currentBox;   //交换
+					currentItem.boxoffset = siblingbox;
+					domSibling.move();
+					$(domSibling).attr("index", domSibling.boxoffset.index);
+					$(currentItem).attr("index", currentItem.boxoffset.index);
+				},
+				down: function() {// 下移
+					for (let i = siblingbox.index; i > currentBox.index; i--) {
+						let prevNode = $(_that.domsClass+"[index=" + (i - 1) + "]")[0];
+						domSibling.boxoffset = prevNode.boxoffset;
+						$(domSibling).attr("index", domSibling.boxoffset.index );
+						domSibling.move();
+						domSibling = prevNode;  // 这里注掉,就是垂直排序
+					}
+					currentItem.boxoffset = siblingbox;
+					$(currentItem).attr("index", siblingbox.index );
+				},
+				up: function() {// 上移
+					for (let i = siblingbox.index; i < currentBox.index; i++) {
+						let nextNode = $(_that.domsClass+"[index=" + (i + 1) + "]")[0];
+						domSibling.boxoffset = nextNode.boxoffset;
+						$(domSibling).attr("index", domSibling.boxoffset.index );
+						domSibling.move();
+						domSibling = nextNode;
+					}
+					currentItem.boxoffset = siblingbox;
+					$(currentItem).attr("index", siblingbox.index );
+				}
+			}
+			
+			directions[direction].call(domSibling); //调用 对应的移动算法
+		}
+		
+		//给每个dom添加拖拽相关的方法
+		bindFunc(dom,i){
+			let _that = this;
+			
+			dom.init = function() {
+				
+				$(dom).attr("index", i).css({
+					position: "absolute",
+					left: dom.boxoffset.left,
+					top: dom.boxoffset.top
+				});
+			
+				dom.drag();
+			}
+			
+			dom.move = function(callback) { // 移动
+			
+				$(this).stop(true).animate({
+					left: this.boxoffset.left,
+					top: this.boxoffset.top
+				}, 500, function() {
+					if (callback) {
+						callback.call(this);
+					}
+				});
+			},
+			
+			dom.collisionCheck = function() {
+				let currentItem = dom;
+				let direction = '';
+				let st = _that.parentDom.scrollTop();
+				
+				$(dom).siblings(_that.domsClass).each(function() {
+					let domSibling = this;
+
+					if (
+						currentItem.pointer.x > domSibling.boxoffset.left &&
+						currentItem.pointer.y > (domSibling.boxoffset.top-st) &&
+						(currentItem.pointer.x < domSibling.boxoffset.left + $(domSibling).width()) &&
+						(currentItem.pointer.y < (domSibling.boxoffset.top + $(domSibling).height()-st))
+					) {
+						// 返回对象和方向
+						if (currentItem.boxoffset.top < domSibling.boxoffset.top) {
+							direction = "down";
+						} else if (currentItem.boxoffset.top > domSibling.boxoffset.top) {
+							direction = "up";
+						} else {
+							direction = "normal";
+						}
+						
+						_that.swap(domSibling,currentItem, direction);
+					}
+				});
+			},
+			
+			// 拖拽de 所有操作
+			dom.drag = function() {
+				let oldPosition= {};
+				let oldPointer = {};
+				let isDrag = false;
+				let currentItem = null;
+				//鼠标按下
+				$(dom).mousedown(function(e) {
+					e.preventDefault();
+					oldPosition = _that.getPosition( $(dom) );
+					oldPointer = _that.getPointer( e );
+					isDrag = true;
+					currentItem = dom;
+				});
+				//鼠标拖拽
+				$(document).mousemove(function(e) {
+					let currentPointer = _that.getPointer( e );
+					if (!isDrag) return false;
+					$(currentItem).css({
+						"opacity": "0.8",
+						"z-index": 999
+					});
+					let left = currentPointer.x - oldPointer.x + oldPosition.left;
+					let top = currentPointer.y - oldPointer.y + oldPosition.top;
+					$(currentItem).css({
+						left: left,
+						top: top
+					});
+					currentItem.pointer = currentPointer;
+					// 开始交换位置
+					currentItem.collisionCheck();
+				});
+				//鼠标抬起
+				$(document).mouseup(function() {
+					if (!isDrag) return false;
+					isDrag = false;
+					currentItem.move(function() {
+						$(this).css({
+							"opacity": "1",
+							"z-index": 0
+						});
+					});
+				});
+			}
+			
+			dom.init();
+		}
+			
+		/**
+		 * @param {*} dom juqery获取的需要拖拽的doms的class, 必须要一个class，不允许有组合
+		 * 例如 ".item"
+		 *  @param {*} parents 父元素id 
+		 * 例如 "#item-box"
+		 * @param {*} config {
+		 *   left:number,
+		 *   top:number
+		 * }      移动的差值  
+		 */
+		run (doms,parents,config){
+			this.dragdoms = $(doms);
+			this.parentDom = $(parents);
+			this.domsClass = doms;
+			this.parentsClass = parents;
+			this.domsConfig = config;
+			
+			this.delLeft = config.left ? config.left : 0; 
+			//this.delLeft = $(parents).offset().left; //
+			this.delTop = config.top ? config.top : 0; 
+			//this.delTop = $(parents).scrollTop(); //   这里有bug，scrollTop 每次重载必须为一个相同值，不能变化。
+
+			let _that = this;
+			
+			_that.dragdoms.each(function(i) {
+				this.boxoffset = $(this).offset();
+				this.boxoffset.index = i;
+				
+				// here 差值修改
+				this.boxoffset.left = this.boxoffset.left - _that.delLeft  + _that.parentDom.scrollLeft();
+				this.boxoffset.top = this.boxoffset.top - _that.delTop + _that.parentDom.scrollTop();
+				
+			});
+			
+			_that.dragdoms.each(function(i) {
+				_that.bindFunc(this,i);
+			});
+			
+			
+		}
+
+		/**
+		 * 拖拽功能重载     
+		 */
+		reload(){
+			let _that = this;
+			
+			_that.status = false;
+			this.dragdoms.removeAttr("style"); 
+			setTimeout(function(){
+				_that.run( _that.domsClass, _that.parentsClass, _that.domsConfig);
+			},0)
+		}
+
+		getStatus(){
+			return this.status;
+		}
+
+
+	}
+
+	Components.ct.drag = function(){
+		let cd = new Cdrag(...arguments);
+		return cd;
+	};
 
 
 

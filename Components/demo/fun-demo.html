@@ -87,6 +87,38 @@
 				top: -33px;
 			}
 
+
+			
+			/*drag*/
+
+			#drag-box {
+				width: 1000px;
+				height: 600px;
+				background: grey;
+				position: relative;
+				border: 1px solid #ccc;
+				overflow: auto;
+				
+			}
+
+			.drag-box-in {
+				width:100%;
+  			height:100%;
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.drag-item {
+				margin: 10px;
+				width: 200px;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				cursor: pointer;
+				background: #ccc;
+			}
+			/*drag end*/
+
 			</style>
 	</head>
 	<body>
@@ -277,19 +309,111 @@
 						@param config<br>
 						支持的字段有 <br>
 						{<br>
-							title:"弹框标题-支持html"<br>
-							content:"弹框内容-支持html"<br>
-							color:标题文字颜色<br>
-							time:弹框过time时间后，隐藏<br>
+							title:"公告标题-支持html",<br>
+							content:"公告内容-支持html",<br>
+							color:"公告文字颜色{string}",<br>
+							speed:"字条滚动速度，毫秒{number}",<br>
+							size:"循环滚动次数{number}",<br>
+							dom:'domid{string}'   <br>
 						}<br>
 						使用方式：<br>
-						<em>Components().notice({ title:"标题", content:"弹框内容-支持html",color:'red' });</em> 
+						<em>Components().notice({
+							title:"<span style='color:red;'>标题</span>:",
+							content:"弹框内容-支持html",
+							color:"red",
+							speed:10,
+							size:2,
+							dom:'notice'
+						});</em> 
 					</div>
 					<br>
 					<div class="casia-btn-normal" id="notice-btn">公告</div>
 					<div id="notice"></div>
 					
 				</div>
+
+
+				<div class="sf" style="height: 850px;">
+					<div class="sf-title">Components().modal(config)</div>
+					<div class="sf-header"> 弹框：modal组件</div>
+					<div class="sf-content">
+						@param config<br>
+						支持的字段有 <br>
+						{<br>
+							title,                             // 弹框标题-支持html<br>
+							content,                           // 弹框内容-支持html<br>
+							btn=[],			                       // 按钮<br>
+							btnEvent=[],                       // 按钮事件<br>
+							area=['300px','190px'],            // modal区域<br>
+							id="modal-"+new Date().getTime()   // modal 唯一 id<br>
+						}<br>
+
+						@return 返回modal实例 <br>
+
+						<br>
+						使用方式：<br><br>
+						<em>let saveModal = Components().modal({<br>
+              title:"提示",<br>
+              content:"模块顺序发生变化，是否保存？",<br>
+              btn:["是","否"],<br>
+              btnEvent:[<br>
+                function(){//是 的回调函数<br>
+ 
+                  &nbsp  saveModal.remove();<br>
+                  &nbsp  //在这做些什么~<br>
+                },<br>
+                function(){  //否 的回调函数<br>
+                 
+									&nbsp	saveModal.remove();<br> 
+									&nbsp	//在这做些什么~<br>
+                }<br>
+              ]<br>
+						});</em><br>
+						
+						提供方法： saveModal.remove() 删除modal弹框 <br>
+						
+					</div>
+					<br>
+					<div class="casia-btn-normal" id="modal-btn">点击modal</div>
+					<div id="modal-box"></div>
+					
+				</div>
+
+
+				<div class="sf" style="height: 850px;">
+					<div class="sf-title">Components().drag(config)</div>
+					<div class="sf-header"> 拖拽组件：drag</div>
+					<div class="sf-content">
+						
+						
+					</div>
+			
+					
+					<div id="drag-box" style="height: 610px; overflow: auto;">
+						<div class="drag-box-in">
+							<div class="drag-item"> 1</div>
+							<div class="drag-item"> 2</div>
+							<div class="drag-item"> 3</div>
+							<div class="drag-item"> 4</div>
+							<div class="drag-item"> 5</div>
+							<div class="drag-item"> 6 </div>
+							<div class="drag-item"> 7 </div>
+							<div class="drag-item"> 8 </div>
+							<div class="drag-item"> 9 </div>
+							<div class="drag-item"> 10 </div>
+							<div class="drag-item"> 11 </div>
+							<div class="drag-item">12</div>
+							<div class="drag-item"> 13</div>
+							<div class="drag-item">14</div>
+							<div class="drag-item"> 15</div>
+							<div class="drag-item"> 16 </div>
+						</div>
+					</div>
+					
+				</div>
+				
+		 </div>
+
 
 			</div>
 

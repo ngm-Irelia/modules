@@ -179,6 +179,20 @@ var Components = window.Components = Components || {};
 		}
 		
 		/**
+		 * 节点操作菜单 扩展 功能的回调
+		 * @param callback function 回调函数
+		 */
+		extendCallBack(callback){
+			let _that = this;
+			
+			if(typeof callback === 'function'){
+				_that.setExtendCallBack = callback;
+			}
+			
+		}
+		
+
+		/**
 		 * 单纯的新增 节点
 		 */
 		addNewNode(nodeList){
@@ -271,10 +285,13 @@ var Components = window.Components = Components || {};
 						}
 						
 						Components.getData(extend, param, 'GET').then(function (data) {
-							resolve(data);
+							if(data instanceof Array){
+								resolve(data);
+							}
+							_that.setExtendCallBack(data);
 						}).catch(()=>{
-							//这是演示环境
-							resolve(_that.analyticData);
+							resolve(_that.analyticData);      //这是演示环境
+							_that.setExtendCallBack(data);
 						})
 					})
 				},

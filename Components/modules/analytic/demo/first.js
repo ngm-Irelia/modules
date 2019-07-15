@@ -254,7 +254,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	});
 
-	
+	/**
+	 * 获得 点击的节点信息 mouseUp
+	 * @param function 回调函数
+	 */
+	analytic.extendCallBack(function(data){
+		console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
+		console.log(data);
+	});
 	
 	
 	

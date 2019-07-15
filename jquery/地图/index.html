@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>CanvasLayer</title>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=oGipGGHoW0wB5s24tUaobMN4ku23wKCu"></script>
+	<script type="text/javascript" src="./gis/CurveLine.js"></script>
+	<script type="text/javascript" src="./gis/LuShu.js"></script>
+	<style type="text/css">
+		body,
+		html,
+		#container {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+	let map = new BMap.Map("container");
+	map.centerAndZoom(new BMap.Point(116.3964, 39.9093), 5);
+	map.enableScrollWheelZoom();
+
+
+	var gisMoveImages = [
+		"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAAC2CAYAAAB08HcEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANlSURBVHja7N1BcuIwEIZRnyH3P+fU7DrbWSRDCMjq/vUWX2UXMPUKjC3UV1VdUlpeBIEtgS2BLYEtgS2wJbAlsCWwJbAlsAW2BLYEtgS2BLYEtsCWwJbAltJh//3zkVr987eCjxPsg2DXg8AGOw51HG6w82EX2GCnwa5fBjbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDTbYYIMNNthggw022GCvRA022HGgY5CDnQG7FqEeCxzs+bDrpq5JwMGeC7s2BjbYcahH4AZ7DuxqhLo9cLBnwK7mtTv/Brs37BoY2GDHoQYb7EjUbYCD3Qt2hQb2gbArHPUW4GDvhV2HBXY47Do8sANhl9YDB/se2AX1vcjBXg8b2g13L8FeBxvWje/eYK+BDSfYcbDBbIAc7PfBhrARbrBfg+1qx71fLAvs9bCBa/zuDfbzsOEaABzs52ADNQQ42I9hO48eiBzs/8NO+cIFNtiVgvpq8D+2HTvYGbC/W2fxzvPWUZ8EYM+E/dMFQ6suqbUHDvYM2L9d+bb6Tl91hQ52b9hTN34HG+ylOyrtXvQP9qGwV28N1uknW2AfAPvkGTS3XGsH+x7YuzZtnLDBzRLgYK+HbWrYBuBgvwf29cXdOuPwNp6Xg/0abHMe7z2OC+y1sA0wbT7ZAeyvYY+fmhUM+7vTPbCfXLZq5PTAmZdgm6Vu5DTYYIMNNthggw022GCDDTbYYIMNNthggw022GCDDXaDX6yADXYc6gjgYGfBjpuJDjbYBTbYabDjRkaDDXb0THSwz4RdYIOdBjt2DjrYZ8KOnX8O9rmwI6fogg022GCDDTbYYIMNNthggw022GAvh/1wByWwwU5bYw022O1hv7JF27MTB8AGexnslfsM1g8eG2yw3wp71+6mYIN9yxa6pz8PsCWwJbAlsAW2BLYEtgS2BLYEtsCWwJbAlsCWwBbYXgSBLYEtgS2BLYEtsCWwJbAlsCWwJbAFtgS2BLYEtgS2BLbAlsCWwJbAlsAW2BLYEtgS2BLYEtgCW0rocwDM3dJfk6+KOQAAAABJRU5ErkJggg==",
+		"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7ZmlsbDojRkZGNDVDO308L3N0eWxlPgoKIDxnPgogIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4KICA8cmVjdCB4PSItMSIgeT0iLTEiIHdpZHRoPSIxNyIgaGVpZ2h0PSIyNyIgaWQ9ImNhbnZhc19iYWNrZ3JvdW5kIiBmaWxsPSJub25lIi8+CiA8L2c+CiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBhdGggc3Ryb2tlPSJudWxsIiBpZD0iWE1MSURfOF8iIGNsYXNzPSJzdDAiIGQ9Im05LjEwNDI0NSwwLjEwMTI2OWMtMC4zNzkwNDcsMC4wMjQ2MTEgLTAuNzMyODI0LDAuMDQ5MjI2IC0xLjExMTg3MSwwLjA3MzgzN2MtMC4xNzY4ODksMCAtMC4yNzc5NjUsMC4wNDkyMjYgLTAuMjc3OTY1LDAuMjQ2MTMxYy0wLjAyNTI3NSwwLjI0NjEyNiAtMC4wNzU4MTMsMC40OTIyNTIgLTAuMTI2MzUxLDAuNzM4Mzc4Yy0wLjA1MDUzOCwwLjI0NjEzMSAtMC4yMjc0MjcsMC4zOTM4MDQgLTAuNDI5NTg1LDAuMzQ0NTc4Yy0wLjIwMjE1OCwtMC4wNDkyMjEgLTAuMzI4NTA5LC0wLjIyMTUxIC0wLjMwMzI0LC0wLjQ2NzY0MWMwLjAyNTI2OSwtMC4yNDYxMjYgMC4wNzU4MDcsLTAuNDkyMjUyIDAuMTAxMDgyLC0wLjc2Mjk5M2MtMC4yNTI3MDIsLTAuMDQ5MjI2IC0wLjQwNDMyMSwwLjAyNDYxMSAtMC41ODEyMDUsMC4yNzA3NDFjLTAuNDgwMTI4LDAuNzEzNzY3IC0wLjgwODYzNywxLjUwMTM3NiAtMS4wMzYwNjQsMi4zMTM1OTVjLTAuMjUyNjk2LDAuOTEwNjcyIC0wLjQ1NDg1NCwxLjg3MDU2OSAtMC42NTcwMTIsMi44MDU4NTJjLTAuMDI1MjY5LDAuMDk4NDUyIC0wLjA3NTgxMywwLjE5NjkwNSAtMC4xMjYzNTEsMC4yOTUzNTJjLTAuODg0NDQ0LDEuMDU4MzUgLTEuNjQyNTMyLDIuMTkwNTM3IC0yLjI3NDI4LDMuNDIxMTcxYy0wLjUzMDY2NiwxLjA4Mjk2MSAtMC43MDc1NSwyLjIzOTc1OCAtMC43ODMzNjIsMy4zOTY1NjFjLTAuMDc1ODA3LDEuMjU1MjUgMCwyLjUxMDUgMC4yMDIxNTgsMy43NjU3NWMwLjEwMTA4MiwwLjU5MDcwNCAwLjMyODUwOSwxLjEzMjE4MiAwLjYzMTc0OCwxLjYyNDQzOWMwLjQ4MDEyMywwLjc2Mjk5MyAwLjk4NTUyLDEuNTI1OTkxIDEuNTE2MTgxLDIuMjY0Mzc0YzAuMzAzMjQsMC4zOTM4MDQgMC40Mjk1OSwwLjc4NzYwNCAwLjMwMzI0LDEuMjc5ODZjLTAuMDUwNTM4LDAuMjIxNTE1IC0wLjA3NTgwNywwLjQ0MzAzMSAtMC4xMDEwNzYsMC42NjQ1NDZjLTAuMDUwNTQ0LDAuMjk1MzUyIDAuMDc1ODA3LDAuNDkyMjUyIDAuMzAzMjM0LDAuNTQxNDc4YzAuMjUyNjk2LDAuMDQ5MjI2IDAuNDI5NTg1LC0wLjA5ODQ1MiAwLjUwNTM5NywtMC4zOTM4MDRjMCwtMC4wNDkyMjYgMC4wMjUyNjksLTAuMTIzMDYzIDAuMDI1MjY5LC0wLjE3MjI4OWwwLjA1MDUzOCwwYzAuMDc1ODEzLDAuMjIxNTE1IDAuMTc2ODg5LDAuNDY3NjQxIDAuMjUyNjk2LDAuNjg5MTU2YzAuMTc2ODg5LDAuNTE2ODY3IDAuMjc3OTcxLDAuNTkwNzA5IDAuODMzOTA2LDAuNTkwNzA5YzAuMDc1ODA3LDAgMC4xNTE2MiwwIDAuMjUyNjk2LDBjMCwtMC4zNDQ1NzggMCwtMC42Mzk5MzUgMCwtMC45NTk4OThjMCwtMC4yNzA3NDEgMC4xNTE2MiwtMC40NDMwMzEgMC4zNTM3NzgsLTAuNDQzMDMxYzAuMjI3NDI3LDAgMC40MDQzMTYsMC4xNzIyODkgMC40MDQzMTYsMC40NDMwMzFjMCwwLjMxOTk2MyAwLDAuNjE1MzIgMCwwLjk1OTg5OGwxLjI2MzQ5MSwwYzAuMjAyMTU4LDAgMC40Mjk1ODUsMCAwLjYzMTc0MywwYzAuMTUxNjIsMCAwLjIyNzQyNywwLjA0OTIyNiAwLjM1Mzc3OCwwLjE0NzY3NGMwLjEwMTA3NiwwLjEyMzA2MyAwLjI3Nzk2NSwwLjE3MjI4OSAwLjQ1NDg1NCwwLjIyMTUxNWMwLjA3NTgwNywwLjAyNDYxNiAwLjE1MTYyLDAgMC4yNTI2OTYsMGMwLjY1NzAxNywwLjA0OTIyNiAwLjc4MzM2MiwtMC4yNDYxMjYgMC44MzM5MDYsLTAuNzM4MzgzYzAuMDI1MjY5LC0wLjE5NjkgMC4wNTA1MzgsLTAuMzY5MTg5IDAuMDc1ODA3LC0wLjU5MDcwNGMtMS4yMzgyMTYsMC4wNzM4MzcgLTIuMjc0MjgsLTAuMjcwNzQxIC0zLjA4MjkxMSwtMS4xODE0MTNjLTAuNTgxMjA1LC0wLjY2NDU0MSAtMC44NTkxNjksLTEuNDUyMTUgLTAuODMzOSwtMi4zMTM1OTVjMC4wMjUyNjksLTAuNjY0NTQ2IDAuMjI3NDI3LC0xLjI1NTI1IDAuNjA2NDc0LC0xLjc5NjczM2MwLjM3OTA0NywtMC41NDE0NzggMC44ODQ0NDQsLTAuOTU5ODk4IDEuNTE2MTg3LC0xLjIwNjAyNGMwLjYwNjQ3NCwtMC4yNDYxMjYgMS4yNjM0ODUsLTAuMzE5OTYzIDEuOTIwNTAyLC0wLjIyMTUxNWwtMC4wMjUyNjksLTguMTQ2ODE0Yy0xLjM2NDU2NywwLjE3MjI4OSAtMi41MDE3MDcsLTAuMjQ2MTMxIC0zLjMzNTYxMywtMS4yNzk4NjVjLTAuNTgxMjA1LC0wLjcxMzc2NyAtMC44MDg2MzEsLTEuNTUwNjAyIC0wLjcwNzU1LC0yLjQ4NTg4NGMwLjEwMTA3NiwtMS42MjQ0NDQgMS43NDM2MTQsLTMuMzIyNzE5IDQuMDkzNzAxLC0yLjkyODkyYy0wLjA1MDUzOCwtMC4zNDQ1NzggLTAuMTAxMDc2LC0wLjY4OTE1NiAtMC4xNzY4ODksLTEuMDA5MTE5Yy0wLjAyNTI2OSwtMC4wNzM4NDIgLTAuMDc1ODA3LC0wLjE0NzY3OCAtMC4xMjYzNTEsLTAuMTk2OTA1Yy0wLjI3Nzk2NSwtMC4yNDYxMjYgLTEuMDg2NTk2LC0wLjE5NjkgLTEuMzM5Mjk4LDAuMDQ5MjI2Yy0wLjA3NTgwNywwLjA3Mzg0MiAtMC4yMDIxNTgsMC4xNDc2NzggLTAuMzAzMjM0LDAuMTQ3Njc4bDAsMHptLTQuMDkzNzA2LDE4LjEzOTU4NmMtMS4xNjI0MDksLTAuNzg3NjA0IC0xLjk3MTA0LC0xLjcyMjg5MSAtMi4yMjM3MzYsLTMuMDc2NTg4bDIuNDc2NDM4LC0wLjE5NjkwNWwtMC4yNTI3MDIsMy4yNzM0OTN6bTEuOTcxMDQ2LC00Ljg3MzMyMWMwLDAuMTQ3Njc4IDAsMC4yOTUzNTIgMCwwLjQ0MzAzMWwwLDBsMCwwLjQ0MzAzMWMwLDAuMDI0NjExIDAsMC4wMjQ2MTEgMCwwLjA0OTIyNmMtMC4wMjUyNzUsMC4yMjE1MTUgLTAuMjI3NDMyLDAuMzY5MTg5IC0wLjQwNDMyMSwwLjM2OTE4OWMtMC4yMDIxNTgsLTAuMDI0NjExIC0wLjMyODUwMywtMC4xNzIyODkgLTAuMzI4NTAzLC0wLjM5MzgwNGMwLC0wLjI5NTM1MiAwLC0wLjU5MDcwNCAwLC0wLjg4NjA1NmMwLC0wLjIyMTUxNSAwLjE1MTYyLC0wLjM5MzgwNCAwLjM3OTA0NywtMC4zOTM4MDRjMC4xNzY4ODksLTAuMDI0NjE2IDAuMzI4NTAzLDAuMTIzMDYzIDAuMzUzNzc4LDAuMzY5MTg5em0tMS42MTcyNjgsMC44MTIyMTljLTAuODg0NDM4LDAuMDczODQyIC0xLjc2ODg4MywwLjEyMzA2OCAtMi42MjgwNTgsMC4xOTY5MDVjLTAuMzI4NTAzLC0yLjgwNTg1MiAwLjYwNjQ3OSwtNS4xNjg2NzggMi40NzY0MzgsLTcuMzA5OTg0YzAuNTMwNjY2LDIuMzg3NDM3IDAuMjUyNzAyLDQuNzUwMjU4IDAuMTUxNjIsNy4xMTMwNzlsMCwweiIvPgogIDxwYXRoIHN0cm9rZT0ibnVsbCIgaWQ9IlhNTElEXzdfIiBjbGFzcz0ic3QwIiBkPSJtMTAuNzA2NDUzLDE2LjgyMjA4MWMtMS40MDM2NDIsMCAtMi41MjY1NjEsMS4xMDIzOTIgLTIuNTI2NTYxLDIuNDQ5NzZjMCwxLjM0NzM3MyAxLjEyMjkxOCwyLjQ0OTc2NSAyLjQ1MDAwMSwyLjQ3NDI2NGMxLjUzMTI0OCwwLjA0ODk5MiAyLjcwNTIwOCwtMS4xNzU4ODggMi42Nzk2ODQsLTIuNDc0MjY0YzAsLTEuMzk2MzYxIC0xLjEyMjkxOCwtMi40NDk3NiAtMi42MDMxMjUsLTIuNDQ5NzZ6bS0wLjA1MTA0MSwtMTQuNzcyMDY2Yy0xLjM3ODEyNCwwIC0yLjUwMTA0MywxLjEwMjM5MiAtMi41MjY1NjEsMi4zNzYyNjljLTAuMDUxMDQxLDEuNDQ1MzU4IDEuMTczOTU5LDIuNTcyMjQ4IDIuNTUyMDg0LDIuNTQ3NzVjMS40NTQ2ODQsLTAuMDI0NDk0IDIuNTc3NjAyLC0xLjA3Nzg5MyAyLjU3NzYwMiwtMi40NDk3NmMtMC4wMjU1MjMsLTEuMzk2MzY2IC0xLjEyMjkxOCwtMi40NzQyNTkgLTIuNjAzMTI1LC0yLjQ3NDI1OXoiLz4KIDwvZz4KPC9zdmc+",
+		"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7ZmlsbDojRkZGNDVDO308L3N0eWxlPgoKIDxnPgogIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4KICA8cmVjdCB4PSItMSIgeT0iLTEiIHdpZHRoPSIxNyIgaGVpZ2h0PSIyNyIgaWQ9ImNhbnZhc19iYWNrZ3JvdW5kIiBmaWxsPSJub25lIi8+CiA8L2c+CiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPGcgc3Ryb2tlPSJudWxsIiBpZD0iWE1MSURfMV8iPgogICA8cGF0aCBzdHJva2U9Im51bGwiIGlkPSJYTUxJRF8xNF8iIGNsYXNzPSJzdDAiIGQ9Im0xMS45ODI2NSwyLjg1NTQ1OWwwLDIxLjI2MzQyNGwxLjE2NzM4NCwwbDAsLTIxLjI2MzQyNGMwLC0wLjQwNTMxNCAtMC4yNjIwNjgsLTAuNzQ4Mjc1IC0wLjU3MTc4MiwtMC43NDgyNzVzLTAuNTk1NjAyLDAuMzExNzgzIC0wLjU5NTYwMiwwLjc0ODI3NXoiLz4KICAgPHBhdGggc3Ryb2tlPSJudWxsIiBpZD0iWE1MSURfMTBfIiBjbGFzcz0ic3QwIiBkPSJtNi4xNjk1NDMsMS41NDU5ODFsMCw3LjM4OTE5OGwtMi4zMzQ3NjksMGwwLC0zLjU4NTQ3OGMtMS4zMTAzMzEsMi43NDM2NzEgLTIuMzM0Nzc0LDYuMjA0NDM1IC0yLjMzNDc3NCw5LjY2NTE5OGwwLDkuMTM1MTY0bDkuMjkxNDQsMGwwLC0yMS4zMjU3ODJjMCwtMS42NTI0MzUgLTAuMjM4MjQzLC0zLjAyNDI3IC0yLjMxMDk0OSwtMy4wMjQyN2MtMC41NzE3ODIsMCAtMS40Mjk0NTMsMC42NTQ3MzkgLTIuMzEwOTQ5LDEuNzQ1OTcxem0wLDE2LjQ5MzE4OGwwLDMuMDU1NDQ5bC0yLjMzNDc2OSwwbDAsLTMuMDU1NDQ5bDIuMzM0NzY5LDB6bTAsLTYuMDc5NzJsMCwzLjA1NTQ0OWwtMi4zMzQ3NjksMGwwLC0zLjA1NTQ0OWwyLjMzNDc2OSwweiIvPgogIDwvZz4KIDwvZz4KPC9zdmc+",
+		"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTgwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDwhLS0gQ3JlYXRlZCB3aXRoIE1ldGhvZCBEcmF3IC0gaHR0cDovL2dpdGh1Yi5jb20vZHVvcGl4ZWwvTWV0aG9kLURyYXcvIC0tPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNGRkM2MkU7fQo8L3N0eWxlPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxtZXRhZGF0YSB0cmFuc2Zvcm09Im1hdHJpeCgwLjAxNzc3Nzc3OTYzMjE0NDU1MiwwLDAsMC4wMTc3Nzc3Nzk2MzIxNDQ1NTIsMCwwKSAiPlN2ZyBWZWN0b3IgSWNvbnMgOiBodHRwOi8vd3d3LnNmb250LmNuPC9tZXRhZGF0YT4KICA8ZyBzdHJva2U9Im51bGwiIHRyYW5zZm9ybT0icm90YXRlKDkwLjE1NTc5OTg2NTcyMjY2IDQwMi4yMTE3NjE0NzQ2MDk0LDI1MC45MDAwNTQ5MzE2NDA2KSAiIGlkPSJzdmdfMTEiPgogICA8ZyBzdHJva2U9Im51bGwiIHRyYW5zZm9ybT0ibWF0cml4KDAuNDk2NjQ5NDY0MDg4OTAyMywwLDAsMC41MjMyMDQ4ODYyODIxMzIyLC02NjYwLjMwMTUzNDkxNDAxLC01NDQ0LjQzMjQ3NzEyNjQ1MykgIiBpZD0ic3ZnXzQiPgogICAgPGcgc3Ryb2tlPSJudWxsIiBpZD0ic3ZnXzUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsNTExKSBzY2FsZSgwLjEwMDAwMDAwMTQ5MDExNjEyLC0wLjEwMDAwMDAwMTQ5MDExNjEyKSAiPgogICAgIDxwYXRoIGNsYXNzPSJzdDAiIHN0cm9rZT0ibnVsbCIgaWQ9InN2Z182IiBkPSJtMTQzNTE2LjM5MDM5MywtMTAxNzI1LjkzMTc1bDAsLTEwMTkuMmwxMzcuMiwwbDEzNy4yLDBsMCwxMDE5LjJsMCwxMDE5LjJsLTEzNy4yLDBsLTEzNy4yLDBsMCwtMTAxOS4yeiIvPgogICAgIDxwYXRoIGNsYXNzPSJzdDAiIHN0cm9rZT0ibnVsbCIgaWQ9InN2Z183IiBkPSJtMTQ0MTQ5LjQ5MDM5MywtMTAxNDI2LjAzMTc1bC0xMDMuOSwtNy44bDAsLTY1Ni42bDAsLTY1NC42bDEzNy4yLDBsMTM3LjIsMGwwLDY2Ni4zYzAsNjIzLjMgLTIsNjY2LjQgLTMzLjMsNjYyLjVjLTE5LjYsLTIgLTgyLjMsLTUuOSAtMTM3LjIsLTkuOHoiLz4KICAgICA8cGF0aCBjbGFzcz0ic3QwIiBzdHJva2U9Im51bGwiIGlkPSJzdmdfOCIgZD0ibTE0MTg5My40OTAzOTMsLTEwMjM1OS4wMzE3NWMtMTk2LC0xOTggLTM1Ni43LC0zNjQuNiAtMzU2LjcsLTM3Mi40YzAsLTcuOCAzNjIuNiwtMTMuNyA4MDMuNiwtMTMuN2w4MDMuNiwwbDAsMzcyLjRsMCwzNzIuNGwtNDQ2LjksMGwtNDQ2LjksMGwtMzU2LjcsLTM1OC43eiIvPgogICAgIDxwYXRoIGNsYXNzPSJzdDAiIHN0cm9rZT0ibnVsbCIgaWQ9InN2Z185IiBkPSJtMTQwMzg0LjI5MDM5MywtMTAzMzg2LjAzMTc1Yy0yODguMSwtMjQ3IC01NjguNCwtNDg0LjEgLTYyMy4zLC01MjkuMmwtOTYsLTg0LjNsMjc3OS4zLDBsMjc4MS4yLDBsLTM3LjIsNjQuN2MtMTkuNiwzMy4zIC0xNTguOCwyNzIuNSAtMzA5LjcsNTI5LjJsLTI3NC40LDQ2NC41bC0xODQ2LjMsMGwtMTg0OC4zLDBsLTUyNS4zLC00NDQuOXoiLz4KICAgICA8cGF0aCBjbGFzcz0ic3QwIiBzdHJva2U9Im51bGwiIGlkPSJzdmdfMTAiIGQ9Im0xMzczMDMuMTkwMzkzLC0xMDQyNDAuNjMxNzVjMCwtMTEzLjcgMTU2LjgsLTQ1Ni43IDMxOS41LC02OTkuN2MzMzEuMiwtNDkzLjkgOTU4LjQsLTExODcuNyAxNTA5LjIsLTE2NzEuOWwxOTQsLTE3MC41bDMzMjYuMSwwbDMzMjguMSwwbDE1OC44LDI4MC4zYzMyMS41LDU2NC41IDY0NC45LDEyNTguMyA4MDcuNSwxNzMyLjZjNjYuNiwxOTQgMTU2LjgsNTAzLjcgMTU2LjgsNTQyLjljMCw1LjkgLTIyMDUsMTEuNyAtNDkwMCwxMS43Yy00MDQzLjUsMC4xIC00OTAwLC0zLjggLTQ5MDAsLTI1LjR6bTI1MzguMiwtNjY4LjNjNjQuNywtNDMuMSAxMTMuNywtMTYwLjcgMTAxLjksLTI0OC45Yy0zNS4zLC0yNjguNSAtMzg2LjEsLTMxOS41IC01MTUuNSwtNzIuNWMtMzUuMyw3MC41IC0zNS4zLDE0MS4xIDMuOSwyMjUuNGM3MC42LDE0OC45IDI2MC43LDE5MiA0MDkuNyw5NnptMTIwOS4zLC01LjljMTM5LjIsLTEyNS40IDExNy42LC0zNjQuNiAtNDEuMiwtNDQ2LjljLTE2MC43LC04Mi4zIC0zODIuMiwyMS42IC0zOTQsMTg2LjJjLTkuOCwxMTcuNiAyLDE2MC43IDY0LjcsMjI3LjRjOTguMSwxMDcuOCAyNzIuNSwxMjMuNCAzNzAuNSwzMy4zem0xMTcwLjEsMTUuNmM4Ni4yLC02MC43IDEyNS40LC0xMzEuMyAxMjUuNCwtMjI1LjRjMCwtMTAxLjkgLTQxLjIsLTE3NC40IC0xMjkuMywtMjI3LjRjLTE3Ni40LC0xMDcuOCAtNDA1LjcsMTcuNyAtNDA1LjcsMjIxLjVjMCwyMjEuNiAyMzUuMiwzNTQuOCA0MDkuNiwyMzEuM3ptMTIwNS40LDBjMTExLjcsLTYyLjcgMTU4LjgsLTIyMS41IDEwMCwtMzMzLjJjLTUyLjksLTEwMy45IC0xMzkuMiwtMTU4LjggLTI0OC45LC0xNTguOGMtODguMiwwIC0xMDUuOCw3LjkgLTE3NC40LDc0LjVjLTQxLjIsNDEuMiAtODAuNCw5OCAtODYuMywxMjcuNGMtMzMuMywxMzEuMyA0NS4xLDI3MC41IDE3Ni40LDMxNy41Yzg2LjMsMjkuNSAxNDUsMjEuNyAyMzMuMiwtMjcuNHptMTIwMy41LDRjMTY0LjYsLTEwMS45IDE1Ni44LC0zNzguMyAtMTMuNywtNDY2LjVjLTIwOS43LC0xMDcuOCAtNDU0LjcsODAuNCAtMzk0LDMwMy44YzQ3LDE3NC40IDI1NC44LDI1OC43IDQwNy43LDE2Mi43em0xMTk3LjUsLTRjMTIzLjUsLTg2LjIgMTY2LjYsLTI1MC45IDkyLjEsLTM2NC42Yy0xMDkuOCwtMTY2LjYgLTM2Mi42LC0xNjguNiAtNDYyLjUsLTMuOWMtMTQ5LDI0MS4yIDE0My4xLDUyOS4zIDM3MC40LDM2OC41eiIvPgogICAgPC9nPgogICA8L2c+CiAgPC9nPgogPC9nPgo8L3N2Zz4="
+	];
+
+	let lushuNum = [];
+
+	let addData = [
+
+		{
+			gis: [113.63774, 34.753677],
+			address: "郑州",
+			id: "273F534A64EEB25B211565C5DEF3FEA2",
+			name: "郑州",
+			nodeId: "68934486",
+			objectType: "entity",
+			page_type: "entity",
+			type: "KKXX"
+		},
+		{
+			gis: [101.78962, 36.625007],
+			address: "西宁",
+			id: "273F534A64EEB25B212365C5DEF3FEA2",
+			name: "西宁",
+			nodeId: "68933386",
+			objectType: "entity",
+			page_type: "entity",
+			type: "KKXX"
+		},
+		{
+			gis: [106.556712, 29.569247],
+			address: "重庆",
+			id: "273F534A64EEB25B2115qweDEF3FEA2",
+			name: "重庆",
+			nodeId: "68932286",
+			objectType: "entity",
+			page_type: "entity",
+			type: "KKXX"
+		},
+		{
+			gis: [87.615239, 43.830555],
+			address: "乌鲁木齐",
+			id: "273F534A64EEB25B21156q1wEF3FEA2",
+			name: "乌鲁木齐",
+			nodeId: "68931186",
+			objectType: "entity",
+			page_type: "entity",
+			type: "KKXX"
+		}
+	];
+
+	let startPoint = {
+		basePoint: new BMap.Point(133, 54),
+		id: "aaaaaaaaa"
+	}
+
+	let mapCommonPart = {
+		/**
+		 * 
+		 * @param {*} name 根据name，得到路书的size
+		 */
+		getLuShuByName: function(name) {
+			for (let l = 0; l < lushuNum.length; l++) {
+				if (lushuNum[l].name === name) {
+					return lushuNum[l];
+				}
+			}
+		},
+	}
+
+	addPath(addData, startPoint.basePoint, startPoint.id);
+
+
+	/**
+	 * 添加轨迹
+	 * @param {*} addData      轨迹各节点数据
+	 * @param {*} basePoint    起点
+	 * @param {*} basePointId  起点id
+	 * @param {*} linecolor    轨迹线条颜色
+	 */
+	function addPath(addData, basePoint, basePointId, linecolor) {
+		let lc = linecolor ? linecolor : "#33d0ff";
+		timelineIntervalSign = true;
+
+		let points = [];
+		let mapStepOverlays = [];
+		let firstPoint = basePoint; //这个用来存放两点中的起点
+
+		let allPathLUSHU = []; //给路书的所有path
+
+		let lushulen = lushuNum.length + 1;
+		let lushuName = "l" + lushulen;
+		lushuNum.push({
+			name: lushuName,
+			size: 0,
+			lushu: []
+		});
+
+		for (let k = 0; k < addData.length; k++) {
+
+			let point = new BMap.Point(addData[k].gis[0], addData[k].gis[1]);
+			points.push(firstPoint);
+			points.push(point);
+			let twoId = {
+				one: basePointId,
+				two: "first",
+				address: addData[k].address,
+				time: addData[k].time
+			};
+			let curve = new BMapLib.CurveLine(twoId, "first", points, {
+				strokeColor: lc, //D75C22
+				strokeWeight: 1,
+				strokeOpacity: 0.9
+			}); //创建弧线对象
+			map.addOverlay(curve); //添加到地图中
+			curve.enableEditing(); //开启编辑功能
+			points = [];
+			firstPoint = point;
+
+			let retpath = curve.getPath();
+			for (let p = 0; p < retpath.length; p++) {
+				allPathLUSHU.push(retpath[p]);
+			}
+			let iconImg;
+			if (addData[k].hasOwnProperty("tripMode")) {
+				if (addData[k].tripMode === "car") {
+					iconImg = gisMoveImages[1];
+				}
+				if (addData[k].tripMode === "airplane") {
+					iconImg = gisMoveImages[0];
+				}
+				if (addData[k].tripMode === "train") {
+					iconImg = gisMoveImages[2];
+				} else {
+					iconImg = gisMoveImages[1];
+				}
+			} else {
+				iconImg = gisMoveImages[1];
+			}
+			lushuStart(basePointId, retpath, iconImg, k, lushuName);
+		}
+		let step = {
+			one: basePointId,
+			two: "first"
+		};
+
+	}
+
+	/**
+	 * 路书lushu开始方法
+	 * @param {*} Id        开始点的id
+	 * @param {*} retpath   路书的轨迹信息
+	 * @param {*} iconImg   移动覆盖物的图标
+	 * @param {*} num       第几段路书
+	 * @param {*} lushuName 路书的名字
+	 */
+	function lushuStart(Id, retpath, iconImg, num, lushuName) {
+
+		let lushuSize = mapCommonPart.getLuShuByName(lushuName);
+		if (num == 0) {
+			var lushu = new BMapLib.LuShu(lushuSize.name, map, Id, retpath, {
+				defaultContent: "", //"从天安门到百度大厦"
+				autoView: true, //是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+				icon: new BMap.Icon(iconImg,
+					new BMap.Size(33, 33), {
+						anchor: new BMap.Size(16, 16)
+					}),
+				speed: 450000,
+				enableRotation: true //是否设置marker随着道路的走向进行旋转
+			});
+
+			lushu.start();
+		} else {
+			var stopnum = 0;
+			var lushuSetInt = setInterval(function() {
+				stopnum++;
+				if (num == lushuSize.size) {
+					var lushu = new BMapLib.LuShu(lushuSize.name, map, Id, retpath, {
+						defaultContent: "", //"从天安门到百度大厦"
+						autoView: true, //是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+						icon: new BMap.Icon(iconImg,
+							new BMap.Size(33, 33), {
+								anchor: new BMap.Size(16, 16)
+							}),
+						speed: 450000,
+						enableRotation: true //是否设置marker随着道路的走向进行旋转
+					});
+					lushu.start();
+					clearInterval(lushuSetInt);
+				}
+				if (stopnum > 150) {
+					clearInterval(lushuSetInt);
+				}
+			}, 500);
+			lushuSize.lushu.push(lushuSetInt); // 把定时器存到相关的数据下
+		}
+
+	}
+</script>

@@ -34,28 +34,33 @@ var Components = window.Components = Components || {};
 
 			window.nodes = [];
 			window.links = [];
+
+
+			/**
+			 * 启动方法
+			 *  arguments  [
+			 *   domId : 要存放关系图的盒子id,
+			 *   config ： 是数组，使用简单模式 ，是{
+						type:"analytic",    //分析模式 高级模式
+						search:true,        //搜索框启用
+						timeaxis:true       //时间轴启用
+					}     启动高级模式;
+			* ]
+			* 
+			* 简单模式： 传过来的数组就是需要展示的数据， 并且不会有任何交互操作
+			* 分析模式： 传过来 analytic，里面的数据需要修改 pageData 中对应的数据接口
+			* 分析模式： 传过来 其他，里面的数据需要修改 pageData 中对应的数据接口，比 分析模式少一些交互
+			*/
+			
+			this.startLoad(...arguments);
 		}
 
 		/**
-		 * 启动方法
-		 * @param {*} arguments  [
-		 *   domId : 要存放关系图的盒子id,
-		 *   config ： 是数组，使用简单模式 ，是{
-					type:"analytic",    //分析模式 高级模式
-					search:true,        //搜索框启用
-					timeaxis:true       //时间轴启用
-				}     启动高级模式;
-		 * ]
-		 * 
-		 * 简单模式： 传过来的数组就是需要展示的数据， 并且不会有任何交互操作
-		 * 分析模式： 传过来 analytic，里面的数据需要修改 pageData 中对应的数据接口
-		 * 分析模式： 传过来 其他，里面的数据需要修改 pageData 中对应的数据接口，比 分析模式少一些交互
+		 * 功能提到Components里面，该方法暂时不用
 		 */
 		run(){
 			let _that = this;
-			
 			_that.startLoad(...arguments);
-
 		}
 
 		startLoad(){
@@ -65,7 +70,7 @@ var Components = window.Components = Components || {};
 
 			let domId = arguments[0];
 			let config = arguments[1] || false;
-
+			_that.config = config;
 			_that.analyticData = config.data;
 			
 			if(config instanceof Array){
@@ -75,7 +80,7 @@ var Components = window.Components = Components || {};
 				
 			}else if(typeof config === "object"){
 				_that.useType = "analytic";
-
+				
 				if(config.search){  
 					_that.searchModuleSign = true;// 搜索框 显示
 				}
@@ -180,9 +185,7 @@ var Components = window.Components = Components || {};
 			let _that = this;
 			
 			setTimeout(()=>{
-				console.log(nodes);
 				let newnodes = nodes.concat(nodeList);
-				console.log(newnodes)
 				_that.magicFunctions.loadSvgStart(newnodes, links);
 			},20)
 			
@@ -201,6 +204,7 @@ var Components = window.Components = Components || {};
 		 */
 		pageData() {
 			let _that = this;
+			let { searchModule, entityRelations, information, extend} = _that.config.url;
 			return {
 				/**
 				 * 搜索框 搜索按钮
@@ -208,21 +212,7 @@ var Components = window.Components = Components || {};
 				 */
 				getSearchModuleData: function(param) {
 					return new Promise(function (resolve, reject) {
-						Components.getData('/common/ir?query_keyword=' + param.keyword, '', 'GET').then(function (data) {
-							resolve(data);
-						}).catch(function (err) {
-							reject(err);
-						})
-					})
-				},
-
-				/**
-				 * 搜索框 搜索按钮
-				 * @param param 发送请求，需要的参数
-				 */
-				getSearchModuleData: function(param) {
-					return new Promise(function (resolve, reject) {
-					Components.getData('/common/ir?query_keyword=' + param.keyword, '', 'GET').then(function (data) {
+						Components.getData(searchModule, '', 'GET').then(function (data) {
 							resolve(data);
 						}).catch(function (err) {
 							reject(err);
@@ -236,11 +226,13 @@ var Components = window.Components = Components || {};
 				 */
 				getEntityRelations: function(param) {
 					return new Promise(function (resolve, reject) {
-						let data = ["朋友", "孩子"];
-						resolve(data);
+						resolve(["朋友", "孩子"]);
 						return '';
-						Components.getData('/analytic/relations', param, 'POST').then(function (data) {
+						Components.getData(entityRelations, param, 'GET').then(function (data) {
 							resolve(data);
+						}).catch(()=>{
+							//请求报错的时候，我们模拟的数据
+							resolve(["朋友", "孩子"]);
 						})
 					})
 				},
@@ -251,15 +243,17 @@ var Components = window.Components = Components || {};
 				 */
 				getInformation: function(param) { 
 					return new Promise(function (resolve, reject) {
+						resolve(_that.analyticData[0].source);
+						return ;
 						if(_that.useType === "easy"){
 							resolve(_that.showData[0].source);
 							return '';
 						} 
-						
-						resolve(_that.analyticData[0].source);
-						return '';
-						Components.getData('/analytic/information', param, 'POST').then(function (data) {
+						Components.getData(information, param, 'GET').then(function (data) {
 							resolve(data.data);
+						}).catch(()=>{
+							//请求报错的时候，我们模拟的数据
+							resolve(_that.analyticData[0].source);
 						})
 					})
 				},
@@ -276,7 +270,7 @@ var Components = window.Components = Components || {};
 							return '';
 						}
 						
-						Components.getData('/analytic/extend', param, 'POST').then(function (data) {
+						Components.getData(extend, param, 'GET').then(function (data) {
 							resolve(data);
 						}).catch(()=>{
 							//这是演示环境
@@ -1160,6 +1154,9 @@ var Components = window.Components = Components || {};
 						return d.nodeId;
 					});
 
+					window.imgError = function (t){
+						$(t).attr("href",_that.imgUrl+"rw.svg")
+					}
 
 					magicGraph.enterNodes.enter().append("g")
 						.attr("class", "node")
@@ -1208,7 +1205,8 @@ var Components = window.Components = Components || {};
 									.attr("height", 24.5)
 									//.attr("xlink:href",d =>_that.imgUrl + d.conceptName + ".svg")
 									.attr("xlink:href", d => {
-										if (d.icon) {
+										return '/imgae';
+										/* if (d.icon) {
 											return d.icon;
 										} else {
 											let photo = {
@@ -1218,9 +1216,11 @@ var Components = window.Components = Components || {};
 												"事件": "sj"
 											}
 											return _that.imgUrl+"rw.svg";//" + photo[d.conceptName] + "
-										}
+										} */
 
 									})
+									.attr("onerror", "imgError(this)")
+									//.attr("onerror", "javascript:this.href='"+_that.imgUrl+"rw.svg';")
 									.attr("x", function (d) {
 										return (-25) / 2;
 									})
@@ -2995,7 +2995,7 @@ var Components = window.Components = Components || {};
 
 
 
-			console.log("调用接口 start");
+			//console.log("调用接口 start");
 
 			let testId = "testId";
 			if(_that.useType === "easy"){
@@ -3262,7 +3262,9 @@ var Components = window.Components = Components || {};
 	}
 
 
-	Components.analytic = new Analytic();
+	Components.analytic = function(){
+		return (new Analytic(...arguments));
+	};
 
 	//Components.analytic.run("topo_network_base"); 
 	//Components.analytic.showItem({ 	id: "aaa" });

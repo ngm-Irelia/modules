@@ -87,6 +87,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
  */
 
-
+Components.loadScriptPromise('./grid/js/jquery.jqGrid.src.js');
 
 });

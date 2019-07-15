@@ -188,19 +188,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		//
 	];
 	
-	//window.Components.analytic.run("showarea", testdata);
-	
+	//let analytic = Components.analytic("showarea", testdata);
 	
 	//分析模式
-	window.Components.analytic.run("showarea", {
+	let analytic = Components.analytic("showarea", {
 		type:"analytic",
 		search:false,
 		timeaxis:false,
-		data:testdata
+		data:testdata,
+		url:{
+			extend:"/extend"
+		}
 	});
 
+	/* analytic.run("showarea", {
+		type:"analytic",
+		search:false,
+		timeaxis:false,
+		data:testdata,
+		
+	}); */
+	
 	//单纯的添加节点
-	window.Components.analytic.addNewNode([{
+	analytic.addNewNode([{
 		id: "zgd",
 		nodeId: "zgd",
 		name: "中国队",
@@ -216,18 +226,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	//Components.analytic.showItem({ 	id: "aaa" });
 	
 	setTimeout(function(){
-		Components.analytic.showItem({ 	id: "aaa" });
+		analytic.showItem({ 	id: "aaa" });
 	},2000)
+
 	setTimeout(function(){
-		Components.analytic.showItem();
+		analytic.showItem();
 	},4000)
 
 	/**
 	 * 获得 点击的节点信息 mouseDown
 	 * @param function 回调函数
 	 */
-	Components.analytic.setMouseDownNode(function(data){
-		
+	analytic.setMouseDownNode(function(data){
 		console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
 		console.log(data);
 
@@ -237,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	 * 获得 点击的节点信息 mouseUp
 	 * @param function 回调函数
 	 */
-	Components.analytic.setMouseUpNode(function(data){
+	analytic.setMouseUpNode(function(data){
 		
 		console.log(this);  // 改变了this的指向， 现在指向点击的节点， 可以自主进行一些操作
 		console.log(data);

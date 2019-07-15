@@ -11,6 +11,12 @@
  * 
  */
 
+let scriptURL = function(){
+	let url = document.currentScript.src;
+	url = url.substring(0, url.lastIndexOf("/") + 1);
+	return url;
+}();
+
 /** 
  * @namespace Components的所有类均放在Components命名空间下
  */
@@ -454,7 +460,12 @@ var Components = window.Components = Components || {};
 				time.innerHTML = '，速度：' + speed + units + '，剩余时间：' + resttime + 's';
 				if (bspeed == 0) time.innerHTML = '上传已取消';
 			}
-		}
+		},
+
+		/**
+		 * 获取当前js的路径
+		 */
+		getScript:scriptURL,
 	}); 
   
 
@@ -1552,6 +1563,62 @@ var Components = window.Components = Components || {};
 		return cd;
 	};
 
+	let loadGridSign = false; //标志是否 自动加载过grid.js
+
+	/**
+	 * # 封装grid v1.0
+	 * 需要 jquery 的支持！！
+	 */
+	class Grid {
+		constructor (domid, config){
+			this.domid = domid;
+			this.config = config;
+			
+			let _that = this;
+			if(!loadGridSign){
+				Components.loadScriptPromise(Components.getScript + 'modules/grid/js/jquery.jqGrid.src.js').then(()=>{
+					loadGridSign = true;
+					_that.run();
+				});
+			}else{
+				_that.run();
+			}
+
+		}
+
+		run(){
+			let _that = this;
+			jQuery(_that.domid).jqGrid( _that.config );
+		}
+
+		//添加数据   
+		addRowData(data){
+			let _that = this;
+			
+			let gridInterval = setInterval(function(){
+				
+				if(loadGridSign){
+					for (let i = 0; i <= data.length; i++) {
+						jQuery(_that.domid).jqGrid('addRowData', i + 1, data[i]);
+					}
+					clearInterval(gridInterval);
+				}
+			},100)
+		
+		}
+
+	}
+
+
+	/**
+	 * grid对外的方法
+	 * 
+	 * @param {*} domid 盒子的id 例子： "#list451"
+	 * @param {*} config 配置信息
+	 */
+	Components.ct.grid = function(){
+			return (new Grid(...arguments));
+	};
 
 
 
@@ -1559,20 +1626,10 @@ var Components = window.Components = Components || {};
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * todo 一开始写的几个组件，有问题，
+ * 应该还是写成return new Cj() 这样的
+ */
 
 })()
 

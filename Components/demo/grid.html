@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../Components.css" />
+
+	<link rel="stylesheet" href="../modules/grid/css/ui.jqgrid.css" /><!-- jqGrid组件基础样式包-必要 -->
+	<link rel="stylesheet" href="../modules/grid/css/css/cupertino/ngm-theme.css" /><!-- jqGrid主题-->
+
+
+
+	<style>
+		.grid-show-box {
+			margin: 50px;
+			width: 1100px;
+			height: 666px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="grid-show-box">
+		<table id="list451"></table>
+		<div id="pager451"></div>
+	</div>
+
+
+
+
+	<script type="text/javascript" src="../assets/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../Components.js"></script>
+	<script type="text/javascript" src="../modules/grid/js/jquery.jqGrid.src.js"></script><!-- jqGrid插件包-必要 -->
+	<!-- 在./js/i18n下还有其他的多语言包，可以尝试更换看效果 -->
+	<script type="text/javascript" src="../modules/grid/js/i18n/grid.locale-cn.js"></script>
+
+
+	<script>
+		$(function () {
+			pageInit();
+		});
+
+		function pageInit() {
+			jQuery("#list451").jqGrid({
+				datatype: "local",
+				height: "100%",
+				width:"100%",
+				colNames: ['Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
+				colModel: [{
+					name: 'id',
+					index: 'id',
+					width: 90,
+					sorttype: "int"
+				},
+				{
+					name: 'invdate',
+					index: 'invdate',
+					width: 100,
+					sorttype: "date"
+				},
+				{
+					name: 'name',
+					index: 'name',
+					width: 100
+				},
+				{
+					name: 'amount',
+					index: 'amount',
+					width: 100,
+					align: "right",
+					sorttype: "float"
+				},
+				{
+					name: 'tax',
+					index: 'tax',
+					width: 80,
+					align: "right",
+					sorttype: "float"
+				},
+				{
+					name: 'total',
+					index: 'total',
+					width: 80,
+					align: "right",
+					sorttype: "float"
+				},
+				{
+					name: 'note',
+					index: 'note',
+					width: 150,
+					sortable: false
+				}
+				],
+				multiselect: true,
+				caption: "Manipulating Array Data"
+			});
+			var mydata = [{
+				id: "1",
+				invdate: "2007-10-01",
+				name: "test",
+				note: "note",
+				amount: "200.00",
+				tax: "10.00",
+				total: "210.00"
+			},
+			{
+				id: "2",
+				invdate: "2007-10-02",
+				name: "test2",
+				note: "note2",
+				amount: "300.00",
+				tax: "20.00",
+				total: "320.00"
+			},
+			{
+				id: "3",
+				invdate: "2007-09-01",
+				name: "test3",
+				note: "note3",
+				amount: "400.00",
+				tax: "30.00",
+				total: "430.00"
+			},
+			{
+				id: "4",
+				invdate: "2007-10-04",
+				name: "test",
+				note: "note",
+				amount: "200.00",
+				tax: "10.00",
+				total: "210.00"
+			},
+			{
+				id: "5",
+				invdate: "2007-10-05",
+				name: "test2",
+				note: "note2",
+				amount: "300.00",
+				tax: "20.00",
+				total: "320.00"
+			},
+			{
+				id: "6",
+				invdate: "2007-09-06",
+				name: "test3",
+				note: "note3",
+				amount: "400.00",
+				tax: "30.00",
+				total: "430.00"
+			},
+			{
+				id: "7",
+				invdate: "2007-10-04",
+				name: "test",
+				note: "note",
+				amount: "200.00",
+				tax: "10.00",
+				total: "210.00"
+			},
+			{
+				id: "8",
+				invdate: "2007-10-03",
+				name: "test2",
+				note: "note2",
+				amount: "300.00",
+				tax: "20.00",
+				total: "320.00"
+			},
+			{
+				id: "9",
+				invdate: "2007-09-01",
+				name: "test3",
+				note: "note3",
+				amount: "400.00",
+				tax: "30.00",
+				total: "430.00"
+			}
+			];
+			for (var i = 0; i <= mydata.length; i++) {
+				jQuery("#list451").jqGrid('addRowData', i + 1, mydata[i]);
+			}
+
+			setTimeout(function () {
+				jQuery("#list451").jqGrid('filterToolbar', { searchOperators: true });
+			}, 2000)
+		}
+
+
+	</script>
+
+</body>
+
+</html>

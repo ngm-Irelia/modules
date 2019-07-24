@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	//notice 公告栏 组件
 	$("#notice-btn").bind("click",function(){
 		Components().notice({
-			title:"<span style='color:red;'>标题</span>:",
-			content:"弹框内容-支持html",
+			title:"<span style='color:red;'>公告内容</span>:",
+			content:"<div>【来自用户A】逆势上涨！中国蝉联全球第二大外资流入国<span>待接收</span></div>  <div>【来自用户B】习近平呼吁共创亚洲美好未来 致力建设安全稳定亚洲<span>即将预期</span></div>",
 			color:"red",
 			speed:10,
 			size:2,
@@ -86,7 +86,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		top:8270
 	});
  */
+	//Components.loadScriptPromise('./grid/js/jquery.jqGrid.src.js');
 
-Components.loadScriptPromise('./grid/js/jquery.jqGrid.src.js');
+
+	Components().userGroup({
+		domId:"userGroup-box",
+		user:"用户Akbuser",
+		logout:{
+			url: "http://www.baidu.com",
+			name:"登出"
+		},
+		img:"../modules/analytic/typeicon/收藏.png",
+		config:[
+			{
+				name:"设置",
+				callback:function(){
+					console.log("设置回调")
+				}
+			},
+			{
+				name:"换肤",
+				callback:function(){
+					console.log("换肤回调")
+				}
+			}
+		]
+	});
 
 });

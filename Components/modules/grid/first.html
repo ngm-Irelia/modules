@@ -75,7 +75,23 @@
 						}
 					],
 					multiselect: true,
-					caption: "Manipulating Array Data"
+					caption: "Manipulating Array Data",
+					onCellSelect: function(rowid,iCol,cellContent,e){   
+					  /**
+					   * 单击
+					   * rowid：当前行id；
+						iRow：当前行索引位置；
+						iCol：当前单元格位置索引；
+						e:event对象
+					  */
+					  console.log("单击")
+					  console.log("rowid ==== "+rowid)
+// 					  console.log(iCol)
+// 					  console.log(cellContent)
+// 					  console.log(e)
+					  console.log(jQuery("#list451").getRowData(rowid))
+					  
+					},
 				});
 				var mydata = [{
 						id: "1",
@@ -87,7 +103,7 @@
 						total: "210.00"
 					},
 					{
-						id: "2",
+						id: "2222",
 						invdate: "2007-10-02",
 						name: "test2",
 						note: "note2",
@@ -168,24 +184,7 @@
 				},2000)
 			}
 
-	function pageInit111(){
-	  jQuery("#list451").jqGrid({
-
-		   rowNum:50,
-			rowTotal: 200,
-			rowList : [20,30,50],
-			loadonce:true,
-			rownumbers: true,
-			rownumWidth: 40,
-			gridview: true,
-		   pager: '#pager451',
-		   sortname: 'item_id',
-		  viewrecords: true,
-		  sortorder: "asc"
-	  });
-	  jQuery("#list451").jqGrid('filterToolbar',{searchOperators : true});
-
-	}
+	
 		</script>
 
 	</body>

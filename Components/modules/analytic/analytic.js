@@ -218,7 +218,7 @@ var Components = window.Components = Components || {};
 		 */
 		pageData() {
 			let _that = this;
-			let { searchModule, entityRelations, information, extend} = _that.config.url;
+			let { searchModule='', entityRelations='', information='', extend=''} = _that.config.url;
 			return {
 				/**
 				 * 搜索框 搜索按钮

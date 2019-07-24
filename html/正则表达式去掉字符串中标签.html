@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Field selection demo</title>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <style>
+        #trainPhase {
+            border: 1px solid #ddd;
+            padding: 10px;
+			width: 500px;
+        }
+		
+		#trainPhase::selection { background:lightblue; }
+    </style>
+</head>
+<body>
+    <div contentEditable="true" id="trainPhase">
+        分享到新 
+         
+    </div>
+    
+    <script>
+         let html = `contenteditable="false" data-sentenceid="1563270924521" 
+		 style="cursor: pointer;font-style: normal;text-indent: 0;float:right;line-height: 13px;">x</i>
+		  </i> </span>大公民，在一审认定其向中国走私了“数量巨大的毒品”后，他提起了上诉。<br>     
+		   报道指出，加拿大政府没报道，中国法院新闻我不知道加方有美国政府走私毒<br>      违反了中国的哪些法律条款？
+		   <span style="background:#dacbae;position:relative;">习近平总书记论坛在京举行。
+		   图为工信部工业品牌培育专家组组长周宏宁。新华网 陈延特摄</span></p>
+					<p> </p>
+					<table border="1" cellpadding="1" cellspacing="1" style="width:500px;"> 
+					
+					<tr>
+						<td>
+					</table>`;
+
+html = html.replace(/<table(.|\n)*\/table>/g, "");
+//html = html.replace(/\/td*/,"")
+console.log(html)
+$("#trainPhase").html(html);
+
+
+    </script>
+</body>
+</html>

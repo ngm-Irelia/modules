@@ -79,17 +79,53 @@
 							index: 'total',
 							width: 80,
 							align: "right",
-							sorttype: "float"
+							sorttype: "float",
+							sopt:"cn"
 						},
 						{
 							name: 'note',
 							index: 'note',
 							width: 150,
-							sortable: false
+							sortable: false,
+							searchoptions: { 
+								sopt:['cn'],
+								dataInit : function (elem) {
+									console.log("dataInit--")
+									//$(elem).datepicker();
+								},
+								attr : { title: "Some title" },
+								dataEvents: [
+									{ 
+										type: 'click', 
+										data: { i: 7 }, 
+										fn: function(e) { 
+											console.log(e); 
+										},
+									},
+									{ 
+										type: 'keypress', 
+										fn: function(e) { 
+											console.log('keypress'); 
+											console.log(e); 
+										},
+									},
+								] 
+							}
 						}
 					],
+					
+					gridview: true,
+					  
+					  hidegrid: false,
+					  ignoreCase: true,
+					  rowNum: 50,
+					  autowidth: true,
+					  viewrecords: true,
+					  loadui: 'block',
+					
 					multiselect: true,
-					caption: "Manipulating Array Data"
+					caption: "Manipulating Array Data",
+					
 				});
 				var mydata = [{
 						id: "1",
@@ -177,29 +213,35 @@
 					jQuery("#list451").jqGrid('addRowData', i + 1, mydata[i]);
 				}
 				
-				setTimeout(function(){
-					jQuery("#list451").jqGrid('filterToolbar',{searchOperators : true});
-				},2000)
+			 
+				//jQuery("#list451").jqGrid('filterToolbar',{searchOperators : true});
+				jQuery("#list451").jqGrid('filterToolbar',{
+					stringResult: false,
+					searchOnEnter : true,
+					searchOperators : true,
+								 
+					beforeSearch:function(e){
+						console.log("搜索之前");
+						//"title LIKE('%十七%') AND content LIKE('%美国%')"
+						//console.log( jQuery("#list451").jqGrid('getGridParam') )
+						
+						// [{data: "11", field: "tax"}]
+						let search = JSON.parse( jQuery("#list451").jqGrid('getGridParam').postData.filters )
+						console.log( search )
+					},
+					afterSearch:function(e){
+						console.log(e);
+						
+					},
+				});
+				
+				 
+				
+				
+				
+				
 			}
 
-	function pageInit111(){
-	  jQuery("#list451").jqGrid({
-
-		   rowNum:50,
-		rowTotal: 200,
-		rowList : [20,30,50],
-		loadonce:true,
-		rownumbers: true,
-		rownumWidth: 40,
-		gridview: true,
-		   pager: '#pager451',
-		   sortname: 'item_id',
-		  viewrecords: true,
-		  sortorder: "asc"
-	  });
-	  jQuery("#list451").jqGrid('filterToolbar',{searchOperators : true});
-
-	}
 		</script>
 
 	</body>

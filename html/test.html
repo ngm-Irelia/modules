@@ -35,7 +35,7 @@
 
  
 	<body> 
-		<div class="bk"></div>
+		<!-- <div class="bk"></div> -->
 		
 		
 	</body>
@@ -47,6 +47,22 @@
 		
 		Test1();
 		
+		console.log("测试|| 和 && 的优先级");
+		
+		function t1(){
+			console.log("111")
+			return false;
+		}
+		function t2(){
+			console.log("222")
+			return "22";
+		}
+		function t3(){
+			console.log("333")
+			return "33";
+		}
+		
+		console.log( t1() || t2() && t3() )
 	
 	</script>
 </html>

@@ -1,0 +1,83 @@
+
+/*userGroup */
+#ct-userGroup {
+	position: relative;
+	height: 40px;
+	cursor: pointer;
+	user-select: none;
+}
+
+#ct-userGroup-img{
+	position: absolute;
+	top: 7px;
+	left: 5px;
+	border-radius: 50%;
+}
+
+#ct-userGroup-user{
+	position: absolute;
+	top: 10px;
+	left: 31px;
+}
+
+#ct-userGroup-span {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	transform: rotate(-135deg);
+	margin-left: 3px;
+	margin-bottom: 3px;
+	border-top: 2px solid #606266;
+	border-left: 2px solid #606266;
+	cursor: pointer;
+}
+
+#ct-userGroup-menu {
+	display: none;
+	position: absolute;
+	right: 0px;
+	top: 45px;
+	background: #fff;
+	box-shadow: 0 6px 12px rgba(0,0,0,.275);
+	width: 195px;
+}
+
+.ct-userGroup-li-line {
+	height: 1px;
+	width: 100%;
+	border-top: 1px solid #dfdfdf;
+}
+
+.ct-userGroup-menu-item{
+	cursor: pointer;
+	height: 40px;
+	color: #606266;
+	font-size: 16px;
+	line-height: 40px;
+	list-style: none;
+	padding-left: 20px;
+}
+
+.ct-userGroup-menu-item a{
+	cursor: pointer;
+	height: 40px;
+	color: #606266;
+	font-size: 16px;
+	line-height: 40px;
+	display: inline-block;
+	width: 100%;
+	list-style: none;
+	text-decoration: none;
+}
+
+.ct-userGroup-menu-item a:hover{
+	color: #1d3a7c;
+	background-color: #eee;
+} 
+
+
+.ct-userGroup-menu-item:hover{
+	color: #1d3a7c;
+	background-color: #eee;
+} 
+/*userGroup end*/

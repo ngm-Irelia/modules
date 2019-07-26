@@ -88,19 +88,21 @@
 	}
 
 
+	/*  使用方法如下：
+	
 	window.userGroup({
-		domId:"userGroup-box",
-		user:"用户Akbuser",
+		domId:"userGroup-box",                        //存放用户组件的dom元素id
+		user:"用户Akbuser",                           //用户名   
 		logout:{
-			url: "http://www.baidu.com",
-			name:"登出"
+			url: "http://www.baidu.com",              //登出的跳转url
+			name:"登出"                               //登出按钮显示的文字
 		},
-		img:"../modules/analytic/typeicon/收藏.png",
-		config:[
+		img:"../modules/analytic/typeicon/收藏.png",  //用户的图片
+		config:[                                      //额外功能
 			{
-				name:"设置",
-				callback:function(){
-					console.log("设置回调")
+				name:"设置",                          //额外功能的名称
+				callback:function(){                  //额外功能的点击回调函数 
+					console.log("设置回调")   
 				}
 			},
 			{
@@ -110,7 +112,7 @@
 				}
 			}
 		]
-	});
+	}); */
 
 })()
 

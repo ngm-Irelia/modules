@@ -21,8 +21,8 @@
 }
 
 #ct-userGroup-span {
-	width: 10px;
-	height: 10px;
+	width: 8px;
+	height: 8px;
 	display: inline-block;
 	transform: rotate(-135deg);
 	margin-left: 3px;
@@ -40,6 +40,7 @@
 	background: #fff;
 	box-shadow: 0 6px 12px rgba(0,0,0,.275);
 	width: 195px;
+	z-index: 99999;
 }
 
 .ct-userGroup-li-line {
@@ -56,6 +57,7 @@
 	line-height: 40px;
 	list-style: none;
 	padding-left: 20px;
+	text-align: left;
 }
 
 .ct-userGroup-menu-item a{
@@ -73,6 +75,7 @@
 .ct-userGroup-menu-item a:hover{
 	color: #1d3a7c;
 	background-color: #eee;
+	text-decoration: none;
 } 
 
 

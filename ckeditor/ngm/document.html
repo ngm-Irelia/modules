@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="../../js/jquery-3.3.1.js"></script>
+		<script src="../ckeditor.js"></script>
+		<title>Document Editor</title>
+		<style type="text/css">
+			body {
+				padding: 30px;
+				display: flex;
+				align-items: center;
+				text-align: center;
+			}
+
+			.container {
+				margin: 0 auto;
+			}
+			
+			#reader-helper {
+				display: block;
+				position: absolute;
+				width: auto;
+				height: 49px;
+				line-height: 32px;
+				text-align: center;
+				border-radius: 1px;
+				cursor: pointer;
+				z-index: 1000;
+				right: auto!important;
+				font-size: 14px;
+			}
+			#reader-helper .trangle{
+				left: 25px;
+				top: 4px;
+			}
+			#reader-helper span {
+				color: #398dee;
+			}
+
+			.trg-tl .trangle {
+				display: inline-block;
+				border: 1px solid transparent;
+				width: 11px;
+				height: 11px;
+				border-right-color: #1d3a7c;
+				border-bottom-color: #1d3a7c;
+				transform: rotate(-135deg);
+				position: absolute;
+				background: #fff;
+				z-index: 2;
+			}
+			.ui-panel .inner {
+				box-shadow: 0 0 3px #e6e6e6;
+				margin: 5px;
+				background: #fff;
+				border: 1px solid #1d3a7c;
+				border-radius: 2px;
+				margin-top: 9px;
+			}
+			#reader-helper a {
+				text-decoration: none;
+				color: #1d3a7c;
+				padding: 0 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h2><label for="editor1">Document Editor</label></h2>
+			<textarea id="editor1">
+		&lt;h2 style="text-align: center;"&gt;The Flavorful Tuscany Meetup&lt;/h2&gt;
+		&lt;p style="text-align: center;"&gt;&lt;span style="color: #007ac9;"&gt;&lt;strong&gt;Welcome letter&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;Dear Guest,&lt;/p&gt;
+		&lt;p&gt;We are delighted to welcome you to the annual &lt;em&gt;Flavorful Tuscany Meetup&lt;/em&gt; and hope you will enjoy the programme as well as your stay at the Bilancino Hotel.&lt;/p&gt;
+		&lt;p&gt;Please find below the full schedule of the event.&lt;/p&gt;
+		&lt;table class="schedule" cellpadding="15" cellspacing="0" style="border-collapse:collapse;width:100%;"&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th colspan="2" scope="col" style="background-color: #F2F9FF; text-align: center; font-size: 21px;"&gt;&lt;span&gt;Saturday, July 14&lt;/span&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td style="white-space:nowrap;"&gt;&lt;span&gt;9:30 AM - 11:30 AM&lt;/span&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;span&gt;Americano vs. Brewed - “know your coffee” session with &lt;strong&gt;Stefano Garau&lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td style="white-space:nowrap;"&gt;&lt;span&gt;1:00 PM - 3:00 PM&lt;/span&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;span&gt;Pappardelle al pomodoro - live cooking session with &lt;strong&gt;Rita Fresco&lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td style="white-space:nowrap;"&gt;&lt;span&gt;5:00 PM - 8:00 PM&lt;/span&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;span&gt;Tuscan vineyards at a glance - wine-tasting session with &lt;strong&gt;Frederico Riscoli&lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+		&lt;blockquote&gt;
+			&lt;p&gt;The annual Flavorful Tuscany meetups are always a culinary discovery. You get the best of Tuscan flavors during an intense one-day stay at one of the top hotels of the region. All the sessions are lead by top chefs passionate about their profession. I would certainly recommend to save the date in your calendar for this one!&lt;/p&gt;
+			&lt;p&gt;Angelina Calvino, food journalist&lt;/p&gt;
+		&lt;/blockquote&gt;
+		&lt;p&gt;Please arrive at the Bilancino Hotel reception desk at least &lt;strong&gt;half an hour earlier&lt;/strong&gt; to make sure that the registration process goes as smoothly as possible.&lt;/p&gt;
+		&lt;p&gt;We look forward to welcoming you to the event.&lt;/p&gt;
+		&lt;p&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;strong&gt;Victoria Valc&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;strong&gt;Event Manager&lt;/strong&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;strong&gt;Bilancino Hotel&lt;/strong&gt;&lt;/p&gt;
+	</textarea>
+		
+			<div id="reader-helper" class="ui-panel trg-tl" style="left: -9000px; top: -9000px; z-index: 999;">
+                <div class="tips-wrap"><span class="trangle"></span>
+                    <div class="inner"></div>
+                </div>
+            </div>
+		</div>
+		<script>
+			CKEDITOR.replace('editor1', {
+				// Define the toolbar: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_toolbar
+				// The full preset from CDN which we used as a base provides more features than we need.
+				// Also by default it comes with a 3-line toolbar. Here we put all buttons in a single row.
+				toolbar: [{
+						name: 'document',
+						items: ['Print']
+					},
+					{
+						name: 'clipboard',
+						items: ['Undo', 'Redo']
+					},
+					{
+						name: 'styles',
+						items: ['Format', 'Font', 'FontSize']
+					},
+					{
+						name: 'basicstyles',
+						items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting']
+					},
+					{
+						name: 'colors',
+						items: ['TextColor', 'BGColor']
+					},
+					{
+						name: 'align',
+						items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+					},
+					{
+						name: 'links',
+						items: ['Link', 'Unlink']
+					},
+					{
+						name: 'paragraph',
+						items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+					},
+					{
+						name: 'insert',
+						items: ['Image', 'Table']
+					},
+					{
+						name: 'tools',
+						items: ['Maximize']
+					},
+					{
+						name: 'editing',
+						items: ['Scayt']
+					}
+				],
+				
+				customConfig: 'config.js',
+				disallowedContent: 'img{width,height,float}',
+				extraAllowedContent: 'img[width,height,align]',
+				//extraPlugins: 'tableresize,uploadimage,uploadfile',
+				height: 800,
+				contentsCss: ['../contents.css', '../mystyles.css'],
+				bodyClass: 'document-editor',
+				format_tags: 'p;h1;h2;h3;pre',
+				removeDialogTabs: 'image:advanced;link:advanced',
+				stylesSet: [
+            /* Inline Styles */
+            {name: 'Marker', element: 'span', attributes: {'class': 'marker'}},
+            {name: 'Cited Work', element: 'cite'},
+            {name: 'Inline Quotation', element: 'q'},
+
+            /* Object Styles */
+            {
+                name: 'Special Container',
+                element: 'div',
+                styles: {
+                    padding: '5px 10px',
+                    background: '#eee',
+                    border: '1px solid #ccc'
+                }
+            },
+            {
+                name: 'Compact table',
+                element: 'table',
+                attributes: {
+                    cellpadding: '5',
+                    cellspacing: '0',
+                    border: '1',
+                    bordercolor: '#ccc'
+                },
+                styles: {
+                    'border-collapse': 'collapse'
+                }
+            },
+            {
+                name: 'Borderless Table',
+                element: 'table',
+                styles: {'border-style': 'hidden', 'background-color': '#E6E6FA'}
+            },
+            {name: 'Square Bulleted List', element: 'ul', styles: {'list-style-type': 'square'}}
+        ]
+			});
+
+
+			function getFrameSelectText() {
+				var $window = document.getElementsByClassName("cke_wysiwyg_frame")[0].contentWindow;
+				
+				console.log($window)
+				if (document.selection) {
+						return $window.document.selection.createRange().text
+				} else {
+					console.log($window.getSelection())
+						return $window.getSelection() + '';
+				}
+			}
+
+			//展示联想词
+			function getRelationWord(relation_kw) {
+				console.log("展示联想词")
+				$('.tips-wrap div.inner').append('<a class="relation-word-button">asdadsf</a>');
+
+				InsertHTMLs(relation_kw,"qqq","type");
+						
+			}
+
+			function load_iframe_fun() {
+				var $window = document.getElementsByClassName("cke_wysiwyg_frame")[0].contentWindow
+				var reader_txt = ''
+				$window.document.onmouseup = $window.document.ondbclick = function(e) {
+					$('#reader-helper').css({
+						'left': '-9999px',
+						'top': '-9999px'
+					});
+
+					var txt = getFrameSelectText();
+					
+					//选中文字个数
+					$("#select_size").text(txt.length);
+					if (txt) {
+						$('#reader-helper').css({
+							'left': (e.clientX + 355) + 'px',
+							'top': (e.clientY + 110) + 'px'
+						})
+						getRelationWord(txt);
+					
+					}
+				}
+
+				//绑定iframe改变事件
+				CKEDITOR.instances.editor1.on('change', function() {
+					var contnet_editor = CKEDITOR.instances.editor1.document.getBody().getText().length;
+					$("#editor_size").text(contnet_editor);
+				})
+
+				//单击取消选中状态
+				//	$window.document.onclick=function(){
+				//		removeFrameRange();
+				//	}
+				//}, 1000)
+				$($window).scroll(function() {
+					$('#reader-helper').css({
+						'left': '-9999px',
+						'top': '-9999px'
+					})
+				});
+			}
+
+			//ckeditor 点击事件
+			function ckeditor_keydown() {
+				var getData;
+				var kws;
+				var $kws;
+				var $document = document.getElementsByClassName("cke_wysiwyg_frame")[0].contentWindow.document
+
+				$document.onkeyup = function(e) {
+
+					var code = e.keyCode
+					var $radio = $("input[type='radio'][name='optionsRadios']:checked").val();
+
+					//递归
+					function dgP(obj, kws) {
+						if (!obj) {
+							return
+						}
+						if (kws == '') {
+							kws = obj.prev('p').text();
+							dgP(obj.prev('p'), kws)
+						} else {
+							$kws = kws
+							return kws
+						}
+					}
+
+					//逗号188  顿号191 句号190  回车13
+					if (code == 13 && $radio == 1) {
+						var selection = CKEDITOR.instances.editor1.getSelection().getRanges()[0]
+						var endOffset = selection.endOffset;
+						if ($(selection.endContainer.$).get(0).tagName == 'P') {
+							var $dom = $(selection.endContainer.$).prev('p')
+						} else {
+							var $dom = $(selection.endContainer.$).parent('p').prev('p')
+						}
+						kws = $dom.text()
+						//  		dgP ($dom,kws)
+						//  		kws = $kws
+						tj_list_load(kws)
+					} else if (code == 190 && $radio == 2) {
+						var selection = CKEDITOR.instances.editor1.getSelection().getRanges()[0]
+						var endOffset = selection.endOffset;
+						var $dom = $(selection.endContainer.$.parentElement)
+						kws = $dom.text()
+						if (!kws) {
+							dgP($dom, kws)
+							kws = $kws
+						}
+						kws = kws.substring(0, endOffset - 1)
+						kws = kws.replace(/<\/?.+?>/g, "").replace(/ /g, "").split("。");
+						getData = kws[kws.length - 1].split(".")
+						getData = getData[getData.length - 1];
+						if (getData.length < 2) {
+							//  			kws = kws[kws.length-2]
+							kws = getData
+						} else {
+							kws = getData
+						}
+						tj_list_load(kws)
+					} else if (code == 188 && $radio == 3 || code == 191 && $radio == 3 || code == 190 && $radio == 3) {
+						var selection = CKEDITOR.instances.editor1.getSelection().getRanges()[0]
+						var endOffset = selection.endOffset;
+						var $dom = $(selection.endContainer.$.parentElement)
+						kws = $dom.text()
+						if (!kws) {
+							dgP($dom, kws)
+							kws = $kws
+						}
+						kws = kws.substring(0, endOffset - 1)
+						kws = kws.replace(/<\/?.+?>/g, "").replace(/ /g, "").split("，");
+						getData = kws[kws.length - 1].split(",");
+						getData = getData[getData.length - 1]
+						if (getData.indexOf('。') >= 0) {
+							getData = getData.replace(/<\/?.+?>/g, "").replace(/ /g, "").split("。");
+							getData = getData[getData.length - 1].split(".")
+							getData = getData[getData.length - 1];
+						}
+
+						if (getData.length < 2) {
+							//  			kws = kws[kws.length-2]
+							kws = getData
+						} else {
+							kws = getData
+						}
+						tj_list_load(kws)
+					}
+				}
+			}
+
+			/**
+			 * 添加数据到ckedit中
+			 */
+			function InsertHTML(txt, anchor, i, pid, title, index_i, time) {
+				/**
+				 * 根据不同模块 分吧。 
+				 * 文件模块 走这里，填充左侧栏
+				 */
+				$("#page-left-content").html("");
+
+				var oEditor = CKEDITOR.instances.editor1;
+				$("#atc_pid").val(pid);
+				$("#head_title").val(title);
+				$("#index_i").val(index_i);
+				//var index_right = $("#com_daiying .rightNav span.rightNavCurrent").index();
+				//默认为1
+				var type = 1;
+				//默认智能排序
+				var order = 1;
+				var value = txt;
+				if (oEditor.mode == 'wysiwyg') {
+					// oEditor.insertHtml( value );
+					CKEDITOR.instances.editor1.setData(value);
+
+					//请求待办列表 - 在成品写作模块
+					if (!isShowingRrpost) {
+						daiying(pid);
+					}
+
+					//重新给iframe绑定事件
+					//getcorrection(); //自动纠错
+					load_iframe_fun();
+				} else {
+					console.log('You must be in WYSIWYG mode!');
+				}
+
+			}
+
+			/**
+			 * 添加数据到ckedit中
+			 * @param txt 引用文字
+			 * @param pid 引用文章pid
+			 * @param type 引用文章类型
+			 * @param sentenceId 随机数句子ID
+			 */
+			function InsertHTMLs(txt, pid, type, sentenceId) {
+				sentenceId = sentenceId ? sentenceId : new Date().getTime(); //当前时间戳
+				var oEditor = CKEDITOR.instances.editor1;
+				//更新序号 需要遍历全文中的索引 排序
+				var $window = document.getElementsByClassName("cke_wysiwyg_frame")[0].contentWindow;
+				var index_list = $($window.document).find('i.index');
+				var arr_ = [],
+					index;
+				if (index_list.length !== 0) {
+					$.each(index_list, function(i, item) {
+						arr_.push(Number($(item).text()));
+					});
+					arr_ = arr_.sort((a, b) => {
+						return a - b
+					});
+					index = arr_[arr_.length - 1] + 1;
+				} else {
+					index = 1;
+				}
+
+				/*  */
+				var value =
+					`<span style="background:#dacbae;position:relative;">${txt}
+						<i class="quote-index-x" data-pid="${pid}" data-type="${type}"  style="font-size:12px;background: rgb(224,108,108);border-radius: 2px;min-width: 40px;color: #fff;font-style: normal;height: 16px;position: absolute;top:15px;padding: 2px 5px 2px 2px;box-sizing:border-box;">
+                        <i class="index" contenteditable="false" style="line-height: 12px;padding: 0 2px;background: #fff;display:inline-block;vertical-align:middle;border-radius: 50%;color: rgb(224,108,108);text-align: center;font-style: normal;text-indent: 0;float:left;">${index}</i>
+                        <i class="quote-close-x" data-sentenceId="${sentenceId }" contenteditable="false" style="cursor: pointer;font-style: normal;text-indent: 0;float:right;line-height: 12px;">x</i>
+                    </i>
+                </span>`;
+
+				if (oEditor.mode == 'wysiwyg') {
+					oEditor.insertHtml(value);
+					load_iframe_fun();
+				} else {
+					console.log('You must be in WYSIWYG mode!');
+				}
+
+			}
+
+			//绑定编辑器的一些事件
+			function bindEvent(){
+				CKEDITOR.on("dragend", function(evt) { // 创建完成后触发
+					console.log("拖拽结束");
+					console.log(evt)
+				
+
+				})
+			}
+
+			setTimeout(() => {
+
+				CKEDITOR.on("instanceReady", function() { // 创建完成后触发
+					console.log("1111")
+					//重新绑定iframe事件
+					load_iframe_fun();
+					//ckeditor_keydown(); //点击事件
+					if ($('.cke_top').height() > 50) {
+						$('.cke_contents').css('height', 'calc(100vh - 290px)')
+						$('.cke_contents').css('height', 'calc(100vh - 213px)')
+					}
+
+					bindEvent();
+
+				})
+
+
+			}, 10)
+		</script>
+	</body>
+</html>

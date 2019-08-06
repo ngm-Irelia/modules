@@ -6,25 +6,26 @@
 	</head>
 	<body>
 		<script>
-			let arr = [12,23,45,21,67,35];
-			
+			let baseArr = [12,23,67,45,21,35];
 			// 冒泡排序  
 			// 核心思想,正序循环数组,最大的 放在了最右边!
+			
+			//算法分析 最佳情况：T(n) = O(n)   最差情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
+
+			
 			function bubbleSort(arr){
-				let len = arr.length;
-				for(var i=0;i<len;i++){
-					for(var j=0;j<len-1-i;j++){// 反向查找
-						if(arr[j] > arr[j+1]){
-							var temp = arr[j+1];
-							arr[j+1] = arr[j];
-							arr[j] = temp;
+				for(let i=0;i<arr.length;i++){ // 注意! 这个i不参与数组操作
+					for(let j=0;j<arr.length-i;j++){ // 注意 -i是优化后的代码, 最开始-1 ,后面的判断其实没必要
+						if(arr[j]>arr[j+1]){
+							[arr[j],arr[j+1]] = [arr[j+1],arr[j]];
 						}
-						
 					}
+					console.log(arr)
 				}
-				
-				return arr;
 			}
+			
+			bubbleSort(baseArr);
+
 		</script>
 	</body>
 </html>

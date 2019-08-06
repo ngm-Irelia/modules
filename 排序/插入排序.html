@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let baseArr = [12,23,67,45,21,35];
+			
+			// 插入排序
+			// 核心思想, 从第一个元素开始,取出下一个元素，在已经排序的元素序列中从后向前扫描；如果该元素大于新元素，将该元素移到下一位置；
+			
+			//算法分析 最佳情况：T(n) = O(n)   最坏情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
+
+			function insertSort(arr){
+				for(let i=0;i<arr.length;i++){ // 控制current往后走
+					let current = i+1;
+					for(let j=current;j>=0;j--){ 
+						if(arr[j]>arr[current]){
+							[arr[j],arr[current]] = [arr[current],arr[j]];//交换位置
+							current--;
+						}
+					}
+					
+					console.log(arr)
+				}
+			}
+			
+			insertSort(baseArr);
+
+		</script>
+	</body>
+</html>

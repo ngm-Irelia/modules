@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let baseArr = [12, 23, 67, 45, 21, 35];
+
+			// 希尔排序
+			// 简单插入排序经过改进之后的一个更高效的版本
+			// 核心思想, 选择增量gap=length/2，缩小增量继续以gap = gap/2的方式，
+			//
+			//
+			//
+
+			//算法分析 最佳情况：T(n) = O(n)   最坏情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
+
+			function shellSort(arr) {
+				let gap = parseInt(arr.length / 2);
+				console.log(gap)
+				while (gap > 0) {
+					for (let i = gap; i < arr.length; i++) { // 控制current往后走
+
+						// arr[i] 和 arr[i+gap] 的区别
+						let current = arr[i];
+						let preIndex = i-gap;
+						console.log(i+"和"+preIndex+"比较")
+						while(preIndex>=0 && arr[preIndex]>current){
+							if(i === 4){
+								console.log("arr[i] === "+arr[i])
+								console.log("arr[preIndex] === "+arr[preIndex])
+								console.log("current === "+current)
+							}
+							
+							arr[i] = arr[preIndex];
+							preIndex -= gap;
+							
+							
+						}
+						arr[preIndex+gap] = current;
+						
+					}
+					
+					gap = parseInt(gap / 2);
+					
+				}
+			}
+
+			/* function shellSort(arr) {
+				let gap = parseInt(arr.length / 2);
+				console.log(gap)
+				while (gap > 0) {
+					for (let i = 0; i < gap; i++) { // 控制current往后走
+
+						// arr[i] 和 arr[i+gap] 的区别
+						let current = i + gap;
+						for (let j = i; j < arr.length; j = j + gap) {
+							console.log(j)
+							if ((j + gap) < arr.length) {
+								if (arr[j] > arr[j + gap]) {
+									[arr[j], arr[j + gap]] = [arr[j + gap], arr[j]]; //交换位置
+								}
+							}
+
+						}
+					}
+					console.log(arr)
+					gap = parseInt(gap / 2);
+				}
+			} */
+
+			shellSort(baseArr);
+		</script>
+	</body>
+</html>

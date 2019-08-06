@@ -908,9 +908,9 @@ var Components = window.Components = Components || {};
 			document.body.appendChild(divL);
 		}else{
 			let noticeHtml = ` 
+			<span id="ct_page_notice_title">${title}</span>
 			<div id="ct_page_notice">
 				<div id="ct_page_notice_body">
-					<span id="ct_page_notice_title">${title}</span>
 					<span id="ct_page_notice_content">${content}</span>
 				</div>
 			</div>`;
@@ -919,9 +919,9 @@ var Components = window.Components = Components || {};
 		}
 
 		let MyMar = null; //计时器
-		var scroll_begin = document.getElementById("ct_page_notice_body"); //获取滚动的开头id
+		let scroll_begin = document.getElementById("ct_page_notice_body"); //获取滚动的开头id
 		
-		var scroll_div = document.getElementById("ct_page_notice"); //获取整体的开头id
+		let scroll_div = document.getElementById("ct_page_notice"); //获取整体的开头id
 		let widthSign = scroll_div.getBoundingClientRect().width;
 		let widthMin = -scroll_begin.getBoundingClientRect().width;
 		//定义一个方法
@@ -937,6 +937,57 @@ var Components = window.Components = Components || {};
 					MyMar = setInterval(Marquee, speed);
 				}
 			}	
+		}
+		MyMar = setInterval(Marquee, speed); //给上面的方法设置时间  setInterval
+		//鼠标悬停 公告栏的时候,清除上面的方法,让公告栏暂停
+		scroll_div.onmouseover = function() {
+			clearInterval(MyMar);
+		}
+		//鼠标点击其他地方的时候,公告栏继续运动
+		scroll_div.onmouseout = function() {
+			MyMar = setInterval(Marquee, speed);
+		}
+	}
+	
+	/**
+	 * 向上滚动 公告栏
+	 * @param {*} config  公告栏需要的字段信息
+	 * {
+			title:"公告标题-支持html",
+			content:"公告内容-支持html。 必须是一个ul - li 格式",
+			color:"公告文字颜色{string}",
+			speed:"字条滚动速度，毫秒{number}",
+			size:"循环滚动次数{number}",
+			dom:'domid{string}'   
+		}
+	 */
+	Components.ct.upNotice = function(config){
+		let { title,content,color,speed=3000, size:noticeSize=1,dom } = config;
+	
+		if(!dom){
+			return "";
+		}else{
+			let noticeHtml = `
+				<span id="ct_page_upNotice_title">${title}</span>
+				<div class="ct_page_upNotice" id="ct_page_upNotice">
+					${content}
+				</div>
+			`;
+	
+			document.getElementById(dom).innerHTML = noticeHtml;
+		}
+	
+		let MyMar = null; //计时器
+		let scroll_div = document.getElementById("ct_page_upNotice"); //获取整体的开头id
+		//定义一个方法
+		function Marquee() {
+			$("#"+dom).find("ul:first").animate({
+				marginTop: "-25px"
+			}, 500, function() {
+				$(this).css({
+					marginTop: "0px"
+				}).find("li:first").appendTo(this);
+			});
 		}
 		MyMar = setInterval(Marquee, speed); //给上面的方法设置时间  setInterval
 		//鼠标悬停 公告栏的时候,清除上面的方法,让公告栏暂停

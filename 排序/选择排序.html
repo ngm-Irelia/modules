@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let baseArr = [12,23,67,45,21,35];
+			
+			// 选择排序
+			// 核心思想, 左侧有序区,右侧无序区. 循环无序区拿到最小值,放到有序区
+			
+			//算法分析 最佳情况：T(n) = O(n2)  最差情况：T(n) = O(n2)  平均情况：T(n) = O(n2)
+			
+			function selectSort(arr){
+				for(let i=0;i<arr.length;i++){
+					let minIndex = i;
+					for(let j=i;j<arr.length;j++){ // 注意 -i是优化后的代码, 最开始-1 ,后面的判断其实没必要
+						
+						if(arr[minIndex]>arr[j]){
+							minIndex = j;
+						}
+					}
+					//交换位置
+					[arr[i],arr[minIndex]] = [arr[minIndex],arr[i]];
+					console.log(arr)
+				}
+			}
+			
+			selectSort(baseArr);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+/*@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,400,400i,600,600i,700,700i');*/
+
+body.document-editor {
+    width: 15.8cm;
+    min-height: 21cm;
+    padding: 1cm 2cm 2cm;
+    margin: 0.5cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: "Nunito Sans", Verdana, Helvetica, sans-serif;
+}
+body.document-editor img{
+	max-width: 100%;
+}
+body.document-editor td, body.document-editor th {
+    font-size: 0.9em;
+}
+
+body.document-editor h1 {
+    margin-bottom:1cm;
+}
+
+body.document-editor table {
+    margin-top:0.5cm;
+    margin-bottom:0.5cm;
+}
+
+body.document-editor table td {
+    border-right: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+body.document-editor table td:first-of-type {
+    border-left: 1px solid #d0d0d0;
+}
+
+body.document-editor table tr:first-of-type td {
+    border-top: 1px solid #d0d0d0;
+}
+
+body.document-editor table thead th {
+    border-top: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+}
+
+body.document-editor table thead th:first-of-type {
+    border-left: 1px solid #d0d0d0;
+}
+
+
+/*zyw 2018-01-26 12:41:26*/
+html{background: #f2f6fc;}
+a{text-decoration: none;    color: inherit;}
+
+::-webkit-scrollbar {
+	position: absolute;
+	width: 12px;
+	margin-left: -10px;
+	-webkit-appearance: none;
+	background: transparent;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #f0f0f0;
+	border-right: none;
+	border-left: none
+}
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	background-color: rgba(160, 174, 186, 0.4);
+	background-clip: content-box;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 1px 2px;
+	border-radius: 7px
+}
+
+.hit_span{
+	cursor: pointer;
+}
+@media screen and (min-width:1920px) {
+    body.document-editor{font-size: 16px;width: 15.8cm;}
+}
+@media screen and (min-width:1680px) {
+    body.document-editor{font-size: 16px;width: 13.8cm;}
+}
+@media screen and (min-width:1600px) {
+    body.document-editor{font-size: 16px;width: 13cm;}
+}
+@media screen and (min-width:1400px) {
+    body.document-editor{font-size: 14px;width: 12.8cm;}
+}
+@media screen and (min-width:1280px) {
+    body.document-editor{font-size: 14px;width: 11cm;}
+}

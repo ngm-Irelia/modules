@@ -598,7 +598,12 @@ html, body {
 	left: 0px;
 }
 
-#ct_page_notice_title, #ct_page_notice_content {
+#ct_page_notice_title {
+	white-space: nowrap;
+	float: left;
+}
+
+ #ct_page_notice_content {
 	white-space: nowrap;
 	display: inline;
 }
@@ -760,3 +765,15 @@ html, body {
 	background-color: #eee;
 } 
 /*userGroup end*/
+
+/*upNotice*/
+#ct_page_upNotice {
+	height: 30px;/* 必要元素 */
+	line-height: 30px;
+	overflow: hidden;/* 必要元素 */
+	margin-right: 10px;
+}
+#ct_page_upNotice li {
+	height: 30px;
+	padding-left: 10px;
+}

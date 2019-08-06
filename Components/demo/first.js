@@ -54,6 +54,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		});
 
 	})
+	
+	//upNotice 公告栏 组件
+	$("#upNotice-btn").bind("click",function(){
+		Components().upNotice({
+			title:"<span style='color:red;'>公告内容</span>:",
+			content:'<ul><li><a href="#">jquery 滚动条 Scrollbar 设置浏览器默认滚动条样式</a></li><li><a href="#">jquery 图片切换 switchable 带左右按钮控制分页索引图片切换</a></li></ul>',
+			color:"red",
+			speed:3000,
+			size:2,
+			dom:'upNotice'
+		});
+	
+	})
 
 	//modal 模态框 组件
 	$("#modal-btn").bind("click",function(){

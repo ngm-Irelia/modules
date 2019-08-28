@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/jquery-3.3.1.js"></script>
+		</head>
+	<body>
+		<script>
+			console.log("222")
+			//全局的ajax访问，处理ajax清求时异常
+			$.ajaxSetup({
+				contentType: "application/x-www-form-urlencoded;charset=utf-8",
+				complete: function(XMLHttpRequest, textStatus) {
+					console.log("???")
+					//通过XMLHttpRequest取得响应结果
+					var res = XMLHttpRequest.responseText;
+					try {
+						var jsonData = JSON.parse(res);
+						if (jsonData.state == -1) {
+							//如果超时就处理 ，指定要跳转的页面(比如登陆页)
+							alert(jsonData.msg);
+						} else if (jsonData.state == 0) {
+							//其他的异常情况,给个提示。
+							alert(jsonData.msg);
+						} else {
+							console.log("正常情况就不统一处理了")
+						}
+					} catch (e) {}
+				}
+			});
+
+			//获取数据
+			function getContent() {
+				console.log("发送请求");
+				$.get("content.php",function(data){
+					console.log(data)
+				})
+			};
+			
+			getContent();
+		</script>
+		</body>
+</html>

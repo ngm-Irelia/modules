@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?bf515042093c3de99a0ba28c661b07b4";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>formSelects 基于Layui的多选解决方案</title>
+		<link rel="stylesheet" type="text/css" href="../UI/layui-v2.3.0-rc1/layui/css/layui.css" />
+		<link href="../UI/SyntaxHighlighter-3.0.83/shCore.css" rel="stylesheet">
+		<link href="../UI/SyntaxHighlighter-3.0.83/shThemeEclipse.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../dist/formSelects-v4.css"/>
+		<style type="text/css">
+			.syntaxhighlighter {overflow-y: hidden !important;}
+			.syntaxhighlighter .toolbar{background: none !important;}
+			.syntaxhighlighter .toolbar a {display: none !important;}
+			.layui-colla-content{padding: 0 10px;}
+			/*.syntaxhighlighter .toolbar a{display: none !important;}*/
+			.chat{font-size: 16px; color: #4f4f4f;  font-weight: 400; line-height: 26px; margin: 0 0 30px; text-align: justify;}
+			.chat > a{color: #01AAED;}
+			.chat > span{margin-right: 20px; -webkit-user-select: text; display: inline-block;}	
+			.title{margin-bottom: 20px; line-height: 60px; padding-bottom: 10px; color: #393D49; border-bottom: 1px solid #eee; font-size: 28px; font-weight: 300;}	
+			.layui-elem-quote{padding: 5px 15px; color: #393D49; font-size: 18px; border-width: 0px 0px 0px 5px;}
+			.sun-menu{-webkit-user-select: none;}
+			.layui-table, .layui-collapse, .example{margin-bottom: 30px;}
+			.example h3{margin: 15px 0 10px;font-weight: 400; color: #1f2f3d;font-size: 16px;}
+			.example p{font-size: 14px; color: #5e6d82; line-height: 1.5em;margin: 15px 0 10px;}
+			.example > div{padding: 20px; border: 1px solid #ebebeb; border-radius: 3px;transition: .2s;}
+			.example-show-code{margin-left: 30px; height: 36px; line-height: 36px;}
+			.example-btn{margin-left: 30px; height: 36px; line-height: 36px;}
+			.layui-layer-content{max-height: 600px;}
+			.over .line{margin-bottom: 10px!important;}
+			js{display: none;}
+			#openChat{position: fixed; right: 10px; bottom: 10px;}
+			.layui-layer[type="iframe"] .layui-layer-setwin{right: 453px;}
+		</style>
+	</head>
+
+	<body style="padding: 20px;">
+		
+		
+		
+		
+		
+		
+		
+		
+		<blockquote class="layui-elem-quote layui-quote-nm" id="examples">6、基础示例</blockquote>
+		<div class="example">
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select1">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_pane" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) pane模式">pane模式</h3>
+			<p>layui pane模式</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form layui-form-pane">
+						<div class="layui-form-item">
+							<label class="layui-form-label">多选框</label>
+							<div class="layui-input-block">
+								<select name="city" xm-select="select2">
+									<option value="1" disabled="disabled">北京</option>
+									<option value="2" selected="selected" disabled="disabled">上海</option>
+									<option value="3">广州</option>
+									<option value="4" selected="selected">深圳</option>
+									<option value="5">天津</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		<div class="example">
+			<h3 id="select_skin" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6) 多选皮肤">多选皮肤</h3>
+			<p>xm-select-skin="default"</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select6_1" xm-select-skin="default">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>xm-select-skin="primary", 这个墨绿style已经被内置成为了经典皮肤, 只因他诞生于layui的经典颜色</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select6_2" xm-select-skin="primary">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>xm-select-skin="normal"</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select6_3" xm-select-skin="normal">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>xm-select-skin="warm"</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select6_4" xm-select-skin="warm">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>xm-select-skin="danger"</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select6_5" xm-select-skin="danger">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_search_local" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7) 本地搜索">本地搜索</h3>
+			<p>xm-select-search, 搜索已存在的option</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select7_1" xm-select-search>
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>分组中的搜索</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select7_2" xm-select-search>
+						<optgroup label="分组1">
+							<option value="1" disabled="disabled">北京</option>
+							<option value="2" selected="selected">上海</option>
+						</optgroup>
+						<optgroup label="分组2">
+							<option value="3">广州</option>
+							<option value="4" selected="selected">深圳</option>
+							<option value="5">天津</option>
+						</optgroup>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div class="example">
+			<h3 id="select_height" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11) 固定高度">固定高度</h3>
+			<p>xm-select-height="36px", 多选的高度是随便选项的变化而变化的, 当然你也可以固定一个高度, 从此高度将不再变化</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="select11" xm-select-height="36px">
+							<option value="1" selected="selected">北京</option>
+							<option value="2" selected="selected">上海</option>
+							<option value="3" selected="selected">广州</option>
+							<option value="4" selected="selected">深圳</option>
+							<option value="5" selected="selected">天津</option>
+							<option value="6" selected="selected">杭州</option>
+						</select>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<blockquote class="layui-elem-quote layui-quote-nm" id="examples2">7、进阶示例</blockquote>
+		<div class="example">
+			<h3 id="select_on" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) 监听select选择">监听select选择</h3>
+			<p>适用于动态操作</p>
+			<p>选择[北京]时, 会发现选不上哦</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example1">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+						<js>
+							layui.formSelects.on('example1', function(id, vals, val, isAdd, isDisabled){
+								//id: 			点击select的id
+								//vals:			当前select已选中的值
+								//val:			当前select点击的值
+								//isAdd:		当前操作选中or取消
+								//isDisabled:	当前选项是否是disabled
+								alert("选择了: " + val.name);
+								//如果return false, 那么将取消本次操作
+								if(val.value == 1){
+									return false;
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>获取实时数据</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example1_1">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+						<js>
+							layui.formSelects.on('example1_1', function(id, vals, val, isAdd, isDisabled){
+								//id: 			点击select的id
+								//vals:			当前select已选中的值
+								//val:			当前select点击的值
+								//isAdd:		当前操作选中or取消
+								//isDisabled:	当前选项是否是disabled
+								alert("当前选择了: " + JSON.stringify(vals));
+							}, true);
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_value" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) 赋值与取值">赋值与取值</h3>
+			<p>多选取值</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example2_1">
+							<option value="1" selected="selected">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+						<js>
+							layui.formSelects.value('example2_1');				//取值默认数组
+							layui.formSelects.value('example2_1', 'val');		//取值val数组
+							layui.formSelects.value('example2_1', 'valStr');	//取值val字符串
+							layui.formSelects.value('example2_1', 'name');		//取值name数组
+							layui.formSelects.value('example2_1', 'nameStr');	//取值name字符串
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn example-btn" onclick="alert(JSON.stringify(formSelects.value('example2_1')))">默认数组</button>
+				<button class="layui-btn example-btn" onclick="alert(JSON.stringify(formSelects.value('example2_1', 'val')))">val数组</button>
+				<button class="layui-btn example-btn" onclick="alert(JSON.stringify(formSelects.value('example2_1', 'valStr')))">val字符串</button>
+				<button class="layui-btn example-btn" onclick="alert(JSON.stringify(formSelects.value('example2_1', 'name')))">name数组</button>
+				<button class="layui-btn example-btn" onclick="alert(JSON.stringify(formSelects.value('example2_1', 'nameStr')))">name字符串</button>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			
+			<p>多选赋值</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example2_2">
+							
+						</select>
+						<js>
+							layui.formSelects.value('example2_2', []);			//赋值空数组, 清空所有
+							layui.formSelects.value('example2_2', [1, 2]);		//赋值 北京,上海
+							layui.formSelects.value('example2_2', [5], true);	//追加赋值 天津
+							layui.formSelects.value('example2_2', [1], false);	//删除 已选择 [北京]
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn example-btn" onclick="formSelects.value('example2_2', [])">清空所有</button>
+				<button class="layui-btn example-btn" onclick="formSelects.value('example2_2', [1, 2])">赋值 北京,上海</button>
+				<button class="layui-btn example-btn" onclick="formSelects.value('example2_2', [5], true)">追加赋值 天津</button>
+				<button class="layui-btn example-btn" onclick="formSelects.value('example2_2', [1], false)">删除 已选择 [北京]</button>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		<div class="example">
+			<h3 id="select_filter" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) 自定义搜索">自定义搜索</h3>
+			<p>如果设置了xm-select-search="", 当你搜索的时候是默认判断选项文本是否包含搜索的值</p>
+			<p>如下是检测 全拼,简拼,文本是否包含, 其中汉字转拼音摘录于网络</p>
+			<p>可以尝试使用拼音进行搜索</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example4" xm-select-search="">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+						<js>
+							layui.formSelects.filter('example4', function(id, inputVal, val, isDisabled){
+							    if(
+							    	PY.fullPY(val.name).toLowerCase().indexOf(inputVal) != -1 ||	//拼音全拼是否包含
+							    	PY.fullPY(val.name, true).indexOf(inputVal) != -1 ||			//拼音简拼是否包含
+							    	val.name.indexOf(inputVal) != -1 								//文本是否包含
+							   	){
+							    	return false;
+							    }
+							    return true;
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>友情提示: 远程搜索是不会经过此方法滴</p>
+		</div>
+		<div class="example">
+			<h3 id="select_config" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 配置">配置</h3>
+			<p>说起来这是个又爱又恨的方法, 设计之初是准备专门配置远程搜索用的, 无奈后面增加了很多东西, 结果变成了专门的配置方法了</p>
+			<p>好像没啥好说的, 都是点儿配置的东西, 说点儿场景吧</p>
+			<p> - 默认本地数据, js动态配置成远程搜索, 首先开启搜索模式 xm-select-search="", 然后config中定义url, 适用于url为可变参数的情况下</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example5_1" xm-select-search="">
+							<option value="">哈哈, 默认是没有的, 显示的是远程数据</option>
+						</select>
+						<js>
+							layui.formSelects.config('example5_1', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p> - 点击加载</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example5_2" xm-select-search="">
+							<option value="">哈哈, 默认是没有的</option>
+						</select>
+						<js>
+							layui.formSelects.config('example5_2', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn example-btn" onclick="formSelects.config('example5_2', {searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'})">点我加载</button>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p> - beforeSuccess的用法</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example5_3" xm-select-search="">
+							<option value="">哈哈, 默认是没有的</option>
+						</select>
+						<js>
+							layui.formSelects.config('example5_3', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+								beforeSuccess: function(id, url, searchVal, result){
+									//我要把数据外层的code, msg, data去掉
+									result = result.data;
+									//我要反转name
+									$.each(result, function(index, item) {
+										item.name && (item.name = item.name.split('').reverse().join(''))
+									});
+									//然后返回数据
+									return result;
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>当然上面的处理方法是用于演示beforeSuccess的用法的, 正确的姿势应该是转换数据结构滴</p>
+			<p>success, error可以直接打开控制台, 查看console的打印记录</p>
+			<p><b>远程数据的赋值</b></p>
+			<p>远程数据是使用ajax异步的模式来获取的, 所以赋值不能直接在config之后</p>
+			<p>方式一: 在返回数据中包含selected属性</p>
+			<p>方式二: 在success回调中使用value进行赋值</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example5_4" xm-select-search="">
+							<option value="">哈哈, 我没赋值成功</option>
+						</select>
+						<js>
+							layui.formSelects.config('example5_4', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+								success: function(id, url, searchVal, result){
+									formSelects.value('example5_4', [3, 4]);
+								}
+							});
+							//赋值失败了, 我的天, 什么情况, 结果发现对应3,4的value根本不存在!!! 请往下看
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>上面好像不太对</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example5_5" xm-select-search="">
+							<option value="">哈哈, 默认是没有的</option>
+						</select>
+						<js>
+							layui.formSelects.config('example5_5', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+								success: function(id, url, searchVal, result){
+									formSelects.value('example5_5', [result.data[0].value, result.data[4].value]);
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_data" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6) 动态数据">动态数据</h3>
+			<p>本地数据</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example6_1">
+							<option value="">来自星星的你</option>
+						</select>
+						<js>
+							layui.formSelects.data('example6_1', 'local', {
+							    arr: [
+							        {"name": "分组-1", "type": "optgroup"},
+							        {"name": "北京", "value": 1},
+							        {"name": "上海", "value": 2},
+							        {"name": "分组-2", "type": "optgroup"},
+							        {"name": "广州", "value": 3},
+							        {"name": "深圳", "value": 4},
+							        {"name": "天津", "value": 5}
+							    ]
+							});
+							//佛曰, 格式不可变, 不喜欢 name,value 可以使用config重新定义
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>远程数据, 也许你只希望加载一次, 而不是搜索一次变一次, 这个更适合你</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example6_2">
+							<option value="">来自星星的你</option>
+						</select>
+						<js>
+							layui.formSelects.data('example6_2', 'server', {
+							    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+							});
+							//佛曰, 格式不可变, 不喜欢 name,value 可以使用config重新定义
+							//同样适合剥去外皮, 同样可以使用config beforeSuccess处理数据, 不过你需要这么写
+							layui.formSelects.config('example6_2', {
+								beforeSuccess: function(id, url, searchVal, result){
+									//我要把数据外层的code, msg, data去掉
+									result = result.data;
+									//我要反转name
+									$.each(result, function(index, item) {
+										item.name && (item.name = item.name.split('').reverse().join(''))
+									});
+									//然后返回数据
+									return result;
+								}
+							}).data('example6_2', 'server', {
+							    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+							});
+							//使用了新增的链接写法, 当然你也可以分开写
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>不知道你们为什么吐槽我的设计, 也许真的是不好, 新增如下写法</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example6_3">
+							<option value="">来自星星的你</option>
+						</select>
+						<js>
+							layui.formSelects.data('example6_3', 'server', {
+							    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+							    beforeSuccess: function(id, url, searchVal, result){
+									//我要把数据外层的code, msg, data去掉
+									result = result.data;
+									//我要反转name
+									$.each(result, function(index, item) {
+										item.name && (item.name = item.name.split('').reverse().join(''))
+									});
+									//然后返回数据
+									return result;
+								},
+								success: function(id, url, searchVal, result){
+									console.log('id: example6_3, 成功返回数据!!!');
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>来一发树状结构压压惊</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example6_4">
+							<option value="">此树是我栽</option>
+						</select>
+						<js>
+							//这里面的自由参数可以在template中使用
+							//只是加了一个树状展示形式, 过多的还没有做哈~ 有需求的可以提出来
+							layui.formSelects.data('example6_4', 'local', {
+								arr: [
+								    {
+								        "name": "北京",
+								        "value": 1,
+								        "xslkdf": "123",
+								        "children": [
+								            {
+								                "name": "朝阳",
+								                "value": 11,
+								                "children": [
+								                    {"name": "酒仙桥", "value": 111},
+								                    {"name": "望京东", "value": 121}
+								                ]
+								            },
+								            {"name": "海淀", "value": 12}
+								        ]
+								    },
+								    {
+								        "name": "深圳",
+								        "value": 2,
+								        "children": [
+								            {"name": "龙岗", "value": 21}
+								        ]
+								    }
+								]
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_search" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7) 搜索控制">搜索控制</h3>
+			<p>当输入内容为空时不触发搜索</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example7_1" xm-select-search></select>
+						<js>
+							layui.formSelects.config('example7_1', {
+								searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data', 
+								beforeSearch: function(id, url, val){
+									if(!val){
+										console.log('内容为空, 不进行远程搜索')
+										return false;
+									}
+									return true;
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+			<p>主动触发搜索</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example7_2" xm-select-search="https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data"></select>
+						<js>
+							layui.formSelects.search('example7_2', 'click');
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn example-btn" onclick="formSelects.search('example7_2', 'click')">点我搜索查看选项变化</button>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_show_count" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8) 显示数量">显示数量</h3>
+			<p>默认显示全部, 如果设置了高度的话就是显示指定范围内的label, 当然你也可以控制显示的数量</p>
+			<p>xm-select-show-count="2", 最多显示2个, 多余的隐藏</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example8_1" xm-select-show-count="2">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+							<option value="6">郑州</option>
+							<option value="7">合肥</option>
+							<option value="8">邯郸</option>
+							<option value="9">舟山</option>
+							<option value="10">海南</option>
+							<option value="11">南京</option>
+							<option value="12">哈尔滨</option>
+						</select>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_template" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9) 自定义模板">自定义模板</h3>
+			<p>选项默认是显示的孤零零的name值, 你也可以自定义格式</p>
+			<p>比如来一个左边name, 右边拼音的</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example9_1" xm-select-show-count="2" xm-select-search xm-select-search-type="dl">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+							<option value="6">郑州</option>
+							<option value="7">合肥</option>
+							<option value="8">邯郸</option>
+							<option value="9">舟山</option>
+							<option value="10">海南</option>
+							<option value="11">南京</option>
+							<option value="12">哈尔滨</option>
+						</select>
+						<js>
+							layui.formSelects.render('example9_1', {
+								template: function(name, value, selected, disabled){
+									return name + '&lt;span style="position: absolute; right: 0; color: #A0A0A0; font-size: 12px;">' + PY.fullPY(name) + '&lt;/span>';
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_search_type" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10) 搜索位置">搜索位置</h3>
+			<p>默认是在title上的, 可以设置到选项中, 前提是你打开了搜索</p>
+			<p>xm-select-search-type="dl"</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example10_1" xm-select-search xm-select-search-type="dl">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_tree" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11) 树状结构">树状结构</h3>
+			<p>惊喜有没有, 树状结构来一发</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example11_1">
+							<option value="">栽树乘凉</option>
+						</select>
+						<js>
+							layui.formSelects.data('example11_1', 'local', {
+								arr: [
+									{name: '分组1', type: 'optgroup'},
+									{name: '北京', value: 1, xslkdf: '123', children: [{name: '朝阳', disabled: true, value: 11}, {name: '海淀', value: 12}]},
+									{name: '分组2', type: 'optgroup'},
+									{name: '深圳', value: 2, children: [{name: '龙岗', value: 21}]},
+								],
+								tree: {
+									//在点击节点的时候, 如果没有子级数据, 会触发此事件
+									nextClick: function(id, item, callback){
+										//需要在callback中给定一个数组结构, 用来展示子级数据
+										callback([
+											{name: 'test1', value: Math.random()},
+											{name: 'test2', value: Math.random()}
+										])
+									},
+								}
+							});
+							
+							//这里也算是给自己挖了一手好坑吧, 简单的一种处理方式, 在多选第一次打开的时候收缩所有的子节点, 目前处理的很粗鲁, 就是为了一种效果, 收缩全部节点
+							var isFirst = true;
+							layui.formSelects.opened('example11_1', function(id){
+								if(isFirst){
+									isFirst = false;
+									$('[fs_id="example11_1"]').find('.xm-cz i.icon-caidan').click();
+								}
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		<div class="example">
+			<h3 id="select_search_type" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12) 监听打开关闭">监听打开关闭</h3>
+			<p>监听下拉选框的打开与关闭</p>
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<div class="layui-form">
+						<select name="city" xm-select="example12_1">
+							<option value="1">北京</option>
+							<option value="2">上海</option>
+							<option value="3">广州</option>
+							<option value="4">深圳</option>
+							<option value="5">天津</option>
+						</select>
+						<js>
+							layui.formSelects.opened('example12_1', function(id){
+								alert('打开了...');
+							});
+							layui.formSelects.closed('example12_1', function(id){
+								alert('关闭了...');
+							});
+						</js>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		<blockquote class="layui-elem-quote layui-quote-nm" id="over">结尾</blockquote>
+		
+		
+
+<script type="syntaxhighlighter" xid="use" class="brush: js"><![CDATA[
+//1.下载formSelects-v4
+
+//然后引入formSelects.css
+&lt;link rel="stylesheet" href="formSelects-v4.css" />
+
+//2.模块化使用
+&lt;script src="layui.js" type="text/javascript" charset="utf-8">&lt;/script>
+&lt;script type="text/javascript">
+	//全局定义一次, 加载formSelects
+	layui.config({
+		base: '../src/'	//此处路径请自行处理, 可以使用绝对路径
+	}).extend({
+		formSelects: 'formSelects-v4'
+	});
+	//加载模块
+	layui.use(['jquery', 'formSelects'], function(){
+		var formSelects = layui.formSelects;
+		
+	});
+&lt;/script>
+
+//3.非模块化使用
+&lt;script src="layui.all.js" type="text/javascript" charset="utf-8">&lt;/script>
+&lt;script src="formSelects-v4.js" type="text/javascript" charset="utf-8">&lt;/script>
+&lt;script type="text/javascript">
+	var formSelects = layui.formSelects;
+	
+&lt;/script>
+]]></script>
+
+<script type="syntaxhighlighter" xid="value" class="brush: js"><![CDATA[
+/**
+ * 1.获取选中数据
+ *
+ * formSelects.value(ID, TYPE);
+ *
+ * @param ID 	xm-select的值
+ * @param TYPE 	all | val | valStr | name | nameStr
+ */
+var formSelects = layui.formSelects;
+formSelects.value('select1');				// [{"name":"上海","val":"2"},{"name":"深圳","val":"4"}]
+formSelects.value('select1', 'all');		// [{"name":"上海","val":"2"},{"name":"深圳","val":"4"}]
+formSelects.value('select1', 'val');		// ["2","4"]
+formSelects.value('select1', 'valStr');		// 2,4
+formSelects.value('select1', 'name');		// ["上海","深圳"]
+formSelects.value('select1', 'nameStr');	// 上海,深圳
+
+
+/**
+ * 2.设置select的选中值
+ *
+ * formSelects.value(ID, ARR);
+ *
+ * @param ID 	xm-select的值
+ * @param ARR 	value数组
+ */
+var formSelects = layui.formSelects;
+formSelects.value('select1', [2, 4]);		// 选中value为2和4的option → 上海,深圳
+
+
+/**
+ * 3.追加或删除select的选中值
+ *
+ * formSelects.value(ID, ARR, isAppend);
+ *
+ * @param ID 	xm-select的值
+ * @param ARR 	value数组
+ */
+var formSelects = layui.formSelects;
+formSelects.value('select1', [2, 4], true);	// 追加value为2和4的option, 如果该值已选中则跳过, 该值未选中则选中
+formSelects.value('select1', [2, 4], false);// 删除value为2和4的option, 如果该值没有选中则跳过, 该值被选中则取消选中
+]]></script>
+
+<script type="syntaxhighlighter" xid="on" class="brush: js"><![CDATA[
+/**
+ * 1.监听select的选中与取消
+ *
+ * formSelects.on(ID, Function);
+ *
+ * @param ID 		xm-select的值
+ * @param Function 	自定义处理方法
+ * @param isEnd 	是否获取实时数据, true/false
+ */
+var formSelects = layui.formSelects;
+formSelects.on('select1', function(id, vals, val, isAdd, isDisabled){
+	//id: 			点击select的id
+	//vals:			当前select已选中的值
+	//val:			当前select点击的值
+	//isAdd:		当前操作选中or取消
+	//isDisabled:	当前选项是否是disabled
+	
+	//如果return false, 那么将取消本次操作
+	return false;	
+});
+
+//以下两种方式则配置所有的多选select
+formSelects.on(function(id, vals, val, isAdd, isDisabled){
+	...
+});
+formSelects.on(null, function(id, vals, val, isAdd, isDisabled){
+	...
+});
+
+//4.0.0.0813版本之前, 受到了颇多的小伙伴吐槽, 此版本加上了获取实时数据的方法
+formSelects.on('select1', function(id, vals, val, isAdd, isDisabled){
+	//id: 			点击select的id
+	//vals:			当前select已选中的值
+	//val:			当前select点击的值
+	//isAdd:		当前操作选中or取消
+	//isDisabled:	当前选项是否是disabled
+	
+}, true);
+
+]]></script>
+
+<script type="syntaxhighlighter" xid="maxTips" class="brush: js"><![CDATA[
+/**
+ * 1.多选select超出最大值的提示, 默认闪烁红色边框
+ *
+ * formSelects.maxTips(ID, Function);
+ *
+ * @param ID 		xm-select的值
+ * @param Function 	自定义处理方法
+ */
+var formSelects = layui.formSelects;
+formSelects.maxTips('select1', function(id, vals, val, max){
+	//id: 	点击select的id
+	//vals:	当前select已选中的值
+	//val:	当前select点击的值
+	//max:	当天多选最大值
+	alert("选超了...");
+});
+
+//以下两种方式则配置所有的多选select
+formSelects.maxTips(function(id, vals, val, max){
+	...
+});
+formSelects.maxTips(null, function(id, vals, val, max){
+	...
+});
+]]></script>
+
+<script type="syntaxhighlighter" xid="filter" class="brush: js"><![CDATA[
+/**
+ * 1.自定义本地搜索过滤方式, 默认匹配文本是否包含
+ *
+ * formSelects.filter(ID, Function);
+ *
+ * @param ID 		xm-select的值
+ * @param Function 	自定义处理方法
+ */
+var formSelects = layui.formSelects;
+formSelects.filter('select1', function(id, inputVal, val, isDisabled){
+	//id: 			点击select的id
+	//inputVal:		当前input搜索框中的数值
+	//val:			格式: {"name":"上海","val":"2"}
+	//isDisabled:	当前options是否被禁用
+	
+	//return true时该选项被过滤, 隐藏不显示
+	return true;
+});
+
+//以下两种方式则配置所有的多选select
+formSelects.filter(function(id, inputVal, val, isDisabled){
+	...
+});
+formSelects.filter(null, function(id, inputVal, val, isDisabled){
+	...
+});
+]]></script>
+
+<script type="syntaxhighlighter" xid="config" class="brush: js"><![CDATA[
+/**
+ * 1.配置远程搜索, 请求头, 请求参数, 请求类型等
+ *
+ * formSelects.config(ID, Options, isJson);
+ *
+ * @param ID 		xm-select的值
+ * @param Options 	配置项
+ * @param isJson 	是否传输json数据, true将添加请求头 Content-Type: application/json; charset=UTF-8
+ */
+var formSelects = layui.formSelects;
+formSelects.config('select1', {
+	type: 'get',				//请求方式: post, get, put, delete...
+	header: {},					//自定义请求头
+	data: {},					//自定义除搜索内容外的其他数据
+	searchUrl: '',				//搜索地址, 默认使用xm-select-search的值, 此参数优先级高
+	searchName: 'keyword',		//自定义搜索内容的key值
+	searchVal: '',				//自定义搜索内容, 搜素一次后失效, 优先级高于搜索框中的值
+	keyName: 'name',			//自定义返回数据中name的key, 默认 name
+	keyVal: 'value',			//自定义返回数据中value的key, 默认 value
+	keySel: 'selected',			//自定义返回数据中selected的key, 默认 selected
+	keyDis: 'disabled',			//自定义返回数据中disabled的key, 默认 disabled
+	keyChildren: 'children',	//联动多选自定义children
+	delay: 500,					//搜索延迟时间, 默认停止输入500ms后开始搜索
+	direction: 'auto',			//多选下拉方向, auto|up|down
+	response: {
+		statusCode: 0,          //成功状态码
+		statusName: 'code',     //code key
+		msgName: 'msg',         //msg key
+		dataName: 'data'        //data key
+	},
+	success: function(id, url, searchVal, result){		//使用远程方式的success回调
+		console.log(id);		//组件ID xm-select
+		console.log(url);		//URL
+		console.log(searchVal);	//搜索的value
+		console.log(result);	//返回的结果
+	},
+	error: function(id, url, searchVal, err){			//使用远程方式的error回调
+		//同上
+		console.log(err);	//err对象
+	},
+	beforeSuccess: function(id, url, searchVal, result){		//success之前的回调, 干嘛呢? 处理数据的, 如果后台不想修改数据, 你也不想修改源码, 那就用这种方式处理下数据结构吧
+		console.log(id);		//组件ID xm-select
+		console.log(url);		//URL
+		console.log(searchVal);	//搜索的value
+		console.log(result);	//返回的结果
+		
+		return result;	//必须return一个结果, 这个结果要符合对应的数据结构
+	},
+	beforeSearch: function(id, url, searchVal){			//搜索前调用此方法, return true将触发搜索, 否则不触发
+		if(!searchVal){//如果搜索内容为空,就不触发搜索
+			return false;
+		}
+		return true;
+	},
+	clearInput: false, 			//当有搜索内容时, 点击选项是否清空搜索内容, 默认不清空
+}, true);
+
+//以下两种方式则配置所有的多选select
+formSelects.config('select1', {
+	...
+}, false);
+formSelects.config(null, {
+	...
+}, false);
+]]></script>
+
+<script type="syntaxhighlighter" xid="render" class="brush: js"><![CDATA[
+/**
+ * 1.重新渲染, 如果已经是多选则重置为初始值, 如果是初始select则渲染为多选 
+ * 2.支持渲染时候改变多个参数
+ *
+ * formSelects.render(ID);
+ *
+ * @param ID 		xm-select的值
+ */
+var formSelects = layui.formSelects;
+formSelects.render('select1', {
+	init: ["1", "2"],				//默认值
+	skin: "danger",					//多选皮肤
+	height: "auto",					//是否固定高度, 38px | auto
+	radio: false,					//是否设置为单选模式
+	direction: "auto",
+	create: function(id, name){
+		console.log(id);	//多选id
+		console.log(name);	//创建的标签名称
+		
+		return Date.now();	//返回该标签对应的val
+	},			
+	filter: fun...,			//同formSelects.filter			
+	max: 3,					//多选最多选择量			
+	maxTips: fun...,		//同formSelects.maxTips
+	on: fun...,				//同formSelects.on
+	searchType: "title",	//搜索框的位置			
+	template: function(name, value, selected, disabled){
+		console.log(name);		//选项名
+		console.log(value);		//选项值
+		console.log(selected);	//是否被选中
+		console.log(disabled);	//是否被禁用
+		
+		//例如: 反转字符串
+		//return name.split('').reverse().join('');
+		return name;		//返回一个html结构, 用于显示选项
+	},
+	showCount: 0, 			//多选的label数量, 0,负值,非数字则显示全部
+});
+
+//以下方式则重新渲染所有的已存在多选
+formSelects.render();
+]]></script>
+
+<script type="syntaxhighlighter" xid="disabled" class="brush: js"><![CDATA[
+/**
+ * 1.禁用多选
+ *
+ * formSelects.disabled(ID);
+ *
+ * @param ID 		xm-select的值
+ */
+var formSelects = layui.formSelects;
+formSelects.disabled('select1');
+
+//以下方式则禁用所有的已存在多选
+formSelects.disabled();
+]]></script>
+
+<script type="syntaxhighlighter" xid="undisabled" class="brush: js"><![CDATA[
+/**
+ * 1.启用多选, 启用被禁用的多选
+ *
+ * formSelects.undisabled(ID);
+ *
+ * @param ID 		xm-select的值
+ */
+var formSelects = layui.formSelects;
+formSelects.undisabled('select1');
+
+//以下方式则启用所有的已存在多选
+formSelects.undisabled();
+]]></script>
+
+<script type="syntaxhighlighter" xid="data" class="brush: js"><![CDATA[
+/**
+ * 1.多选数据赋值
+ *
+ * formSelects.data(ID, type, config);
+ *
+ * @param ID 			xm-select的值
+ * @param type 			'local' | 'server', 本地数据或者远程数据
+ * @param config 		配置项
+ * 			arr				本地数据数组
+ * 			url				远程数据链接
+ * 			keyword			远程数据搜索内容, 其他附加数据可以使用 formSelects.config设置
+ * 			linkage			是否为联动多选
+ * 			linkageWidth	联动多选没级宽度
+ */
+
+//以下代码可以在console中运行测试, 结果查看基础示例第一个
+var formSelects = layui.formSelects;
+
+//local模式
+formSelects.data('select1', 'local', {
+	arr: [
+		{"name": "分组-1", "type": "optgroup"},
+        {"name": "北京", "value": 1},
+        {"name": "上海", "value": 2},
+        {"name": "分组-2", "type": "optgroup"},
+        {"name": "广州", "value": 3},
+        {"name": "深圳", "value": 4},
+        {"name": "天津", "value": 5}
+	]
+});
+
+//server模式
+formSelects.data('select1', 'server', {
+    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+    keyword: '水果'
+});
+//server返回数据与远程搜索数据结构一致
+{
+	"code":0,
+	"msg":"success",
+	"data":[
+		{"name":"北京","value":1,"selected":"","disabled":""},
+		{"name":"上海","value":2,"selected":"","disabled":""},
+		{"name":"广州","value":3,"selected":"selected","disabled":""},
+		{"name":"深圳","value":4,"selected":"","disabled":"disabled"},
+		{"name":"天津","value":5,"selected":"","disabled":""}
+	]
+}
+//当然你也可以偷懒, 返回如下结构
+[
+	{"name":"北京","value":1,"selected":"","disabled":""},
+	{"name":"上海","value":2,"selected":"","disabled":""},
+	{"name":"广州","value":3,"selected":"selected","disabled":""},
+	{"name":"深圳","value":4,"selected":"","disabled":"disabled"},
+	{"name":"天津","value":5,"selected":"","disabled":""}
+]
+
+/*************** 华丽的分割线 ***************/
+//来一个树状结构的数据
+formSelects.data('select15', 'local', {
+	arr: [
+		{name: '北京', value: 1, xslkdf: '123', children: [
+			{name: '朝阳', value: 11}, 
+			{name: '海淀', value: 12}
+		]},
+		{name: '深圳', value: 2, children: [{name: '龙岗', value: 21}]},
+	]
+});
+
+
+/*************** 华丽的分割线 ***************/
+//联动多选数据格式
+//local, 注意 value值请保证唯一
+formSelects.data('select15', 'local', {
+    arr: [
+        {
+            "name": "北京", 
+            "value": 1, 
+            "children": [
+                {"name": "北京市1", "value": 12, "children": [
+                    {"name": "朝阳区1", "value": 13, "children": []},
+                    {"name": "朝阳区2", "value": 14, "children": []},
+                    {"name": "朝阳区3", "value": 15, "children": []},
+                    {"name": "朝阳区4", "value": 16, "children": []},
+                ]},
+                {"name": "北京市2", "value": 17, "children": []},
+                {"name": "北京市3", "value": 18, "children": []},
+                {"name": "北京市4", "value": 19, "children": []},
+            ]
+        },
+        {
+            "name": "天津", 
+            "value": 2, 
+            "children": [
+                {"name": "天津市1", "value": 51, "children": []},
+            ]
+        },
+    ],
+    linkage: true	//开启联动模式
+});
+
+//server
+formSelects.data('select15', 'server', {
+    url: 'http://yapi.demo.qunar.com/mock/9813/layui/citys',
+    linkage: true,
+    linkageWidth: 130	//代表每一级别的宽度, 默认是100
+});
+//server返回数据, 同上 value不能重复
+{
+	"code":0,
+	"msg":"success",
+	"data":[
+        {
+            "name": "北京", 
+            "value": 1, 
+            "children": [
+                {"name": "北京市1", "value": 12, "children": [
+                    {"name": "朝阳区1", "value": 13, "children": []},
+                    {"name": "朝阳区2", "value": 14, "children": []},
+                    {"name": "朝阳区3", "value": 15, "children": []},
+                    {"name": "朝阳区4", "value": 16, "children": []},
+                ]},
+                {"name": "北京市2", "value": 17, "children": []},
+                {"name": "北京市3", "value": 18, "children": []},
+                {"name": "北京市4", "value": 19, "children": []},
+            ]
+        },
+        {
+            "name": "天津", 
+            "value": 2, 
+            "children": [
+                {"name": "天津市1", "value": 51, "children": []},
+            ]
+        },
+    ]
+}
+
+]]></script>
+
+<script type="syntaxhighlighter" xid="btns" class="brush: js"><![CDATA[
+/**
+ * 1.快捷操作
+ *
+ * formSelects.btns(ID, BTNS, config);
+ *
+ * @param ID 		xm-select的值
+ * @param BTNS 		定义操作列表, 内置三种操作, select:全选, remove:清空, skin:换肤, 当然你可以自定义
+ * @param config 	配置操作列表, config.show='name' 只显示名称, config.show='icon' 只显示图标, config.space='30px' 两个操作之间的间隔
+ */
+var formSelects = layui.formSelects;
+//默认设置了 全选, 清空, 反选
+//如下设置内置操作
+formSelects.btns('select1', ['select', 'remove', 'reverse']);
+
+//如下设置自定义
+formSelects.btns('select1', ['select', 'remove', 'skin', {
+	icon: 'layui-icon layui-icon-ok',	//自定义图标, 可以使用layui内置图标
+	name: '提示名称',
+	click: function(id){
+		//点击后的操作
+		alert('点击了自定义快捷操作')
+	}
+}]);
+
+//配置只显示名称,紧凑型, 适合宽度较窄的情况
+formSelects.btns('select1', ['select', 'remove'], {show: 'name', space: '10px'});
+
+//如下写法定义所有的多选
+formSelects.btns(['select', 'remove', 'skin']);
+
+// !!友情提示: name不能重复
+]]></script>
+
+<script type="syntaxhighlighter" xid="search" class="brush: js"><![CDATA[
+/**
+ * 1.触发搜索
+ *
+ * formSelects.search(ID, val);
+ *
+ * @param ID 		xm-select的值
+ * @param BTNS 		搜索内容
+ */
+var formSelects = layui.formSelects;
+
+//使用js主动触发搜索
+formSelects.search('select1', '关键内容');
+
+]]></script>
+
+<script type="syntaxhighlighter" xid="opened" class="brush: js"><![CDATA[
+/**
+ * 1.打开下拉框的回调事件
+ *
+ * formSelects.opened(ID);
+ *
+ * @param ID 		xm-select的值
+ */
+var formSelects = layui.formSelects;
+
+//监听下拉框的打开
+formSelects.opened('select1', function(id){
+	console.log('打开了');
+});
+
+//如下定义所有
+formSelects.opened(null, function(id){
+	console.log('打开了');
+});
+formSelects.opened(function(id){
+	console.log('打开了');
+});
+
+]]></script>
+
+<script type="syntaxhighlighter" xid="closed" class="brush: js"><![CDATA[
+/**
+ * 1.关闭下拉框的回调事件
+ *
+ * formSelects.closed(ID);
+ *
+ * @param ID 		xm-select的值
+ */
+var formSelects = layui.formSelects;
+
+//监听下拉框的关闭
+formSelects.closed('select1', function(id){
+	console.log('合上了');
+});
+
+//如下定义所有
+formSelects.closed(null, function(id){
+	console.log('合上了');
+});
+formSelects.closed(function(id){
+	console.log('合上了');
+});
+
+]]></script>
+		<script src="../UI/jquery-v3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			if(!Array.prototype.map){Array.prototype.map=function(i,h){var b,a,c,e=Object(this),f=e.length>>>0;if(h){b=h}a=new Array(f);c=0;while(c<f){var d,g;if(c in e){d=e[c];g=i.call(b,d,c,e);a[c]=g}c++}return a}};
+			var htmls = {};
+			$('.example > div > div > select').each(function(index, item){
+				var html = item.outerHTML.split('\n');
+				var last = html[html.length - 1];
+				var space = last.substr(0, last.indexOf('<'));
+				htmls[item.getAttribute('xm-select')] = item.outerHTML.split('\n').map(function(item){
+					return item.replace(space, '');
+				}).join('\n');
+			});
+			$('.example > div > div > .layui-form,.example > div > form > div > .layui-form').each(function(index, item){
+				var html = item.outerHTML.split('\n');
+				var last = html[html.length - 1];
+				var space = last.substr(0, last.indexOf('<'));
+				$(item).find('.layui-form-select').remove()
+				htmls[$(item).find('select[xm-select]').attr('xm-select')] = item.outerHTML.split('\n').map(function(item){
+					return item.replace(space, '');
+				}).join('\n');
+			});
+		</script>
+		<script src="../UI/SyntaxHighlighter-3.0.83/shCore.js"></script>
+		<script src="../UI/SyntaxHighlighter-3.0.83/shBrushJScript.js"></script>
+		<script src="../UI/layui-v2.3.0-rc1/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dist/formSelects-v4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../UI/js-pinyin.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			SyntaxHighlighter.defaults["quick-code"] = false;
+			SyntaxHighlighter.defaults["gutter"] = false;
+			SyntaxHighlighter.all();
+			
+			var formSelects = layui.formSelects;
+			
+			layui.use(['layer'], function(){
+				//生成目录结构
+				var layer = layui.layer;
+				var content = '<ul class="sun-menu" style="overflow: auto; max-height: 70vh">';
+				$('body *[id]:not(.syntaxhighlighter)').each(function(index, item){
+					item = $(item);
+					content += '<li><a href="#'+item.attr("id")+'">'+(item.attr('title') ? item.attr('title') : item.html())+'</a></li>'
+				});
+				content += '</ul>';
+				layer.open({
+					title: '目录',
+					offset: 'rt',
+					btn: [],
+					shade: 0,
+					move: false,
+					content: content,
+					success: function(layero, index) {
+						layer.style(index, {
+							top: 50,
+							minWidth: 0,
+							width: 'auto',
+							left: 'auto',
+							right: 10,
+						});
+						var layero = $(layero);
+						layero.on('hover', '*', function(){
+							layero.css('z-index', '20000000');
+						});
+					}
+				});
+			});
+			
+			
+			//填充内容
+			$('body script[xid]').each(function(index, item){
+				var id = item.getAttribute('xid');
+				$('body [sid="'+id+'"]').html(item.outerHTML);
+				$(item).remove();
+			});
+			
+			//查看代码
+			$(document).on('click', '.example-show-code', function(e){
+				var that = $(e.target);
+				var select = htmls[that.parent().find('[xid]').attr('xid')];
+				if(that.text().indexOf('查看') != -1){
+					var pre = $('<script type="syntaxhighlighter" xid="config" class="brush: js">&lt;/script>');
+					pre.html(select);
+					that.after(pre);
+					SyntaxHighlighter.highlight();
+					that.text('隐藏代码');
+				}else{
+					that.next().remove();
+					that.text('查看代码');
+				}
+			});
+			
+			setTimeout(function(){
+				SyntaxHighlighter.highlight();
+			}, 200);
+			
+			var v = formSelects.v;
+			if(!localStorage.getItem(v)){
+				var logs = $('#over').next();
+				layui.use('layer', function(layer){
+					layer.open({
+						title: '更新记录',
+						type: 1,
+						scrollbar: false,
+						shadeClose: true,
+						area: ["80vw"],
+						content: '<div style="padding: 10px" id="history-info">' + logs.html() + '</div>',
+						success: function(){
+							setTimeout(function(){
+								$('#history-info .line :contains("["):contains("v")').attr('style', 'font-weight: bold !important; color: #01AAED !important;');
+							}, 1000);
+						}
+					});
+				});
+				localStorage.setItem(v, v);
+			}
+			setTimeout(function(){
+				$('.over .line :contains("["):contains("v")').attr('style', 'font-weight: bold !important; color: #01AAED !important;');
+			}, 1000);
+			
+			//示例操作
+			layui.use('form', function(){
+				var form = layui.form;
+				
+				form.verify({
+					select14: function(value, item){
+						var count = value ? value.split(",").length : 0;
+						if(count < 3){
+							return '当前value: '+value+', 只选择了'+count+'项.'
+						}
+						alert('验证通过!');
+					},
+				});
+				form.on('submit(select14)', function(data){
+				  	return false;
+				});
+				
+			});
+			
+			formSelects.data('select15', 'local', {
+			    arr: [
+			        {
+			        	"name": "北京", 
+			        	"value": 1, 
+			        	"children": [
+							{"name": "北京市1", "value": 12, "children": [
+								{"name": "朝阳区1", "value": 13, "children": []},
+								{"name": "朝阳区2", "value": 14, "children": []},
+								{"name": "朝阳区3", "value": 15, "children": []},
+								{"name": "朝阳区4", "value": 16, "children": []},
+							]},
+							{"name": "北京市2", "value": 17, "children": []},
+							{"name": "北京市3", "value": 18, "children": []},
+							{"name": "北京市4", "value": 19, "children": []},
+			        	]
+					},
+					{
+			        	"name": "天津", 
+			        	"value": 2, 
+			        	"children": [
+							{"name": "天津市1", "value": 51, "children": []},
+			        	]
+					},
+			    ],
+			    linkage: true
+			});
+			
+			formSelects.config({
+				success: function(id, url, val, result){
+					console.log("success回调: " + url, id);
+				},
+				error: function(id, url, val, err){
+					console.log("err回调: " + url, id);
+				}
+			});
+			formSelects.data('select15_2', 'server', {
+			    url: 'http://yapi.demo.qunar.com/mock/9813/layui/citys',
+			    linkage: true,
+			    linkageWidth: 130,
+			});
+			
+			//进阶示例
+			formSelects.on('example1', function(id, vals, val, isAdd, isDisabled){
+				alert("选择了: " + val.name);
+				if(val.value == 1){
+					return false;
+				}
+			});
+			formSelects.on('example1_1', function(id, vals, val, isAdd, isDisabled){
+				alert("当前选择了: " + JSON.stringify(vals));
+			}, true);
+			formSelects.maxTips('example3', function(id, vals, val, max){
+			    alert("选超了, 选择的值: " + val.value);
+			});
+			formSelects.filter('example4', function(id, inputVal, val, isDisabled){
+			    if(
+			    	PY.fullPY(val.name).toLowerCase().indexOf(inputVal) != -1 ||
+			    	PY.fullPY(val.name, true).indexOf(inputVal) != -1 ||
+			    	val.name.indexOf(inputVal) != -1
+			   	){
+			    	return false;
+			    }
+			    return true;
+			});
+			formSelects.config('example5_1', {
+				searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+			});
+			formSelects.config('example5_3', {
+				searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+				beforeSuccess: function(id, url, searchVal, result){
+					//我要把数据外层的code, msg, data去掉
+					result = result.data;
+					//我要反转name
+					$.each(result, function(index, item) {
+						item.name && (item.name = item.name.split('').reverse().join(''))
+					});
+					//然后返回数据
+					return result;
+				}
+			});
+			formSelects.config('example5_4', {
+				searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+				success: function(id, url, searchVal, result){
+					formSelects.value('example5_4', [3, 4]);
+				}
+			});
+			formSelects.config('example5_5', {
+				searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+				success: function(id, url, searchVal, result){
+					formSelects.value('example5_5', [result.data[0].value, result.data[4].value]);
+				}
+			});
+			formSelects.data('example6_1', 'local', {
+			    arr: [
+			        {"name": "分组-1", "type": "optgroup"},
+			        {"name": "北京", "value": 1},
+			        {"name": "上海", "value": 2},
+			        {"name": "分组-2", "type": "optgroup"},
+			        {"name": "广州", "value": 3},
+			        {"name": "深圳", "value": 4},
+			        {"name": "天津", "value": 5}
+			    ]
+			});
+			formSelects.config('example6_2', {
+				beforeSuccess: function(id, url, searchVal, result){
+					result = result.data;
+					$.each(result, function(index, item) {
+						item.name && (item.name = item.name.split('').reverse().join(''))
+					});
+					return result;
+				}
+			}).data('example6_2', 'server', {
+			    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data'
+			});
+			formSelects.data('example6_3', 'server', {
+			    url: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data',
+			    beforeSuccess: function(id, url, searchVal, result){
+					//我要把数据外层的code, msg, data去掉
+					result = result.data;
+					//我要反转name
+					$.each(result, function(index, item) {
+						item.name && (item.name = item.name.split('').reverse().join(''))
+					});
+					//然后返回数据
+					return result;
+				},
+				success: function(id, url, searchVal, result){
+					console.log('id: example6_3, 成功返回数据!!!');
+				}
+			});
+			formSelects.data('example6_4', 'local', {
+				arr: [
+					{name: '北京', value: 1, xslkdf: '123', children: [
+						{name: '朝阳', value: 11, children: [
+							{name: '酒仙桥', value: 111}, {name: '望京东', value: 121}
+						]}, {name: '海淀', value: 12}
+					]},
+					{name: '深圳', value: 2, children: [{name: '龙岗', value: 21}]},
+				]
+			});
+			formSelects.config('example7_1', {
+				searchUrl: 'https://www.fastmock.site/mock/29487363107ab7d242c46305cadf4c52/formSelects/layui/data', 
+				beforeSearch: function(id, url, val){
+					if(!val){
+						console.log('内容为空, 不进行远程搜索')
+						return false;
+					}
+					return true;
+				}
+			});
+			formSelects.render('example9_1', {
+				template: function(id, {name, value, selected, disabled}){
+					return name + '<span style="position: absolute; right: 0; color: #A0A0A0; font-size: 12px;">' + PY.fullPY(name) + '</span>';
+				}
+			});
+			formSelects.data('example11_1', 'local', {
+				arr: [
+					{name: '分组1', type: 'optgroup'},
+					{name: '北京', value: 1, xslkdf: '123', children: [{name: '朝阳', disabled: true, value: 11}, {name: '海淀', value: 12}]},
+					{name: '分组2', type: 'optgroup'},
+					{name: '深圳', value: 2, children: [{name: '龙岗', value: 21}]},
+				],
+				tree: {
+					//在点击节点的时候, 如果没有子级数据, 会触发此事件
+					nextClick: function(id, item, callback){
+						callback([
+							{name: 'test1', value: Math.random()},
+							{name: 'test2', value: Math.random()}
+						])
+					},
+				}
+			});
+			var isFirst = true;
+			formSelects.opened('example11_1', function(id){
+				if(isFirst){
+					isFirst = false;
+					$('[fs_id="example11_1"]').find('.xm-cz i.icon-caidan').click();
+				}
+			});
+			
+			formSelects.opened('example12_1', function(id){
+				alert('打开了...');
+			}).closed('example12_1', function(id){
+				alert('关闭了...');
+			});
+			
+			formSelects.btns('select16_1', ['select', 'remove', 'reverse', 'skin']);
+			formSelects.btns('select16_2', ['select', 'remove', 'skin', {
+			    icon: 'layui-icon layui-icon-ok',   //自定义图标, 可以使用layui内置图标
+			    name: '提示名称',
+			    click: function(id){
+			        //点击后的操作
+			        alert('点击了自定义快捷操作')
+			    }
+			}]);
+			formSelects.btns('select16_3', ['skin', {
+			    icon: 'layui-icon layui-icon-ok',   //自定义图标, 可以使用layui内置图标
+			    name: '提示名称',
+			    click: function(id){
+			        //点击后的操作
+			        alert('点击了自定义快捷操作')
+			    }
+			}, 'remove']);
+			formSelects.btns('select16_4', []);
+			formSelects.btns('select16_5', ['select', 'remove'], {show: 'icon'});
+			formSelects.btns('select16_6', ['select', 'remove'], {show: 'name'});
+			formSelects.btns('select16_7', ['select', 'remove'], {show: '', space: '10px'});
+			
+		</script>
+	</body>
+
+</html>

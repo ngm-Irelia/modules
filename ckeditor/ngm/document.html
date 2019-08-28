@@ -429,14 +429,14 @@
 					index = 1;
 				}
 
-				/*  */
+				
 				var value =
-					`<span style="background:#dacbae;position:relative;">${txt}
+					`<span style="background:#dacbae;">${txt}
 						<i class="quote-index-x" data-pid="${pid}" data-type="${type}"  style="font-size:12px;background: rgb(224,108,108);border-radius: 2px;min-width: 40px;color: #fff;font-style: normal;height: 16px;position: absolute;top:15px;padding: 2px 5px 2px 2px;box-sizing:border-box;">
-                        <i class="index" contenteditable="false" style="line-height: 12px;padding: 0 2px;background: #fff;display:inline-block;vertical-align:middle;border-radius: 50%;color: rgb(224,108,108);text-align: center;font-style: normal;text-indent: 0;float:left;">${index}</i>
-                        <i class="quote-close-x" data-sentenceId="${sentenceId }" contenteditable="false" style="cursor: pointer;font-style: normal;text-indent: 0;float:right;line-height: 12px;">x</i>
-                    </i>
-                </span>`;
+								<i class="index" contenteditable="false" style="line-height: 12px;padding: 0 2px;background: #fff;display:inline-block;vertical-align:middle;border-radius: 50%;color: rgb(224,108,108);text-align: center;font-style: normal;text-indent: 0;float:left;">${index}</i>
+								<i class="quote-close-x" data-sentenceId="${sentenceId }" contenteditable="false" style="cursor: pointer;font-style: normal;text-indent: 0;float:right;line-height: 12px;">x</i>
+						</i>
+					</span>`;
 
 				if (oEditor.mode == 'wysiwyg') {
 					oEditor.insertHtml(value);

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery常用电商导航</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body,
+			html {
+				height: 100%;
+				font: 12px/1.5 Tahoma, Helvetica, Arial, sans-serif;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			img {
+				border: 0 none;
+				vertical-align: bottom;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.left {
+				float: left;
+			}
+			
+			.right {
+				float: right;
+			}
+			/**左侧菜单**/
+			
+			.sec-mainL {
+				width: 211px;
+				box-shadow: 2px 0 4px #D5D5D5;
+				position: relative;
+				z-index: 5;
+			}
+			
+			.mainL-hd-box {
+				padding-bottom: 5px;
+				background: url(img/index.png) no-repeat 0 39px;
+			}
+			
+			.mainL-hd {
+				height: 39px;
+				line-height: 39px;
+				text-align: center;
+				cursor: pointer;
+				background: #D03800;
+			}
+			
+			.mainL-hd a {
+				color: #fff;
+				font-weight: bold;
+				font-size: 12px;
+			}
+			
+			.mainL-hd a:before {
+				content: "";
+				display: inline-block;
+				/*width:px;*/
+				/*height:px;*/
+				background: url(img/iconsB.png) no-repeat -73px 0;
+			}
+			/**菜单列表**/
+			
+			.sec-mainNav>li {
+				padding: 10px 19px 36px;
+				position: relative;
+				background: #F0F0F0;
+				cursor: pointer;
+				z-index: 4;
+			}
+			
+			.sec-mainNav>li:nth-child(2n) {
+				background: #FFF;
+			}
+			
+			.sec-mainNav>li h3 {
+				font-size: 12px;
+			}
+			
+			.sec-mainNav>li.hover {
+				background: #545651;
+			}
+			
+			.sec-mainNav>li.hover h3,
+			.sec-mainNav>li.hover .menu-tab a {
+				color: #fff;
+			}
+			
+			.sec-mainNav li .menu-tab {
+				margin-top: 5px;
+			}
+			
+			.sec-mainNav li .menu-tab a {
+				float: left;
+				margin-right: 6px;
+				color: #888;
+			}
+			
+			.sec-mainNav li .menu-more {
+				position: absolute;
+				display: block;
+				width: 6px;
+				height: 9px;
+				right: 19px;
+				top: 28px;
+				line-height: 999;
+				overflow: hidden;
+				background: url(img/index.png) no-repeat 0 -6px;
+			}
+			/**二级菜单**/
+			
+			.menu-panel {
+				position: absolute;
+				width: 446px;
+				padding: 18px 34px;
+				/*display:;*/
+				top: 0;
+				left: 210px;
+				z-index: 5;
+				box-shadow: inset 2px 0 5px 0 #D5D5D5, 2px 0 3px #E8E8E8;
+				background: #fff;
+				display: none;
+			}
+			
+			.menu-panel h4 {
+				font-family: "Microsoft YaHei", "微软雅黑", "黑体";
+				font-size: 14px;
+				color: #e64e3e;
+				margin-bottom: 9px;
+			}
+			
+			.menu-panel-hd {
+				border-bottom: 1px dotted #E2E2E2;
+				padding-bottom: 12px;
+				margin-bottom: 14px;
+				line-height: 1.5;
+			}
+			
+			.sub-group a {
+				color: #555;
+				display: inline-block;
+				margin-right: 16px;
+			}
+			
+			.sub-group a:hover {
+				color: #E64E3E;
+				text-decoration: underline;
+			}
+			
+			.menu-panel-bd li {
+				float: left;
+				width: 88px;
+				height: 56px;
+				border: 1px solid #EDEEEF;
+				margin: 0 0 -1px -1px;
+				background-color: #FFF;
+			}
+			
+			.menu-panel-bd li a {
+				display: block;
+				text-align: center;
+			}
+			
+			.menu-panel-bd li a img {
+				width: 80px;
+				height: 27px;
+				margin-top: 14px;
+			}
+			
+			.menu-panel-btn {
+				display: inline-block;
+				height: 25px;
+				line-height: 25px;
+				margin-top: 15px;
+				padding: 0 10px;
+				color: #FFF;
+				background-color: #E64E3E;
+			}
+			
+			.menu-panel-btn em {
+				width: 0;
+				height: 0;
+				margin-left: 6px;
+				overflow: hidden;
+				font-size: 0;
+				display: inline-block;
+				border-width: 4px;
+				border-color: transparent transparent transparent #FFF;
+				border-style: dashed dashed dashed solid;
+			}
+			/**中间部分**/
+			
+			.sec-mainM {
+				width: 666px;
+				position: relative;
+				z-index: 3;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--左侧菜单-->
+		<div class="sec-mainL left">
+			<div class="mainL-hd-box">
+				<h2 class="mainL-hd">
+					<a href="">购物返彩贝商家</a>
+				</h2>
+			</div>
+			<!--菜单列表-->
+			<ul class="sec-mainNav">
+				<li>
+					<h3>数码家电</h3>
+					<div class="menu-tab">
+						<a href="">京东</a>
+						<a href="">易迅</a>
+						<a href="">苏宁易购</a>
+						<div class="fix"></div>
+					</div>
+					<span class="menu-more">更多</span>
+					<!--二级菜单-->
+					<div class="menu-panel">
+						<div class="menu-panel-hd">
+							<h4>热门分类</h4>
+							<div class="sub-group">
+								<a href="">京东</a>
+								<a href="">易迅</a>
+								<a href="">苏宁易购</a>
+								<a href="">新蛋商城</a>
+								<a href="">手机数码</a>
+								<a href="">摄像影音</a>
+								<a href="">耳麦音响</a>
+								<a href="">国美在线</a>
+							</div>
+						</div>
+						<div class="menu-panel-bd">
+							<ul>
+								<li>
+									<a href=""><img src="img/0.png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (1).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (2).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (3).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0.jpg" /></a>
+								</li>
+							</ul>
+						</div>
+						<a href="" class="menu-panel-btn">
+							<span>查看全部商家</span>
+							<em></em>
+						</a>
+					</div>
+				</li>
+				<li>
+					<h3>食品酒水</h3>
+					<div class="menu-tab">
+						<a href="">美食特产</a>
+						<a href="">酒水茶叶</a>
+						<a href="">蛋糕预订</a>
+						<div class="fix"></div>
+					</div>
+					<span class="menu-more">更多</span>
+					<!--二级菜单-->
+					<div class="menu-panel">
+						<div class="menu-panel-hd">
+							<h4>热门分类</h4>
+							<div class="sub-group">
+								<a href="">美食特产</a>
+								<a href="">酒水茶叶</a>
+								<a href="">蛋糕预订</a>
+							</div>
+						</div>
+						<div class="menu-panel-bd">
+							<ul>
+								<li>
+									<a href=""><img src="img/0.png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (1).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (2).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0 (3).png" /></a>
+								</li>
+								<li>
+									<a href=""><img src="img/0.jpg" /></a>
+								</li>
+							</ul>
+						</div>
+						<a href="" class="menu-panel-btn">
+							<span>查看全部商家</span>
+							<em></em>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript">
+		$(function() {
+	var $top = $('.sec-mainNav').offset().top + $('.sec-mainNav').height()
+	//左侧导航动画
+	$('.sec-mainNav li').on('mouseenter', function() {
+		var $height = $(this).offset().top + $(this).find('.menu-panel').outerHeight()
+		$(this).find('.menu-panel').show()
+		if($height - $top >= 0) {
+			$(this).find('.menu-panel').css({
+				top: -($height - $top) + 'px'
+			})
+		}
+
+	})
+	$('.sec-mainNav li').on('mouseleave', function() {
+		$(this).find('.menu-panel').hide()
+	})
+})
+		</script>
+	</body>
+
+</html>

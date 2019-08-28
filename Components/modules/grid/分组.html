@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jqGrid 实例</title>
+		<link rel="stylesheet" href="./css/ui.jqgrid.css" /><!-- jqGrid组件基础样式包-必要 -->
+		<link rel="stylesheet" href="./css/css/cupertino/ngm-theme.css" /><!-- jqGrid主题--> 
+		<link rel="stylesheet" href="../layui/layui.css" />
+		<link rel="stylesheet" href="../layui/formSelect/formSelects-v4.css" />
+		
+		<script src="../../assets/jquery-3.3.1.min.js"></script><!-- jquery插件包-必要 -->
+
+		<script defer type="text/javascript" src="../../Components.js"></script>
+		<script type="text/javascript" src="./js/jquery.jqGrid.src.js"></script><!-- jqGrid插件包-必要 -->
+		
+		
+		
+		<!-- 在./js/i18n下还有其他的多语言包，可以尝试更换看效果 -->
+		<script type="text/javascript" src="./js/i18n/grid.locale-cn.js"></script>
+	</head>
+
+	<body>
+		
+		<div class="example">
+			<div>
+				<div style="width: 400px; display: inline-block; vertical-align: top;">
+					<select name="city" xm-select="select1">
+						<option value="1" disabled="disabled">北京</option>
+						<option value="2" selected="selected">上海</option>
+						<option value="3">广州</option>
+						<option value="4" selected="selected">深圳</option>
+						<option value="5">天津</option>
+					</select>
+				</div>
+				<button class="layui-btn layui-btn-normal example-show-code">查看代码</button>
+			</div>
+		</div>
+		
+		<button id="byname">分组by：name</button>
+		<button id="bynameNote">分组by：name，note</button>
+		<button id="removeFZ">取消分组</button>
+		<table id="list451"></table>
+		<div id="pager451"></div>
+
+		<script type="text/javascript" src="../layui/layui.js"></script>
+		<script type="text/javascript" src="../layui/formSelect/formSelects-v4.js"></script>
+		<script>
+			$(function() {
+				pageInit();
+				
+				$("#byname").on('click',function(){
+					jQuery("#list451").jqGrid('groupingGroupBy','name');
+				});
+				
+// 				let gc = {
+// 					groupField : ['name'],
+// 					groupText : ['name = '+'<b>{0}</b>']
+// 				}
+				
+				$("#bynameNote").on('click',function(){
+					//jQuery("#list451").jqGrid('groupingGroupBy',['name','note']);
+					jQuery("#list451").jqGrid('groupingGroupBy',['name','note'],function(){
+						return {
+							groupField : ['name','note'],
+							groupText : ['name = <b>{0}</b>','note = <b>{0}</b>']
+						}
+					}());
+				});
+				
+				$("#removeFZ").on('click',function(){
+					jQuery("#list451").jqGrid('groupingRemove',true);
+				});
+			});
+
+			var mydata = [
+				{id:"1",invdate:"2010-05-24",name:"test",note:"note1",tax:"10.00",total:"2111.00"} ,
+				{id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
+				{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
+				{id:"4",invdate:"2007-10-04",name:"test",note:"note1",tax:"10.00",total:"210.00"},
+				{id:"5",invdate:"2007-10-05",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
+				{id:"6",invdate:"2007-09-06",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
+				{id:"7",invdate:"2007-10-04",name:"test",note:"note1",tax:"10.00",total:"210.00"},
+				{id:"8",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"21.00",total:"320.00"},
+				{id:"9",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"11",invdate:"2007-10-01",name:"test",note:"note2",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"12",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"13",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"14",invdate:"2007-10-04",name:"test",note:"note2",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"15",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"16",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"17",invdate:"2007-10-04",name:"test",note:"note2",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"18",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"19",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"21",invdate:"2007-10-01",name:"test",note:"note3",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"22",invdate:"2007-10-02",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"23",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"24",invdate:"2007-10-04",name:"test",note:"note3",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"25",invdate:"2007-10-05",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"26",invdate:"2007-09-06",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"},
+				{id:"27",invdate:"2007-10-04",name:"test",note:"note3",amount:"200.00",tax:"10.00",total:"210.00"},
+				{id:"28",invdate:"2007-10-03",name:"test2",note:"note2",amount:"300.00",tax:"20.00",total:"320.00"},
+				{id:"29",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
+			  ];
+
+			let config = {
+			  data: mydata,
+			  datatype: "local",
+			  height: 'auto',
+			  rowNum: 30,
+				 colNames:['Inv No','Date', 'Name', 'Amount','Tax','Total','Notes'],
+				 colModel:[
+				   {name:'id',index:'id', width:60, sorttype:"int"},
+				   {name:'invdate',index:'invdate', width:90, sorttype:"date", formatter:"date"},
+				   {name:'name',index:'name', width:100, editable:true},
+				   {name:'amount',index:'amount', width:80, align:"right",sorttype:"float", formatter:"number", editable:true},
+				   {name:'tax',index:'tax', width:80, align:"right",sorttype:"float", editable:true},    
+				   {name:'total',index:'total', width:80,align:"right",sorttype:"float"},    
+				   {name:'note',index:'note', width:150, sortable:false}    
+				 ],
+				 grouping:true,
+				 groupingView : {
+				   groupField : ['name','note']
+				 },
+				 caption: "Grouping Array Data"
+			}
+
+
+			function pageInit() {
+				let ftable = Components().grid("#list451", config);
+			}
+			
+			
+			
+
+	
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,2074 @@
+/* .most .outer .box  .tpo^#dv  .four^.a/b/c/d     */
+@import "../public/component";
+@import "../public/ol";
+@import "../../../js/public/jquery-custom-content-scroller/jquery.mCustomScrollbar";
+
+// @import "../public/network-style";
+
+body, svg {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline:none;
+}
+
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0
+}
+
+.clearfloat {
+  zoom: 1
+}
+
+// 外层盒子
+.chart_main
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+.chart_main_page
+  height:100%
+  width:100%
+  overflow: hidden;
+.chart_slideshow
+  height:45%;
+  width:100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right,$chart-bggrandient-color,$chart-tab-color-background,$chart-bggrandient-color);
+  background: -webkit-linear-gradient(to right,$chart-bggrandient-color,$chart-tab-color-background,$chart-bggrandient-color);
+.top_line{
+  width:100%;
+  height:1px;
+  background:linear-gradient(to right, $chart-bggrandient-color, $chart-bggrandient-colorb,$chart-bggrandient-color);
+}
+//魔方边的3d圆圈
+.threed_circle_one{
+  width: 20px;
+  height: 0;
+  position: absolute;
+  top: 41%;
+  left: 42%;
+}
+.threed_circle_two{
+  width: 20px;
+  height: 0;
+  position: absolute;
+  top: 51%;
+  right: 40%;
+}
+.threed_circle_three{
+  width: 20px;
+  height: 0
+  position: absolute;
+  top: 60%;
+  left: 39%;
+}
+.threed_circle_one span, .threed_circle_two span,.threed_circle_three span{
+  display:block;
+  margin-top:5px;
+  opacity:0;
+}
+.circle_one1{
+  height:16px;
+  width:16px;
+  border-radius:8px;
+  background-color:$chart-img-circle-colora;
+  border:4px solid $chart-img-circle-colorb;
+}
+.circle_one5{
+  height:8px;
+  width:8px;
+  border-radius:4px;
+  background-color:$chart-img-circle-colora;
+  margin-left: 4px; 
+}
+.circle_one2{
+  height:8px;
+  width:8px;
+  border-radius:4px;
+  background-color:$chart-magic-color-bgc1;
+  margin-left: 4px;  
+}
+.circle_one3{
+  height:8px;
+  width:8px;
+  border-radius:4px;
+  background-color:$chart-magic-color-bgc2;
+  margin-left: 4px;
+}
+.circle_one4{
+  height:8px;
+  width:8px;
+  border-radius:4px;
+  background-color:$chart-magic-color-bgc3;
+  margin-left: 4px;
+}
+
+// 魔方
+.chart_magic_out
+  height:160px;
+  width:160px;
+  margin:11.5% auto;
+  position:relative;
+  opacity:0;
+  
+/* 魔方 */
+@keyframes gun {
+  0% {
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+  
+.chart_magic
+  height:100px;
+  width:100px;
+  position: absolute; 
+  top: 30px;
+  left: 30px;
+  cursor:pointer;
+
+.top,.down,.left,.right,.forward,.back{
+  height:100px;
+  width:100px;
+  opacity:0.7;
+  border:1px solid $chart-magic-color-border;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color:$chart-img-color;
+}
+
+.top{
+  background-color:$chart-img-color;
+  -ms-transform:rotateX(50deg) rotateZ(45deg) translateX(-39px) translateY(-36px);
+  -webkit-transform:rotateX(50deg) rotateZ(45deg) translateX(-39px) translateY(-36px);
+  -moz-transform:rotateX(50deg) rotateZ(45deg) translateX(-39px) translateY(-36px);
+}
+.down{
+  background-color:$chart-img-color;
+  -ms-transform:rotateX(41deg) rotateZ(0deg) translateZ(50px) translateX(-37px) translateY(78px) rotateY(44deg)
+  -webkit-transform:rotateX(41deg) rotateZ(0deg) translateZ(50px) translateX(-37px) translateY(78px) rotateY(44deg)
+  -moz-transform:rotateX(41deg) rotateZ(0deg) translateZ(50px) translateX(-37px) translateY(78px) rotateY(44deg)
+}
+.left{
+  background: linear-gradient(90deg, $chart-img-color, $chart-magic-color-bgc10);
+  -ms-transform:rotateZ(0) translateZ(0) rotateX(-41deg) rotateY(45deg) translateX(46px) translateY(62px)
+  -webkit-transform:rotateZ(0) translateZ(0) rotateX(-41deg) rotateY(45deg) translateX(46px) translateY(62px)
+  -moz-transform:rotateZ(0) translateZ(0) rotateX(-41deg) rotateY(45deg) translateX(46px) translateY(62px)
+}
+
+.magic_shadow_middle{
+  height: 160px;
+  width: 160px;
+  border: 2px dashed $chart-magic-color-dashed;
+  background-color: $body-color-background;
+  transform: rotateX(127deg) rotateZ(45deg);
+  position: absolute;
+  opacity: 0.5;
+  top: 38px;
+  left:1px;
+}
+.magic_shadow_bottom{
+  height: 160px;
+  width: 160px;
+  transform: rotateX(53deg) rotateZ(135deg);
+  position: absolute;
+  opacity: 0.5;
+  top: 62px;
+  left:1px;
+  background: linear-gradient(45deg, $chart-magic-color-bgc6,$chart-magic-color-bgc4 ,$chart-magic-color-bgc5);
+}
+.magic_shadow_bottom span{
+  display:block;
+  position:absolute;
+}
+.magic_shadow_bottom span:nth-child(1){
+  height:60px;
+  width:3px;
+  top:0;
+  left:0;
+  background:linear-gradient(to bottom, $chart-magic-color-bgc7, $body-color-background);
+}
+.magic_shadow_bottom span:nth-child(2){
+  height:160px;
+  width:3px;
+  top:0;
+  right:0;
+  background:linear-gradient(to top, $chart-magic-color-bgc8,$chart-magic-color-border, $chart-magic-color-border);
+}
+.magic_shadow_bottom span:nth-child(3){
+  height:3px;
+  width:160px;
+  top:0;
+  left:0;
+  background: linear-gradient(to right, $chart-magic-color-bgc8,$chart-magic-color-border, $chart-magic-color-border);
+}
+.magic_shadow_bottom span:nth-child(4){
+  height:3px;
+  width:60px;
+  bottom:0;
+  right:0;
+  background:linear-gradient(to left, $chart-magic-color-bgc9, $body-color-background );
+}
+//魔方左侧盒子
+.classify
+  width:27%;
+  height:35%;
+  position:absolute;
+  top:9%;
+  left:9%;
+  border:1px solid $chart-menu-color-borderb;
+  border-radius:5px;
+  box-sizing:border-box;
+  background-color:$body-color-background;
+  display:none;
+  
+//左侧盒子的外边框
+.box_corner1,.box_corner2,.box_corner3,.box_corner4,.box_corner5{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background-color:$body-color-background;
+}
+.box_corner1{
+  top: -1px;
+  left: -1px;
+}
+.box_corner5{
+  top: -1px;
+  left: -1px;
+}
+.box_corner2{
+  top: -1px;
+  right: -1px;
+  transform: rotateZ(90deg );
+}
+.box_corner3{
+  bottom: -1px;
+  right: -1px;
+  transform: rotateZ(180deg);
+}
+.box_corner4{
+  bottom: -1px;
+  left: -1px;
+  transform: rotateZ(-90deg);
+}
+
+.box_corner1 span,.box_corner2 span,.box_corner3 span,.box_corner4 span{ 
+  display:block;
+  position:absolute;
+}
+.side1{
+  height:15px;
+  width:1px;
+  top:40px;
+  left:0;
+  background-color:$body-color-background;
+}
+.side2{
+  height:20px;
+  width:1px;
+  top:20px;
+  left:0;
+  background-color:$chart-menu-color-border;
+}
+.side3{
+  height: 28px;
+  width: 1px;
+  top: -3.5px;
+  left: 10px;
+  border-right:1px solid $chart-menu-color-border;
+  transform:rotateZ(45deg);
+}
+.side4{
+  height: 12px;
+  width: 1px;
+  top: 0;
+  left: 5px;
+  background-color:$chart-menu-color-borderb;
+  transform:rotateZ(45deg);
+}
+.side5{
+  height: 1px;
+  width: 20px;
+  top: 0;
+  left: 20px;
+  background-color:$chart-menu-color-border;
+}
+.side6{
+  height: 1px;
+  width: 15px;
+  top: 0;
+  left: 40px;
+  background-color:$body-color-background;
+}
+
+.classify_in{
+  position:absolute;
+  top: 4.5%;
+  right: 5%;
+  width: 75%;
+  height: 91%;
+  border-top-right-radius:8px;
+  border-bottom-right-radius:8px;
+  background-color:$chart-tab-color-background;
+  z-index:2;
+  box-sizing:border-box;
+  padding:10px;
+  overflow-y: auto;
+}
+.classify button{
+  position:absolute;
+  height:13%;
+  width:100%;
+  border:none;
+  border-top-left-radius:8px;
+  border-bottom-left-radius:8px;
+  font-size:22px;
+  z-index:2;
+  outline:none;
+}
+.classfiybtnBox{
+  top: 4.5%;
+  left: 5%;
+  position: absolute;
+  height: 92%;
+  width: 15%;
+  background-color:$body-color-background;
+}
+.bgc_def{
+  background-color:$body-color-background;
+}
+.classfiybtnBox button:nth-child(1){
+  top:0;
+  left:0;
+}
+.classfiybtnBox button:nth-child(2){
+  top:14%;
+  left:0;
+}
+.classfiybtnBox button:nth-child(3){
+  top:28%;
+  left:0;
+}
+.classfiybtnBox button:nth-child(4){
+  top:42.5%;
+  left:0;
+}
+.classfiybtnBox button:nth-child(5){
+  top:57%;
+  left:0;
+}
+.classfiybtnBox button:nth-child(6){
+  top:71.5%;
+  left:0;
+}
+.classfiybtnBox button:nth-child(7){
+  top:86%;
+  left:0;
+}
+
+.acti:before{
+  color:$chart-img-color;
+}
+#classifyId .acti{
+  background-color:$chart-tab-color-background;
+}
+.conrnerStyleDown{
+  border-bottom-left-radius:8px;
+}
+.conrnerStyleMiddle{
+  border-bottom-left-radius:8px;
+  border-top-left-radius:8px;
+}
+.conrnerStyleUp{
+  border-top-left-radius:8px;
+}
+.classify_in h4{
+  color:$alert-color-title;
+}
+.dimen_class{
+  display: inline-block;
+  border-bottom: 1px solid $chart-tab-color-background;
+  padding: 2px 3px;
+  font-size: 12px;
+  margin-right: 12px;
+  margin-top: 8px;
+}
+.dimen_class:hover{
+ border-bottom: 1px solid $button-color-border-sure;
+ color:$font-color-highlight; 
+ cursor:pointer;
+}
+.dimen_class_acti{
+  border-bottom: 1px solid $button-color-border-sure;
+  color:$font-color-highlight;
+}
+//魔方右侧盒子
+.dimension_box
+  width: 30%;
+  height: 27%;
+  position: absolute;
+  top: 9%;
+  right: 6%;
+  border: 1px solid $chart-menu-color-borderb;
+  border-radius: 5px;
+  background-color:$body-color-background;
+  display:none;
+
+.box_corner5 span{ 
+  display:block;
+  position:absolute;
+} 
+.dimension_detial{
+  height:90%;
+  top: 30px;
+  position: absolute;
+  padding: 5px 15px 15px;
+  z-index:2;
+  overflow-y:auto;
+}
+.dimension_box h4{
+  z-index: 2;
+  position: absolute;
+  color: $font-color-highlight;
+  top: 20px;
+  left: 15px;
+}
+.dimensions_every{
+  display: inline-block;
+  border-bottom: 1px solid $body-color-background;
+  padding: 2px 3px;
+  font-size: 12px;
+  margin-right: 12px;
+  margin-top: 8px;
+}
+.dimensions_every:hover{
+ border-bottom: 1px solid $button-color-border-sure;
+ color:$font-color-highlight; 
+ cursor:pointer;
+}
+.dimen_every_acti{
+  border-bottom: 1px solid $button-color-border-sure;
+  color:$font-color-highlight;
+}
+//左右手臂线
+.left_line{
+  height: 60px;
+  width: 100px;
+  position: absolute;
+  left: -95px;
+  top: -39px;
+}
+.left_line_mask{
+  height: 80px;
+  width: 250px;
+  position: absolute;
+  left: -233px;
+  top: -39px;
+  background-color: $body-color-background;
+}
+.triangle1{
+  width: 0;
+  height: 0;
+  border-top: 20px solid $chart-img-color;
+  border-right: 6px solid transparent;
+  position:absolute;
+  right:2px;
+  bottom:-3px;
+  transform:rotateZ(-18deg);
+}
+.triangle2{
+  width: 0;
+  height: 0;
+  border-top: 6px solid $chart-img-color;
+  border-right: 20px solid transparent;
+  position: absolute;
+  right: -10px;
+  bottom: 16px;
+  transform: rotateZ(-28deg);
+}
+.line1{
+  width: 150px;
+  height: 2px;
+  transform: rotateZ(16deg);
+  background-color: $chart-img-color;
+  position: absolute;
+  bottom: 36px;
+  right: 5px;
+}
+//左右手臂线
+.right_line{
+  height: 60px;
+  width: 100px;
+  position: absolute;
+  right: -95px;
+  top: -39px;
+}
+.right_line_mask{
+  height: 80px;
+  width: 250px;
+  position: absolute;
+  right: -230px;
+  top: -39px;
+  background-color: $body-color-background;
+}
+.triangle3{
+  width: 0;
+  height: 0;
+  border-top: 20px solid $chart-img-color;
+  border-left: 6px solid transparent;
+  position: absolute;
+  left: 2px;
+  bottom: -3px;
+  transform: rotateZ(18deg);
+}
+.triangle4{
+  width: 0;
+  height: 0;
+  border-top: 6px solid $chart-img-color;
+  border-left: 20px solid transparent;
+  position: absolute;
+  left: -10px;
+  bottom: 16px;
+  transform: rotateZ(28deg);
+}
+.line2{
+  width: 150px;
+  height: 2px;
+  transform: rotateZ(-16deg);
+  background-color: $chart-img-color;
+  position: absolute;
+  bottom: 36px;
+  left: 5px;
+}
+
+// 下方轮播轮播图
+.chart_slideshow_window{
+  position:absolute;
+  height:70%;
+  width:88%;
+  top:15%;
+  left:6%;
+  overflow:hidden; 
+}
+.chart_slideshow_list{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+}
+.small_chart_out>span{
+  z-index:1;
+}
+
+.small_chart_out{
+  height:100%;
+  width:32%;
+  position:absolute;
+}
+.topo_smallchart_middle{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top: 0;
+  left: 0;
+}
+.topo_smallchart{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top: 0;
+  left: 0;
+  border:1px solid $chart-alert-color-border;
+  background-color:$body-color-background;
+  overflow-x:auto;
+  overflow-y:hidden;
+  display:none;
+}
+
+.side_one{
+  width:15px;
+  height:15px;
+  border-top:3px solid $chart-img-color;
+  border-left:3px solid $chart-img-color;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.side_two{
+  width:15px;
+  height:15px;
+  border-top:3px solid $chart-img-color;
+  border-right:3px solid $chart-img-color
+  position:absolute;
+  top:0;
+  right:0;
+}
+.side_three{
+  width:15px;
+  height:15px;
+  border-bottom:3px solid $chart-img-color;
+  border-right:3px solid $chart-img-color
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+.side_four{
+  width:15px;
+  height:15px;
+  border-bottom:3px solid $chart-img-color;
+  border-left:3px solid $chart-img-color
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+.go_left_out{
+  height:60px;
+  width:25px;
+  position:absolute;
+  top:46%;
+  left:1.5%;
+  cursor:pointer;
+}
+.go_right_out{
+  height:60px;
+  width:25px;
+  position:absolute;
+  top:46%;  
+  right:1.5%;
+  cursor:pointer;
+}
+.go_left_out:hover{
+  background-color: $chart-silde-color-button-bgc;
+}
+.go_right_out:hover{
+  background-color: $chart-silde-color-button-bgc;
+}
+.go_left{
+  display:block;
+  width:25px;
+  height:25px;
+  border-top:2px solid $chart-img-color;
+  border-left:2px solid $chart-img-color;
+  transform:rotateZ(-45deg);
+  position:absolute;
+  top: 34%;
+  left: 30%;
+  cursor:pointer;
+}
+.go_right{
+  display:block;
+  width:25px;
+  height:25px;
+  border-top:2px solid $chart-img-color;
+  border-right:2px solid $chart-img-color;
+  transform:rotateZ(45deg);
+  position:absolute;
+  top:34%;  
+  right:30%;
+  cursor:pointer;
+}
+
+//topo和gis页面跳转按钮
+.go_topo,.go_gis{
+  position: absolute;
+  right: 0;
+  width: 36px;
+  height: 28px;
+  background-color: $topo-color-border;
+  border-radius: 3px 0 0 3px;
+  color: $font-color;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  z-index: 10;
+  outline:none;
+}
+.go_topo{
+  top: 30px;
+}
+.go_gis{
+  top:65px;
+}
+.go_topo:hover, .go_gis:hover {//, .publish_btn:hover
+  color: $tabs-item-color-border-active;
+}
+// 右侧边栏,图表信息存储
+.chart_message{
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $font-color;
+  white-space: nowrap;
+  background-color: $body-color-background;
+  z-index: 3;
+}
+.drag_line{
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -2px;
+  background-color: $alert-border-bottom-color;
+}
+//下侧栏，过往分析图表保存
+.chart_save{
+  position: absolute;
+  right: 256px;
+  bottom: 0;
+  left: 0;
+  border-top: 2px $topo-color-border solid;
+  box-sizing: border-box;
+  background-color: $topo_relative_timeline-color-background;
+  z-index: 2;
+}
+
+/* 柱饼折转换按钮 */
+.btn_out {
+  height: 15px;
+  width: 61px;
+  line-height: 15px;
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  z-index:1;
+}
+
+.btn_out .btn_two {
+  height: 15px;
+  line-height: 15px;
+  width: 15px;
+  cursor: pointer;
+  color: $font-color;
+  text-align: center;
+  float: left;
+  box-sizing: border-box;
+}
+
+.btn_out #bone, #bfour, #bseven, #bten {
+  font-size: 13px;
+}
+
+#btwo, #bfive, #beight, #beight, #beleven {
+  font-size: 13px;
+}
+
+#bthree, #bsix, #bnight, #btwelve {
+  font-size: 13px;
+}
+
+#fullone, #fulltwo, #fullthree, #fullfour {
+  font-size: 13px;
+}
+
+
+
+/* 大图页面 */
+.tubiao {
+  background-color: $body-color-background;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 256px;
+  bottom: 150px;
+  left: 0;
+  z-index:3;
+}
+
+.btn_out_big {
+  height: 25px;
+  width: 450px;
+  position: absolute;
+  top: 25px;
+  left: 100px;
+  font-size: 18px;
+}
+
+.big {
+  height: 24px;
+  line-height: 24px;
+  width: 22px;
+  cursor: pointer;
+  color: $font-color;
+  text-align: center;
+  float: left;
+  margin-left: 10px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#chart_import {
+  opacity: 0.4;
+  /* 导入 按钮置灰*/
+}
+
+.big_btn_tips {
+  height: 17px;
+  line-height: 16px;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: absolute;
+  font-size: 12px;
+  text-align: center;
+  background-color: $totip-tool-color-background;
+  color: black;
+  display: none;
+}
+.publish_btn{
+  width: 36px;
+  height: 28px;
+  position: absolute;
+  right: 2px;
+  top:100px;
+  background-color: $topo-color-border;
+  border-radius: 3px 0 0 3px;
+  color: $font-color;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  z-index: 10;
+  // opacity:0.4;
+}
+
+/* 大图画布 */
+#draw_out {
+  height: 80%;
+  width: 90%;
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+/* 数据过滤弹框 */
+.chart_filter {
+  height: 450px;
+  width: 500px;
+  border: 1px solid $alert-border-color;
+  color: $font-color;
+  background-color: $alert-color-background;
+  position: absolute;
+  top: 13%;
+  left: 30%;
+  display: none;
+  z-index: 3;  
+}
+
+.chart_filter h4{
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  color: $font-color-highlight;
+}
+
+.chart_phone h4 span, .chart_filter h4 span, .export_menu h4 span {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.filter_data_range{
+  height:20px;
+  width:300px;
+  position:absolute;
+  top:54px;
+  left:100px;
+}
+
+#filterpresentdata, .filter_presentdata, #filteralldata, .filter_alldata{
+  display:inline-block;
+}
+
+.filter_presentdata, .filter_alldata{
+  font-size:14px;
+}
+
+#filterpresentdata {
+  height: 16px;
+  width: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right:10px;
+}
+
+#filteralldata {
+  height: 16px;
+  width: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left:90px;
+  margin-right:10px;
+}
+
+.chart_filter ul{
+  height:200px;
+  width:400px;
+  font-size:14px;
+  position:absolute;
+  top:88px;
+  left:50px;
+}
+.chart_filter ul li{
+  height:30px;
+  margin-bottom:5px;  
+}
+
+.chart_filter ul li h6{
+  font-size:14px;
+  display:inline-block;
+  text-align:right;
+  width:80px;
+}
+
+.chart_filter ul li input{
+  height: 28px;
+  width: 225px;
+  border: 1px solid $input-color-border;
+  color: $font-color;
+  background-color: $input-color-background;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+  padding-left: 4px;  
+  margin-left:15px;
+  autocomplete:off;
+}
+
+#dv4 .chart_filter ul li .filter_numdate_one{
+  width:100px;
+  display:none;
+}
+#dv4 .chart_filter ul li .filter_numdate_two{
+  width:100px;
+  display:none;
+  margin-left:5px;
+}
+.filter_numdate_middle{
+  display:none;
+  margin-left:5px;
+}
+
+.filter_notice_objname {
+  height: 14px;
+  line-height: 13px;
+  font-size: 10px;
+  color: $font-color-warning;
+  position: absolute;
+  top: 42px;
+  left: 326px;
+  display: none;
+}
+
+.chart_filter .filter_notice {
+  height: 14px;
+  line-height: 13px;
+  color: $font-color-warning;
+  position: absolute;
+  top: 206px;
+  left: 130px;
+}
+
+.chart_filter .filter_add_frame_out{
+  height: 80px;
+  width: 400px;
+  position: absolute;
+  top: 310px;
+  left: 50px;
+  border: 1px dashed $input-color-border;
+  overflow-y: auto;
+}
+
+.filter_add_frame{
+
+}
+
+.filter_addbtn {
+  height: 23px;
+  line-height: 22px;
+  width: 40px;
+  border: 1px solid $button-color-border-default;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 20px; 
+}
+
+#filter_start_new, #filter_start_old, #filter_cancel{
+  height:28px;
+  line-height:26px;
+  width:70px;
+  font-size: 14px;  
+  position:absolute;
+  bottom: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#filter_start_new {
+  left: 110px;
+  border: 1px solid $font-color-highlight;
+}
+
+#filter_start_old {
+  left: 215px;
+  border: 1px solid $font-color-highlight;
+}
+
+#filter_cancel {
+  left: 320px;
+  border: 1px solid $button-color-border-cancel;
+}
+
+.filter_addbtn:hover,
+#filter_start_new:hover,
+#filter_start_old:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+#filter_cancel:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+.chart_filter .fil_type, .packout_two, .packout_three, .packout_{
+  height: 80px;
+  width: 225px;
+  border: 1px $select-color-border solid;
+  background-color: $body-color-background;
+  color: $font-color;
+  box-sizing: border-box;
+  padding-bottom: 7px;
+  padding-top: 5px;
+  overflow-y:auto;  
+  overflow-x: hidden;
+  cursor: pointer;
+  position: absolute;
+  display: none;
+  z-index: 1;
+}
+
+//对象类型下拉框
+.chart_filter .fil_type {  
+  top: 63px;
+  left: 96px;
+}
+
+//统计项下拉框
+.chart_filter .packout_two {
+  top: 98px;
+  left: 96px;
+}
+
+//统计方法下拉框
+.chart_filter .packout_three {
+  top: 133px;
+  left: 96px;
+}
+
+//过滤参数下拉框
+.chart_filter .packout_ {
+  top: 168px;
+  left: 96px;
+}
+
+//下拉框的每一项
+.packone_ {
+  height: 21px;
+  line-height: 21px;
+  margin-top: 2px;
+  width: 225px;
+  text-align: center;
+}
+
+.packone_:hover {
+  background-color: $select-alert-color-background-hover;
+}
+
+.filter_add_bit {
+  height: 22px;
+  font-size: 12px;
+  border: 1px solid $button-color-border-default;
+  line-height: 20px;
+  float: left;
+  margin-top: 8px;
+  margin-left: 7px;
+  position: relative;
+  padding: 0 3px;
+}
+
+.chart_filter .bit_delete {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.bit_delete:before {
+  background-color: $alert-color-background;
+}
+
+// 叠加统计，统一统计方法提示框
+.addFilterTip{
+  position:absolute;
+  top: 201px;
+  right: 78px;
+  color:$font-color-warning;
+}
+
+
+/* 表格的样式 */
+.table {
+  height: 62%;
+  width: 80%;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  background-color: $body-color-background;
+  display: none;
+}
+
+.table_cut {
+  height: 30px;
+  color: $font-color;
+  font-size: 14px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.table_cut div {
+  height: 30px;
+  line-height: 2;
+  padding: 0 7px;  
+  display:inline-block;
+  position:relative;
+}
+
+/* 让一个滚动条隐藏 */
+.table_content_two, .table_content {
+  overflow-x: hidden
+}
+
+.table td{
+  border-collapse: collapse;
+  text-align: center;
+  height:30px;
+  line-height:25px;
+  border-bottom:1px solid $table-color-border-row;
+}
+
+.table tr:nth-child(odd){
+  background: $chart-color-background-row-odd;  
+}   
+
+.table_content {
+  width: 100%;
+  overflow: auto;
+  height: 243px;
+  margin-top: -2px;
+  padding: 10px;
+  border: 2px solid $alert-border-bottom-color;
+}
+
+.table_tr_first {
+  font-weight: 700;
+  color: $font-color-highlight;
+}
+
+.chartTableDetial span {
+  cursor:pointer;
+}
+.chartTableDetial span:hover{
+  color:font-color-highlight;
+}
+
+/* 过滤器抖一抖效果 */
+.shake {
+  animation: shake 0.3s linear;
+  -webkit-animation: shake 0.3s linear;
+  -moz-animation: shake 0.3s linear;
+  -ms-animation: shake 0.3s linear;
+}
+
+@keyframes shake {
+  0% {
+    transform: translatex(-2px);
+  }
+  25% {
+    transform: translatex(2px) translatey(2px);
+  }
+  50% {
+    transform: translatex(-2px) translatey(-2px);
+  }
+  75% {
+    transform: translatex(2px) translatey(2px);
+  }
+  90% {
+    transform: translatex(2px);
+  }
+  100% {
+    transform: translatex(-2px) translatey(-2px);
+  }
+}
+
+/*大图表页面的返回按钮  */
+
+/* 坐标轴样式 */
+.axis path,
+.axis line {
+  stroke: $chart-axis-color-stroke;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.axis text {
+  font-size: 10px;
+}
+
+.svgsvg {
+  font-family: Microsoft Yahei Light;
+}
+.svgsvg text{
+  fill:$font-color;
+}
+
+/* 好看的柱状图样式 图表名称，坐标轴名称………………………………………………………………………… */
+
+/* 大图表名 */
+.textd {
+  fill:$font-color;
+  font-size: 16px;
+  margin-top: 5%;
+  margin-left: 40%;
+  text-shadow: 5px 2px 6px $totip-content-color-border;
+}
+
+/* 小图表名 */
+.textdSmall {
+  font-size: 14px;
+  margin-top: 5%;
+  margin-left: 40%;
+}
+
+/* 大小图xy坐标刻度 */
+text {
+  font-size: 11px;
+}
+
+/* 矩形的圆角 */
+.recttwo, .myrect, .rect {
+  rx: 2px;
+  ry: 2px;
+}
+
+/* 折线图，线上的点 */
+svg .circleone {
+  fill: $chart-svg-color-circle-bgc1;
+  stroke-width: 2px;
+  stroke: $chart-svg-color-circle-border1;
+}
+
+svg .circletwo {
+  fill: $chart-svg-color-circle-bgc2;
+  stroke-width: 2px;
+  stroke: $chart-svg-color-circle-border2;
+}
+
+.most svg .mytext_two {
+  fill: yellow;
+  text-anchor: middle;
+}
+
+.rectBgDefault{
+  fill:$chart-svgRectBg-color-background;
+}
+
+.barActive {
+  stroke: $totip-content-color-border;
+  stroke-width: 2px;
+}
+//用一个div盖住用于截图的x轴的名字
+.xMask{
+  height:20px;
+  width:150px;
+  background-color:$body-color-background;
+  position:absolute;
+}
+.yMask{
+  height:20px;
+  width:60px;
+  background-color:$body-color-background;
+  position:absolute;
+}
+
+/* svg字体颜色用fill，字体大小用fontsize */
+/* 圆饼图交互提示框样式 */
+.tooltip {
+  position: absolute;
+  width: 110px;
+  height: auto;
+  font-size: 12px;
+  text-align: center;
+  background-color: $chart-tooltip-color-background;
+  border-radius: 2px;
+  color: $font-color-highlight-blue;
+  padding: 5px;
+}
+
+#draw {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.svgOut {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.yname {
+  height: 19px;
+  white-space: pre;
+  line-height: 19px;
+  position: absolute;
+  left: 11px;
+  top: 50px;
+  font-size: 12px;
+  background-color: $tabs-item-color-background-topo-active;
+  cursor: pointer;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.yname span:nth-child(2){
+  display:inline-block;
+}
+.add_transform{
+  transform:rotate(180deg);  
+  -ms-transform:rotate(180deg);    /* IE 9 */  
+  -moz-transform:rotate(180deg);   /* Firefox */  
+  -webkit-transform:rotate(180deg); /* Safari 和 Chrome */  
+  -o-transform:rotate(180deg);    /* Opera */  
+  transition: all 0.3s ease-in-out;  
+  -moz-transition: all 0.3s ease-in-out; /* Firefox 4 */  
+  -webkit-transition: all 0.3s ease-in-out; /* Safari 和 Chrome */  
+  -o-transition: all 0.3s ease-in-out; /* Opera */ 
+}
+.activeColor{
+  color:$font-color-highlight;
+}
+/* "<span>"+data.yName+"</span>"+"<span class='fa-angle-down'></span>" */
+.xname {
+  height: 19px;
+  text-align: center;
+  line-height: 16px;
+  position: absolute;
+  bottom: 20px;
+  background-color: $tabs-item-color-background-topo-active;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
+.xname span:nth-child(2){
+  display:inline-block;
+}
+
+.xname:nth-child(2) {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.xname1 {
+  position: absolute;
+  bottom: 20px;
+  background-color: $tabs-item-color-background-topo-active;
+  overflow: auto;
+  padding: 3px 12px 6px;
+  white-space: nowrap;
+}
+
+.yname1 {
+  width: 65px;
+  position: absolute;
+  top: 50px;
+  left: 72px;
+  background-color: $tabs-item-color-background-topo-active;
+  padding: 3px 12px 6px;
+}
+
+
+.yname1 ul li, .yname2 ul li, .xname1 ul li, .xname2 ul li {
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  list-style: none;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+.yname1 ul li span:hover, .yname2 ul li:hover, .xname1 ul li:hover {
+  color: $font-color-highlight;
+}
+
+.yname2 {
+  position: relative;
+  top: -22px;
+  left: 55px;
+  background-color: $tabs-item-color-background-topo-active;
+  padding: 3px 12px 6px;
+}
+.nMask{
+  height:28px;
+  width:300px;
+  position:absolute;
+  background-color:$body-color-background;
+}
+.tableName{
+  height:20px;
+  font-size:14px;
+  position:absolute;
+  top:5%;
+  text-shadow: 5px 2px 6px $font-color-highlight;
+  white-space: nowrap;
+}
+
+.draw_warn {
+  height: 190px;
+  width: 320px;
+  border: 1px solid $alert-border-color;
+  color: $font-color;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  font-size: 16px;
+  background-color: $alert-color-background;
+  text-align:center;
+  z-index:10;
+}
+.draw_warn p{
+  margin-top: 70px;
+}
+.draw_warn button{
+  height:21px;
+  line-height:19px;
+  width:50px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  border:1px solid $button-color-border-default;
+  background-color: $button-color-background-default;
+  text-align:center;
+  font-size: 14px;
+}
+.draw_warn button:hover{
+  background-color:$button-color-background-default-hover;
+}
+
+/* 折线图交互样式 */
+.overlay {
+  fill: none;
+  /* 下面这个是svg属性all表示即便有其他元素 */
+  pointer-events: all;
+}
+
+.focusLine {
+  fill: none;
+  stroke: font-color-highlight;
+  stroke-width: 0.5px;
+  /* shape-rendering: crispEdges; */
+}
+.hintLine{
+  fill: none;
+  stroke: $font-color-highlight;
+  stroke-width: 2px;
+}
+.messageTip{
+  border-radius:3px;
+  padding:7px;
+  opacity:0.7;
+  background-color:$chart-tooltip-color-background;
+  font-size:12px;
+  color:$font-color;
+  position:absolute;
+}
+
+/* 图标参数菜单样式 */
+#topology_message_chart {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.message_chart_title {
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  color: $chart-stat-title-color;
+  text-align: center;
+  line-height: 30px;
+  background-color: $chart-stat-title-bg;
+  margin-top: 10px;
+}
+
+#message_chart_content {
+  width: 100%;
+  padding-top: 20px;
+  overflow-y: auto;
+  height: 93%;
+  padding-bottom: 20px;
+
+}
+
+/* 下面是子代选择器，和后代选择器不一样哦 */
+#message_chart_content > div {
+  margin-bottom: 15px;
+}
+
+#message_chart_content p {
+  width: 90%;
+  word-break: normal;
+  white-space: pre-wrap;
+}
+
+.titleSmall {
+  height: 30px;
+  /* 顺时针上右下左 ，，上下，左右*/
+  padding-left: 10px;
+  position: relative;
+}
+
+.titleSmall span:nth-child(1) {
+  font-size: 16px;
+}
+
+.titleSmall span:nth-child(2) {
+  display: inline-block;
+  height: 15px;
+  width: 105px;
+  position: absolute;
+  top: 5.5px;
+  left: 81px;
+}
+
+#message_chart_content p {
+  /* height: 25px; */
+  line-height: 25px;
+  font-size: 13px;
+  margin-left: 20px;
+}
+
+/* 导入模块样式 */
+/* #import_model{
+  height: 150px;
+  width: 500px;
+  position: absolute;
+  top: 40%;
+  left:30%;
+  background-color: #13181b;
+  border: 1px solid #293742;
+  display: none;
+  z-index: 1000;
+}
+#import_model h4{
+  font-size: 16px;
+  background-image: url('../../../image/topo/toolbar/导入蓝.svg');
+  background-size: 21px 23px;
+  background-position: 0px 3px;
+  background-repeat: no-repeat;
+  color: #33d0ff;
+  line-height: 2em;
+  margin-top: 5px;
+  margin-left: 20px;
+  padding-left: 25px;
+}
+    
+.line{
+  height: 1px;
+  width: 455px;
+  position: absolute;
+  top: 37px;
+  left: 21px;
+  background-color: #202b33
+}
+#import{
+  /* color: #33d0ff; */
+/* height: 20px;
+position: absolute;
+top: 58px;
+left:50px;
+/* background-color:#202b33; */
+/* position: absolute;
+visibility: hidden;
+/* 上面的作用是使这个元素看不见 */
+/* } */
+/* #import_{
+  color: #33d0ff;
+  height: 25px;
+  width:80px;
+  position: absolute;
+  top: 58px;
+  left:50px;
+  background-color:#202b33;
+  position: absolute;
+  outline: none;
+  border: 1px solid #34424d;
+}
+.import_sure , .import_cancel,.export_sure,.export_cancel{
+  font-size: 14px;
+  width: 60px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  cursor: pointer;
+  outline: none;
+}
+.import_sure,.export_sure{
+  position: absolute;
+  right: 100px;
+  bottom: 15px;
+  border: 1px solid #33d0ff;
+  background: #13181b;
+}
+.import_cancel,.export_cancel{
+  border: 1px solid #34424d;
+  background: #13181b;
+}
+.import_sure:hover,.export_sure:hover{
+  background-color: #299abd;
+}
+.import_cancel:hover,.export_cancel:hover{
+  background-color: #202B33;
+}  */
+/* 汇聚 */
+
+/* 图表导出 */
+.export_menu, .import_menu {
+  height: 200px;
+  width: 400px;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  font-size: 14px;
+  display: none;
+}
+
+.export_menu h4 {
+  /* 路径 冲不重复 位置top，left/大小尺寸 */
+  font-size: 16px;
+  color: $font-color-highlight;
+  line-height: 2em;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/* 这个盒子下面的第一个p */
+.typeCheck {
+  color: $font-color-highlight;
+}
+
+.typeNoCheck {
+  color: $font-color;
+}
+
+.export_type:before {
+  margin-right: 5px;
+}
+
+.export_type:hover {
+  cursor: pointer;
+}
+
+.export_menu p:nth-child(2) {
+  margin-left: 55px;
+  margin-top: 5px;
+  color: $font-color-highlight;
+}
+
+.export_menu p:nth-child(3) {
+  padding-left: 25px;
+  margin-left: 50px;
+  margin-top: 5px;
+  float: left;
+  height: 20px;
+}
+
+.export_menu p:nth-child(4) {
+  padding-left: 25px;
+  margin-left: 30px;
+  margin-top: 5px;
+  float: left;
+  height: 20px;
+}
+
+.export_menu p:nth-child(5) {
+  padding-left: 25px;
+  margin-left: 30px;
+  margin-top: 5px;
+  float: left;
+  height: 20px;
+}
+
+.export_menu p:nth-child(6) {
+  margin-left: 55px;
+  margin-top: 43px;
+  color: $font-color-highlight;
+}
+
+#chartexport_filename {
+  height: 23px;
+  width: 220px;
+  background-color: $input-color-background;
+  -web-kit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+  padding-left: 4px;
+  color: $font-color;
+  border: 1px solid $input-color-border;
+  position: absolute;
+  top: 110px;
+  left: 120px;
+}
+
+.export_menu_sure, .export_menu_cancel, .import_menu_sure, .import_menu_cancel {
+  font-size: 14px;
+  width: 64px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+.export_menu_sure, .import_menu_sure {
+  position: absolute;
+  right: 100px;
+  bottom: 15px;
+  border: 1px solid $button-color-border-sure;
+  background:$button-color-background-default;
+}
+
+.export_menu_cancel, .import_menu_cancel {
+  border: 1px solid $button-color-border-cancel;
+  background: $button-color-background-default;
+}
+
+.export_menu_sure:hover, .import_menu_sure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+.export_menu_cancel:hover, .import_menu_cancel:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+/* 图表导入 */
+
+.import_menu h4 {
+  /* 路径 冲不重复 位置top，left/大小尺寸 */
+  font-size: 16px;
+  color: $font-color-highlight;
+  line-height: 2em;
+  padding-left: 26px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.import_menu p {
+  color: $font-color-highlight;
+  position: absolute;
+  top: 67px;
+  left: 45px;
+}
+
+#chart_import_file {
+  color: $font-color-highlight;
+  height: 20px;
+  position: absolute;
+  top: 67px;
+  left: 135px;
+  background-color: $input-color-background;
+  visibility: hidden;
+  /* 上面的作用是使这个元素看不见 */
+}
+
+#chart_import_file_ {
+  color: $font-color-highlight;
+  height: 25px;
+  width: 80px;
+  position: absolute;
+  top: 67px;
+  left: 135px;
+  background-color: $input-color-background;
+  outline: none;
+  border: 1px solid $button-color-border-cancel;
+}
+
+/* 下钻汇聚浮框 */
+#up_down {
+  height: 45px;
+  width: 80px;
+  position: absolute;
+  border-radius: 3px;
+  display: none;
+}
+
+#up_down:before {
+  font-size: 43px;
+  opacity: 0.34;
+}
+
+#up_down p {
+  margin-top: 3px;
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+#up_down p:nth-child(1) {
+  padding-left: 20px;
+  margin-top: 6px;
+  position: absolute;
+  top: -4px;
+  left: -22px;
+}
+
+#up_down p:nth-child(2) {
+  padding-left: 20px;
+  margin-top: 4px;
+  position: absolute;
+  top: 19px;
+  left: -22px;
+}
+
+#up_down p:hover {
+  color: $font-color-highlight;
+  cursor: pointer;
+}
+
+#up:before {
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+#down:before {
+  font-size: 16px;
+  margin-right: 3px;
+}
+
+/* 快照弹框 */
+.chart_phone {
+  height: 250px;
+  width: 450px;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  display: none;
+  z-index: 3;
+  padding: 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+}
+
+.chart_phone h4 {
+  color: $font-color-highlight;
+  font-size: 16px;
+}
+
+#save_img_chart {
+  width: 410px;
+  height: 160px;
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid $button-color-border-sure;
+  margin-left: 10px;
+}
+
+#chart_phone_sure {
+  height: 20px;
+  line-height: 2px;
+  text-align: center;
+  border: 1px $button-color-border-sure solid;
+  padding: 10px 24px;
+  color: $alert-color-text;
+  text-decoration: none;
+  position: absolute;
+  right: 100px;
+  bottom: 10px;
+}
+
+.chart_phone button {
+  height: 20px;
+  line-height: 2px;
+  text-align: center;
+  border: 1px $button-color-border-sure solid;
+  padding: 10px 24px;
+  color: $alert-color-text;
+  outline: none;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  background-color: $button-color-background-default;
+}
+
+#chart_phone_sure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+.chart_phone button:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+//发布到dashboard弹框
+.chart_pubilsh{
+  height:250px;
+  width:450px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  position:absolute;
+  top:30%;
+  left:30%;
+  display:none;
+}
+.chart_pubilsh h4{
+  margin-top:20px;
+  margin-left:20px;
+  color:$font-color-highlight;
+}
+.chart_pubilsh p{
+  color:$font-color-highlight;
+  font-size:16px;
+  margin-top:50px;
+  margin-left:100px;
+}
+.chart_publish_ensure, .chart_publish_cancel{
+  height: 25px;
+  line-height: 4px;
+  text-align: center;  
+  padding: 10px 24px; 
+  outline: none;
+  background: $button-color-background-default;
+  font-size:14px;
+  position:absolute;
+  bottom:20px;
+}
+.chart_publish_ensure{
+  border: 1px $button-color-border-sure solid;
+  color: $alert-color-text;
+  left:200px;
+}
+.chart_publish_cancel{
+  color:$font-color;
+  border: 1px solid $button-color-border-cancel;
+  left:300px;
+  // background: $button-color-background-default;
+}
+.chart_publish_ensure:hover{
+  background-color: $button-color-background-sure-hover;
+}
+.chart_publish_cancel:hover{
+  background-color: $button-color-background-cancel-hover;
+}
+
+//dashboard无位置弹框
+.dashbNoPlaceTip{
+  height:150px;
+  padding:10px;
+  width:500px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color; 
+  z-index: 3;
+  position: absolute;
+  top: 45%;
+  left: 20%;
+}
+
+.dashbNoPlaceTip p{
+  color:$font-color-highlight;
+  font-size:16px;
+  margin-top:35px;
+  margin-left:100px;
+}
+
+.dashbNoPlaceTip button{
+  height: 25px;
+  line-height: 4px;
+  text-align: center;  
+  padding: 10px 24px; 
+  outline: none;
+  background: $button-color-background-default;
+  font-size:14px;
+  position:absolute;
+  bottom:20px;
+  border: 1px $button-color-border-sure solid;
+  color: $alert-color-text;
+  left:370px;
+}
+
+.dashbNoPlaceTip button:hover{
+  background-color: $button-color-background-sure-hover;
+}
+
+
+
+.chartNoDataTip{
+  font-size: 18px;
+  margin: 22% 27%;
+  color: $chart-failhint-color;
+}
+
+/* ***去除js中的样式*** */
+.chart_active_color{
+  color: $font-color-highlight;
+}
+.chart_color_default{
+  color:$font-color;
+}
+.chart_table_header_active{
+  line-height: 24px;
+  color: $font-color-highlight;
+  border-left: 2px solid $alert-border-bottom-color;
+  border-right: 2px solid $alert-border-bottom-color;
+  border-top: 2px solid $font-color-highlight;
+  border-bottom: none;
+  background: $tabs-item-color-background-active;
+  z-index:10;  
+}
+.chart_index_bgc_active{
+  background-color: $chart-tab-color-background-active;
+}
+.chart_index_bgc_default{
+  background-color: $chart-tab-color-background;
+}

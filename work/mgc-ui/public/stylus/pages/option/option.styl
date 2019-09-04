@@ -1,0 +1,1449 @@
+@import "../public/component";
+@import "../public/laydate";
+@import "../../../js/public/jquery-custom-content-scroller/jquery.mCustomScrollbar";
+
+#options_shade {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $shade-color-background;
+  z-index: 100;
+  display: none;
+}
+
+#options_box {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 100%;
+  height: 80%;/*c*/
+  display: none;
+}
+
+.options_box_title {
+  display: inline-block;
+  width: 20%;
+  height: 40px;
+  line-height: 38px;
+  font-size: 16px;
+  font-weight: 300;
+  border: 1px $tabs-item-color-border solid;
+  background-color: $tabs-item-color-background-option;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+#options_box_titles .option_title_active {
+  background: $tabs-item-color-background-option-active;
+  color: $tabs-item-color-text-acitve;
+  border: none;
+  border-top: 1px $tabs-item-color-border-top-active solid;
+  cursor: default;
+}
+
+#options_box_contents {
+  height: 90%;/*c*/
+}
+
+#person_detail {
+  width: 100%;
+  margin-right: 12px;
+  height: 100%;
+}
+
+#options_personal_photo {
+  display: inline-block;
+  width: 20%;
+  margin-right: 12px;
+  vertical-align: top;
+  padding-top: 4%;
+}
+
+#options_personal_photo span {
+  font-size: 100px;
+}
+
+#options_personal_detail {
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  overflow-y: auto;
+  vertical-align: top;
+}
+
+#options_personal_account {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#options_personal_detail p,
+#options_personal_account p {
+  position: relative;
+  line-height: 24px;
+  font-size: 13px;
+}
+
+/*密码的小眼睛*/
+#option_modify_detail,
+#option_modify_password {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  display: none;
+  font-size: 14px;
+}
+
+#option_modify_detail {
+  top: 8px;
+  right: 60px;
+}
+
+#option_modify_password {
+  top: 3px;
+  right: 30px;
+}
+
+/* 改结束 */
+.options_personal_detail_title {
+  color: $font-color-highlight;
+  margin-right: 6px;
+}
+
+.personal_title_delegation {
+  margin-top: 20px;
+}
+
+.personal_title {
+  position: relative;
+  line-height: 32px;
+  color: $font-color-highlight;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+#personal_modify_password,
+#personal_modify_detail {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  color: $font-color-highlight;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.modify_title {
+  line-height: 32px;
+  color: $font-color-highlight;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+
+#personal_modify_password {
+  right: 120px;
+}
+
+#personal_modify_detail {
+  right: 24px;
+}
+
+#person_detail b {
+  font-weight: normal;
+}
+
+.options_box_content {
+  padding: 36px;
+  height: 100%;/*c*/
+  display: none;
+}
+
+.options_message_push {
+  border: 1px $border-color solid;
+  margin: 0 12px 0 24px;
+  padding: 4px 12px;
+  outline: none;
+  font-size: 14px;
+  background-color: $button-color-background-sure;
+  cursor: pointer;
+}
+
+.options_message_push_active {
+  border: $table-color-border-active;
+  color: $font-color-highlight;
+}
+
+.new_messages {
+  position: absolute;
+  top: 120px;
+  right: 36px;
+  left: 36px;
+  bottom: 36px;
+  border: 1px $tabs-item-color-border solid;
+  padding-top: 32px;
+  display: none;
+}
+
+.options_content_active {
+  display: block;
+}
+
+.options_message_title {
+  line-height: 40px;
+  font-size: 14px;
+  color: $font-color-highlight;
+  text-indent: 2em;
+
+}
+
+.options_message_box {
+  width: 100%;
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#options_message_push_mine,
+#options_message_mine_push {
+  position: relative;
+  width: 100%;
+  min-height: 80%;
+}
+
+.option_message_timeline {
+  position: absolute;
+  top: 0;
+  left: 90px;
+  bottom: 12px;
+  border: 2px $tabs-item-color-border solid;
+  border-radius: 2px;
+}
+
+.option_message_list {
+  position: relative;
+  height: 48px;
+  margin-left: 178px;
+  line-height: 48px;
+  margin-bottom: 12px;
+}
+
+.option_message_list_date {
+  position: absolute;
+  top: 12px;
+  left: -165px;
+  display: inline-block;
+  width: 140px;
+  line-height: 24px;
+  background-color: $input-color-background;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.option_message_list_number {
+  margin-right: 4px;
+}
+
+.option_message_list_img {
+  height: 36px;
+  margin-right: 8px;
+}
+
+.option_message_list_people,
+.option_message_list_name {
+  margin: 0 4px;
+  color: $font-color-highlight;
+}
+
+.option_message_list_check {
+  margin-left: 20px;
+  color: $font-color-highlight;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.delegation_tab_btn {
+  height: 32px;
+  border: 1px $tabs-item-color-border solid;
+  margin-right: 12px;
+  padding: 0 8px;
+  outline: none;
+  color: $font-color;
+  font-size: 14px;
+  font-weight: 200;
+  background-color: $tabs-item-color-background-default;
+}
+
+.delegation_tab_active {
+  color: $font-color-highlight;
+  border: 1px $tabs-item-color-border-active solid;
+}
+
+.delegation_content_box {
+  margin-top: 24px;
+  display: none;
+  height:95%;/*c*/
+}
+
+#delegation_modify_option {
+  display: flex;
+  justify-content: space-between;
+}
+
+#delegation_modify_option .select_main_box{
+  width: 125px;
+}
+
+.delegation_modify_option_list {
+  position: relative;
+  display: inline-block;
+  // width: 32%;
+  height: 25px;
+  line-height: 25px;
+}
+
+#delegation_modify_group {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#delegation_modify_group table {
+  width: 100%;
+}
+
+#delegation_modify_group table thead td {
+  border: 1px $table-color-border solid;
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 24px;
+  background-color: $table-color-background-head;
+  color: $font-color-highlight;
+}
+
+#delegation_modify_group table tbody td {
+  table-layout: fixed;
+  border: 1px $table-color-border solid;
+  border-collapse: collapse;
+  text-align: center;
+  position: relative;
+  background: $table-color-background;
+}
+
+#delegation_modify_group table tbody td p {
+  width: 558px;
+  height: 20px;
+  line-height: 20px;
+  text-align: left;
+  text-indent: 12px;
+  outline-color: $font-color-highlight;
+}
+
+.delegation_delete_group_name,
+.delegation_modify_group_name {
+  position: absolute;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.delegation_delete_group_name {
+  right: 0;
+}
+
+.delegation_modify_group_name {
+  right: 24px;
+}
+
+// #delegation_modify_group_type,
+// #delegation_modify_role_type {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   width: 160px;
+//   line-height: 24px;
+//   text-indent: 8px;
+//   font-size: 14px;
+//   background-color: $input-color-background;
+//   cursor: pointer;
+//   vertical-align: middle;
+//   color: $input-color-text;
+//   border: 1px solid $input-color-border;
+// }
+
+// #delegation_modify_group_type {
+//   left: 80px;
+// }
+
+// #delegation_modify_role_type {
+//   left: 70px;
+// }
+
+// #delegation_modify_group_select,
+// #delegation_modify_role_select {
+//   position: absolute;
+//   top: 24px;
+//   width: 160px;
+//   max-height: 100px;
+//   z-index: 99;
+//   background-color: $input-color-background;
+//   overflow-y: auto;
+// }
+
+// #delegation_modify_group_select {
+//   left: 80px;
+// }
+
+// #delegation_modify_role_select {
+//   left: 70px;
+// }
+
+#delegation_modify_option_ensure,
+#delegation_modify_option_delete,
+.delegation_modify_option_idcard_search {
+  height: 25px;
+  padding: 0 12px;
+  outline: none;
+  font-size: 14px;
+  background-color: $button-color-background-sure;
+}
+
+#delegation_modify_option_ensure,
+.delegation_modify_option_idcard_search{
+  margin: 0 12px 0 24px;
+  border: 1px $table-color-border-active solid;
+}
+
+#delegation_modify_option_ensure:hover,
+.delegation_modify_option_idcard_search:hover{
+  background-color: $button-color-background-sure-hover;
+}
+
+#delegation_modify_option_delete {
+  border: 1px $button-color-border-cancel solid;
+}
+
+#delegation_modify_option_delete:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+#delegation_check_all,
+.delegation_check_list {
+  margin-right: 12px;
+  margin-top: 5px;
+  border: none;
+  outline: none;
+}
+
+#delegation_check_all:before{
+  background-color: $table-color-background-head;
+  font-size: 16px;
+}
+.delegation_check_list:before {
+  background-color: $table-color-background;
+  font-size: 16px;
+}
+
+#option_log_filter,
+#system_log_filter {
+  padding: 10px;
+  border: 1px dashed $tabs-item-color-border;
+  flex-wrap: wrap;
+}
+
+#option_log_filter ul,
+#system_log_filter ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.system_filter_list {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.system_filter_title {
+  margin-right: 12px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: right;
+  color: $font-color-highlight;
+}
+
+.clandar_box {
+  position: relative;
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.clandar_box:nth-child( 1 ) {
+  margin-left: 0;
+}
+
+#option_filter_username,
+#option_filter_user,
+#option_filter_sys,
+#option_filter_ip,
+#system_filter_username,
+#system_filter_type,
+#system_filter_ip {
+  height: 25px;
+  width: 110px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+}
+
+#delegation_modify_option_select_input{
+  height: 25px;
+  width: 150px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+}
+
+#option_time,
+#system_time{
+  height: 25px;
+  width: 190px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+}
+
+#option_filter_user,
+#option_filter_sys,
+#system_filter_type {
+  display: inline-block;
+  height: 25px;
+  width: 110px;
+  line-height: 25px;
+  text-indent: 8px;
+  font-size: 12px;
+  background-color: $input-color-background;
+  cursor: pointer;
+}
+
+#option_filter_type_lists,
+#system_filter_type_lists {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  width: 110px;
+  z-index: 99;
+  background-color: $input-color-background;
+}
+
+.select_type_list {
+  text-indent: 8px;
+  cursor: pointer;
+}
+
+.select_type_list:hover {
+  background-color: $select-alert-color-background-hover;
+}
+
+#option_time_start,
+#option_time_end,
+#system_time_start,
+#system_time_end {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: $input-color-background;
+  font-size: 16px;
+}
+
+#option_filter_ensure,
+#system_filter_ensure,
+#authority_add_ensure{
+  width: 70px;
+  height: 25px;
+  margin-top: 5px;
+  outline: none;
+  background: $button-color-background-sure;
+  border: 1px $table-color-border-active solid;
+}
+
+#option_filter_ensure:hover,
+#system_filter_ensure:hover,
+#authority_add_ensure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+#options_option_box,
+#options_system_box,
+#delegation_content {
+  margin-top: 12px;
+}
+
+#option_log_lists,
+#system_log_lists,
+#delegation_detail_lists {
+  height: 320px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#option_content_head,
+#system_content_head,
+#delegation_detail_head {
+  table-layout: fixed;
+  background-color: $table-color-background-head;
+}
+
+/* 赫英迪加的 */
+#option_content_head {
+  width: 100%;
+}
+
+#delegation_detail_head {
+  width: 100%;
+}
+
+/*赫英迪加完了*/
+#option_content_head td,
+#system_content_head td,
+#delegation_detail_head td {
+  line-height: 24px;
+  color: $font-color-highlight;
+}
+
+#option_content_body,
+#system_content_body,
+#delegation_detail_body {
+  table-layout: fixed;
+}
+
+#option_content_head td,
+#option_content_body td,
+#system_content_head td,
+#system_content_body td,
+#delegation_detail_head td,
+#delegation_detail_body td {
+  border: 1px $table-color-border solid;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+#option_content_body td,
+#system_content_body td,
+#delegation_detail_body td {
+  height: 35px;
+  background: $table-color-background;
+}
+
+#delegation_detail_body td {
+  line-height: 24px;
+  background: $table-color-background;
+}
+
+#delegation_detail_head td:nth-child(1),
+#delegation_detail_body td:nth-child(1) {
+  text-indent: 2em;
+  text-align: left;
+}
+
+#option_pagination_box,
+#system_pagination_box,
+#delegation_detail_pagination_box {
+  margin-top: 70px;
+  width: 100%;
+  text-align: center;
+}
+
+#option_log_pagination,
+#system_log_pagination,
+#delegation_detail_pagination {
+  display: inline-block;
+}
+
+#option_log_pagination a, #option_log_pagination span,
+#system_log_pagination a, #system_log_pagination span,
+#delegation_detail_pagination a, #delegation_detail_pagination span {
+  padding: 2px 10px;
+  font-size: 12px;
+  background: $pagination-color-background;
+  color: $pagination-color-text;
+  border: 1px $pagination-color-border solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#option_log_pagination a,
+#system_log_pagination a,
+#delegation_detail_pagination a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#option_log_pagination span,
+#system_log_pagination span,
+#delegation_detail_pagination span {
+  cursor: default;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+#option_log_pagination .current,
+#system_log_pagination .current,
+#delegation_detail_pagination .current {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+}
+
+#option_log_pagination .btnactive,
+#system_log_pagination .btnactive,
+#delegation_detail_pagination .btnactive {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+  cursor: default;
+}
+
+.pagination_page_box {
+  display: inline-block;
+  margin-left: 24px;
+}
+
+#option_page_num,
+#system_page_num,
+#delegation_detail_pagination_num {
+  width: 32px;
+  height: 20px;
+  margin: 0 4px;
+  background-color: $input-color-background;
+  text-align: center;
+  border: none;
+}
+
+#option_page_ensure,
+#system_page_ensure,
+#delegation_detail_pagination_ensure {
+  width: 60px;
+  height: 20px;
+  margin-left: 12px;
+  line-height: 16px;
+  outline: none;
+  background-color: $button-color-background-sure;
+  border: 1px $table-color-border-active solid;
+}
+
+#option_page_ensure:hover,
+#system_page_ensure:hover,
+#delegation_detail_pagination_ensure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+/* 取消js中的样式 */
+.event_pagealert_notice_color_default {
+  color: $font-color-highlight;
+}
+
+.event_pagealert_notice_color_license {
+  color: $font-color-warning;
+}
+
+.authority {
+  position: relative;
+  border: 1px $tabs-item-color-border solid;
+  margin: 0 auto;
+  padding: 12px;
+  height:100%;
+}
+
+.authority_lists_box {
+  height: 100%;
+}
+
+.authority_users {
+  width: 220px;
+  height: 6%;
+  font-size: 16px;
+}
+
+.authority_users_box {
+  position:absolute;
+}
+
+.authority_users h6{
+  font-size: 16px;
+  cursor:pointer;
+}
+
+.authority_users span{
+  float:left;
+}
+
+.authority_users_select {
+  float:left;
+  width: 100px;
+  margin-left: 10px;
+  border: 1px solid $input-color-border;
+  background-color: $input-color-background;
+
+  div {
+    width: 100%;
+  }
+}
+.authority_import {
+  margin-left: 2%;
+  height: 92%;
+}
+
+.authority_import_file {
+  height: 10%;
+}
+
+.authority_import_tabel {
+  width: 100%;
+  height: 78%;
+  margin-top: 1%;
+}
+
+.authority_import_head {
+  color: $font-color;
+  height: 100%;
+  font-size: 14px;
+  line-height: 38px;
+  float: left;
+  width: 10%;
+}
+
+.authority_import_box {
+  height: 100%;
+  line-height: 37px;
+  color: $font-color-highlight;
+  float: left;
+}
+
+.authority_tabel_box {
+  float: left;
+  width: 66%;
+  height: 100%;
+}
+
+.authority_tabel_change {
+  float:left;
+  width: 24%;
+  height: 100%;
+}
+
+.authority_tabel_add {
+  margin-top: 50%;
+  margin-left: 37%;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 33px;
+  border: 1px $table-color-border-active solid;
+  cursor: pointer;
+}
+.authority_tabel_remove {
+  margin-top: 15%;
+  margin-left: 37%;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 33px;
+  border: 1px $table-color-border-active solid;
+  cursor: pointer;
+}
+
+.authority_tabel {
+  float:left;
+  width: 36%;
+  height: 100%;
+  padding: 4px 8px;
+  font-size:14px;
+  border: 1px $border-color solid;
+  border-radius: 5px;
+  background: $option-authority_tabel-background;
+}
+
+.authority_tabel .ul_wrapper {
+  height: 80%;
+  font-size:14px;
+  overflow: auto;
+}
+
+.authority_all_noselect:before {
+  background-color: $table-color-background;
+  font-size: 16px;
+}
+.authority_all_selected:before {
+  background-color: $table-color-background;
+  font-size: 16px;
+}
+.authority_tabel_noselect_check:before {
+  background-color: $table-color-background;
+  font-size: 16px;
+}
+.authority_tabel_selected_check:before {
+  background-color: $table-color-background;
+  font-size: 16px;
+}
+
+.authority_tabel_li {
+  height: 30px;
+  line-height: 38px;
+}
+
+.authority_tabel_li_hide{
+  display : none;
+}
+
+.authority_tabel_type_span{
+  margin-left :5px;
+}
+
+.authority_tabel_type {
+  height: 10%;
+  padding-top: 1%;
+  color: $font-color;
+  border-bottom: 1px $border-color solid;
+}
+
+.authority_tabel_search {
+  height: 25px;
+  width: 110px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+}
+
+.authority_tabel_size {
+  float: right;
+  margin-right: 15px;
+}
+
+.authority_options_box {
+  margin-top: 4px;
+}
+#authority_add_ensure {
+  margin-left: 35.76%;
+}
+#authority_add_reset {
+  border: 1px $button-color-border-cancel solid;
+  width: 72px;
+  height: 28px;
+  background: $button-color-background-sure;
+  margin-left: 15px;
+  margin-top: 5px;
+  color: $button-color-text;
+  outline: none;
+  cursor: pointer;
+}
+#authority_add_reset:hover {
+  background: $button-color-background-cancel-hover;
+}
+
+#authority_msg {
+  margin-left: 20px;
+  color: $font-color-highlight;
+}
+
+.authority_file_head {
+  float:left;
+}
+
+.authority_file{
+  width: 100px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+  color: $button-color-text;
+  background: $button-color-background-sure;
+  border: 1px $border-color solid;
+  border-radius: 5px;
+  float:left;
+  margin-left:10px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.authority_file label {
+  white-space: nowrap;
+}
+.authority_file input[type="file"] {
+  position: relative;
+  top: -33px;
+  left: 0;
+  width: 100px;
+  height: 33px;
+  opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+}
+
+// 白名单管理样式
+.wlm_out{
+  width:100%;    
+  position: relative;
+}
+
+.wlm{
+  width:100%;    
+  position: relative;
+}
+
+.wlm_nav{
+  margin-bottom:15px;
+  display:flex;
+}
+
+.wlm_nav span{
+  margin-right:10px;
+  color:$font-color-highlight;
+  
+}
+.wlm_nav div{
+  display:inline-block;
+}
+.wlm_nav input{
+  outline:none;
+  margin-right:50px;
+  height: 25px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+}
+
+#wlmSearchContent{
+  width: 190px;  
+}
+
+#wlmTimeSet{
+  width:190px;
+} 
+
+#wlmImportBtn{
+  width:100px;
+}
+
+#wlmTimeSetBtn{
+  position: absolute;
+  top: 2px;
+  left: 533px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: $input-color-background;
+  font-size: 16px;
+}
+
+.wlm_import_btn_styl{
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+  position: absolute;
+  height: 24px;
+  width: 106px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#wlmDeleteAllBtn{
+  width: 70px;
+  height: 25px;
+  float:right;
+  margin-right:20px;
+  outline: none;
+  background: $button-color-background-default;
+  border: 1px $button-color-border-default solid
+  opacity:0.3
+}
+
+#wlmSearchBtn{
+  float:right;
+  margin-right:20px;
+  width: 70px;
+  height: 25px;
+  // position: absolute;
+  // right: 10%;
+  // top: 0px;
+  outline: none;
+  background: $button-color-background-default;
+  border: 1px $button-color-border-default solid
+}
+
+#wlmDeleteAllBtn:hover,
+#wlmSearchBtn:hover{
+  background-color: $button-color-background-sure-hover;
+}
+
+.wlm_table_head{
+  width:100%
+  background-color: $table-color-background-head;
+  border-collapse: collapse;
+  border-spacing: 0;  
+  color:$font-color-highlight;
+}
+
+.wlm_table_body{
+  width:100%
+  border-collapse: collapse;
+  border-spacing: 0;
+ }
+
+table td{
+  border: 1px $alert-border-color solid;
+  height:24px;
+  line-height: 24px;
+}
+
+.wlm_table_body tr td {
+  height:35px;
+  line-height:35px;
+}
+
+// table td:nth-child(1) {
+//   text-indent: 2em;
+//   border: 1px #23282c solid;
+// }
+table tr td {
+  text-align: center;
+}
+
+.wlm_table_body tr td:nth-child(6),
+.wlm_table_body tr td:nth-child(5){
+  position:relative;
+}
+
+.wlm_detail,.wlm_delete{
+  display: inline-block;
+  font-size: 20px;
+  position: absolute;
+  top: 8px;
+  left: 43%;
+}
+.wlm_delete{
+  font-size:16px;
+}
+
+.wlm_detail{
+  opacity:0.3
+}
+  
+.wlm_table_head tr td:nth-child(1),
+.wlm_table_body tr td:nth-child(1)
+{
+  width:15%;  
+  text-indent: 2em;
+  text-align: left;
+}
+
+.wlm_table_head tr td:nth-child(2),
+.wlm_table_body tr td:nth-child(2){
+  width:15%;  
+}
+
+.wlm_table_head tr td:nth-child(3),
+.wlm_table_body tr td:nth-child(3){
+  width:25%;  
+}
+
+.wlm_table_head tr td:nth-child(4),
+.wlm_table_body tr td:nth-child(4){
+  width:25%;  
+}
+
+.wlm_table_head tr td:nth-child(5),
+.wlm_table_body tr td:nth-child(5){
+  width:10%;  
+}
+
+.wlm_table_head tr td:nth-child(5),
+.wlm_table_body tr td:nth-child(5){
+  width:10%;  
+}
+
+.wlmCheck:before ,#wlmCheckAll:before{
+  
+  background-color: $table-color-background-head;
+  font-size: 16px;
+}
+.wlmCheck , #wlmCheckAll{
+  border: none; 
+  outline: none; 
+  margin-right:8px;
+  cursor:pointer;
+}
+
+.wlm_delete{
+  cursor:pointer;
+}
+
+.wlm_delete:before:hover{
+  color:$font-color-highlight;
+}
+
+.wlm_list{
+  height: 356px;
+  overflow-y: auto;
+}
+
+.wlm_import_btn{
+  opacity:0.3;
+}
+
+ .wlm_table_body tr:nth-child(even){
+   background-color: $wlm-table-body-even-color;
+ }
+ .wlm_table_body tr:nth-child(odd){
+   background-color: $wlm-table-body-odd-color;
+ }
+#deleteSuccessTip{
+  height: 100px;
+  width: 400px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  display: none;
+  z-index: 10;
+  position: absolute;
+  top: 3%;
+  left: 36%;
+}
+#deleteSuccessTip h4{
+  margin: 10px;
+  margin-left: 20px;
+  color: $font-color-highlight;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $alert-border-color;
+}
+    
+#deleteSuccessTip p{
+  font-size: 18px;
+  color: $font-color-highlight;
+  margin-top: 18px;
+  margin-left: 70px;
+}
+#deleteSuccessTip button{
+  font-size: 14px;
+  width: 60px;
+  height: 26px;
+  margin: 0 -4px 0 24px;
+  color: $font-color;
+  outline: none;
+  cursor: pointer;
+}
+
+//白名单-添加人员至白名单
+#wlmAddBtn{
+  margin-right: 20px;
+  width: 70px;
+  height: 25px;
+  outline: none;
+  background: $wlm-AddBtn-background-color;
+  border: 1px $wlm-AddBtn-border-color solid;
+}
+
+#wlmAddBtn:hover{
+  background-color: $button-color-background-sure-hover;
+}
+
+.wlm_add_person{
+  height:200px;
+  width:500px;
+  position:absolute;
+  z-index: 111;
+  top:20%;
+  left:20%;
+  padding:15px;
+  background-color: $wlm-AddBtn-background-color;
+  border: 1px solid $wlm-AddPerson-border-color;
+
+  h4{
+    margin: 10px;
+    color: $wlm-AddBtn-border-color;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $wlm-H4-border-color;
+  }
+
+  input{
+    outline: none;
+    // margin-right: 20px;
+    height: 25px;
+    width:200px;
+    text-indent: 8px;
+    background-color: $wlm-input-color;
+    border: 1px solid $wlm-input-color;
+  }
+
+  button{
+    margin-right: 20px;
+    width: 70px;
+    height: 25px;
+    outline: none;
+    background: $wlm-AddBtn-background-color;
+    border: 1px $wlm-AddBtn-border-color solid;
+  }
+  label{
+    display: block;
+    margin: 10px auto;
+    width: 270px;
+    height: 25px;
+
+    span{
+      display: inline-block;
+      width: 60px;
+      text-align: right;
+      margin-right: 5px;
+    }
+  }
+
+  .idcard_errortip{
+    font-size:10px;
+    position:absolute;
+    top: 100px;
+    right: 37px;
+    color: $wlm-idcard-errortip-color;
+  }
+
+  .add_cancel{
+    border: 1px solid $wlm-AddBtn-border-color;
+    position:absolute;
+    right:50px;
+    bottom:15px;
+  }
+  .add_sure{
+    position: absolute;
+    right: 150px;
+    bottom: 15px;
+  }
+
+  .add_sure:hover{
+    background-color: $button-color-background-sure-hover;
+  }
+
+  .add_cancel:hover{
+    background-color: $button-color-background-cancel-hover;
+  }
+
+}
+
+#dstSure{
+  border: 1px solid $button-color-border-default;
+  background: $button-color-background-default;
+  position: absolute;
+  right: 90px;
+  bottom: 10px;
+}
+#dstCancel{
+  border: 1px solid $button-color-border-cancel;
+  background: $button-color-background-default;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+#dstSure:hover{
+  background-color: $button-color-background-sure-hover;
+}  
+#dstCancel:hover{
+  background-color: $button-color-background-cancel-hover;
+}
+
+.style_checked{
+  color: $wlm-style-checked-color;
+} 
+.style_nochecked{
+  color:$font-color
+}
+
+.authority_user_show {
+  line-height: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  width: 100%;
+  height: 30px;
+}
+.authority_user_title {
+  color: $font-color-highlight;
+  line-height: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  float:left;
+  width: 40%;
+  text-align: center;
+}
+.authority_user_name {
+  float:left;
+  line-height: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  width: 50%;
+  text-align: center;
+}
+.authority_auto_name{
+  float:left;
+  line-height: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  width: 50%;
+  background-color: $input-color-background;
+  height: 29px;
+  position: relative;
+}
+.authority_select_auto_name{
+  position: absolute;
+  left: 25%;
+}
+.authority_component_button_box {
+  float: right;
+  margin-right: 24px;
+  margin-top: 20px;
+}
+#authority_modify_auto_type {
+  /*margin-top: 10px;*/
+}
+
+.authority_tabel_span {
+  white-space: nowrap;
+  width: 80%;
+  line-height: 0.9;
+  margin-left: 7px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.authority_tabel_div {
+  white-space: nowrap;
+  width: 80%;
+  line-height: 0.9;
+  margin-left: 7px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+#authority_modify_auto_select {
+  background-color: $input-color-background;
+  width: 98px;
+}
+
+.log-download {
+  width: 20px;
+  margin-top: 7px;
+  margin-right: 20px;
+}

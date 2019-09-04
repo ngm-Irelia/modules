@@ -1,0 +1,1088 @@
+@import "../public/component";
+@import "../public/laydate";
+@import "../../../js/public/jquery-custom-content-scroller/jquery.mCustomScrollbar";
+
+#searchList_main {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 20px;
+  left: 0;
+  box-sizing: border-box;
+  padding: 0 15px 15px 15px;
+}
+
+/*遮罩层*/
+#search_shade {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  bottom: 50%;
+  left: 50%;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 9;
+  overflow: hidden;
+}
+
+/*搜索框*/
+#searchList_main_search {
+  width: 100%;
+// height: 85px;
+  margin: 10px 0;
+  text-align: center;
+  position: relative;
+}
+
+#searchList_search_box {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.search_group {
+
+  .search_group_input {
+    width: 320px;
+    height: 40px;
+    border: 1px $input-color-border solid;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 8px;
+    background-color: $input-color-background-search;
+    color: $font-color;
+  }
+
+  .ul_wrapper {
+    max-height: 300px;
+    border:1px solid $border-color;
+    background-color: $searchlist-wrapper-background-color;
+
+    ul {
+      li {
+        background-color: @background-color;
+        color:$font-color;
+
+        &:hover {
+          background-color: $searchlist-wrapper-li-hover-color;
+        }
+      }
+    }
+  }
+}
+
+.search_history_box,
+#searchLsit_search_btn,
+#searchLsit_search_advancedBtn {
+  position: relative;
+  width: 90px;
+  height: 30px;
+  border: none;
+  outline: none;
+  margin: -10px 8px 0 8px;
+  vertical-align: middle;
+  background: none;
+  color: $font-color-highlight;
+  font-size: 16px;
+  cursor: pointer;
+
+  .icon-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+
+    span {
+      font-size: 29px;
+      &.path2 {
+      //IE11兼容性
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 90px;
+      }
+    }
+
+    p {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      line-height: 27px;
+      text-align: center;
+    }
+  }
+}
+
+// #searchLsit_search_advancedBtn {
+//   margin-right: 0;
+// }
+#searchlist_searchhistory_btn{
+  margin-right:0;
+}
+
+.search_history_box .icon-button a{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  text-align: center;
+}
+
+.searchlist_tab_all{
+  position:absolute;
+  width:50px;
+  margin-left:0;
+}
+.searchlist_tab{
+  max-width:95%;
+}
+.searchlist_tab_entity{
+  margin-left:50px;
+}
+.searchlist_tab b{
+  margin-bottom: 5px;
+}
+#searchList_main_tab li {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#searchList_main_tab .parent_classify,
+#searchList_main_tab .child_classify,
+.child_classify_more{
+  display: inline-block;
+  margin-right: 4px;
+  padding: 0 8px;
+  line-height: 28px;
+  font-weight: normal;
+  font-size: 14px;
+  border: 1px $tabs-item-color-border solid;
+  border-radius: 2px 2px 0 0;
+  background-color: $tabs-item-color-background-active;
+  cursor: pointer;
+}
+.child_classify_more{
+  display:none;
+}
+
+#searchList_main_tab .tab_active {
+  color: $font-color-highlight;
+  border: 1px $tabs-item-color-border-active solid;
+  background: $tabs-item-color-background-default;
+  cursor: default;
+}
+
+#searchlist_main_content {
+  position: absolute;
+  top: 105px;
+  right: 12px;
+  bottom: 45px;
+  left: 12px;
+  overflow-y: auto;
+  background: $searchlist-area-color-background;
+  margin-top:10px;
+}
+
+#searchlist_nomessage {
+  margin: 120px auto;
+  padding-top: 54px;
+  line-height: 48px;
+  font-size: 16px;
+  text-align: center;
+  display: none;
+}
+
+#searchlist_nomessage:before {
+  font-size: 80px;
+}
+
+#searchlist_makeLabel {
+  color: $font-color-highlight;
+  cursor: pointer;
+  text-decoration: underline;
+  user-select: none;
+}
+
+#searchList_main_box {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.searchList_main_content_box {
+  width: 49.5%;
+  min-width: 500px;
+  height: 140px;
+  position: relative;
+  border: 1px $tag-color-border solid;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: $tag-color-background;
+  color: $font-color;
+  font-size: 14px;
+}
+
+.searchList_main_content {
+  position: relative;
+  height: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: $tag-color-background;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search_go_detail {
+  width: 95px;
+  height: 35px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 16px;
+  line-height: 35px;
+  text-align: center;
+  color: $searchlist-go-detail-color;
+  cursor: pointer;
+  display: none;
+}
+.search_go_detail .path1:before, .search_go_detail .path2:before{
+  color:$searchlist-go-detail-before-color;
+}
+.search_go_detail .path1, .search_go_detail .path2 {
+  position: absolute;
+  left: 93px;
+  top: 0;
+  line-height: 36px;
+  text-align: center;
+}
+
+.search_go_detail .path1:before, .search_go_detail .path2:before {
+  font-size: 30px;
+}
+
+.searchList_content_img {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.searchList_content_img img {
+  width: 80px;
+  height: 80px;
+  background-color: $image-background-color;
+}
+
+.searchList_content_text {
+  position: absolute;
+  top: 30px;
+  left: 120px;
+  right: 4px;
+  height: 95px;
+  overflow-y: hidden;
+  display: inline-block;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div {
+  min-width: 50%;
+  max-width: 90%;
+  float: left;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div p {
+  display: inline;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div p span.dot {
+  color: $font-color-highlight;
+  font-size: 12px;
+}
+
+.searchList_content_text .makeEntity {
+  text-decoration: none;
+}
+
+.searchList_content_gis, .searchList_content_topology {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 19px;
+}
+
+.searchList_content_topology {
+  top: 10px;
+  right: 10px;
+}
+
+.searchList_content_gis {
+  top: 10px;
+  right: 35px;
+}
+
+.searchList_main_content_box:hover .searchList_main_content {
+  width: 105%;
+  min-width: 600px;
+  height: 180px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  border: 2px $searchlist-textarea-color-border solid;
+  margin-bottom: 15px;
+  padding: 15px;
+  white-space: normal;
+}
+
+.searchList_main_content:hover .search_go_detail {
+  display: inline-block;
+}
+
+.searchList_main_content_box:hover .searchList_content_text {
+  height: 125px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.searchList_main_content_box:hover .searchList_content_text span {
+  font-weight: bold;
+  color: $font-color-highlight;
+}
+
+#searchlist_pagination_box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+#searchlist_pagination {
+  display: inline-block;
+}
+
+#searchlist_pagination a, #searchlist_pagination span {
+  padding: 4px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background: $pagination-color-background;
+  color: $pagination-color-text;
+  border: 1px $pagination-color-border solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#searchlist_pagination a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#searchlist_pagination span {
+  cursor: default;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+#searchlist_pagination .current {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+}
+
+#searchlist_pagination .btnactive {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+  cursor: default;
+}
+
+#searchlist_loading {
+  position: absolute;
+  top: 280px;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+#searchlist_loading img {
+  width: 400px;
+}
+
+#advanceSearch_box {
+  position: absolute;
+  top: 50%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  padding: 10px 15px;
+  background-color: $alert-color-background;
+  z-index: 10;
+  border: 1px solid $alert-border-color;
+}
+
+#advanceSearch_search {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  /*border-bottom: 1px #1f2022 solid;*/
+}
+
+#advance_business_description {
+  padding-left: 80px;
+  color: $input-color-text;
+}
+
+#advance_search_map_value {
+  height: 25px;
+  width: 84.5%;
+  text-indent: 8px;
+  border: none;
+  background-color: $input-color-background;
+  color: $font-color;
+  display: none;
+}
+
+.advance_search_map {
+  width: 530px;
+  height: 80px;
+}
+
+.esriMapTooltip {
+  color: $searchlist-map-background-color !important;
+}
+
+#searchMap {
+  background-color: $searchlist-map-background-color;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.search_map_operate {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: none;
+}
+
+.search_map_return {
+  color: $font-color;
+  cursor: pointer;
+}
+
+.search_map_return:hover {
+  color: $font-color-highlight;
+}
+
+.search_map_clear, .search_map_area {
+  display: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.search_map_clear > p, .search_map_area > p {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  width: 60px;
+  font-size: 12px;
+  text-align: center;
+  background-color: $totip-tool-color-background;
+  color: $searchlist-color-text;
+}
+
+#advance_search_value,
+#search_time,
+#advance_search_business {
+  height: 25px;
+  line-height: 25px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  color: $font-color;
+  border: 1px solid $input-color-border;
+}
+
+#advance_search_value{
+  width: 84.5%;
+}
+
+#search_time {
+  width: 100%;
+}
+
+#advance_search_object {
+  width: 83%;
+}
+
+#advance_search_business {
+  width: 100%;
+  height: 25px;
+  text-indent: 8px;
+  background-color: $input-color-background;
+  color: $font-color;
+}
+
+#advance_search_value::-webkit-input-placeholder,
+#advance_search_business::-webkit-input-placeholder {
+  color: $input-color-text;
+}
+
+#advance_search_ensure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+#advance_search_condition {
+  position: relative;
+  width: 530px;
+  margin-bottom: 24px;
+}
+
+/*#advance_search_condition>li:nth-of-type(3){
+  width: 530px;
+  height: 140px;
+}*/
+.advance_search_title {
+  display: inline-block;
+  width: 60px;
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: right;
+  color: $font-color-highlight;
+}
+
+.advance_search_box {
+  display: inline-block;
+  position: relative;
+  height: 25px;
+}
+
+#advance_search_time {
+  width: 84.5%;
+}
+
+.advanceSearch_button {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#advance_search_ensure {
+  display: inline-block;
+  height: 32px;
+  background-color: $button-color-background-sure;
+  border: 1px $button-color-border-sure solid;
+  margin-right: 24px;
+  padding: 0 24px;
+  color: $font-color;
+  outline: 0;
+}
+
+#advance_search_cancel {
+  display: inline-block;
+  height: 32px;
+  line-height: 30px;
+  background-color: $button-color-background-cancel;
+  border: 1px $button-color-border-cancel solid;
+  margin-right: 24px;
+  padding: 0 24px;
+  color: $font-color;
+  outline: 0;
+  cursor: pointer;
+}
+
+#advance_search_cancel:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+.clandar_box {
+  position: relative;
+  display: inline-block;
+  width: 45%;
+}
+
+#search_time_btn {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-size: 18px;
+  background-color: $input-color-background;
+}
+
+.search_conditions {
+  display: inline-block;
+  width: 100px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.search_block {
+  display: block;
+  width: 100%;
+}
+
+.search_block div {
+  display: inline-block;
+  width: 100px;
+}
+
+.search_conditions input {
+  width: 14px;
+  height: 14px;
+  border: none;
+  margin-right: 8px;
+  outline: none;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.search_conditions input::before {
+  background-color: $alert-color-background;
+}
+
+/* .search_conditions input::after{
+	position: absolute;
+	content: "";
+	width: 14px;
+	height: 14px;
+} */
+/* 被选中的input标签的样式 */
+/* .search_conditions input:checked::after{
+	position: absolute;
+	content: "";
+	width: 14px;
+	height: 14px;
+} */
+
+#advance_search_content {
+  width: 100%;
+  height: 80px;
+  line-height: 40px;
+}
+
+.search_classify_title {
+  color: $font-color-highlight;
+}
+
+.advance_search_lists {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  width: 100%;
+  height: 116px;
+  border: 1px $select-color-border solid;
+  padding: 8px 0;
+  background-color: $background-color;
+  z-index: 99;
+  display: none;
+}
+
+.advance_search_list {
+  line-height: 20px;
+  text-indent: 1em;
+  cursor: pointer;
+}
+
+.advance_search_list:hover {
+  background-color: $searchlist-color-background-hover;
+}
+
+@media screen and (min-width: 1200px) {
+  .searchList_main_content_box:nth-child(2n+1):hover .searchList_main_content {
+    left: 0;
+  }
+
+  .searchList_main_content_box:nth-child(2n):hover .searchList_main_content {
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 926px) and (max-width: 1199px) {
+  .searchList_main_content_box {
+    width: 600px;
+    height: 140px;
+    position: relative;
+    border: 1px $tag-color-border solid;
+    border-radius: 10px;
+    margin: 0 auto 15px;
+    background-color: $tag-color-background;
+    color: $font-color;
+    font-size: 14px;
+  }
+
+  .searchList_main_content_box:hover .searchList_main_content {
+    width: 650px;
+    height: 170px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: -25px;
+    z-index: 10;
+    border: 2px $searchlist-textarea-color-border solid;
+    margin-bottom: 15px;
+    padding: 15px;
+    white-space: normal;
+  }
+
+  .searchList_main_content_box:hover .searchList_content_text {
+    height: 125px;
+    overflow-y: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}
+
+@media screen and (min-width: 800px) and (max-width: 925px) {
+  .searchList_main_content_box {
+    width: 500px;
+    height: 140px;
+    position: relative;
+    border: 1px $tag-color-border solid;
+    border-radius: 10px;
+    margin: 0 auto 15px;
+    background-color: $tag-color-background;
+    color: $font-color;
+    font-size: 14px;
+  }
+
+  .searchList_main_content_box:hover .searchList_main_content {
+    width: 550px;
+    height: 160px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    z-index: 10;
+    border: 2px $searchlist-textarea-color-border solid;
+    margin-bottom: 15px;
+    padding: 15px;
+    white-space: normal;
+  }
+
+  .searchList_main_content_box:hover .searchList_content_text {
+    height: 125px;
+    overflow-y: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  #searchList_header_nav {
+    display: none;
+  }
+
+  .searchList_main_content_box {
+    width: 500px;
+    height: 140px;
+    position: relative;
+    border: 1px $tag-color-border solid;
+    border-radius: 10px;
+    margin: 0 auto 15px;
+    background-color: $tag-color-background;
+    color: $font-color;
+    font-size: 14px;
+  }
+
+  .searchList_main_content_box:hover .searchList_main_content {
+    width: 530px;
+    height: 156px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    z-index: 10;
+    border: 2px $searchlist-textarea-color-border solid;
+    margin-bottom: 15px;
+    padding: 15px;
+    white-space: normal;
+  }
+
+  .searchList_main_content_box:hover .searchList_content_text {
+    height: 125px;
+    overflow-y: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.BMapLib_Drawing_panel {
+  position: absolute;
+  top: 30px;
+  left: 3px;
+  width: 26px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.BMapLib_Drawing_panel a {
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer
+}
+
+.BMapLib_Drawing_panel a:hover:before {
+  color: $font-color-highlight;
+}
+
+.BMapLib_Drawing .BMapLib_box {
+  border-right: 1px solid $searchlist-map-color-border;
+  float: left;
+  height: 100%;
+  width: 64px;
+  cursor: pointer
+}
+
+.BMapLib_Drawing .BMapLib_last {
+  border-right: 0
+}
+
+.BMapLib_Drawing .BMapLib_hander {
+  background-position: 0 0
+}
+
+.BMapLib_Drawing .BMapLib_hander_hover {
+  color: $searchlist-map-color-text;
+  background-position: 0 -52px;
+  cursor: pointer
+}
+
+.BMapLib_Drawing .BMapLib_marker {
+  background-position: -65px 0
+}
+
+.BMapLib_Drawing .BMapLib_marker_hover {
+  color: $searchlist-map-color-text;
+  background-position: -65px -52px
+}
+
+.BMapLib_Drawing .BMapLib_circle {
+  background-position: -130px 0
+}
+
+.BMapLib_Drawing .BMapLib_circle_hover {
+  color: $searchlist-map-color-text;
+  background-position: -130px -52px
+}
+
+.BMapLib_Drawing .BMapLib_polyline {
+  background-position: -195px 0
+}
+
+.BMapLib_Drawing .BMapLib_polyline_hover {
+  color: $searchlist-map-color-text;
+  background-position: -195px -52px
+}
+
+.BMapLib_Drawing .BMapLib_polygon {
+  background-position: -260px 0
+}
+
+.BMapLib_Drawing .BMapLib_polygon_hover {
+  color: $searchlist-map-color-text;
+  background-position: -260px -52px
+}
+
+.BMapLib_Drawing .BMapLib_rectangle {
+  background-position: -325px 0
+}
+
+.BMapLib_Drawing .BMapLib_rectangle_hover {
+  color: $searchlist-map-color-text;
+  background-position: -325px -52px
+}
+
+.newDivdelMarker {
+  background-color: $chart-tab-color-background;
+  color: $font-color;
+  width: 70px;
+  height: 25px;
+  padding: 5px;
+  padding-left: 12px;
+}
+
+/* 取消js中的样式 */
+.searchlist_searchMap_width_active {
+  width: 100%;
+  height: 100%;
+}
+
+.searchlist_searchMap_width_default {
+  width: 100%;
+  height: 80px;
+}
+
+.searchlist_pagealert_notice_color_default {
+  color: $font-color-highlight;
+}
+
+.searchlist_pagealert_notice_color_license {
+  color: $font-color-warning;
+}
+
+.searchlistBox{
+  height: 70px;
+  width: 100%;
+  line-height: 70px;
+}
+
+.search_history_box{
+  top: 32px;
+}
+
+.search_history ul li{
+  line-height: 20px;
+}
+.search_history p{
+  line-height:25px;
+}
+.search_history_head{
+  line-height:30px;
+}
+
+//gis和拓扑toolTip
+.tipStyle{
+  height: 17px;
+  line-height: 16px;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: absolute;
+  font-size: 12px;
+  text-align: center;
+  background-color: $totip-tool-color-background;
+  color: black;
+  top:36px;
+}
+
+.search_history {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  padding: 10px 15px;
+  border: 1px solid $his-border-default-color;
+  font-size: 14px;
+  background-color: $searchlist-history-background-color;
+  z-index: 1001;
+
+  .search_history_close {
+    position: absolute;
+    top: -12px;
+    right: 6px;
+    cursor:pointer;
+  }
+
+  .search_history_head {
+    border-bottom: 1px solid $searchlist-history-bottom-color;
+
+    h4 {
+      margin-bottom: 1em;
+      font-size: 16px;
+      line-height: 1.5em;
+      color: $BLUE;
+      text-align: left;
+    }
+
+    input {
+      width: 150px;
+      height: 26px;
+      margin: 2px 0;
+      border: none;
+      text-indent: 10px;
+      border-radius: 3px;
+      background: $searchlist-history-input-background-color;
+    }
+  }
+
+  .ul_wrapper {
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+
+    ul {
+      li {
+        border-bottom: 1px solid $searchlist-history-bottom-color;
+        padding: 8px 0;
+        cursor: pointer;
+        padding-left:5px;
+
+        &:nth-child(odd) {
+          background-color: $searchlist-history-li-odd-background-color;
+        }
+        &:nth-child(even) {
+          background-color: $searchlist-history-li-even-background-color;
+        }
+        &:nth-child(1) {
+          margin-top: 4px;
+        }
+
+        .history_item_user {
+          color: $his-font-color;
+        }
+        .history_item_time {
+          color: $his-li-time;
+        }
+        .history_item_keyword {
+          color: $his-font-color;
+          text-decoration: underline;
+
+          &:hover {
+            color: $his-font-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    margin-top: 6px;
+    color: $his-record-color;
+  }
+}

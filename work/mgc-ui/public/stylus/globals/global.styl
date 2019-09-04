@@ -1,0 +1,171 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-family: $font-family-base;
+  font-size: 100%;
+  line-height: $line-height-text;
+  background: $color-background-alt;
+  color: $color-text-default;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-size-adjust: 100%;
+}
+
+body {
+  font-size: $font-size-small;
+  background: transparent;
+}
+
+::placeholder {
+  color: $color-text-placeholder;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-small;
+}
+
+::selection {
+  background: $color-background-selection;
+  text-shadow: none;
+  color: $color-text-default;
+}
+
+dd,
+figure {
+  margin: 0;
+}
+
+abbr[title],
+fieldset,
+hr {
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: $line-height-heading;
+}
+
+h1{
+  font-size: $font-size-x-large;
+  font-weight: $font-weight-bold;
+}
+
+h2 {
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+}
+
+h3 {
+  font-size: $font-size-xx-medium;
+  font-weight: $font-weight-regular;
+}
+
+h4{
+  font-size: $font-size-medium;
+  font-weight: $font-weight-regular;
+}
+
+h5{
+  font-size: $font-size-small;
+  font-weight: $font-weight-regular;
+}
+
+h6{
+  font-size: $font-size-xx-small;
+  font-weight: $font-weight-regular;
+}
+
+h1,h2,h3{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h4,h5,h6 {
+  margin: 10px 0;
+}
+
+a {
+  color: $color-text-link;
+  text-decoration: none;
+  transition: color 0.1s linear;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    color: $color-text-link-hover;
+  }
+
+  &:active {
+    color: $color-text-link-active;
+  }
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+b,
+strong,
+dfn {
+  font-weight: $font-weight-bold;
+}
+
+mark {
+  background-color: $color-background-highlight-search;
+  color: $color-text-default;
+}
+
+abbr[title] {
+  cursor: help;
+  text-decoration: none;
+}
+
+input[type=search] {
+  box-sizing: border-box;
+}
+
+input::-ms-reveal {
+  display: none;
+}
+
+table {
+  width: 100%;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+}
+
+hr {
+  display: block;
+  margin: $spacing-medium 0;
+  border-top: 1px solid $color-border;
+  height: 0px;
+  clear: both;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+

@@ -1,0 +1,521 @@
+/*元动态效果*/
+.transition_x {
+  transition: transform .5s ease;
+  -moz-transition: transform .5s ease; /* Firefox 4 */
+  -webkit-transition: transform .5s ease; /* Safari 和 Chrome */
+  -o-transition: transform .5s ease; /* Opera */
+}
+
+.transition_x:hover {
+  transform: translateX(5px);
+  -moz-transform: translateX(5px); /* Firefox */
+  -webkit-transform: translateX(5px); /* Safari 和 Chrome */
+  -o-transform: translateX(5px);
+}
+
+/*自定义图标*/
+.cross_icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.dataset .node {
+  cursor: pointer;
+}
+
+.dataset .node text,
+.dataset .more text {
+  font: 10px sans-serif; /* 10/16 */
+  stroke: none;
+  fill: $font-color;
+}
+transition() {
+  -webkit-transition: arguments;
+  -moz-transition: arguments;
+  -o-transition: arguments;
+  transition: arguments;
+}
+.datasetTip{
+  stroke: $alert-border-color;
+  stroke-width: 1;
+  fill-opacity: 0;
+  stroke-opacity: 1;
+  fill: $alert-color-background;
+}
+
+.datasetTipText{
+  fill-opacity: 1;
+  fill: $font-color;
+  transition: fill-opacity .5s;
+}
+
+.datasetTipTextHide{
+  fill-opacity: 0;
+}
+
+#dataset_opera,
+#dataset_manage,
+#dataset_merge,
+#dataset_finished,
+#dataset_save_tip {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  padding: 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+/*数据集管理模态框*/
+#dataset_manage {
+  width: 70%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*清除浮动*/
+  overflow: hidden;
+}
+
+#dataset_manage .dsm_close {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  right: 0;
+}
+
+#dataset_manage h5 {
+  font-size: 14px;
+  color: $font-color-highlight;
+  line-height: 2.6;
+  text-align: center;
+  border-bottom: 1px solid $border-color;
+}
+
+#dataset_manage .dataset_edit {
+  padding: 0 0.6%;
+  height: 100%;
+  margin: 15px 0;
+}
+
+.clearFloat {
+  display: block;
+  clear: both;
+  content: "";
+  overflow: hidden;
+}
+
+#dataset_manage .dataset_edit button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  outline: none;
+}
+
+.dataset_edit .dse_opera {
+  display: none;
+}
+
+.dataset_edit button.return {
+  background: none;
+  color: $font-color-highlight;
+  text-indent: 1em;
+}
+
+.dataset_edit button.return:before {
+  font-size: 12px;
+}
+
+.dataset_edit .search {
+  position: relative;
+  float: right;
+  width: 150px;
+  font-size: 12px;
+}
+
+.dataset_edit .search input {
+  width: 150px;
+  height: 30px;
+  padding-right: 30px;
+  border: none;
+  text-indent: 10px;
+  border-radius: 3px;
+  background: $input-color-topology-search-background;
+}
+
+.dataset_edit .search input:focus {
+  border: 1px solid $input-color-ounline;
+}
+
+#dataset_manage .search button.search_btn {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  border-radius: 3px;
+  background: none;
+}
+
+#dataset_manage .search button.search_btn:before {
+  font-size: 18px;
+}
+
+#dataset_manage .dataset_list {
+  width: 100%;
+  padding: 0 0.6%;
+  margin-top: 10px;
+  height: 400px;
+  overflow-y: scroll;
+  font-size: 12px;
+}
+
+#dataset_manage .dataset_list ul {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+#dataset_manage .dataset_list ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  margin-right: 1%;
+}
+
+#dataset_manage .dataset_list ul li .datasetBox {
+  display: inline-block;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid $dataset-color-border;
+  font-size: 50px;
+}
+
+#dataset_manage .dataset_list ul li .datasetBox:hover {
+  border: 1px solid $input-color-ounline;
+}
+
+#dataset_manage .dataset_list ul li.versionBox {
+  width: 15%;
+}
+
+#dataset_manage .dataset_list ul li img.versionBox {
+  width: 110px;
+  height: 80px;
+  border: 1px solid $dataset-color-border;
+}
+
+.dataset_list ul li:hover {
+  cursor: pointer;
+  color: $font-color-highlight;
+}
+
+.dataset_list ul li.ds_selected {
+  color: $font-color-highlight;
+  background-color: inherit;
+}
+
+#dataset_manage .dataset_list ul li img:hover {
+  cursor: pointer;
+  border: 1px solid $input-color-ounline;
+}
+
+.dataset_list ul li img.ds_selected {
+  border: 1px solid $input-color-ounline;
+}
+
+.dataset_list ul li p {
+  width: 100%;
+  text-align: center;
+  line-height: 2;
+}
+
+#dataset_opera,
+#dataset_merge {
+  width: 375px;
+  top: 35%;
+}
+
+#dataset_opera h5 {
+  font-size: 16px;
+  color: $font-color-highlight;
+  line-height: 2;
+  margin-bottom: 0.6em;
+}
+
+#dataset_opera .dataset_content {
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+#dataset_opera .datasetRadio {
+  display: inline-block;
+  line-height: 1.35;
+  margin-bottom: 0.6em;
+  margin-right: 8.5em;
+  cursor:pointer;
+}
+#dataset_opera label {
+  display: inline-block;
+  width: 50%;
+  line-height: 1.35;
+  margin-bottom: 0.6em;
+  cursor:pointer;
+}
+
+#dataset_opera input,
+#dataset_save_tip input {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+
+#dataset_opera input:before,
+#dataset_save_tip input:before {
+  background-color: $background-color;
+  cursor: pointer;
+}
+
+#dataset_opera .dataset_footer {
+  padding: 0 0;
+  text-align: right;
+}
+
+#dataset_merge {
+  width: 350px;
+}
+
+#dataset_merge .ds_header,
+#dataset_merge .ds_content {
+  margin-bottom: 0.75rem; /* 12/16 */
+}
+
+#dataset_merge .ds_header {
+  font-size: 16px;
+  position: relative;
+  width: 100%;
+  height: 1em;
+  margin-top: 0.5em;
+}
+
+#dataset_merge .ds_header h5 {
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $font-color-highlight;
+}
+
+#dataset_merge .dsh_border {
+  width: 100%;
+  height: 7px;
+  border-bottom: 1px solid $entity-splitline-color;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+#dataset_merge .ds_content {
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.ds_content .ds_cont_item > div {
+  width: 100%;
+  height: auto;
+  line-height: 24px;
+}
+
+.ds_cont_item label {
+  font-size: 14px;
+  text-align: right;
+  display: inline-block;
+}
+
+.ds_cont_item .dsc_num {
+  color: $font-color-highlight;
+}
+
+#dsc_result {
+  margin-top: 10px;
+}
+
+#dataset_merge .ds_footer {
+  text-align: right;
+}
+
+#dataset_finished {
+  width: 200px;
+  height: 60px;
+  top: 45%;
+  text-align: center;
+}
+
+#dataset_finished h5 {
+  font-size: 14px;
+  line-height: 40px; /* 60/16 */
+}
+
+/*数据集推送*/
+#push_modal {
+  position: absolute;
+  left: 30%;
+  top: 28%;
+  width: 500px;
+  height: 290px;
+  padding: 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  display: none;
+  z-index: 1000;
+}
+
+#push_modal h4 {
+  font-size: 16px;
+  color: $font-color-highlight;
+  line-height: 2em;
+  margin-bottom: 1em;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+}
+
+#push_modal h4 span {
+  margin: 0 10px;
+}
+
+#push_modal .push_input_list {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.push_input_list span {
+  display: inline-block;
+  width: 17%;
+  line-height: 30px;
+  text-align: right;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.push_input_list .pid_desc {
+  display: inline-block;
+  width: 80%;
+  height: 86px;
+  background-color: $alert-color-background;
+  border: 1px solid $border-color;
+  padding: 4px;
+  color: $input-color-text;
+  font-size: 12px;
+  margin-left: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.push_input_list .pig_input {
+  width: 80%;
+  height: 30px;
+  background-color: $select-color-background;
+  border: 1px solid $border-color;
+  text-indent: 10px;
+  text-align: left;
+  color: $input-color-text;
+  font-size: 12px;
+  margin-left: 4px;
+  outline: none;
+}
+
+.push_input_list .pig_select {
+  position: absolute;
+  left: 85px;
+  top: 30px;
+  width: 80%;
+  height: auto;
+  max-height: 100px;
+  border: 1px solid $select-color-border;
+  background-color: $select-color-background;
+  padding: 8px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 99;
+  display: none;
+}
+
+.pig_select label {
+  display: inline-block;
+  width: 100%;
+  line-height: 14px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.pig_select label:hover {
+  background-color: $select-color-background-hover;
+}
+
+#push_modal .push_input_button {
+  text-align: right;
+  width: 100%;
+  height: auto;
+  padding-right: 3%;
+}
+
+/*当选择 '打开到控制台' 时，向用户提示是否保存控制台的分析数据*/
+#dataset_save_tip {
+  display: none;
+  width: 350px;
+  height: auto;
+}
+
+#dataset_save_tip h4 {
+  font-size: 16px;
+  color: $font-color-highlight;
+  line-height: 2em;
+  text-align: left;
+}
+
+#dataset_save_tip span {
+  margin: 0 10px;
+}
+
+.dst_content p {
+  font-size: 14px;
+  line-height: 3em;
+  text-align: center;
+  padding-left: 0.5em;
+}
+
+#dataset_save_tip .dst_footer {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.dst_footer label {
+  font-size: 12px;
+  display: inline-block;
+  line-height: 26px;
+  margin: 0.7em 0.6em 0.6em;
+}
+
+.dst_footer button {
+  float: right;
+}

@@ -3,13 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
-    <link id="theme" class='theme' title="white" rel="stylesheet" type="text/css" href="css/white/index.css" disabled="disabled"/>
+    <!-- <link id="theme" class='theme' title="white" rel="stylesheet" type="text/css" href="css/white/index.css" disabled="disabled"/>
     <link id="theme" class='theme' title="blue" rel="stylesheet" type="text/css" href="css/blue/index.css" disabled="disabled"/>
     <link id="theme" class='theme' title="brown" rel="stylesheet" type="text/css" href="css/brown/index.css" disabled="disabled"/>
-    
+    -->
 
-		<!-- <link rel="stylesheet/less" type="text/css" href="style.less" />
-		<script src="less.js"></script> -->
+		<link rel="stylesheet/less" type="text/css" href="style.less" />
+		<script src="less.js"></script>
 	</head>
 	<body>
 		
@@ -37,7 +37,7 @@
       
 
 
-      $("#styles li").click(function(){
+      /* $("#styles li").click(function(){
         var style = $(this).attr("id");
         $("link[class='theme'][title='"+style+"']").removeAttr("disabled");
         $("link[class='theme'][title!='"+style+"']").attr("disabled","disabled");
@@ -45,7 +45,7 @@
       });
 
 			//页面初始加载时候的颜色
-      /* console.log($("link[class='theme'][title='white']"))
+      console.log($("link[class='theme'][title='white']"))
       let cookie_style = "white";
       if(cookie_style==null){
         $("link[class='theme'][title='white']").removeAttr("disabled");

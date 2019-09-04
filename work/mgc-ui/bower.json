@@ -1,0 +1,16 @@
+{
+  "name": "magicube",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.4.2",
+    "d3": "^3.5.17",
+    "fetch": "~2.0.4"
+  }
+}

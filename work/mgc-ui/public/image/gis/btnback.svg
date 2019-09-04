@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="82" height="36" viewBox="0 0 82 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1e2a33;
+        filter: url(#inner-glow-1);
+      }
+
+      .cls-2 {
+        fill: #33d0ff;
+        fill-rule: evenodd;
+      }
+    </style>
+
+    <filter id="inner-glow-1" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="2.333" in="SourceAlpha" result="innerGlowBlur"/>
+      <feFlood flood-color="#3fd1fd" flood-opacity="0.49"/>
+      <feComposite operator="out" in2="innerGlowBlur"/>
+      <feComposite operator="in" in2="SourceAlpha"/>
+      <feBlend in2="SourceGraphic" result="innerGlow"/>
+    </filter>
+  </defs>
+  <g>
+    <rect x="1" y="1" width="80" height="35" class="cls-1"/>
+    <path d="M1.000,1.000 L1.000,10.000 L0.000,10.000 L0.000,1.000 L0.000,-0.000 L1.000,-0.000 L10.000,-0.000 L10.000,1.000 L1.000,1.000 Z" class="cls-2"/>
+    <path d="M81.000,10.000 L81.000,1.000 L72.000,1.000 L72.000,-0.000 L81.000,-0.000 L82.000,-0.000 L82.000,1.000 L82.000,10.000 L81.000,10.000 Z" class="cls-2"/>
+    <path d="M81.000,36.000 L72.000,36.000 L72.000,35.000 L81.000,35.000 L81.000,26.000 L82.000,26.000 L82.000,35.000 L82.000,36.000 L81.000,36.000 Z" class="cls-2"/>
+    <path d="M10.000,36.000 L1.000,36.000 L0.000,36.000 L0.000,35.000 L0.000,26.000 L1.000,26.000 L1.000,35.000 L10.000,35.000 L10.000,36.000 Z" class="cls-2"/>
+  </g>
+</svg>

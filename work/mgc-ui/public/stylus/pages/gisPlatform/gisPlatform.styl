@@ -1,0 +1,4318 @@
+@import "../../../js/public/jquery-custom-content-scroller/jquery.mCustomScrollbar";
+@import "../public/component";
+@import "../public/laydate";
+@import "../public/ol";
+//@import "./dataset";
+@import "./gis";
+
+@keyframes warningBellColor {
+  0%   {color: #c2c5c7;}
+  50%  {color: rgb(255,0,0);}
+  100% {color: #c2c5c7;}
+}
+
+@-webkit-keyframes warningBellColor {
+  0%   {color: #c2c5c7;}
+  50%  {color: rgb(255,0,0);}
+  100% {color: #c2c5c7;}
+}
+
+svg {
+  cursor: default;
+}
+
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+
+.topo_network{
+  background-color:$body-color-background;
+}
+
+.tool-parent-right {
+  padding: 0 0 0 0;
+}
+
+.thumbnail_small {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.gbox {
+  cursor: pointer;
+}
+
+.thumbnail_big {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: none;
+}
+
+.thumbnail_big:before {
+  font-size: 16px;
+}
+
+.brushRect:hover {
+  cursor: pointer;
+}
+
+#topo_mapMoveBar:hover {
+  cursor: pointer;
+}
+
+g.node:hover, .topoMenu:hover, .topoMenu_one:hover, .topoMenu_two:hover, .topoMenu_three:hover {
+  cursor: pointer;
+}
+
+.nodes_select {
+  stroke-width: 5px;
+}
+
+.clear {
+  clear: both;
+}
+
+line {
+  fill: $topology-line-fill ;
+  stroke:$topology-line-stroke ;
+  stroke-width: 2px;
+}
+
+.pie text {
+  fill: $topology-pie-text-fill;
+  font-weight: bold;
+}
+
+path.linktext {
+  cursor: pointer;
+}
+
+.resolved {
+  stroke-dasharray: 0, 2 1;
+}
+
+path.link.resolved {
+  stroke-dasharray: 0, 2 1;
+}
+
+path.overlay {
+  cursor: pointer;
+  opacity: 0;
+}
+
+g.node.selected circle, g.node.filtered circle {
+  filter: url(#blue-glow);
+}
+
+path.links.hidden {
+  stroke-width: 0;
+}
+
+path.dragline {
+  stroke-width: 1px;
+  stroke: $topology-path-dragline-stroke;
+}
+
+.relationSvg text {
+  font: 12px "微软雅黑";
+  pointer-events: none;
+  fill: $font-color;
+}
+
+.relationSvg textPath {
+  fill: $font-color;
+}
+
+text.shadow {
+  stroke: none;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+
+.topoMenu_inring {
+  stroke-width: 1px;
+  fill: $topo-fill-color-inring;
+  stroke: $topo-stroke-color-inring;
+}
+
+.topoMenu_inring_over{
+  fill: $topo-fill-color-inring-over;
+}
+
+.topoMenu_inring_enter{
+  fill: $topo-fill-color-inring-enter;
+}
+
+.topoMenu_inring_onmenu{
+  fill: $topo-fill-color-inring-onmenu;
+}
+
+.topoMenu_outring{
+  fill: $topo-fill-color-outring;
+}
+
+.topoMenu_outring_over{
+  fill: $topo-fill-color-outring-over;
+}
+
+.toponode_text{
+  fill: $font-color;
+}
+
+.brush .extent, .topo_brush .extent {
+  fill: $topo-rect-extent;
+  stroke-width:0;
+  fill-opacity: 0.15;
+  shape-rendering: crispEdges;
+}
+
+.topo_brush .extent {
+  stroke: $topo-rect-extent;
+  stroke-width:2px;
+  fill-opacity: 0.3;
+}
+
+.resize rect {
+  visibility: visible;
+  stroke: $topology-resize-rect-stroke;
+  stroke-width: 2px;
+}
+
+.time_selected {
+  fill: $topology-time_selected-fill;
+}
+.time_axis path,
+.time_axis line{
+  fill: none;
+  stroke:$topology-time_axis-pathline-stroke;
+  shape-rendering: crispEdges;
+}
+.timeline-axis path,
+.timeline-axis line{
+  fill: none;
+  stroke: $topology-timeline-axis-pathline-stroke;
+  shape-rendering: crispEdges;
+}
+.time_axis text ,.timeline-axis text{
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+.dot {
+  stroke: $BLACK;
+}
+
+.legend {
+  padding: 5px;
+  box-shadow: 2px 2px 1px $topology-legend-box-shadow ;
+}
+
+#topology_timeline {
+  width: 100%;
+  height: 150px;
+}
+
+.event_selected {
+  width: 100px;
+  position: absolute;
+  top: 13px;
+  left: 20px;
+}
+
+// 下面柱状图
+.axisList {
+  white-space: nowrap;
+  width: auto;
+  position: relative;
+  cursor: pointer;
+}
+
+// 左下角数据集
+.nodetext{
+  fill: $font-color;
+}
+
+.datasetTip{
+  stroke: $alert-border-color;
+  stroke-width: 1;
+  fill-opacity: 0.000001;
+  stroke-opacity: 1;
+  fill: $alert-color-background;
+}
+
+.datasetTipText{
+  fill-opacity:  1;
+  fill: $font-color;
+}
+
+.datasetTipTextHide{
+  fill-opacity: 0.000001;
+}
+
+#topology_timeline_axis {
+  width: 90%;
+  height: 150px;
+  position: absolute;
+  top: 0;
+  left: 140px;
+}
+
+.way_error,
+.r_errors,
+.nodes_error,
+.relation_error {
+  font-size: 14px;
+  color: $searchlist-textarea-color-border;
+  margin-left: 20px;
+  display: inline-block;
+  opacity: 0;
+}
+
+.r_errors {
+  position: absolute;
+  top: 48px;
+  right: 115px;
+}
+
+#save_screenShot_modalBox > h4 {
+  margin-top: 10px;
+  color: $searchlist-textarea-color-border;
+  font-size: 16px;
+}
+
+.event_selected p#event_title {
+  /*  margin-left: -10px;*/
+  font-size: 16px;
+  color: $font-color;
+}
+
+.event_selected p#event_title:hover {
+  cursor: pointer;
+}
+
+.event_selected i#event_icon {
+  display: inline-block;
+  margin-right: 5px;
+  line-height: 10px;
+  font-style: normal;
+  font-size: 14px;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  border: 1px solid $icon-color-highlight;
+  color: $icon-color-highlight;
+}
+
+.forceText {
+  stroke: none;
+}
+
+.pathcolors {
+  position: absolute;
+  top: 53px;
+  left: 60px;
+}
+
+.path_colors {
+  position: absolute;
+  top: -4px;
+  left: 110px;
+}
+
+.pathstyle {
+  position: absolute;
+  top: 5px;
+  left: 60px;
+}
+
+.pathsWork {
+  display: none;
+}
+
+.path_style {
+  position: absolute;
+  top: -5px;
+  left: 110px;
+  width: 35px;
+  height: 50px;
+}
+
+.path_width text:hover {
+  color: $topology-path_width-text-color ;
+}
+
+.pathwidth {
+  position: absolute;
+  top: 80px;
+  left: 32px;
+}
+
+.path_width {
+  position: absolute;
+  top: 25px;
+  left: 110px;
+}
+
+/*可能的路径模态框*/
+#model_longestPath_modalBox, #model_search_result_modalBoxBox {
+  width: 35%;
+  height: 50%;
+  max-width :500px;
+  max-height: 450px;
+  min-width :500px;
+  min-height: 395px;
+  overflow:hidden;
+}
+
+#topo_mapMoveBar {
+  width: 100%;
+  height: 100%;
+}
+
+#model_longestPath_modalBox ul li {
+  padding: 6px 0 6px 10px;
+}
+
+.findway,
+.r_findway,
+.r_label {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 36px;
+}
+
+.r_findway {
+  width: 162px;
+}
+
+#findAgain {
+  margin-right: 0;
+}
+
+.result_table, .checkboxs {
+  border: 1px solid $GRAY-42;
+  text-align: center;
+  font-size: 12px;
+}
+
+.checkboxs {
+  width: 40px;
+  padding-left: 0;
+}
+
+.waywitch {
+  margin-top: 5px;
+  position: relative;
+}
+
+.model_search_reslut_box > table {
+  table-layout: fixed;
+}
+
+.line_box, .r_line_box {
+  display: inline-block;
+  width: 452px;
+  height: 2px;
+  background: $topology-line_boxr_line_box-background;
+}
+
+.r_line_box {
+  width: 420px;
+}
+
+.search_nodes_modalBox_btn {
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  background: none;
+}
+.search_nodes_modalBox_btn:before {
+  font-size: 18px;
+}
+
+#screeDepth, #r_screeDepth, #nodesPass, #relationScan ,.selectParent_input{
+  height: 25px;
+  width: 210px;
+  text-indent: 8px;
+  background-color: $topology-screeDepth-background-color;
+  border: 1px solid $topology-screeDepth-border;
+}
+
+.search_nodes_modalBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 38%;
+  height: 45px;
+  font-size: 16px;
+  color: $input-color-text;
+  display: none;
+  z-index: 100;
+}
+#map_search_nodes_modalBox{
+  position: absolute;
+  top: 0;
+  left: -195px;
+  width: 185px;
+  height: 65px;
+  background-color:$topology-map_search_nodes_modalBox-background-color;
+  border: 1px solid $topology-map_search_nodes_modalBox-border;
+  color: $input-color-text;
+  z-index: 1002;
+  display:none;
+}
+
+.nodes_find ,.map_nodes_find{
+  height: 100%;
+  width: 100%;
+  padding-left: 10px;
+  border:0;
+  background-color:$topology-nodes_findmap_nodes_find-background-color;
+  border-radius:6px;
+}
+
+#r_screeDepth {
+  height: 25px;
+  width: 130px;
+  margin-right: 15px;
+}
+
+.entityLable {
+  color: $topology-entityLable-color;
+  font-size: 14px;
+}
+
+.startLable {
+  width: 100px;
+  height: 22px;
+  color: $topology-startLable-color ;
+  text-indent: 8px;
+  border: none;
+  outline: none;
+  background-color: $topology-startLable-backgroundcolor;
+}
+
+.direact {
+  position: relative;
+  color: $topology-direact-color;
+  font-size: 14px;
+  margin-right: 60px;
+  margin-left: 15px;
+  padding-left: 5px;
+}
+
+.direact > input {
+  width: 0;
+  position: absolute;
+  top: 3px;
+  left: -13px;
+}
+
+.direact > input:before, .direact > input:checked:before {
+  font-size: 12px;
+}
+
+#custom_extend_sure {
+  padding: 0 15px;
+  height: 26px;
+  font-size: 12px;
+  background-color: $topology-custom_extend_sure-backgroundcolor;
+  border: 1px solid $topology-custom_extend_sure-border;
+}
+
+#custom_extend_not {
+  padding: 0 15px;
+  height: 26px;
+  font-size: 12px;
+  background-color: $topology-custom_extend_not-backgroundcolor;
+  border: 1px solid $topology-custom_extend_not-border;
+}
+
+#model_name_sure {
+  line-height: 25px;
+  margin-left: 5px;
+  padding: 0 0;
+  width: 45px;
+  height: 26px;
+}
+
+#model_r_sure {
+  height: 26px;
+  padding: 0 15px;
+  margin-left: 15px;
+}
+
+input.waywitch:before, .select_type_uli input:before {
+  position: absolute;
+  font-size: 14px;
+  background: $topology-inputwaywitch-backgroundcolor;
+}
+
+.select_type_uli > input {
+  position: relative;
+  width: 14px;
+  height: 12px;
+  line-height: 16px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.model_search_reslut_box {
+  height: 310px;
+}
+
+.button_li {
+  text-align: right;
+}
+
+.button_r_li {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.changeArrow {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px 0 10px;
+}
+
+#thumbnail {
+  background: $body-color-background;
+  border: 1px solid $alert-border-color;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#thumbnail img {
+  text-align: center;
+}
+
+#snapShot {
+  width: 712px;
+  height: 376px;
+  max-width: 712px;
+  max-height: 376px;
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid $topology-snapShot-border;
+}
+
+#customModel_more_modalBox .custom_tab_list, #extend_more_modalBox {
+  width: 40%;
+  height: 42%;
+  max-width :570px;
+  max-height: 332px;
+  min-width: 450px;
+  min-height: 300px;
+}
+
+#customModel_more_modalBox table th {
+  border: 2px solid $topology-customModel_more_modalBoxtableth-border;
+  text-align: center;
+  height: 25px;
+  background-color: $topology-customModel_more_modalBoxtableth-backgroundcolor;
+  font-size: 14px;
+}
+
+#customModel_more_modalBox table tr td:nth-child(4):hover {
+  color: $topology-customModel_more_modalBoxtablethhover-color;
+  cursor: pointer;
+}
+
+#customModel_more_modalBox table tr {
+  border: 2px solid $topology-customModel_more_modalBoxtabletd-border ;
+  font-size: 14px;
+  text-align: center;
+}
+
+.radioTime{
+  width: 0;
+  margin-right: 18px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.radioTime:before,input[name="direact"]{
+  background:$body-color-background;
+}
+
+.showList {
+  width: 150px;
+  position: absolute;
+  top: 0;
+  left: 33px;
+  background-color: $topology-showList-backgroundcolor;
+  display: none;
+  z-index: 999;
+}
+
+.tool_linepath {
+  padding: 5px 0 5px 0;
+}
+
+#event_list_child {
+  width: 110px;
+  margin-left: 15px;
+  height: 90px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.isChecked {
+  width:12px;
+  height:12px;
+  cursor: pointer;
+}
+#model_self{
+  float: left;
+}
+
+.topo_shade {
+  width: 100%;
+  height :100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  //background-color: $topo-shade-color-background;
+  //display: none;
+  opacity :0;
+  z-index: 1;
+}
+
+#topo_alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $topo-shade-color-background;
+  z-index: 1001;
+  display: none;
+}
+
+#topo_alert_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 220px;
+  margin: -110px 0 0 -150px;
+  background-color: $searchlist-button-paing-color-background;
+}
+
+.topo_modalBox {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  padding: 0 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  z-index: 100;
+  display: none;
+  border-radius: 8px;
+}
+
+#relation_extend_modalBox {
+  width: 55%;
+  height: 55%;
+  max-width :785px;
+  max-height: 435px;
+  min-width: 785px;
+  min-height: 435px;
+}
+
+.relation_group {
+  width: 555px;
+  height: 300px;
+}
+
+.save_custom {
+  width: 95px;
+  height: 26px;
+  float: left;
+  margin: 5px 48px 0 0;
+  line-height: 22px;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid $button-color-border-sure;
+  cursor: pointer;
+}
+
+.save_custom span {
+  text-align: right;
+  color: $button-color-border-sure;
+  font-size: 12px;
+}
+
+.save_custom > span {
+  font-size: 18px;
+}
+
+#relation_extend_modalBox h5, #extend_more_modalBox h5 {
+  color: $alert-color-title;
+  padding: 10px 0 10px 10px;
+  font-size: 16px;
+}
+
+.parent_relationName, .child_relationName {
+  width: 100%;
+  height: 140px;
+  margin: 0 auto;
+  border: 1px solid $alert-border-color;
+}
+
+.child_relationName {
+  margin-bottom: 10px;
+  height: 200px;
+}
+
+.parent_relationName ul{
+  margin-top: 5px;
+}
+
+.parent_relationName ul > li, .extend_type_uli, .group_type_uli {
+  padding: 5px 10px 5px 10px;
+  margin: 5px 5px 5px 10px;
+  border-radius: 10px;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.extend_type_uli, .group_type_uli {
+  border: 1px solid $topoMessage-tab-color-border;
+}
+
+.parent_relationName  ul > li:hover, .extend_type_uli:hover, .group_type_uli:hover{
+  border: 1px solid $alert-color-title;
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
+.selected_li {
+  border: 1px solid $table-color-border-active;
+}
+
+.child_relationName .ul{
+  margin-top: 5px;
+}
+
+.child_relationName .ul .select_type_uli {
+  float: left;
+  margin: 5px 5px 5px 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.child_relationName_span{
+  margin-left: 5px;
+}
+
+#topo_alert_title {
+  height: 48px;
+  margin-top: 12px;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: $alert-color-title;
+}
+
+.button_custom_model {
+  text-align: right;
+  position: absolute;
+  top: 332px;
+  margin-left: 405px;
+}
+
+.button_boxs {
+  width: 140px;
+  height: auto;
+  float: right;
+  text-align: right;
+  margin-top: 5px;
+}
+
+.extend_list {
+  border-top: 1px solid $alert-border-color;
+  min-height: 76%;
+}
+
+.gropu_list {
+  border: 1px solid $alert-border-color;
+  min-height: 238px;
+}
+
+.relation_group > h5 {
+  padding: 5px 0 5px 10px;
+}
+
+.button_extend button {
+  float: left;
+  margin-left: 0;
+}
+
+#topo_alert_content {
+  height: 106px;
+  padding: 24px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+#topo_alert_button {
+  width: 80px;
+  margin-left: 188px;
+  height: 24px;
+  background-color: $button-color-background-sure;
+  border: 1px $button-color-border-default solid;
+  outline: none;
+}
+
+#page_alert_button:hover {
+  background: $button-color-background-default-hover;
+}
+
+.obj_message {
+  position: absolute;
+  width: 57%;
+  height: 70%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  max-width:812px;
+  min-width:705px;
+  min-height:520px;
+  max-height:530px;
+  border: 1px $alert-border-color solid;
+  background-color:$topology-obj_message-backgroundcolor;
+  text-align: center;
+  overflow: hidden;
+  z-index: 99;
+  display: none;
+}
+
+#compare_shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  background: $body-color-background;
+  z-index: 201;
+}
+
+#self_model_name {
+  background-color: $alert-color-background;
+  margin-left: 145px;
+  margin-top: 15px
+}
+
+#model_name_input {
+  height: 25px;
+  width: 210px;
+  //color: $topology-model_name_input-color;
+  text-indent: 8px;
+  outline: none;
+  border: 1px solid $input-color-ounline;
+  background-color: $input-model_name_input-background;
+}
+
+#compare_shade img {
+  margin-top: 110px;
+  height: 300px;
+}
+
+.obj_title_box {
+  position: relative;
+  margin-top: 10px;
+  height: 30px;
+  padding: 0 10px;
+}
+
+.obj_title_box h4 {
+  position: absolute;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  color: $alert-color-title;
+}
+
+.obj_title_box div {
+  height: 14px;
+  margin-left: 72px;
+  border-bottom: 1px $alert-border-bottom-color solid;
+}
+
+.obj_title_box span{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+
+#topo_detaiCompare_opt {
+  position: absolute;
+  top: 30px;
+  right: 16px;
+}
+
+#compare_detail_delete {
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#compare_detail_edit {
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#topo_compare_box {
+  margin: 10px;
+}
+
+#compare_selected_border {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  width: 388px;
+  height: 250px;
+  border: 1px $table-color-text-head solid;
+  transform: translateX(-400px);
+}
+
+#topo_compare_content {
+  width: 780px;
+  z-index: 201;
+}
+
+#topo_compare_detail .compare_detail_edit {
+  border: 2px $table-color-text-head solid;
+}
+
+#topo_compare_detail,
+#topo_compare_detail tr td,
+#topo_compare_detail tr th,
+#topo_compare_trajectory,
+#topo_compare_trajectory tr td,
+#topo_compare_trajectory tr th{
+  border: 1px $table-color-border solid;
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+}
+
+#topo_compare_trajectory,
+#topo_compare_trajectory tr td,
+#topo_compare_trajectory tr th{
+  border: none;
+}
+
+#topo_compare_detail tbody{
+    display: block;
+    height: 216px;
+}
+
+#topo_compare_detail thead, #topo_compare_detail thead tbody tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#topo_compare_detail thead{
+    width: calc(100%-6px);
+}
+
+#topo_compare_detail .compare_obj_key {
+  table-layout: fixed;
+  width: 120px;
+  background: $table-color-background-head;
+}
+
+#topo_compare_detail td {
+  table-layout: fixed;
+  width: 270px;
+  height: 26px;
+}
+
+#topo_compare_detail td {
+  vertical-align: text-top;
+}
+
+#topo_compare_detail td div {
+  text-align: left;
+  line-height: 24px;
+}
+
+#topo_compare_detail td div p {
+  text-indent: 2em;
+}
+
+.orangered_font {
+  color: $topology-rangeredfont-color;
+  /* 下一句赫英迪加 */
+  min-height: 24px;
+}
+
+.border_none {
+  border: none;
+}
+
+.compare_obj_name {
+  font-size: 16px;
+  color: $alert-color-title;
+  line-height: 28px;
+}
+
+#topo_relateCompare_opt {
+  position: absolute;
+  top: 370px;
+  right: 4px;
+}
+
+#compare_relate_delete,
+#compare_relate_add,
+#compare_relate_edit {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.compare_relate_edit {
+  background-color: $alert-border-color;
+  outline: none;
+}
+
+#obj_bottom {
+    position: absolute;
+    left: 10px;
+    top: 340px;
+    width: 780px;
+    height: 135px;
+
+    #trajectory_operate{
+        display: flex;
+        height: 28px;
+        line-height: 28px;
+        margin: 10px 0;
+
+        .choose_time{
+            display: flex;
+            padding: 0 20px;
+
+            #trajectory_time{
+                width: 60px;
+                height: 26px;
+                line-height: 26px;
+                color: $font-color;
+                background: $select-color-background;
+                border: 1px solid $select-color-border;
+                cursor: pointer;                
+            }
+            &>div:nth-of-type(1){
+                color: $font-color-highlight;
+            }
+            #trajectory_time_lists{
+                position: relative;
+                height: 100px;
+                background: $select-color-background;
+                border: 1px solid $select-color-border; 
+                border-top: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                z-index: 1;
+
+                .select_type_list{
+                    text-indent: 0;
+                    text-align: center;
+                }
+            }
+        }
+        .choose_type{
+            display: flex;
+            padding: 0 20px;
+
+            #trajectory_type{
+                width: 100px;
+                height: 26px;
+                line-height: 26px;
+                background: $select-color-background;
+                border: 1px solid $select-color-border;
+                cursor: pointer;                
+            }
+            &>div:nth-of-type(1){
+                color: $font-color-highlight;
+            }
+            #trajectory_type_lists{
+                position: relative;
+                height: 100px;
+                background: $select-color-background;
+                border: 1px solid $select-color-border;
+                border-top: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                z-index: 1;
+
+                .select_type_list{
+                    text-indent: 0;
+                    text-align: center;
+                }
+            }
+        }
+        .search_sure{
+            width: 60px;
+            height: 24px;
+            line-height: 22px;
+            background: $button-color-background-sure;
+            border: 1px solid $button-color-border-sure;
+            cursor: pointer;
+
+            &:hover{
+                background: $button-color-background-sure-hover;
+            }
+        }
+    }
+    
+    .trajectory_content{
+        .trajectory_time{ 
+            margin: 10px 0;
+
+            p{
+                width: 68px;
+                font-size: 16px;
+                margin: 0 46%;
+                background: $topology-trajectory_timep-backgroundcolor;
+                border-radius: 5px;
+            }
+        }
+        .trajectory_item{
+            width: 100%;
+            min-height: 100px;
+            
+            .trajectory_compare{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                width: 2px;
+                height: 100%;
+                background: $topology-trajectory_timecompare-backgroundcolor ;
+            }
+            .trajectory_item_box_left{
+                float: left;
+                width: 50%;
+                border-right: 1px solid $topology-trajectory_item_box_left-border ;
+                padding: 0 0 20px 10px;
+
+
+                .trajectory_item_left{
+                    position: relative;
+                    float: right;
+                    margin-right: 40px;
+                    border-radius: 10px;
+                    background: $topology-trajectory_item_left-backgroundcolor;
+                    border: $topology-trajectory_item_left-border;
+                    padding: 10px;
+                    
+                    .triangle_border{
+                        position: absolute;
+                        top: 0;
+                        right: -10px;
+                        width: 0;
+                        height: 0;
+                        border-width: 10px 0 10px 10px;
+                        border-style: solid;
+                        border-color: transparent transparent transparent $topology-triangle_border-borderColor;
+                        margin: 15px auto;
+                    }
+                    .dot_border{
+                        position: absolute;
+                        top: 20px;
+                        right: -46px;
+                        width: 10px;
+                        height: 10px;
+                        background: $topology-dot_border-backgroundcolor;
+                        border-radius: 50%;
+                    }
+                    .trajectory_item_content{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        word-wrap:break-word;  
+                        word-break:break-all;  
+                        overflow: hidden; 
+                        text-align: left;
+
+                        .trajectory_icon{
+                            font-size: 24px;
+                            margin: 0 10px;
+
+                            &:before{
+                            color: $icon-color-highlight;  
+                            }
+                            &>.path1:before{
+                            color: $icon-color-highlight;  
+                            }
+                            &>.path2:before{
+                            color: $icon-color-highlight;  
+                            }
+                        }
+                        .trajectory_item_text{
+                            margin: 0 5px;
+                        }
+                    }
+                } 
+                
+            }
+            
+            .trajectory_item_box_right{
+                float: right;
+                width: 50%;
+                border-left: 1px solid $topology-trajectory_item_box_right-borderLeft;
+                padding: 0 10px 20px 0;
+
+                .trajectory_item_right{
+                    position: relative;
+                    float: left;
+                    margin-left: 40px;
+                    border: $topology-trajectory_item_right-border;
+                    border-radius: 10px;
+                    background: $topology-trajectory_item_right-backgroundcolor;
+                    padding: 10px;
+                    
+                    .triangle_border{
+                        position: absolute;
+                        top: 0;
+                        left: -10px;
+                        width: 0;
+                        height: 0;
+                        border-width: 10px 10px 10px 0;
+                        border-style: solid;
+                        border-color: transparent $topology-triangle_border-borderColor transparent transparent;
+                        margin: 15px auto;
+                    }
+                    .dot_border{
+                        position: absolute;
+                        top: 20px;
+                        left: -45px;
+                        width: 10px;
+                        height: 10px;
+                        background: $topology-dot_border-backgroundcolor ;
+                        border-radius: 50%;
+                    }
+                    .trajectory_item_content{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        word-wrap:break-word;  
+                        word-break:break-all;  
+                        overflow: hidden;
+                        text-align: left; 
+
+                        .trajectory_icon{
+                            font-size: 24px;
+                            margin: 0 10px;
+
+                            &:before{
+                            color: $icon-color-highlight;  
+                            }
+                            &>.path1:before{
+                            color: $icon-color-highlight;  
+                            }
+                            &>.path2:before{
+                            color: $icon-color-highlight;  
+                            }
+                        }
+                        .trajectory_item_text{
+                            margin: 0 5px;
+                        }
+                    }
+                } 
+            }
+        }
+        .clearFloat:after{
+            display:block;
+            content: ' ';
+            clear:both;
+            overflow: hidden;
+        }
+    }
+    #trajectory_nodata{
+        position: absolute;
+        top: 50%;
+        left: 46%;
+    }
+}
+
+#compare_commit_box {
+  position: absolute;
+  bottom: 9px;
+  right: 20px;
+}
+
+#topo_compare_ensure,
+#topo_compare_cancel {
+  // width: 60px;
+  height: 24px;
+  outline: none;
+  font-size: 12px;
+}
+
+#topo_compare_ensure {
+  border: 1px $button-color-border-sure solid;
+  margin-right: 12px;
+  background-color: $button-color-background-sure;
+  color: $button-color-text;
+}
+
+#topo_compare_cancel {
+  border: 1px $button-color-border-cancel solid;
+  color: $button-color-text;
+  background-color: $button-color-background-cancel;
+}
+//#topo_compare, #topo_toggle, 
+// #deleteRelation {
+//   // position: absolute;
+//   // top: 75px;
+//   // left: 200px;
+  
+//   // border: 1px $alert-border-color solid;
+//   // border-radius: 3px;
+//   // z-index: 200;
+//   // background-color: $alert-color-background;
+//   // overflow: hidden;
+//   // white-space: nowrap;
+//   //display: none;
+// }
+
+#deleteRelation {
+  top: 15%;
+  left: 40%;
+  margin: 0 0 0 0;
+  width: 220px;
+  height: 120px;
+  padding: 10px 20px 20px 20px;
+}
+
+#compare_opt {
+  text-align: center;
+}
+
+#deletecompare_opt {
+  margin-top: 8px;
+  text-align: center;
+}
+
+#compare_title {
+  font-size: 16px;
+  line-height: 20px;
+  color: $alert-color-title;
+}
+
+#topo_compare h5, #topo_toggle h5, #deleteRelation h5 {
+  font-size: 14px;
+  line-height: 18px;
+  color: $alert-color-title;
+}
+
+#message_compare,
+#make_link, #text_toggle, #nodes_toggle, #delete_webtoggle, #deletet_sqtoggle {
+  display: block;
+  height: 24px;
+  line-height: 24px;
+  text-indent: 8px;
+}
+
+#message_compare, #text_toggle {
+  margin-top: 10px;
+}
+
+#make_link, #nodes_toggle {
+  margin-bottom: 20px;
+}
+
+#message_compare input, #text_toggle input,
+#make_link input, #nodes_toggle input {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+
+#message_compare input::after, #text_toggle input::after,
+#make_link input::after, #nodes_toggle input::after {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 18px;
+  border: 1px $icon-color solid;
+  background-color: $alert-color-background;
+}
+
+#message_compare input:checked::after, #text_toggle input:checked::after,
+#make_link input:checked::after, #nodes_toggle input:checked::after {
+  position: absolute;
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 1px $icon-color-highlight solid;
+  background: $alert-color-background;
+}
+
+/*******信息比较*****/
+#toggle_ensure,
+#delete_ensure{
+  width: 60px;
+  height: 26px;
+  margin-left: 20px;
+  border: 1px $button-color-border-sure solid;
+  background: $button-color-background-sure;
+  color: $button-color-text;
+  outline: none;
+}
+
+#toggle_cancel,
+#delete_cancel {
+  width: 60px;
+  height: 26px;
+  margin-left: 20px;
+  border: 1px $button-color-border-cancel solid;
+  background: $button-color-background-cancel;
+  color: $button-color-text;
+  outline: none;
+}
+
+#toggle_ensure:hover,
+#delete_ensure:hover {
+  background: $button-color-background-sure-hover;
+}
+
+#toggle_cancel:hover,
+#delete_cancel:hover {
+  background: $button-color-background-cancel-hover;
+}
+
+#topo_compare_ensure,
+#topo_compare_cancel,
+#compare_ensure,
+#compare_cancel,
+#makelink_ensure {
+  height: 26px;
+  outline: none;
+  font-size: 12px;
+}
+
+#topo_compare_ensure,
+#compare_ensure,
+#makelink_ensure {
+  border: 1px $button-color-border-sure solid;
+  margin-right: 12px;
+  background-color: $button-color-background-sure;
+  color: $button-color-text;
+}
+
+#topo_compare_ensure:hover,
+#compare_ensure:hover,
+#makelink_ensure:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+#topo_compare_cancel,
+#compare_cancel {
+  border: 1px $button-color-border-cancel solid;
+  color: $button-color-text;
+  background-color: $button-color-background-cancel;
+}
+
+#topo_compare_cancel:hover,
+#compare_cancel:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+/******信息比较******/
+
+#topo_creat_link_modalBox {
+  width: 22%;
+  height: 35%;
+  min-width :305px;
+  max-width :305px;
+  min-height: 275px;
+  max-height:280px;
+}
+
+.makelink_box {
+  margin-bottom: 8px;
+}
+
+.makelink_box h5 {
+  line-height: 24px;
+  font-size: 16px;
+  color: $alert-color-title;
+}
+
+.select_box {
+  position: relative;
+}
+
+#make_relate_type,
+#make_relate_name,
+#model_relate_type,
+#model_relate_name {
+  display: inline-block;
+  height: 25px;
+  width: 256px;
+  margin: 5px 0 5px 12px;
+  line-height: 25px;
+  text-indent: 8px;
+  font-size: 12px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+  color: $input-color-text;
+  cursor: pointer;
+}
+
+#make_relate_type_lists,
+#make_relate_name_lists,
+#model_relate_type_lists,
+#model_relate_name_lists {
+  position: absolute;
+  top: 26px;
+  left: 12px;
+  width: 256px;
+  max-height: 160px;
+  z-index: 99;
+  background-color: $select-color-background;
+  cursor: pointer;
+  border: 1px solid $select-color-border;
+}
+
+#model_relate_type_lists {
+  width: 210px;
+  top: 150px;
+  left: 90px;
+}
+
+#model_relate_name_lists {
+  width: 210px;
+  top: 190px;
+  left: 90px;
+}
+
+#model_relate_type {
+  margin: 0;
+  width: 210px;
+}
+
+#model_relate_name {
+  width: 210px;
+  margin: 0 0 0 70px;
+}
+
+.select_type_list {
+  text-indent: 8px;
+  cursor: pointer;
+}
+
+.select_type_list:hover {
+  background-color: $select-color-background-hover;
+}
+
+#relate_name_box {
+  padding: 5px 12px;
+  user-select: none;
+}
+
+#relate_name_one,
+#relate_name_two {
+  display: inline-block;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  line-height: 25px;
+  color: $font-color;
+}
+
+#relate_direction {
+  display: inline-block;
+  width: 54px;
+  height: 25px;
+  line-height: 25px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#relate_direction:before {
+  display: inline-block;
+  width: 54px;
+  font-size: 20px;
+  color: $icon-color-topo-arrow;
+}
+
+#makelink_opt {
+  width: 147px;
+  margin-top: 8px;
+  float: right;
+}
+
+// #makelink_opt button {
+//   float: left;
+// }
+
+.makelinkIn {
+  transform: skewY(0deg);
+  transition: all 0.1s linear;
+}
+
+.makelinkOut {
+  transform: skewY(90deg);
+  transition: all 0.1s linear;
+}
+
+/*******主要内容从这里开始******/
+#topology_main {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#topology_relative {
+  position: absolute;
+  top: 0;
+  right: 256px;
+  bottom: 0;
+  left: 0;
+  z-index : 10;
+}
+
+#topology_relative_network {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 150px;
+  left: 0;
+}
+
+#topology_topo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#topo_network {
+  width: 100%;
+  height: 100%;
+}
+
+#topo_usual_tools {
+  position: absolute;
+  top: 100px;
+  right: 2px;
+  width: 36px;
+  padding-bottom: 8px;
+  z-index: 99;
+  background-color: $toolbar-color-background;
+}
+
+#topo_usual_tools div {
+  margin-left: 10px;
+}
+
+#topo_usual_tools div > span{
+  display: block;
+  height: 100%;
+}
+
+#topo_usual_tools div > span:before {
+  font-size: 18px;
+}
+
+#topo_usual_tools div:hover > span:before {
+  color: $icon-color-highlight;
+}
+
+#tool_fullscreen,
+#tool_filter,
+#tool_findnodes,
+#tool_back,
+#tool_linepath,
+#tool_resetscreen,
+#tool_photo,
+#tool_export {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* 数据集导出 */
+.alert_model .button_box {
+  margin: 0 0 10px 300px;
+}
+
+.alert_model .cancel {
+  border: 1px solid $button-color-border-cancel;
+  background: $button-color-background-cancel;
+}
+
+.alert_model .cancel:hover {
+  background: $button-color-background-cancel-hover;
+}
+
+.alert_model {
+  width: 34%;
+  height:30%;
+  min-width :470px;
+  max-width :500px;
+  min-height: 220px;
+  max-height:240px;
+  position: absolute;
+  z-index: 100;
+  display: none;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  padding: 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+}
+
+.alert_model h4 {
+  font-size: 16px;
+  color: $alert-color-title;
+  line-height: 2em;
+  margin-bottom: 1em;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+}
+
+#export_topoData_modalBoxl h4 span {
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+#export_topoData_modalBoxl .model_box {
+  margin-left: 10px;
+}
+
+#versionNameIputBox input {
+  width: 82%;
+  height: 30px;
+  border: 1px $border-color solid;
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-align: left;
+  text-indent: 10px;
+  color: $input-color-text;
+  background-color: $alert-color-background;
+}
+
+.model_box p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: $alert-color-title;
+}
+
+.model_box label {
+  display: inline-block;
+  width: 35%;
+}
+
+.model_box span {
+  color: $font-color;
+}
+
+.popUpData {
+  height: 84px;
+  width: 200px;
+  border: 1px solid $topo-color-border;
+  background-color: $totip-content-color-background;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  top: 75px;
+  left: 170px;
+  display: none;
+}
+
+.popUpData p {
+  height: 22px;
+  line-height: 22px;
+  width: 100%;
+  font-size: 12px;
+  padding-left: 8px;
+
+}
+
+.popUpData p:hover {
+  background-color: $searchlist-color-background-hover;
+}
+
+#topology_relative_network:-webkit-full-screen {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $body-color-background;
+}
+
+#topo:-webkit-full-screen {
+  background-color: $body-color-background ;
+}
+
+/*数据集名称*/
+#dsname_tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+#dsname_tip h4 {
+  display: inline-block;
+  font-size: 12px;
+  min-width: 58px;
+  line-height: 24px;
+  min-height: 24px;
+  color: $alert-color-title;
+  vertical-align: top;
+  text-align: center;
+}
+
+/*工具条样式*/
+#toolsBar {
+  background-color: $topo-toolsBar-background;
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 57px;
+  border: 1px solid $topo-toolsBar-border;
+  z-index: 10;
+  display: none;
+}
+
+.hideBars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58px;
+  height: 26px;
+  z-index: 110;
+}
+
+.hideBars:hover {
+  cursor: pointer;
+}
+
+#toolsShade {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 26px;
+  text-align: center;
+  padding-top: 5px;
+  z-index: 106;
+  cursor: pointer;
+}
+
+#toolsTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $topology-toolsTitle-backgroundcolor;
+  width: 100%;
+  height: 26px;
+  text-align: center;
+  z-index: 2;
+}
+
+.tool_box1 {
+  width: 24px;
+  background: $toolbar-color-background;
+  padding: 30px 0 0 0;
+  float: left;
+  box-sizing: border-box;
+}
+
+.map_totips {
+  /*display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 24px;*/
+  font-size: 12px;
+  text-align: center;
+  z-index: 12;
+  background-color: $totip-tool-color-background;
+  color: $totip-tool-text-color;
+  font-weight: normal;
+  margin-top: -5px;
+}
+
+.tool_box2 {
+  width: 240px;
+  height: 28px;
+  float: left;
+  padding: 0 0 0 40px;
+  background: $totip-content-color-background;
+  box-sizing: border-box;
+}
+
+.tool_box1 .tool-parent-left, .tool_box1 .tool-parent-right {
+  position: relative;
+  width: 28px;
+  height: 24px;
+  margin: 2px;
+  margin-top: 4px;
+  text-align: center;
+  font-weight: bolder;
+  cursor: pointer;
+  float: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tool-parent-left, .tool-parent-right {
+  line-height: 18px;
+  text-align: center;
+}
+
+.tool-parent-left span:before, .tool-parent-right span:before {
+  font-size: 18px;
+}
+
+.tool-parent-left:hover > span:before, .tool-parent-right:hover > span:before {
+  color: $tabs-item-color-text-acitve;
+}
+
+.tool-parent-left:nth-child(1), .tool-parent-left:nth-child(2), .tool-parent-left:nth-child(6) {
+  opacity: .4
+}
+
+.tool_box2 .tool-parent-left, .tool_box2 .tool-parent-right {
+  margin-top: 5px;
+  width: 28px;
+  height: 24px;
+  position: relative;
+  text-align: center;
+  font-weight: bolder;
+  cursor: pointer;
+  float: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tipBoxs_list div:nth-child(6) i {
+  position: absolute;
+  margin-right: 0;
+  top: 190px;
+  left: 14px;
+}
+
+.tipBoxs_path div:nth-child(4) i {
+  position: absolute;
+  margin-right: 0;
+  top: 122px;
+  left: 16px;
+}
+
+.tipBoxs_coll div:nth-child(3) i {
+  position: absolute;
+  margin-right: 0;
+  top: 85px;
+  left: 19px;
+}
+
+.tipBoxs_list, .tipBoxs_path, .tipBoxs_coll {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+  width: 110px;
+  background: $topo-tipBoxsListPathColl-backgroundColor;
+  z-index: 20;
+}
+
+.tipBoxs_list {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.tool_rotate_li {
+  width: 58px;
+  height: 1px;
+  background-color: $toolbar-color-border-bottom;
+}
+
+#toolsTitle img {
+  width: 18px;
+  height: 18px;
+}
+
+.smallIcon {
+  display: block;
+  margin: -3px 0 0 20px;
+  width: 0;
+  height: 0;
+  border-bottom: 4px solid $icon-color;
+  border-left: 4px solid transparent;
+}
+
+.tool-children-layout, .tool-children-link {
+  font-size: 18px;
+}
+
+.tool-children-layout > span, .tool-children-link > span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.tool-children-layout:hover > p, .tool-children-link:hover > p, .tool-children-layout:hover > span:before, .tool-children-link:hover > span:before {
+  color: $topo-hovertab-color-text-hover;
+}
+
+.tipBoxs_img_undone {
+  opacity: 0.4;
+}
+
+.pathsWork > div {
+  width: 60px;
+  height: 30px;
+  background: $hovertab-color-background;
+  color: $hovertab-color-text;
+}
+
+.pathsWork > div:hover > span:before {
+  color: $topo-hovertab-color-text-hover;
+}
+
+.pathsWork > div:hover > text {
+  -webkit-text-fill-color: $topo-hovertab-color-text-hover;
+}
+
+.pathsWork > div > span:before {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.lArrow {
+  margin-left: 25px;
+  padding: 5px 0 0 0;
+  display: block;
+}
+
+.lineTable {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 14px;
+}
+
+.tipBoxs {
+  display: none;
+}
+
+.tipBoxs div i {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: $tabs-item-color-border-active;
+  opacity: 0;
+}
+
+.tipBoxs_list div, .tipBoxs_path div, .tipBoxs_coll div {
+  padding: 5px 0 5px 0;
+}
+
+.tipBoxs_path {
+  display: none;
+}
+
+.tipBoxs_list p, .tipBoxs_path p, .tipBoxs_coll p {
+  font-size: 12px;
+  display: inline-block;
+  text-align: left;
+}
+
+.tipBoxs_coll div {
+  margin-left: -15px;
+}
+
+#topo_map,
+#topo_chart,
+#topo_gis{
+  position: absolute;
+  right: 1px;
+  width: 36px;
+  height: 28px;
+  background-color: $topo-topo_mapchartgis-backgroundColor;
+  border-radius: 3px 0 0 3px;
+  color: $font-color;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#topo_map {
+  top: 30px;
+}
+
+#topo_gis {
+  top: 65px;
+}
+
+/*#topo_dashboard {
+  top: 100px;
+}*/
+
+#topo_map:hover, #topo_gis:hover{
+  color: $tabs-item-color-border-active;
+}
+
+#topo_chart {
+  top: 65px;
+}
+
+#topo_scale {
+  position: absolute;
+  top: 100px;
+  right: 0;
+  width: 40px;
+  height: 170px;
+}
+
+#topo_scale_bar {
+  position: absolute;
+  top: 24px;
+  left: 13px;
+  width: 10px;
+  height: 38px;
+  border-radius: 5px 5px 0 0;
+  background-color: $chart-tab-color-background-active;
+  z-index: 10;
+}
+
+#topo_scale_move {
+  position: absolute;
+  top: 30px;
+  left: -3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: $chart-tab-color-background;
+  box-sizing: border-box;
+  z-index: 11;
+}
+
+#topo_magnify,
+#topo_shrink {
+  width: 20px;
+  height: 20px;
+}
+
+#save_topoData_modalBox {
+  width: 45%;
+  height: 47%;
+  min-width :590px;
+  max-width :640px;
+  min-height: 370px;
+  max-height:370px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+#save_screenShot_modalBox {
+  width: 734px;
+  height: 452px;
+  max-width: 734px;
+  max-height: 452px;
+}
+
+#save_topoData_modalBox h4 {
+  height: 36px;
+  border-bottom: 1px $entity-splitline-color solid;
+  margin-bottom: 10px;
+  color: $alert-color-title;
+  font-size: 16px;
+  line-height: 36px;
+}
+
+#save_topoData_modalBox h4 span {
+  display: inline-block;
+  font-size: 18px;
+  margin: 10px;
+}
+
+#topo_save_name,
+#topo_save_versionName,
+#topo_save_title,
+#topo_save_describle {
+  width: 82%;
+  height: 30px;
+  border: 1px $border-color solid;
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-align: left;
+  text-indent: 10px;
+  // color: $input-color-text;
+  background-color: $alert-color-background;
+}
+
+#topo_save_title {
+  width: 240px;
+}
+
+#topo_save_name::-moz-placeholder,
+#topo_save_versionName::-moz-placeholder,
+#topo_save_title::-moz-placeholder {
+  font-size: 12px;
+  color: $input-color-text;
+}
+
+#topo_save_author {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+#save_topoData_modalBox input:-ms-input-placeholder {
+  font-size: 12px;
+  color: $input-color-text;
+}
+
+#save_topoData_modalBox input::-webkit-input-placeholder {
+  font-size: 12px;
+  color: $input-color-text;
+}
+
+.save_list_box {
+  position: relative;
+  width: 100%;
+}
+
+.save_list_box span {
+  display: inline-block;
+  width: 15%;
+  font-size: 14px;
+  line-height: 30px;
+  vertical-align: top;
+  text-align: right;
+}
+
+.save_list_box span.icon-mark, .save_list_box span.icon-mark-yellow {
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.save_list_box label {
+  position: absolute;
+  left: 115px;
+  top: 32px;
+  color: $topo-label-color-text;
+  font-size: 12px;
+  line-height: 15px;
+  padding-left: 10px;
+  display: none;
+}
+
+#topo_save_describle {
+  display: inline-block;
+  height: 120px;
+  padding: 4px;
+  margin-bottom: 16px;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#save_option_box {
+  text-align: right;
+  margin: 15px 23px 0 0;
+}
+
+#save_option_imgbox {
+  margin-top: 6px;
+  float: right;
+}
+
+.confirmed, .canceled {
+  display: inline-block;
+  height: 26px;
+  margin-right: 20px;
+  padding: 0 17px;
+  color: $topo-buttontext-color;
+  line-height: 26px;
+  outline: none;
+}
+
+.confirmed {
+  background: $button-color-background-sure;
+  border: 1px $button-color-border-sure solid;
+}
+
+.canceled {
+  background: $button-color-background-cancel;
+  border: 1px $button-color-border-cancel solid;
+  margin-right: 0;
+}
+
+.confirmed:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+.canceled:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+/*#save_sure,
+#save_sure_img,
+#map_filter_option_ensure,
+#filter_option_ensure{
+  background-color: #13181b;
+  border: 1px #33d0ff solid;
+ }
+ #save_sure:hover,
+ #save_sure_img:hover,
+ #map_filter_option_ensure:hover,
+ #filter_option_ensure:hover{
+   background-color: #33c5f4;
+ }
+#save_sure_img{
+  line-height: 32px;
+  text-align: center;
+}
+#save_close,
+#save_close_imgmodal,
+#map_filter_option_cancel,
+#filter_option_cancel{
+  background-color: #13181b;
+  border: 1px #293742 solid;
+}
+#save_close:hover,
+#save_close_imgmodal:hover,
+#map_filter_option_cancel:hover,
+#filter_option_cancel:hover{
+  background-color: #202b33;
+}*/
+/*缩略图*/
+/*过滤器样式*/
+.topo_network_filter {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 40%;
+  max-width 550px;
+  min-width: 500px;
+  min-height: 450px;
+  padding: 10px 15px;
+  background-color: $alert-color-background;
+  z-index: 100;
+  display: none;
+  border: 1px solid $alert-border-color;
+  border-radius: 8px;
+}
+
+#map_network_filter {
+  position: absolute;
+  top: 18%;
+  left: 32%;
+  width: 550px;
+  padding: 10px 15px;
+  background-color: $alert-color-background;
+  z-index: 100;
+  display: none;
+  border: 1px solid $alert-border-color;
+}
+
+#map_network_filter_title,
+#network_filter_title {
+  line-height: 30px;
+  color: $alert-color-title;
+  font-size: 16px;
+}
+
+#map_network_filter_title:before,
+#network_filter_title:before {
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+#map_network_filter_time,
+#network_filter_time span {
+  color: $font-color;
+}
+
+.clandar_box {
+  position: relative;
+  display: inline-block;
+  margin: 5px 12px;  
+}
+
+.filter_classify_box .clandar_box{
+  width: 100%;
+  margin: 0;  
+}
+
+.clandar_box_sp {
+  margin: 0 12px;
+}
+
+#map_network_filter_object,
+#map_time,
+#relation_time,
+#map_advance_search_time,
+#network_filter_object,
+#filter_time,
+#relate_time,
+#relate_medium {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  text-indent: 8px;
+  background: transparent;
+  outline: none;
+  border: 1px $border-color solid;
+}
+
+#map_network_filter_object,
+#network_filter_object {
+  height: 25px;
+}
+
+#map_time,
+#map_advance_search_time{
+  width: 100%;
+  line-height: 25px;
+}
+
+#filter_time, relation_time{
+  width: 100%;
+  line-height: 25px;
+}
+
+#relate_time,
+#relate_medium {
+  width: 256px;
+  line-height: 25px;
+}
+
+#relate_medium {
+  margin: 4px 0 0 12px;
+}
+
+#map_time_btn,
+#relation_time_btn,
+#map_time_end,
+#map_advance_search_time_btn,
+#filter_time_btn,
+#relate_time_btn {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#map_time_btn,
+#relation_time_btn,
+#map_time_end,
+#map_advance_search_time_btn,
+#filter_time_btn,
+#relate_time_btn:before {
+  font-size: 18px;
+}
+
+#map_filter_option_box,
+#filter_option_box {
+  text-align: center;
+  margin-top:10px;
+}
+
+.select_property_extend {
+  font-size: 12px;
+}
+
+.button_custom #network_filter_time{
+  width: 25%;
+  margin-right: 28%;
+}
+
+/*图表*/
+#topology_chart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+/*时间轴样式*/
+#topology_relative_timeline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top: 2px $topo-color-border solid;
+  box-sizing: border-box;
+  background-color: $topo_relative_timeline-color-background;
+  z-index: 100;
+}
+
+#topology_timeline_taggle {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: $topo-color-border;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+}
+
+#topology_timeline_taggle:before {
+  font-size: 20px;
+}
+
+#topology_timeline_box {
+  width: 100%;
+  height: 150px;
+}
+
+/*右边信息样式#181b21*/
+#topology_message {
+  width: 256px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $font-color;
+  white-space: nowrap;
+  background-color: $topo-topology_message-backgroundColor;
+  z-index: 102;
+}
+
+#topology_message_taggle {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 256px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 18px;
+  background: $topo-color-border;
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+}
+
+#topology_message_drag {
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -2px;
+  background-color: $topo-color-border;
+  cursor: w-resize;
+  z-index: 103;
+}
+
+#topology_message_box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 104;
+}
+
+#topology_message_tabs {
+  width: 100%;
+  padding: 10px 20px 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 2px $topo-color-border solid;
+  font-size: 0;
+}
+
+#topology_message_tabs li {
+  display: inline-block;
+  width: 72px;
+  height: 25px;
+  margin: 0 1px;
+  vertical-align: bottom;
+  line-height: 25px;
+  text-align: center;
+  background: $topo-topology_message_tabsLi-backgroundColor;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px 3px 0 0;
+}
+
+#topology_message_tabs .topology_message_tab_active {
+  width: 72px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  //background-color: $tabs-item-color-background-topo-active;
+  color: $topo-topology_message_tabs-color;
+  cursor: default;
+}
+
+#topology_message_total {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+
+.search_box {
+  padding-left: 36px;
+}
+
+.search_go_detail {
+  cursor: pointer;
+  user-select: none;
+}
+
+.search_go_detail:hover {
+  color: $tabs-item-color-text-acitve;
+}
+
+#topology_message_search,
+#topology_message_detail {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+
+#topo_search_content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#topo_search_result{
+  height :36%;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#topo_search_result {
+  bottom: 340px;
+}
+
+#check_detail_contents {
+  height: 36%;
+  padding: 0 8px 8px 8px;
+  overflow-y: auto;
+}
+
+#topo_secrch_detailTitle,
+#topo_check_relateTitle {
+  position: absolute;
+  top: 340px;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+}
+
+#topo_search_detail,
+#check_relate_contents {
+  position: absolute;
+  top: 370px;
+  right: 0;
+  bottom: 10px;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#topo_search_detail {
+  padding: 0 8px 8px 8px;
+  overflow-y: auto;
+}
+
+#topo_search_none {
+  width: 160px;
+  height: 160px;
+  margin: 200px auto;
+  padding-top: 96px;
+  border: 2px $border-color solid;
+  border-radius: 50%;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+#topo_search_none:before {
+  font-size: 60px;
+  position: absolute;
+  top: 20%;
+  left: 33%;
+}
+
+#topo_search_tip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  line-height: 48px;
+  font-size: 16px;
+  text-align: center;
+  display: none;
+}
+
+#topo_search_tip:before {
+  color: $icon-color-notfind;
+  font-size: 80px;
+}
+
+#topo_go_storage,
+#topo_go_makeLabel {
+  color: $font-color-highlight;
+  cursor: pointer;
+  text-decoration: underline;
+  user-select: none;
+}
+
+#topology_message_detail {
+  display: block;
+}
+
+#topology_total_loading,
+#topology_search_loading,
+#topology_detail_loading {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+}
+
+#topology_total_loading img,
+#topology_search_loading img,
+#topology_detail_loading img {
+  width: 50%;
+  margin: 120px 25%;
+}
+
+#topology_message_main {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/*详细*/
+#topo_detail_content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.topo_checkout_detail{
+  display: block;
+  width: 100%;
+  height: 22px;
+  line-height: 22px;
+  text-align: right;
+  color: $font-color;
+  cursor: pointer;
+}
+
+.topo_checkout_detail:before{
+  color: $font-color;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+.topo_checkout_detail:hover, .topo_checkout_detail:hover:before{
+  color: $font-color-highlight;
+}
+
+.topo_checkout_detailContent{
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.check_detail_content {
+  display: inline-block;
+  min-width: 51%;
+  float: left;
+  font-size: 12px;
+}
+
+.check_detail_content p {
+  text-indent: 2em;
+}
+
+#topo_detail_photo {
+  float: left;
+  width: 60px;
+  height: @width;
+  margin-right: 10px;
+  border-radius: 30px;
+  background-color: $image-background-color;
+}
+
+#topo_detail_photo img {
+  width: 36px;
+  height: 36px;
+}
+
+.check_detail_content {
+  line-height: 22px;
+  white-space: normal;
+}
+
+.check_detail_content b {
+  font-weight: normal;
+}
+
+.check_relate_content {
+  border-bottom: 1px $border-color dotted;
+}
+
+.base_relate_title {
+  position: relative;
+  padding-left: 6px;
+  line-height: 28px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#topology_message_box .topo_direction {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+}
+
+#topology_message_box .triangleDown {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid $icon-color-highlight;
+}
+
+#topology_message_box .triangleRight {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-left: 6px solid $icon-color-highlight;
+  border-bottom: 4px solid transparent;
+}
+
+#topology_message_box .triangleChoose {
+  margin-left: 16px;
+}
+
+.base_relate_lists {
+  padding-left: 26px;
+  line-height: 24px;
+  display: none;
+}
+
+.relate_list_box {
+  position: relative;
+}
+
+.base_relate_list {
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+}
+
+.base_relate_list:hover,
+.topo_mes_list:hover,
+.topo_meslist_active,
+.topology_firstPro_title:hover,
+.topology_mesRelate_title:hover,
+.mesType_title_active {
+  color: $tabs-item-color-text-acitve;
+  cursor: pointer;
+}
+
+#mesType_title_active_hide {
+  color: $tree-color-bar-hide;
+}
+
+.mesType_title_active span {
+  cursor: pointer;
+}
+
+.detail_relate_detail {
+  position: absolute;
+  top: 28px;
+  left: -20px;
+  width: 100%;
+  line-height: 20px;
+  padding: 8px;
+  border: 1px $font-color-highlight solid;
+  background-color: $body-color-background;
+  white-space: normal;
+  box-sizing: border-box;
+  z-index: 104;
+}
+
+.relate_detail_hide{
+  position: absolute;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  background: $topology-relate_detail_hide-backgroundcolor ;
+  line-height: 12px;
+  z-index: 105;
+  cursor:pointer;
+}
+
+.relate_detail_arrows {
+  position: absolute;
+  top: -9px;
+  left: 18px;
+  width: 12px;
+  height: 12px;
+  background: $body-color-background;
+  line-height: 12px;
+  z-index: 105;
+}
+
+.relate_detail_title {
+  color: $font-color-highlight;
+}
+
+/*统计*/
+#topo_total_message {
+  position: relative;
+  height: 100%;
+}
+
+#topo_total_box {
+  position: relative;
+}
+
+#total_type_box {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#total_option_box {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+#total_checkbox_flag,
+#total_checkbox_refresh {
+  background: none;
+  padding: 0;
+  width: 48px;
+  border: none;
+  outline: none;
+  text-align: left;
+  text-indent: 16px;
+}
+
+#total_checkbox_flag:before {
+  margin-right: 3px;
+}
+
+#total_checkbox_refresh:before {
+  margin-right: 3px;
+}
+
+#total_checkbox_flag:hover:before {
+  color: $tabs-item-color-text-acitve;
+}
+
+#total_checkbox_refresh:hover:before {
+  color: $tabs-item-color-text-acitve;
+}
+
+#total_checkbox_flag {
+  margin-right: 8px;
+}
+
+#total_checkbox_refresh {
+  margin-right: 10px;
+}
+
+#total_checkbox_refresh:hover {
+  color: $tabs-item-color-text-acitve;
+}
+
+#total_checkbox_flag:hover {
+  color: $tabs-item-color-text-acitve;
+}
+
+.clickColor {
+  color: $tabs-item-color-text-acitve;
+}
+
+.defaultColor:before {
+  color: $font-color;
+}
+
+.topo_total_title,
+.topology_message_title,
+#topo_secrch_detailTitle,
+#topo_check_detialTitle,
+#topo_check_relateTitle {
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  background-color: $topo-checksecrchtitle-backgroundColor;
+  color: $topo-checksecrchtitle-color;
+}
+
+#topo_total_tOptions,
+#topo_total_rOptions {
+  display: block;
+  float: right;
+}
+
+#topo_total_delete,
+#topo_total_recover,
+#topo_relate_label,
+#topo_relate_hide {
+  display: inline-block;
+  margin-right: 16px;
+  padding-left: 18px;
+  font-size: 12px;
+  line-height: 24px;
+  color: $font-color-highlight;
+  cursor: pointer;
+}
+
+.topology_totalmes {
+  clear: both;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px $border-color dotted;
+}
+
+.topology_totalmes p {
+  position: relative;
+}
+
+.topology_firstPro_title,
+.topology_mesRelate_title,
+.topology_mesType_title {
+  display: inline-block;
+  height: 28px;
+  box-sizing: border-box;
+  padding-left: 6px;
+  line-height: 28px;
+  font-size: 14px;
+  color: $tree-color-text-title;
+  user-select: none;
+}
+
+.search_result_title {
+  cursor: pointer;
+}
+
+.total_select_data,
+.tital_select_noall {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: $checkbox-color-background;
+}
+
+.total_select_data:before {
+  background-color: $checkbox-color-background;
+  font-size: 12px;
+  position: absolute;
+  top: -1px;
+}
+
+.tital_select_noall:before {
+  background-color: $checkbox-color-background;
+  font-size: 12px;
+  position: absolute;
+  top: -1px;
+}
+
+.total_select_data {
+  display: none;
+}
+
+.total_classifyList_table td p {
+  height: 19px;
+}
+
+/* .total_select_data::after{
+  position: absolute;
+  content: "";
+  width: 14px; height: 14px;
+  空方框
+}
+.total_select_data:checked::after{
+  position: absolute;
+  content: "";
+  width: 14px; height: 14px;
+  对号
+}
+.tital_select_noall:checked::after{
+  position: absolute;
+  content: "";
+  width: 14px; height: 14px;
+   减号
+} */
+
+.topology_secondPro_title {
+  margin-left: 6px;
+  font-size: 14px;
+}
+
+.topology_secondPro_title img,
+.topology_thridPro_title img {
+  margin-left: 16px;
+}
+
+.topology_thridPro_title {
+  margin-left: 16px;
+  font-size: 13px;
+}
+
+.total_title_text {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.total_title_text span {
+  font-size: 12px;
+}
+
+.total_classifyList_table {
+  margin-left: 6px;
+  border: none;
+}
+
+.total_classifyList_table tr {
+  border: none;
+}
+
+#total_classifyList_table_tr_hide {
+  color: $tree-color-bar-hide;
+}
+
+#total_classifyList_table_tr_hide td i {
+  display: inline-block;
+  width: 60%;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 7px;
+  background: $tree-color-bar-hide;
+}
+
+.total_classifyList_table td {
+  table-layout: fixed;
+  overflow: hidden;
+  border: none;
+  text-align: left;
+}
+
+.total_classifyList_table td:nth-child(1) {
+  padding-left: 20px;
+  width: 60%;
+  text-align: left;
+}
+
+.total_classifyList_table td span {
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.total_classifyList_table td i {
+  display: inline-block;
+  width: 60%;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 7px;
+  background-color: $tabs-item-color-text-acitve;
+}
+
+.total_classifyList_table td b {
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+.topology_mes_active {
+  display: block;
+}
+
+.topology_totalmes_table {
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.topology_totalmes_table tr td:nth-child(1) {
+  width: 50%;
+}
+
+/*.topo_mes_list input{
+  width: 16px; height: 16px;
+  margin-right: 8px;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+.topo_mes_list input::after{
+  position: absolute;
+  content: "";
+  width: 16px; height: 16px;
+  background-color: #181D21;
+}
+.topo_mes_list input:checked::after{
+  position: absolute;
+  content: "";
+  width: 16px; height: 16px;
+  background:  #181D21;
+}*/
+
+.topology_detail_num_width {
+  width: 120px;
+  padding-left: 10px;
+}
+
+.topology_totalmes_table p {
+  width: 100%;
+  text-indent: 10px;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.topology_totalmes_table span {
+  display: inline-block;
+  margin-top: 8px;
+  width: 20%;
+  height: 6px;
+  vertical-align: top;
+  border-radius: 3px;
+  margin-right: 10px;
+  padding-left: 10px;
+  background-color: $topoMessage-button-color-background;
+}
+
+.topology_totalmes b {
+  font-weight: normal;
+}
+
+.topology_total_more {
+  width: 30px;
+  margin-left: 70%;
+  padding-bottom: 2px;
+  border-bottom: 1px $searchlist-textarea-color-border solid;
+  font-size: 12px;
+  color: $font-color-highlight;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  display: none;
+}
+
+#topo_total_relate {
+  height: 45%;
+}
+
+#delete_alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 212px;
+  border: 1px solid $alert-border-color;
+  transform: translate(-50%, -50%);
+  background-color: $alert-color-background;
+  z-index: 100;
+  display: none;
+}
+
+#delete_alert h5 {
+  height: 48px;
+  margin-top: 12px;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: $font-color-warning;
+}
+
+#delete_alert p {
+  height: 106px;
+  padding: 26px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+#delete_alert div {
+  float: right;
+  margin-right: 24px;
+}
+
+#delete_ensure_true,
+#delete_ensure_false {
+  height: 32px;
+  padding: 0 24px;
+  color: $document-color-font;
+  outline: none;
+}
+
+#delete_ensure_true {
+  margin-right: 24px;
+  background-color: $button-color-background-sure;
+  border: 1px $button-color-border-sure solid;
+}
+
+#delete_ensure_true:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+#delete_ensure_false {
+  width: 98px;
+  background-color: $button-color-background-sure;
+  border: 1px $alert-border-color solid;
+}
+
+#delete_ensure_false:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+#topology_gis {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#map_usual_tools {
+  display none
+  position absolute
+  top 50%
+  right 75px
+  z-index 99
+  margin-top -180px
+  overflow hidden
+  padding 0 8px
+  background-color $gis-$modal-background-color-base
+  text-align center
+  width 40px
+  height 0
+  transition height 1s
+  -webkit-transition height 1s
+}
+
+
+@keyframes warningBorder {
+  0%   {box-shadow: 0px 0px 0px 0px rgba(66,212,255,.6);}
+  50%  {box-shadow: 0px 0px 1px 1px rgba(255,0,0,.6);}
+  100% {box-shadow: 0px 0px 0px 0px rgba(66,212,255,.6);}
+}
+
+@-webkit-keyframes warningBorder {
+  0%   {box-shadow: 0px 0px 0px 0px rgba(66,212,255,.6);}
+  50%  {box-shadow: 0px 0px 1px 1px rgba(255,0,0,.6);}
+  100% {box-shadow: 0px 0px 0px 0px rgba(66,212,255,.6);}
+}
+
+#map_tools {
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  z-index: 99;
+  margin-top: -130px;
+  padding: 0 6px 6px;
+
+  #map_tools_header {
+    background-color $gis-$modal-background-color-base
+    text-align center
+    width 40px
+    height 40px
+    font-size 28px
+    padding 0
+  }
+
+  #map_event_visual {
+    cursor pointer
+    margin-bottom 6px
+    border 1px solid rgba(66,212,255,.6)
+    background-color $gis-$modal-background-color-base
+    text-align center
+    width 32px
+    height 31px
+    font-size 18px
+    padding 3px
+  }
+
+  #topo_dashboard {
+    width 40px
+    height 40px
+    margin-top 10px
+    margin-bottom 6px
+    font-size 25px
+    padding 3px
+    background-color $gis-$modal-background-color-base
+    text-align center
+    cursor pointer
+  }
+
+  #map_warning_person {
+    cursor pointer
+    margin-top 10px
+    margin-bottom 6px
+    box-shadow 0 0 1px 1px rgba(66,212,255,.6)
+    background-color $gis-$modal-background-color-base
+    text-align center
+    width 40px
+    height 40px
+    font-size 25px
+    padding 3px
+    animation warningBorder 3s
+    animation-iteration-count infinite
+  }
+
+}
+
+.icon-warning-bell:before {
+  animation warningBellColor 3s
+  animation-iteration-count infinite
+}
+
+
+
+#map_usual_tools div {
+  /*margin-left: 10px;*/
+}
+
+#map_usual_tools div > span:before {
+  font-size: 22px;
+}
+
+#map_usual_tools div:hover > span:before {
+  color: $tabs-item-color-text-acitve;
+}
+
+#topology_map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: $totip-content-color-background;
+  z-index: 99;
+}
+
+#map_fullscreen,
+#map_photo,
+#map_findnodes,
+#map_filter,
+#map_back,
+#map_tool,
+#map_show,
+#map_heat,
+#map_resetscreen,
+#map_people_move,
+#map_area_statistics,
+#map_gis_table,
+#map_bayonet{
+  width: 20px;
+  height: 22px;
+  margin-top: 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+#map_people_move,
+#map_area_statistics,
+#map_gis_table{
+  display: none;
+}
+
+#basemap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: "微软雅黑";
+}
+
+#map_network_filter_time {
+  width: 440px;
+}
+
+/*遮罩层*/
+#map_search_shade {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  bottom: 50%;
+  left: 50%;
+  background-color:$topology-map_search_shade-backgroundcolor;
+  z-index: 10000;
+  overflow: hidden;
+}
+#map_advanceSearch_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 15px;
+  background-color: $gis-input-color-background;
+  z-index: 10;
+  border: 1px solid $gis-div-color-border;
+}
+#map_advanceSearch_search {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+}
+#map_advance_business_description {
+  padding-left: 80px;
+  color: $gis-p-color-font;
+}
+#map_advance_search_value,
+#map_advance_search_business {
+  height: 25px;
+  width: 84.5%;
+  text-indent: 8px;
+  border: 1px solid $gis-select-border-color;
+  background-color: $gis-cancel-color-background-hover;
+  color: $gis-search-color-font;
+}
+#map_advance_search_object {
+  width: 83%;
+}
+#map_advance_search_business {
+  width: 100%;
+  height: 25px;
+  text-indent: 8px;
+  border: 1px $gis-select-border-color solid;
+  background-color: $gis-cancel-color-background-hover;
+  color: $gis-search-color-font;
+}
+#map_advance_search_value::-webkit-input-placeholder,
+#map_advance_search_business::-webkit-input-placeholder {
+  color: $gis-input-color-font;
+}
+#advance_search_ensure:hover {
+  background-color: $gis-ensure-color-background-hover;
+}
+#map_advance_search_condition {
+  position: relative;
+  width: 530px;
+  margin-bottom: 24px;
+}
+.map_advance_search_title {
+  display: inline-block;
+  width: 60px;
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: right;
+  color: $gis-h6-color-font;
+}
+.map_advance_search_box {
+  display: inline-block;
+  position: relative;
+  height: 25px;
+}
+#map_advance_search_time_box {
+  width: 84.5%;
+}
+.map_advanceSearch_button {
+  margin: 20px 0;
+  text-align: center;
+}
+#map_advance_search_ensure {
+  display: inline-block;
+  height: 32px;
+  background-color: $gis-input-color-background;
+  border: 1px $gis-h6-color-font solid;
+  margin-right: 24px;
+  padding: 0 24px;
+  color: $gis-button-color-font;
+  outline: 0;
+}
+#map_advance_search_cancel {
+  display: inline-block;
+  height: 32px;
+  line-height: 30px;
+  background-color: $gis-input-color-background;
+  border: 1px $gis-div-color-border solid;
+  margin-right: 24px;
+  padding: 0 24px;
+  color: $gis-button-color-font;
+  outline: 0;
+  cursor: pointer;
+}
+#map_advance_search_cancel:hover {
+  background-color: $gis-cancel-color-background-hover;
+}
+.map_clandar_box {
+  position: relative;
+  display: inline-block;
+  width: 45%;
+  height: 100%;
+}
+.map_search_conditions {
+  display: inline-block;
+  width: 100px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+}
+.map_search_conditions input {
+  width: 14px;
+  height: 14px;
+  border: none;
+  margin-right: 8px;
+  outline: none;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.map_search_conditions input::before {
+  background-color: $gis-input-color-background;
+}
+
+.links-detail{
+  width:400px;
+  min-height:300px;
+  position:absolute;
+  top:22%;
+  left:40%;
+  background-color:$topology-links-detail-backgroundcolor ;
+  border:1px solid $topology-links-detail-border;
+  display:none;
+  overflow:hidden;
+}
+.closeDetailBox{
+  position:absolute;
+  top:5px;
+  right:10px;
+}
+.showLinkList{
+  width:100%;
+  height:1px;
+  margin:20px auto;
+  background-color:$topology-showLinkList-backgroundcolor;
+}
+.timeline-layout{
+  width:100%;
+  height:130%;
+  background-color:$topology-timeline-layout-backgroundcolor;
+  display:none;
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:110;
+}
+.timeLinesvgBox{
+  width: 88%;
+  height:68%;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.closeTimelineBox{
+  cursor: pointer;
+  width: 40px;
+  height 40px;
+  position:absolute;
+  top:-12px;
+  right:43%;
+  z-index:100;
+}
+.timeLineFilter{
+  width: 12%;
+  height:68%;
+  position:absolute;
+  top:60px;
+  right:10px;
+  border-left: 1px solid $topology-timeLineFilter-borderLeft;
+  border-top: 1px solid $topology-timeLineFilter-borderTop;
+}
+.titleFilter{
+  position:absolute;
+  top:36px;
+  right:3%;
+  color: $topology-titleFilter-color;
+  font-size: 16px;
+}
+.lists{
+  width: 100%;
+  height:500px;
+  position:absolute;
+  top:110px;
+  right:0;
+}
+.myRadio{
+  padding: 10px 0 5px 0;
+}
+.myRadio p{
+  padding: 0 0 0 10px;
+}
+.radiocomponent{
+  display:inline-block;
+}
+.choseDirection{
+  width:100px;
+  color: $topology-choseDirection-color;
+  font-size: 14px;
+  margin-right: 60px;
+  margin-left: 15px;
+  padding-left: 5px;
+  display:inline-block;
+  cursor:pointer;
+}
+.choseDirection p {
+  color: $topology-choseDirectionP-color;
+}
+// 思维导图
+#mindmap_pane {
+  position: absolute;
+  width: 100%;
+  height: 14%;
+  background-color:$topology-mindmap_pane-backgroundcolor ;
+  opacity :0.5;
+  z-index: 103;
+  display: none;
+
+  .mindmap {
+    cursor: default;
+
+    .g_circles {
+      circle {
+        fill: $mm-final-circle-bgcolor;
+        &:nth-child(1) {
+          fill: $mm-initial-circle-bgcolor;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .g_lines {
+      path {
+        stroke: $mm-final-path-color;
+        stroke-width: 2px;
+        stroke-linejoin: round;
+      }
+    }
+    .g_lines_blue {
+      path {
+        stroke: $mm-initial-path-color;
+        stroke-width: 2px;
+        stroke-linejoin: round;
+        stroke-dasharray: 375;
+        stroke-dashoffset: 375;
+      }
+    }
+
+    #symbol {
+      path {
+        fill: currentColor;
+        stroke-linejoin:round;
+        stroke-linecap:round;
+        stroke: currentColor;
+      }
+      rect {
+        stroke-linejoin:round;
+        stroke-linecap:round;
+      }
+    }
+    .g_arrows {
+      use {
+        transition: all .6s .2s;
+      }
+      .coarrow_initial {
+        fill: $mm-initial-btn-bgcolor;
+        color: $mm-btn-bgcolor;
+      }
+      .coarrow_final {
+        fill: $mm-btn-bgcolor;
+        color: $mm-coarrow_final-color;
+      }
+    }
+
+    //.g_arrows {
+    //  path {
+    //    stroke: $mm-executed-path-color;
+    //    stroke-width: 2px;
+    //    stroke-linejoin: round;
+    //    fill: $mm-executed-path-color;
+    //  }
+    //}
+    //.g_arrows_blue {
+    //  path {
+    //    stroke: $mm-executed-path-color;
+    //    stroke-width: 2px;
+    //    stroke-linejoin: round;
+    //    stroke-dasharray: 100;
+    //    stroke-dashoffset: 100;
+    //    fill: none;
+    //  }
+    //}
+
+    .g_labels {
+
+      text {
+        fill: $topology-g_labels-text-fill;
+        text-anchor: middle;
+        font-size: 14px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .g_tooltip {
+    position: absolute;
+    top: 0;
+
+    .tooltip {
+      position: absolute;
+      width: 120px;
+      height: auto;
+      border: 1px solid $mm-tooltip-border-color;
+      border-radius: 4px;
+      background-color: $mm-tooltip-bgcolor;
+      color: $mm-tooltip-font-color;
+      opacity: 0;
+      transition: opacity .5s, left .5s, top .5s;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 20px;
+        width: 12px;
+        height: 12px;
+        border: 1px solid $mm-tooltip-border-color;
+        border-width: 1px 0 0 1px;
+        background-color: $mm-tooltip-bgcolor;
+        transform: rotate(45deg);
+        //border: 8px solid transparent;
+        //border-bottom-color: #ccc;
+      }
+    }
+  }
+}
+
+.timeLineLayout{
+  opacity: 0;
+}
+
+//虚拟节点表哥信息样式
+#virtual_search_reslut_modalBox{
+  width:48%;
+  height:68%;
+  min-width :685px;
+  max-width :700px;
+  min-height: 535px;
+  max-height:540px;
+}
+
+.addtopology,.screenToShow{
+  display: block;
+  position: absolute;
+  top: 6px;
+  right: 40px;
+  padding: 2px 2px 2px 2px;
+  cursor:pointer;
+}
+.screenToShow{
+  right: 130px;
+}
+
+.virtual_search_reslut_modalBox_content{
+  width:100%;
+  height :82%;
+}
+
+.searchList_main_content_box {
+  width: 190px;
+  height: 50px;
+  position: relative;
+  border: 1px $tag-color-border solid;
+  border-radius: 10px;
+  margin: 10px 15px;
+  background-color: $tag-color-background;
+  color: $font-color;
+  font-size: 14px;
+  float:left;
+}
+
+.searchList_main_content_box:hover .searchList_main_content {
+  width: auto;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: -10px;
+  z-index: 10;
+  border: 2px $searchlist-textarea-color-border solid;
+  transform: scale(1.05);
+  transition:0.25s;
+  white-space: normal;
+  cursor: position;
+}
+
+.searchList_main_content_box:hover .searchList_content_text {
+  width: 250px;
+}
+.searchList_main_content {
+  position: relative;
+  height: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: $tag-color-background;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+.searchList_content_img {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 20px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.searchList_content_text {
+  width: 140px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+  padding-right: 45px;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div {
+  min-width: 50%;
+  max-width: 90%;
+  float: left;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div p {
+  display: inline;
+}
+
+.searchList_content_text>div:nth-of-type(1)>div>div p span.dot {
+  color: $font-color-highlight;
+  font-size: 12px;
+}
+
+.searchList_content_text .makeEntity {
+  text-decoration: none;
+}
+
+.searchList_content_gis, .searchList_content_topology {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 19px;
+}
+
+.searchList_content_topology {
+  top: 13px;
+  right: 5px;
+}
+
+.searchList_content_gis {
+  top: 10px;
+  right: 35px;
+}
+
+#virtual_search_reslut_modalBox h5 ,#virtual_filter_reslut_modalBox h5{
+    font-size: 14px;
+    color: $topology-virtual_search_reslut_modalBoxvirtual_filter_reslut_modalBox_color;
+    line-height: 2.6;
+    text-align: center;
+}
+
+#virtual_search_reslut_modalBox .dsm_close ,.virtual_filter_reslut_modalBox_close{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 4px;
+    right: 0;
+}
+
+#searchlist_pagination {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    display:inline-block;
+}
+
+#searchlist_pagination a, #searchlist_pagination span {
+  padding: 4px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background: $pagination-color-background;
+  color: $pagination-color-text;
+  border: 1px $pagination-color-border solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#searchlist_pagination a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#searchlist_pagination span {
+  cursor: default;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+#searchlist_pagination .current {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+}
+
+#searchlist_pagination .btnactive {
+  background: $pagination-color-background-active;
+  color: $pagination-color-text-active;
+  cursor: default;
+}
+
+#virtual_filter_reslut_modalBox{
+  width: 30%;
+  height :45%;
+  min-width :430px;
+  max-width :500px;
+  min-height: 355px;
+  max-height:550px;
+}
+.virtual_filter_reslut_modalBox_box{
+  position :absolute;
+  left:37%;
+  bottom:10px;
+}
+.virtual_filter_reslut_modalBox_content li{
+  text-align: right;
+  padding: 20px 20px 10px 20px;
+}
+.virtualDisplayName{
+  font-size: 16px;
+}
+.virtualSystemIn{
+  height: 25px;
+  width: 210px;
+  color:$topology-virtualSystemIn-color;
+  text-indent: 8px;
+  outline: none;
+  background-color: $topology-virtualSystemIn-backgroundcolor;
+  border: 1px $topology-virtualSystemIn-border solid;
+}
+.errorMsg{
+  display:inline-block
+  color: $topology-errorMsg-color;
+  opacity :0;
+  padding: 0 0 0 15px;
+}
+.notFound{
+  margin: 18% auto;
+  text-align: center;
+  color: $topology-notFound-color;
+}
+.notFound h1{
+  font-size: 180px;
+}
+.notFound p{
+  font-size: 18px;
+}
+.relation_input{
+  margin-right: 5px;
+  display:inline-block;
+}
+.selectedLi{
+  border:1px solid $topology-selectedLi-border;
+}
+.noSelectedLi{
+  border:1px solid $topology-noSelectedLi-border;
+}
+
+/*  弹框  */
+.gisPlatform_alert_box {
+  display : none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 220px;
+  margin: -110px 0 0 -150px;
+  background-color: $alert-color-background;
+  z-index: 999;
+}
+
+.gisPlatform_alert_title {
+  height: 48px;
+  margin-top: 12px;
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: $font-color-highlight;
+}
+
+.gisPlatform_alert_content {
+  height: 106px;
+  padding: 24px;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+}
+
+.gisPlatform_button_sure {
+  width: 80px;
+  margin-left: 114px;
+  height: 24px;
+  background-color: $button-color-background-sure;
+  border: 1px $button-color-border-sure solid;
+  outline: none;
+}
+
+.gisPlatform_button_cancel {
+  width: 80px;
+  margin-left: 5px;
+  height: 24px;
+  background-color: $button-color-background-sure;
+  border: 1px $button-color-border-sure solid;
+  outline: none;
+}
+
+.gisPlatform_button_sure:hover, .gisPlatform_button_cancel:hover {
+  background: $button-color-background-sure-hover;
+}

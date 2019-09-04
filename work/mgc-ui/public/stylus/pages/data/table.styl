@@ -1,0 +1,288 @@
+#delegation_detail_head {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#delegation_detail_head td {
+  font-size: 16px;
+  border-bottom: 1px $table-color-border-row solid;
+}
+
+#delegation_detail_head thead > tr > td {
+  height: 36px;
+  line-height: 36px;
+  background: $table-color-background-head;
+  text-align: center;
+  font-size: 14px;
+  border: 1px $table-color-border-row solid;
+  color: $table-color-text-head;
+}
+
+#delegation_detail_head tbody > tr {
+  background-color: $table-color-background;
+
+  &:hover {
+    cursor: pointer;
+    background: $table-color-background-row-hover;
+  }
+}
+
+#delegation_detail_head tbody > tr > td {
+  line-height: 40px;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px 0;
+}
+
+/* 多选input样式 */
+#delegation_detail_head span {
+  display: inline-block;
+  position: relative;
+  margin: 9px 12px;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#delegation_check_all:before, .delegation_check:before {
+  position: absolute;
+  font-size: 12px;
+}
+
+#delegation_detail_head .table_NO, #delegation_detail_head .table_id .table_number {
+  width: 5%;
+}
+
+#delegation_detail_head .table_image {
+  width: 15%;
+}
+
+#delegation_detail_head .table_name {
+  width: 15%;
+  line-height: 23px;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#delegation_detail_head .table_description {
+  width: 25%;
+  line-height: 23px;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+#delegation_detail_head .table_author {
+  width: 5%;
+}
+
+#delegation_detail_head .table_createTime {
+  width: 10%;
+}
+
+#delegation_detail_head .table_versionQuantity {
+  width: 5%;
+}
+
+#delegation_detail_head .table_export, .table_send, .table_open, .table_delete, .table_sign, .table_see, .table_push {
+  width: 5%;
+  cursor: pointer;
+}
+
+#delegation_detail_head .table_export span,
+.table_send span,
+.table_open span,
+.table_delete span,
+.table_sign span,
+.table_see span,
+.table_push span {
+  font-size: 18px;
+}
+
+#delegation_detail_head .table_export span:hover:before,
+.table_send span:hover:before,
+.table_open span:hover:before,
+.table_delete span:hover:before,
+.table_see span:hover:before,
+.table_push span:hover:before {
+  color: $icon-color-highlight;
+}
+
+.table_sign span:hover:before {
+  color: $icon-color-highlight-mark;
+}
+
+.table_snap img {
+  height: 100px;
+}
+
+#topo_shade {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $shade-color-background;
+  display: none;
+  z-index: 999;
+}
+
+.alert_model .button_box button {
+  font-size: 14px;
+  width: 60px;
+  height: 26px;
+  margin: 0 -4px 0 24px;
+  color: $button-color-text;
+  outline: none;
+}
+
+.alert_model .ok {
+  border: 1px solid $button-color-border-sure;
+  background: $button-color-background-sure;
+}
+
+.alert_model .ok:hover {
+  background: $button-color-background-sure-hover;
+}
+
+.alert_model .cancel {
+  border: 1px solid $button-color-border-cancel;
+  background: $button-color-background-cancel;
+}
+
+.alert_model .cancel:hover {
+  background: $button-color-background-cancel-hover;
+}
+
+.alert_model {
+  width: 34%;
+  height:30%;
+  min-width :470px;
+  max-width :500px;
+  min-height: 220px;
+  max-height:240px;
+  position: absolute;
+  z-index: 100;
+  display: none;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  padding: 10px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+}
+
+.alert_model h4 {
+  font-size: 16px;
+  color: $alert-color-title;
+  line-height: 2em;
+  margin-bottom: 1em;
+  text-align: left;
+  border-bottom: 1px solid $alert-border-bottom-color;
+}
+
+.alert_model h4 span {
+  display: inline-block;
+  font-size: 18px;
+  margin: 5px;
+}
+
+#push_modal .push_input_list {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-bottom: 14px;
+}
+
+.push_input_list span {
+  display: inline-block;
+  width: 17%;
+  line-height: 30px;
+  text-align: right;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.push_input_list .pid_desc {
+  display: inline-block;
+  width: 80%;
+  height: 86px;
+  background-color: $textarea-color-background;
+  border: 1px solid $input-color-border;
+  padding: 4px;
+  color: $input-color-text;
+  font-size: 12px;
+  margin-left: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.push_input_list .pig_input {
+  width: 80%;
+  height: 30px;
+  background-color: $input-color-background;
+  border: 1px solid $input-color-border;
+  text-indent: 10px;
+  text-align: left;
+  color: $input-color-text;
+  font-size: 12px;
+  margin-left: 4px;
+  outline: none;
+}
+
+.push_input_list .pig_select {
+  position: absolute;
+  left: 76px;
+  top: 30px;
+  width: 82%;
+  height: auto;
+  border: 1px solid $select-color-border;
+  background-color: $select-alert-color-background;
+  padding: 8px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 100px;
+  z-index: 99;
+}
+
+.pig_select label {
+  display: inline-block;
+  width: 100%;
+  line-height: 14px;
+  padding: 4px 8px;
+
+}
+
+.pig_select label:hover {
+  background-color: $select-alert-color-background-hover;
+}
+
+.alert_model .button_box {
+  text-align: right;
+  width: 100%;
+  height: auto;
+  padding-right: 3%;
+}
+
+.model_box div {
+  margin: 20px 0 40px 20px;
+}
+
+.model_box p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: $font-color-highlight;
+}
+
+.model_box label {
+  display: inline-block;
+  width: 35%;
+}
+
+.model_box span {
+  color: $font-color;
+}

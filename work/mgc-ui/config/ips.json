@@ -1,0 +1,12 @@
+{
+  "magicube": {
+    "ip": "172.16.11.41",
+    "port": "9167",
+    "name": "magicube"
+  },
+  "hbase": {
+      "ip": "172.16.11.146",
+      "port": "9427",
+      "name": "hbase"
+  }
+}

@@ -1,0 +1,511 @@
+@import "../public/component";
+@import "../topology/topology";
+@import "../../../js/public/jquery-custom-content-scroller/jquery.mCustomScrollbar";
+
+#event_main{
+  position: absolute;
+  top: 50px; right: 0; bottom: 0; left: 0;
+  min-width: 850px;
+  padding: 15px;
+  background-color: $body-color-background;
+}
+
+#event_base{
+  position: relative;
+  height: 22%;
+}
+
+#event_option{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#event_message_box{
+  width: 100%;
+  height: 86%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: $font-color;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#event_message_box p{
+  display: inline-block;
+  position: relative;
+  min-width: 24%;
+  max-width: 100%;
+  height: 32px;
+  line-height: 32px;
+  box-sizing: border-box;
+}
+
+.event_basic_title{
+  vertical-align: top;
+  color: $font-color-highlight;
+}
+
+.event_base_message{
+  display: inline-block;
+  min-width: 100px;
+  max-width: 90%;
+  height: 26px;
+  line-height: 26px;
+  margin: 3px 0;
+  padding: 0 10px;
+  background-color: $body-color-background;
+}
+
+.eneity_edit{
+  padding: 0 10px;
+  border: 1px $input-color-border solid;
+  box-sizing: border-box;
+  outline-color: $input-color-border-outline;
+}
+
+#event_message_box .mes_long{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#event_message_box .mes_long .event_base_message{
+  width: 90%;
+  text-align: left;
+}
+
+.event_title{
+  position: relative;
+  height: 18px;
+
+  h3{
+    position: absolute;
+    top: 0; left: 0;
+    display: inline-block;
+    height: 18px;
+    padding-left: 10px;
+    border-left: 3px solid $font-color-highlight;
+    color: $font-color-highlight;
+    font-size: 16px;
+  }
+
+  .event_title_border{
+    height: 8px;
+    margin-left: 84px;
+    border-bottom: 1px $event-color-border-special solid;
+  }
+}
+
+#event_relate{
+  position: relative;
+  min-height: 150px;
+  height: 40%;
+
+  #event_relate_tab_mes{
+    position: relative;
+    height: 86%;
+    box-sizing: border-box;
+
+    #event_relate_optBox{
+      position: absolute;
+      top: -2px;
+      right: 10px;
+
+      .event_relate_opt{
+        float: left;
+        margin: 0 10px;
+        padding-left: 3px;
+        color: $font-color;
+        cursor: pointer;
+
+        span:nth-child(1){
+          font-size: 12px;
+          margin-right: 4px;
+        }
+
+        span:nth-child(1):before{
+          color: $font-color;
+        }
+      }
+
+      .event_relate_active{
+        color: $font-color-highlight;
+
+        span:nth-child(1):before{
+          color: $font-color-highlight;
+        }
+      }
+
+    }
+
+    #event_relateMes{
+      position: relative;
+      height: 100%;
+      top: 12px;
+
+      .event_relateMes_box{
+        display: inline-block;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        width: 33.33%;
+        height: 100%;
+
+        &:nth-child(3){
+          .event_relateMes_contents{
+            border: none;
+          }
+        }
+
+        h6{
+          line-height: 32px;
+          font-size: 13px;
+          text-align: center;
+
+          .event_icon{
+            display: inline-block;
+            height: 6px;
+            width: 6px;
+            border-radius: 3px;
+            background-color: $chart-tab-color-background-active;
+            margin: 0 6px 0 0;
+          }
+        }
+
+        .event_relateMes_contents{
+          position: relative;
+          height: 86%;
+          overflow-x: hidden;
+          overflow-y: auto;
+          border-right: 1px dotted $entity-splitline-color-dashed;
+
+          p{
+            height: 18px;
+            padding: 0 50px;
+            line-height: 30px;
+            cursor: pointer;
+          }
+
+          .event_relate_list{
+            display: flex;
+            line-height: 22px;
+
+            &:hover{
+              color: $font-color-highlight;
+            }
+
+            span:nth-of-type(2){
+              float: right;
+            }
+          }
+        }
+
+      }
+
+    }
+    #event_relateDetail{
+      position: relative;
+      height: 100%;
+      top: 20px;
+      display: none;
+
+      #relate_detail_tableMes{
+        position: relative;
+        display: block;
+        max-height: 100%;
+        overflow: auto;
+
+        tbody{
+          display: block;
+          height: 86%;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+        th{
+          border: 1px $table-color-border solid;
+          color: $table-color-text-head;
+          border-collapse: collapse;
+          background: $table-color-background-head;
+          text-align: center;
+          line-height: 24px
+        }
+        thead, tr{
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+        td{
+          border: 1px $table-color-border solid;
+          color: $font-color;
+          border-collapse: collapse;
+          text-align: center;
+          line-height: 24px;
+        }
+        tr:nth-of-type(odd) td {
+          background: $table-color-background-row-odd;
+        }
+        tr:nth-of-type(even) td {
+          background: $table-color-background-row-even;
+        }
+      }
+
+    }
+    #event_topo{
+      width: 100%;
+      height: 100%;
+      padding-top: 20px;
+      display: none;
+      overflow: hidden;
+    }
+
+  }
+
+}
+
+#event_tabs_title_box{
+  margin-top: 10px;
+  padding-left: 15px;
+  color: $document-color-font;
+}
+
+#event_tabs_title_box li{
+  display: inline-block;
+  width: 100px;
+  height: 25px;
+  margin-right: 15px;
+  line-height: 25px;
+  text-align: center;
+  background-color: $input-color-background;
+  border-radius: 5px 5px 0 0;
+  vertical-align: bottom;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+#event_tabs_title_box .active{
+  height: 30px;
+  line-height: 30px;
+  background-color: $tabs-item-color-background-topo-active;
+  color: $font-color-highlight;
+  cursor: default;
+}
+
+.event_relate_mes{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  line-height: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: $document-color-font;
+  text-decoration: none;
+}
+
+.event_relate_mes b{
+  cursor: pointer;
+}
+
+.event_relate_mes b:hover{
+  color: $event-color-text-hover ;
+}
+
+.event_relate_mes span{
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.check_relate_detail{
+  display: inline-block;
+  vertical-align: top;
+  line-height: 16px;
+  color: $font-color-highlight;
+  cursor: pointer;
+}
+
+.no_relate_data{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  text-align: center;
+  color: $input-color-text;
+}
+
+// 时间趋势部分样式
+#event_trend{
+  position: relative;
+  height: 38%;
+
+  #event_trend_box{
+    width: 100%;
+    margin-top: 15px;
+    box-sizing: border-box;
+
+    ul{
+      border-bottom: 2px $event-color-border-special solid;
+      margin-bottom: -2px;
+
+      .event_trend_tab_tit{
+        display: inline-block;
+        width: 80px; height: 25px;
+        margin-bottom: -2px;
+        line-height: 25px;
+        text-align: center;
+        border-bottom: 2px $tabs-item-color-border solid;
+        background-color: $tabs-item-color-background-detail;
+        vertical-align: bottom;
+        cursor: pointer;
+        color: $font-color;
+
+        .trend_tab_active{
+              cursor: default;
+              border: 2px $tabs-item-color-border solid;
+              border-top: 2px $tabs-item-color-border-top-active solid;
+              border-bottom: none;
+            }
+      }
+    }
+    .event_trend_tab_mes{
+      position: absolute;
+      top: 58px; right: 0; bottom: 0; left: 0;
+      min-width: 100%;
+      border: 2px $tabs-item-color-border solid;
+      border-top: none;
+      display: none;
+      white-space: nowrap;
+
+      #trend_mes_content{
+        height: 100%;
+        font-size: 16px;
+        padding: 10px 20px;
+
+        #content_scroller{
+          width: 100%;
+          height: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+
+          .trend_mes_box{
+            display: inline-block;
+            max-width: 260px;
+            height: 100%;
+            margin: 0 10px;
+
+            .trend_mes_head{
+              position: relative;
+              height: 70px;
+              text-align: center;
+
+              .trend_index{
+                position: absolute;
+                top: 0;
+                left: 50%;//121px;
+                color: $font-color-highlight;
+              }
+              .bgline{
+                position: absolute;
+                top: 34px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background-color:$header-color-background;
+              }
+              span:before{
+                position: absolute;
+                left: 48%;//116px;
+                top: 26px;
+                font-size: 40px;
+              }
+            }
+            .trend_mes_content {
+              position: relative;
+              height: 80px;
+              border: 1px solid $header-color-background;
+              border-radius: 4px;
+              font-size: 12px;
+              padding: 4px 8px;
+
+              .trend_mc_circle {
+                position: absolute;
+                top: -6px;
+                left: 50%;//118px;
+                width: 12px;
+                height: 12px;
+                background-color: $body-color-background;
+
+                span{
+                  position: absolute;
+                  left: -1px;
+                  top: 0;
+                }
+                span:before{
+                  font-size: 12px;
+                  color: $icon-color;
+                }
+              }
+              .trend_mes_content_scroller{
+                  width: 240px;
+                  height: 70px;
+                  overflow-y: auto;
+                  overflow-x: hidden;
+                p{
+                  width:240px;
+                  height auto;
+                  white-space:normal;
+                }
+                
+              }
+            }
+            
+          }
+        }
+        
+        .no-data{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          
+          span{
+            font-size: 14px;
+            margin-left: 20px;
+          }
+          .icon-notfind::before {
+            font-size: 80px;
+            color: $font-color;
+          }
+        }
+      }
+      
+    }
+    .trend_mes_active{
+      display: block;
+    }
+  }
+
+}
+
+/* 取消js中的样式 */
+.event_pagealert_notice_color_default{
+  color:$font-color-highlight;
+}
+
+.event_pagealert_notice_color_license{
+  color:$font-color-warning;
+}
+
+.event_a_base_message_width{
+  width: 100%;
+}

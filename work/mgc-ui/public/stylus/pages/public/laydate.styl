@@ -1,0 +1,84 @@
+.layui-laydate, .layui-laydate-hint{
+  background-color: $calendar-color-background!important;
+  border 1px solid $calendar-color-border!important;
+  color: $font-color!important;
+}
+
+.layui-laydate-header{
+  line-height: 20px!important;
+  border-bottom: 1px solid $calendar-color-border!important;
+
+  i{
+    font-size: 14px!important;
+  }
+
+  i:hover{
+    color: $font-color-highlight!important;
+  }
+
+  span:hover{
+    color: $font-color-highlight!important;
+  }
+}
+
+.layui-laydate-content {
+  td,th{
+    height: 26px!important;
+    padding: 0!important;
+    color: $font-color!important;
+  }
+  td:hover, li:hover{
+    background-color: $calendar-td-hover-bg;
+    color: $calendar-td-hover-color !important;
+  }
+  td.laydate-selected{
+    background-color: $font-color-highlight!important;
+  }
+  .laydate-day-next, .laydate-day-prev{
+    color: $calendar-color-next-pre!important;
+  }
+  .laydate-selected.laydate-day-next, .laydate-selected.laydate-day-prev{
+    background-color: $calendar-td-disabled-bg !important;
+  }
+  .laydate-selected:hover{
+    background-color: $font-color-highlight!important;
+  }
+}
+
+.layui-laydate-list{
+  background-color: $calendar-color-background!important;
+  li{
+    height: 31px!important;
+    line-height : 31px!important;
+  }
+}
+
+.laydate-theme-grid .laydate-selected,.laydate-theme-grid .laydate-selected:hover{
+  background-color: $calendar-grid-selected-bg!important;
+  color: $font-color-highlight!important;
+}
+
+.layui-laydate .layui-laydate-main .layui-laydate-content .layui-this{
+  background-color: $font-color-highlight!important;
+}
+
+.layui-laydate-footer{
+  height: 30px!important;
+  line-height: 30px!important;
+  border-top: 1px solid $calendar-color-border!important;
+
+  .laydate-footer-btns{
+    top: 0!important;
+
+    span{
+      height: 30px!important;
+      line-height: 30px!important;
+      border: none!important;
+      background: none!important;
+    }
+
+    span:hover{
+      color: $font-color-highlight!important;
+    }
+  }
+}

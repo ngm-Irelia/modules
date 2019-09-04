@@ -1,0 +1,13 @@
+{
+  "contextPath": "",
+  "url": "/magicube",
+  "gis": {
+    "type": "bmap",
+    "cssFirst":"http://172.16.11.146:8080/arcgis_js_api/library/3.22/3.22/esri/css/esri.css",
+    "cssSecond":"null",
+    "js":"http://172.16.11.146:8080/arcgis_js_api/library/3.22/3.22/init.js",
+    "server":"arcgis_off_line",
+    "bayonet":"KKSJ",
+    "backups":"--http://iclient.supermap.io/web/libs/iclient8c/libs/SuperMap.Include.js--https://js.arcgis.com/3.22/"
+  }
+}

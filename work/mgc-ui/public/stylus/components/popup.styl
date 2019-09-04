@@ -1,0 +1,47 @@
+/**
+ * "高调"的普通信息提示框
+ */
+.mgc-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  min-width: 266px;
+  min-height: 160px;
+  background-color: $alert-color-background;
+  border: 1px solid $alert-border-color;
+  color: $font-color;
+
+  .mgc-popup-head {
+    padding: 10px 12px;
+    border-bottom: 1px solid $alert-border-bottom-color;
+    color: $font-color-highlight;
+    font-size: 16px;
+  }
+
+  .mgc-popup-content {
+    min-height: 69px;
+    padding: 15px 12px;
+    font-size: 14px;
+  }
+
+  .mgc-popup-footer {
+    padding: 10px 12px;
+    text-align: right;
+
+    .mgc-popup-confirm {
+      height: 26px;
+      line-height: 26px;
+      padding: 0 15px;
+      border: 1px $button-color-border-default solid;
+      border-radius: 2px;
+      color: $font-color;
+      text-align: center;
+      background-color: inherit;
+
+      &:hover {
+        background-color: $button-color-background-default-hover;
+      }
+    }
+  }
+}

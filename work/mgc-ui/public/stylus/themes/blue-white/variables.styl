@@ -1,0 +1,678 @@
+/****base color****/
+$WHITE-F2 										= #f8f8f2;
+$WHITE-44 										= #444;
+$BLUE-CD 										= #23a6cd;
+$YELLOW-WARNING                                 = #ffc000;
+$YELLOW-MARK 	                                = #ffff00;
+$GREEN-00 										= #008a00;
+$RED-00 										= #e60000;
+$RED-4A 										= #F9384A;
+$ORANGE-0C 										= #ff780c;
+$ORANGE-90 										= #f90;
+$GRAY 											= #c2c5c7;
+$GRAY-DD 										= #dddddd;
+$GRAY-42 										= #293742;
+$GRAY-39 										= #273139;
+$GRAY-71 										= #717171;
+$GRAY-5A 										= #3b4c5a;
+$GRAY-64 										= #455764;
+$GRAY-F0 										= #f0f0f0;
+$GRAY-77 										= #777;
+$PURPLE 										= #485676;
+$PURPLE-3F 										= #93f;
+$BLACK 											= #000000;
+$BLACK-55										= #384855;
+$BLACK-1B 										= #13181b;
+$BLACK-B33 										= #202b33;
+$BLACK-12 										= #101112;
+$BLACK-2E 										= #20282e;
+$BLACK-2C 										= #23282c;
+$BLACK-21 										= #181b21;
+$BLACK-1F 										= #23241f;
+$BLACK-932 										= #1f2932;
+$BLACK-3A 										= #2d343a;
+$BLACK-c3f                                      = #141c3f;
+$BLACK-rgb27                                    = rgba(19, 24, 27, 0.5);
+$BLACK-02                                       = rgba(0, 0, 0, 0.2);
+
+$WHITE 											= #ffffff;
+$BLUE 											= #23b9e7;
+$BLUE-0FF  										= #3ad0FF;
+$GRAY-3D  										= #2b363d;
+$GRAY-AF 										= #a6a8af;
+$GRAY-DE 										= #dedede;
+$GRAY-F1 										= #e9ebf1;
+$GRAY-66 										= #666666;
+$WHITE-d4                                       = #cbcdd4;
+
+$RED-69                                         = #D50769;
+$BLUE-82                                        = #207382;
+$BLUE-63                                        = #2B5863;
+$BLACK-22                                       = #d9dadc;
+$BLUE-fe                                        = #50d6fe;
+$GRAY-84                                        = #7d8184;
+$BLUE-f1                                        = #3098f1;
+
+$BLUE-f4                                        = #3ebbf4;
+
+/**********************************基础色值对应表*****************************************/
+/****font****/
+$font-color 									    = $font-color-base;
+$font-color-highlight							    = $font-color-highlight-blue;
+$font-color-warning								    = $YELLOW-WARNING;
+/****由于index页面在任何肤色下都为黑色，所以此处需要特别对其颜色进行定义,而不能使用通用颜色值****/
+$font-index-color                                   = $WHITE;
+
+/****body****/
+$body-color-background							    = $background-color-base;
+$body-color-text								    =  $font-color-base;
+
+//----------------------------------------------------------------
+$font-color-base                                    = #2b363d;
+$font-color-highlight-white                         = #ffffff; //深底色字体为浅色
+$font-color-highlight-blue                          = #07a5ee; //浅底色字体为深色
+$font-color-highlight-yellow                        = #ffd862; //强调性字体为黄色
+
+$background-color-base                              = #f9f9fb;  //默认基础灰
+$background-color-plus                              = #e9ebf1; //比基础背景色更深的颜色（多用在tab,菜单）
+$background-color-blue                              = #07a5ee; //蓝色基础背景色
+$background-color-yellow                            = #ffd862; //黄色基础背景色
+$background-color-white                             = #ffffff; //白色背基础景色
+
+$border-color-base                                  = #dedede;
+$border-color-blue                                  = #07a5ee;
+
+$modal-background-color-base                        = $background-color-white;
+
+$shade-background-color                             = rgba(0, 0, 0, .4);
+
+$table-odd-color-base                               = #ffffff;
+$table-even-color-base                              = #f4f6fb;
+
+$image-background-color                             = $background-color-plus;
+/**********************************组件通用基础色值对应表*****************************************/
+/****shade****/
+$shade-color-background							    = $shade-background-color;
+
+/***alert****/ 
+// 搜索、工作台、版本管理
+$alert-color-background                  		    = $background-color-white;
+$alert-color-icon                        		    = $font-color-highlight-blue;
+$alert-color-text                        		    = $font-color-base;
+$alert-border-color                      		    = $border-color-base;
+$alert-border-bottom-color				 		    = $border-color-base;
+$alert-color-title						 		    = $font-color-highlight-blue;
+
+/****input****/
+// 搜索、工作台、个人中心、版本管理
+$input-color-text                        		    = $font-color-base;
+$input-color-background                  		    = $background-color-white;
+$input-color-background-search                      = $background-color-white;
+$input-color-background-disabled         		    = $GRAY-64;
+$input-color-border                      		    = $border-color-base;
+$input-color-border-search						    = $GRAY-39;
+$input-color-border-outline					        = $font-color-highlight-blue;
+$textarea-color-background						    = $background-color-white;
+$textarea-color-border-dashed					    = $GRAY-DE;
+$input-searchlist-color-background 				    = $BLACK-12;
+$input-searchlist-color-border					    = $GRAY-39;
+$input-color-ounline							    = $font-color-highlight-blue;
+$input-color-header-search-background			    = $BLUE-f4;
+$inputBox-color-topology-search-background		    = #f8f8f8;
+$input-color-topology-search-background		        = $GRAY-F1;
+$input-color-login-border						    = $PURPLE;
+$input-color-background-editable                    = #eaebf0;
+
+/****button****/
+// 搜索、工作台、版本管理
+$button-color-text                       		    = $font-color-base;
+$button-color-background-default         		    = $background-color-white;
+$button-color-background-default-hover   		    = #edfaff;
+$button-color-border-default 		     		    = $font-color-highlight-blue;
+
+$button-color-background-sure            		    = $background-color-white;
+$button-color-background-sure-hover      		    = #edfaff;
+$button-color-border-sure 				 		    = $font-color-highlight-blue;
+
+$button-color-background-cancel          		    = $background-color-white;
+$button-color-background-cancel-hover    		    = $background-color-plus;
+$button-color-border-cancel 			 		    = $border-color-base;
+
+$button-color-header-search-background			    = $BLUE-f4;
+
+/****tabs****/
+// 搜索、工作台、个人中心、版本管理
+$tabs-item-color-border                  		    = $border-color-base;
+$tabs-item-vision-color-border                      = $GRAY-DE;
+$tabs-item-color-border-active           		    = $font-color-highlight-blue;
+$tabs-item-color-border-top-active 		 		    = $font-color-highlight-blue;
+$tabs-item-color-text                    		    = $GRAY-3D;
+$tabs-item-color-text-acitve             		    = $font-color-highlight-blue;
+$tabs-item-color-background-default                 = $background-color-white;
+$tabs-item-color-background-active                  = $background-color-white;
+$tabs-item-color-background-option-active		    = $background-color-plus;
+$tabs-item-color-background-option       		    = $background-color-white;
+$tabs-item-color-background-detail		            = $border-color-base;
+$tabs-item-color-background-topo		            = $GRAY-F0;
+$tabs-item-color-background-topo-active	            = $background-color-plus;
+
+/****tag****/
+// 搜索
+$tag-color-background                         	    = $modal-background-color-base;
+$tag-color-text                               	    = $GRAY-3D;
+$tag-color-text-hover                         	    = $font-color-highlight-blue;
+$tag-color-border							  	    = $GRAY-DE;
+$tag-color-border-hover						  	    = $font-color-highlight-blue;
+
+/****checkbox****/
+// 搜索、工作台、个人中心、版本管理
+$checkbox-color-label                               = $GRAY-3D;
+$checkbox-color-checked 					        = $font-color-highlight-blue;
+$checkbox-color-unchecked					        = $GRAY-71;
+$checkbox-color-background					        = $modal-background-color-base;
+$option-authority_tabel-background		            = $modal-background-color-base;
+
+/****radio****/
+// 工作台、版本管理
+$radio-color-label                                  = $modal-background-color-base;
+$radio-color-checked                                = $font-color-highlight-blue;
+$radio-color-unchecked                              = $BLACK-55;  
+$radio-color-background					            = $BLACK-21;
+
+/****table****/
+// 个人中心、版本管理
+$table-color-background					            = $background-color-white;
+$table-color-background-head					    = $background-color-plus;
+$table-color-background-row-hover                   = $background-color-plus ;
+$table-color-background-row-odd                     = $table-odd-color-base;
+$table-color-background-row-even                    = $table-even-color-base;
+$table-color-border-row                             = $background-color-plus;
+$table-color-border                                 = $border-color-base;
+$table-color-text								    = $font-color-base;
+$table-color-text-head							    = $font-color-highlight-blue;
+
+/****select****/
+// 搜索、详情、工作台、个人中心、版本管理
+$select-alert-color-background					    = $modal-background-color-base;
+$select-alert-color-background-hover			    = $font-color-highlight-blue;
+$select-color-border							    = $border-color-base;
+$select-color-text								    = $GRAY-3D;
+$select-color-text-hover						    = $font-color-highlight-blue;
+$select-color-background					        = $modal-background-color-base;
+$select-color-background-hover			            = $font-color-highlight-blue;
+$select-personcenter-color-background			    = $modal-background-color-base;
+$select-personcenter-color-border				    = $GRAY-DE;
+
+/****header****/
+// 全部
+$header-color-background 						    = $background-color-blue;
+$header-bg-from                                     = $background-color-blue;
+$header-bg-to                                       = #358fc4;//别把这个改为$background-color-blue
+$header-color-border							    = $font-color-highlight-white;
+$header-color-icon								    = $font-color-highlight-white;
+$header-color-icon-active						    = $border-color-base;
+$header-color-text								    = $font-color-highlight-white;
+$header-color-admin								    = $font-color-highlight-white;
+$totip-tool-color-background                        = $font-color-warning;
+$totip-tool-text-color                              = $font-color-base;
+
+/****pagination****/
+// 搜索、版本管理
+$pagination-color-background-active		            = $font-color-highlight-blue;
+$pagination-color-text-active			            = $font-color-highlight-white;
+$pagination-color-background				        = $background-color-white;
+$pagination-color-text  					        = $font-color-base;
+$pagination-color-border					        = $border-color-base;
+
+/****calendar****/
+// 搜索、版本管理、个人中心
+$calendar-color-background						    = $background-color-white;
+$calendar-color-border							    = $border-color-base;
+$calendar-color-next-pre                            = #d2d2d2;
+$calendar-td-hover-bg                               = #eaeaea;
+$calendar-td-hover-color                            = $font-color-highlight-white;
+$calendar-td-disabled-bg                            = #f8f8f8;
+$calendar-grid-selected-bg                          = #f2f2f2;
+
+/****search history*****/
+$his-font-color                                     = #3ad0FF;
+$his-font-hover-color                               = #23a6cd;
+$his-border-default-color                           = $border-color-base;
+$his-border-color                                   = $font-color-base;
+$his-head-bottom-border                             = $font-color-base;
+$his-bg-default-color                               = $BLACK-1B;
+$his-bg-color                                       = $BLACK-rgb27;
+$his-input-default-bg                               = $GRAY-5A;
+$his-input-bg                                       = #162036;
+$his-li-odd-default-bg                              = #151f26;
+$his-li-odd-bg                                      = rgba(21, 31, 38, 0.5);
+$his-li-even-default-bg                             = $BLACK-21;
+$his-li-even-bg                                     = rgba(24, 29, 33, 0.5);
+$his-li-bottom-border                               = $font-color-base;
+$his-li-time                                        = $font-color-highlight-yellow;
+$his-record-color                                   = $GRAY-84;
+
+/****检索表达式匹配*****/
+$exp-pane-bg                                        = $BLACK-B33;
+$exp-li-bg-hover                                    = $GRAY-66;
+
+/****Search statistics*****/
+$statis-detail-font-color                           = $font-color-highlight-blue;
+$statis-detail-border                               = $font-color-highlight-blue;
+$statis-detail-bg                                   = #010309;
+$statis-detail-corner-border                        = #4eb1d0;
+$statis-detail-corner-bg                            = $font-color-highlight-yellow;
+
+/****无犯罪证明审核按钮*****/
+$audit-btn-bg                                       = #1e7296;
+$audit-btn-corner-border                            = $font-color-highlight-blue;
+
+/**********************************功能基础色值对应表*****************************************/
+/****quill****/
+//文档
+$quill-editor-color-background-shadow               = rgba(0, 0, 0, 0.1);
+$quill-editor-color-background-black			    = $WHITE;
+$quill-editor-color-background-red				    = $RED-00;
+$quill-editor-color-background-orange			    = $ORANGE-90;
+$quill-editor-color-background-yellow			    = $YELLOW-MARK;
+$quill-editor-color-background-green			    = $GREEN-00;
+$quill-editor-color-background-blue			        = $BLUE;
+$quill-editor-color-background-purple			    = $PURPLE-3F;
+
+$quill-editor-color-text-white					    = $WHITE;
+$quill-editor-color-text-red					    = $RED-00;
+$quill-editor-color-text-orange					    = $ORANGE-90;
+$quill-editor-color-text-yellow					    = $YELLOW-MARK;
+$quill-editor-color-text-green					    = $GREEN-00;
+$quill-editor-color-text-blue			    	    = $BLUE;
+$quill-editor-color-text-purple					    = $PURPLE-3F;
+
+$quill-editor-ul-color-text						    = $GRAY-77;
+$quill-toolbar-btn-highlight-color-text			    = $BLUE;
+$quill-snow-stroke								    = $GRAY-3D;
+$quill-snow-fill								    = $GRAY-3D;
+
+$quill-editor-blockquote-color-border			    = $GRAY-DE;
+$quill-editor-code-color-background				    = $GRAY-F0;
+$quill-editor-pre-syntax-color-background		    = $BLACK-1F;
+$quill-editor-pre-syntax-color-text				    = $WHITE-F2;
+$quill-snow-picker-color-text					    = $GRAY-3D;
+$quill-snow-picker-options-color-background		    = $WHITE;
+$quill-picker-label-color-text					    = $GRAY-DE;
+$quill-picker-label-color-fill					    = $GRAY-DE;
+$quill-picker-label-color-stroke				    = $GRAY-DE;
+$quill-picker-item-color-background-white		    = $WHITE;
+$quill-picker-item-color-background-black		    = $WHITE;
+$quill-picker-item-hover-color-border			    = $WHITE;
+$quill-picker-item-select-color-text			    = $BLUE;
+$quill-picker-item-select-color-fill			    = $BLUE;
+$quill-picker-item-select-color-stroke			    = $BLUE;
+$quill-toolbar-snow-color-border				    = #b5b7bf;
+$quill-toolbar-snow-color-background			    = $WHITE;
+$quill-picker-options-color-box-shadow			    = $BLACK-02;
+$quill-picker-options-color-border				    = $GRAY-DE;
+$quill-picker-label-color-border				    = $GRAY-DE;
+$quill-tooltip-color-background					    = $GRAY-DE;
+$quill-tooltip-color-box-shadow					    = $GRAY-DD;
+$quill-tooltip-color-text						    = $WHITE-44;
+$quill-tooltip-input-color-border				    = $GRAY-DE;
+$quill-tooltip-action-color-border				    = $GRAY-DE;
+$quill-snow-a-color-text						    = $BLUE;
+$quill-container-snow-color-border				    = $GRAY-DE;
+
+/****chart****/
+$chart-tab-color-background                         = $background-color-plus;
+$chart-tab-color-background-active                  = $background-color-blue;
+$chart-tab-color-background-transition              = $BLACK-932;
+$chart-failhint-color                               = $font-color-base;
+$chart-warn-color-text                              = $RED-4A;
+$chart-tooltip-color-background                     = $background-color-plus;
+$chart-axis-color-stroke                            = $BLACK-3A;
+$chart-svgRectBg-color-background                   = $background-color-plus;
+$chart-img-color                                    = $font-color-highlight-blue;
+$chart-menu-color-border                            = $RED-69;
+$chart-menu-color-borderb                           = $border-color-blue;
+$chart-img-circle-colora                            = $BLUE-82;
+$chart-img-circle-colorb                            = $BLUE-63;
+$chart-magic-color-border                           = $modal-background-color-base;
+$chart-bggrandient-color                            = $BLACK-22;
+$chart-bggrandient-colorb                           = $BLUE-fe;
+$chart-magic-color-dashed                           = $GRAY-84;
+$chart-alert-color-border                           = $border-color-base;
+$chart-magic-color-bgc1                             = #246D7B;
+$chart-magic-color-bgc2                             = #2D5A64;
+$chart-magic-color-bgc3                             = #364B52;
+$chart-magic-color-bgc4                             = #3e3c3c;
+$chart-magic-color-bgc5                             = #a2a4a5;
+$chart-magic-color-bgc6                             = $BLACK;
+$chart-magic-color-bgc7                             = #898d90;
+$chart-magic-color-bgc8                             = #6d6d71;
+$chart-magic-color-bgc9                             = #9faab5;
+$chart-magic-color-bgc10                            = #23b0d6
+$chart-silde-color-button-bgc                       = #babfc3;
+$chart-svg-color-circle-bgc1                        = #2ea6de;
+$chart-svg-color-circle-bgc2                        = $ORANGE-0C;
+$chart-svg-color-circle-border1                     = #2ede7d;
+$chart-svg-color-circle-border2                     = #ffff29;
+$chart-color-background-row-odd                     = $table-odd-color-base;
+$chart-stat-title-bg                                = $background-color-blue;
+$chart-stat-title-color                             = $font-color-highlight-white;
+
+/****document****/
+$document-color-font                                = $font-color-base;
+$document-color-background                          = #15191f;
+$document-tab-color-background                      = $GRAY-F1;
+$document-color-border 							    = $border-color-base;
+$document-color--text-border 				        = $border-color-base;
+
+/****entity****/
+$entity-splitline-color                             = #f0f0f0;
+$entity-splitline-color-dashed                      = #f0f0f0;
+$entity-color-text-special                          = #acb9c2;
+$enyity-color-section-border                        = $border-color-base;
+//实体标签
+$entity-mark-bg = #ff7364;
+$entity-mark-color = #ffffff;
+$entity-mark-border = #ea6254;
+$entity-mark-corner = #ff7566;
+
+/****event****/
+$event-color-text-hover                             = $font-color-highlight-blue;
+//$event-color-text-title                           = #2d8bad;
+//$event-color-background                           = #14181b;
+//$event-color-text-special                         = #262b2e;
+$event-color-border-special                         = $border-color-base;
+
+/****dataset****/
+$dataset-select-color-background                    = #666;
+$dataset-color-border                               = $GRAY-DE;
+$dataset-color-border-hover                         = $background-color-blue;
+
+/****searchlist****/
+$searchlist-textarea-color-border                   = $border-color-blue;
+$searchlist-button-paing-color-background           = $modal-background-color-base; //.topo_alert_box
+$searchlist-color-background-hover                  = #666;
+$searchlist-color-text                              =  $font-color-base;
+$searchlist-map-color-border                        = $border-color-base;
+$searchlist-map-color-text                          = #16bde4;
+$searchlist-area-color-background                   = $background-color-base;
+
+// 模块-标签-功能-状态
+$table-color-border-active                          = $border-color-blue;
+$input-color-placeholder                            = #717171;
+$background-color                                   = $background-color-white;
+$border-color                                       = $border-color-base;
+
+/****gis****/
+$gis_arc_over_fill_color                            = #27657a;
+$gis-cancel-color-background-hover                  = $font-color-highlight-white;
+$gis-ensure-color-background-hover                  = $background-color-blue;
+$gis-div-color-border                               = $border-color-base;
+$gis-p-color-font                                   = $font-color-base;
+$gis-h6-color-font                                  = $font-color-base;
+$gis-search-color-font                              = $font-color-base;
+$gis-button-color-font                              = $font-color-base;
+$gis-southSea-fill-color                            = $font-color-base;
+$gis-input-color-font                               = $background-color-plus;
+$gis-background-color                               = $font-color-highlight-white;
+$gis-line-path-color                                = $border-color-base;
+$gis-line-stroke-color                              = $font-color-base;
+$gis-line-border-color                              = $border-color-base;
+$gis-panel-border-color                             = $border-color-base;
+$gis-panel-hover-color                              = $font-color-highlight-blue;
+$gis-div-border-color                               = $border-color-base;
+$gis-button-border-color                            = $font-color-highlight-white;
+$gis-select-one-background-color                    = $font-color-highlight-white;
+$gis-select-two-background-color                    = $background-color-base;
+$gis-select-result-background-color                 = $background-color-base;
+$gis-select-border-color                            = $border-color-base;
+$gis-select-span-background-color                   = $font-color-highlight-white;
+$gis-select-span-color                              = $font-color-base;
+$gis-select-span-border-color                       = $border-color-base;
+$gis-select-title-font-color                        = $font-color-base;
+$gis-select-search-font-color                       = $background-color-blue;
+$gis-select-icon-color                              = $font-color-base;
+$gis-select-input-background-color                  = $font-color-highlight-white;
+$gis-as-background-color                            = $font-color-highlight-white;
+$gis-as-foot-color                                  = $font-color-base;
+$gis_arc_text_color                                 = $font-color-base;
+$gis-input-color-background                         = $font-color-highlight-white;
+$gis_arc_out_fill_color                             = $WHITE-d4;
+$gis_arc_out_stroke_color                           = $GRAY-AF;
+$gis_arc_circle_over_fill_color                     = $font-color-highlight-blue;
+$gis_arc_circle_out_fill_color                      = $GRAY-AF;
+$gis-Tooltip-color                                  = $YELLOW-MARK;
+$gis_arc_over_fill_color                            = #27657a;
+$gis_arc_over_stroke_color                          = $font-color-highlight-blue;
+$hot-point-border                                   = $background-color-blue;
+$gis-select-Type-color                              = $background-color-blue;
+$gis-noselect-Type-color                            = $font-color-base;
+$gis-select-result-background-color                 = $background-color-plus;
+$gis-$modal-background-color-base                   = $background-color-white;
+/****dashboard****/
+$dashboard-color-border                             = $BLUE-f1;
+
+/****early warning****/
+$warning-filter-btn-normal                          = $BLUE-0FF;
+$warning-filter-btn-info                            = #fff45c;
+$warning-filter-btn-warning                         = #f58d61;
+$warning-filter-btn-danger                          = #e60012;
+$warning-ring-border-danger                         = #6f283e;
+$warning-ring-border-warning                        = #76785c;
+$warning-ring-border-info                           = #768628;
+$warning-no-data-color                              = $GRAY-DD;
+$warning-font-color                                 = $font-color-highlight-white;
+$warning-detail-icon-hover-color                    = $font-color-highlight-blue;
+$warning-detail-border-top                          = #246492;
+$warning-menu-selected-border                       = #0e435d;
+$warning-menu-selected-bg                           = $background-color-blue;
+$warning-pane-bg-from                               = $background-color-blue;
+$warning-pane-bg-to                                 = rgba(41, 104, 123, .09);
+$warning-pane-corner-border                         = $font-color-highlight-blue;
+$warning-pane-title-color                           = #2fbce7;
+$warning-pane-item-from                             = rgba(36, 100, 146, 0.7);
+$warning-pane-item-to                               = rgba(21, 39, 61, 0);
+$warning-pane-detail-bg                             = rgba(36, 100, 146, .6);
+$warning-pane-img-bg                                = $BLACK-02;
+
+/****检索功能使用介绍****/
+$instruction-font-color                             = $BLUE-0FF;
+$instruction-font-hover-color                       = $BLUE-CD;
+$instruction-pane-bg                                = $BLACK-rgb27;
+$instruction-pane-border                            = $BLACK-c3f;
+$instruction-pane-title                             = $BLUE-0FF;
+$instruction-pane-eg-color                          = $font-color-highlight-yellow;
+
+/****用户搜索统计（表格展示）****/
+$statis-table-font-color                            = $BLUE-0FF;
+$statis-table-font-hover-color                      = $BLUE-CD;
+$statis-table-pane-border                           = $BLACK-c3f;
+$statis-table-pane-bg                               = $BLACK-rgb27;
+$statis-table-method-bg                             = $BLACK-2E;
+$statis-table-method-border                         = $GRAY-39;
+$statis-table-selected-method-border                = $BLUE-0FF;
+$statis-table-td-border                             = $BLACK-2C;
+$statis-table-td-bg                                 = $BLACK-2E;
+
+/**** 搜索页面 ****/
+$searchlist-go-detail-color                         = $font-color-base;
+$searchlist-go-detail-before-color                  = $background-color-blue;
+$searchlist-map-background-color                    = $background-color-base;
+$searchlist-wrapper-background-color                = $modal-background-color-base;
+$searchlist-wrapper-li-background-color             = $background-color-plus;
+$searchlist-wrapper-li-hover-color                  = $background-color-blue;
+$searchlist-history-background-color                = $modal-background-color-base;
+$searchlist-history-li-odd-background-color         = $table-odd-color-base;
+$searchlist-history-li-even-background-color        = $table-even-color-base;
+$searchlist-history-input-background-color          = $background-color-plus;
+$searchlist-history-bottom-color                    = $border-color-base;
+
+/**** 白名单 ****/
+$wlm-table-body-odd-color                           = $table-odd-color-base;
+$wlm-table-body-even-color                          = $table-even-color-base;
+$wlm-AddBtn-background-color                        = $modal-background-color-base;
+$wlm-AddBtn-border-color                            = $background-color-blue;
+$wlm-AddPerson-border-color                         = $font-color-base;
+$wlm-input-color                                    = $font-color-highlight-white;
+$wlm-H4-border-color                                = $font-color-base;
+$wlm-idcard-errortip-color                          = $font-color-highlight-yellow;
+$wlm-style-checked-color                            = #d5dc7b;
+
+/**** topology ****/
+$topology-line-fill                                 = $background-color-plus;
+$topology-line-stroke                               = $background-color-plus;
+$topology-pie-text-fill                             = $modal-background-color-base;
+// $topology-marker-licensing-fill                     = green;
+// $topology-path-link-licensing-stroke                = green;
+$topology-path-dragline-stroke                      = $font-color-highlight-blue;
+$topology-resize-rect-stroke                        = $font-color-highlight-blue;
+$topology-time_selected-fill                        = $font-color-highlight-blue;
+$topology-time_axis-pathline-stroke                 = $font-color-base;
+$topology-timeline-axis-pathline-stroke             = $font-color-base;
+$topology-legend-background                         = $background-color-yellow;
+$topology-legend-box-shadow                         = $font-color-base;
+$topology-path_width-text-color                     = $font-color-highlight-blue;
+$topology-findwayr_findway-color                    = $font-color-highlight-blue;
+$topology-findway12345-color                        = $font-color-base;
+$topology-line_boxr_line_box-background             = $font-color-base;
+$topology-screeDepth-border                         = $border-color-base;
+$topology-screeDepth-background-color               = $modal-background-color-base;
+$topology-map_search_nodes_modalBox-background-color         = $modal-background-color-base;
+$topology-map_search_nodes_modalBox-border                   = $border-color-base;
+$topology-nodes_findmap_nodes_find-background-color = $modal-background-color-base;
+$topology-entityLable-color                         = $font-color-highlight-blue;
+$topology-startLable-color                          = $border-color-base;
+$topology-startLable-backgroundcolor                = $font-color-base;
+$topology-direact-color                             = $font-color-highlight-blue;
+$topology-custom_extend_sure-backgroundcolor        = $modal-background-color-base;
+$topology-custom_extend_sure-border                 = $font-color-highlight-blue;
+$topology-custom_extend_not-backgroundcolor         = $modal-background-color-base;
+$topology-custom_extend_not-border                  = $border-color-base;
+$topology-inputwaywitch-backgroundcolor             = $modal-background-color-base;
+$topology-snapShot-border                           = $border-color-base;
+$topology-customModel_more_modalBoxtableth-backgroundcolor   = $background-color-plus;
+$topology-customModel_more_modalBoxtableth-border            = $border-color-base;
+$topology-customModel_more_modalBoxtablethhover-color        = $font-color-highlight-blue;
+$topology-customModel_more_modalBoxtabletd-border            = $border-color-base;
+$topology-showList-backgroundcolor                  = $modal-background-color-base;
+$topology-obj_message-backgroundcolor               = $modal-background-color-base;
+$topology-model_name_input-color                    = $modal-background-color-base;
+$input-model_name_input-background                  = $modal-background-color-base;
+$topology-rangeredfont-color                        = orangered;
+$topology-trajectory_timep-backgroundcolor          = $border-color-base;
+$topology-trajectory_timecompare-backgroundcolor    = $border-color-base;
+$topology-trajectory_item_box_left-border           = $border-color-base;
+$topology-trajectory_item_left-backgroundcolor      = $border-color-base;
+$topology-triangle_border-borderColor               = $border-color-base;
+$topology-dot_border-backgroundcolor                = $border-color-base;
+$topology-trajectory_item_box_right-borderLeft      = $border-color-base;
+$topology-trajectory_item_border                    = $modal-background-color-base;
+$topology-trajectory_item_right-backgroundcolor     = $border-color-base;
+$topology-dot_border-backgroundcolor                = $border-color-base;
+$topology-toolsTitle-backgroundcolor                = $modal-background-color-base;
+$topology-relate_detail_hide-backgroundcolor        = $modal-background-color-base;
+$topology-map_search_shade-backgroundcolor          = $modal-background-color-base;
+$topology-links-detail-backgroundcolor              = $modal-background-color-base;
+$topology-links-detail-border                       = $border-color-base;
+$topology-showLinkList-backgroundcolor              = $modal-background-color-base;
+$topology-timeline-layout-backgroundcolor           = $modal-background-color-base;
+$topology-timeLineFilter-borderLeft                 = $font-color-base;
+$topology-timeLineFilter-borderTop                  = $font-color-base;
+$topology-titleFilter-color                         = $font-color-highlight-blue;
+$topology-choseDirection-color                      = $font-color-highlight-blue;
+$topology-choseDirectionP-color                     = $modal-background-color-base;
+$topology-mindmap_pane-backgroundcolor              = $modal-background-color-base;
+$topology-g_labels-text-fill                        = $modal-background-color-base;
+$topology-virtual_search_reslut_modalBoxvirtual_filter_reslut_modalBox_color           = $font-color-highlight-blue;
+$topology-virtualSystemIn-color                     = $font-color-base;
+$topology-virtualSystemIn-backgroundcolor           = $modal-background-color-base;
+$topology-virtualSystemIn-border                    = $border-color-base;
+$topology-errorMsg-color                            = $font-color-highlight-yellow;
+$topology-notFound-color                            = $font-color-highlight-blue;
+$topology-selectedLi-border                         = $font-color-highlight-blue;
+$topology-noSelectedLi-border                       = $border-color-base;
+$topo-color-border                                  = $background-color-plus;
+$topo-label-color-text                              = $font-color-warning;
+$topo-shade-color-background                        = $modal-background-color-base;
+$topo-rect-extent                                   = $font-color-highlight-blue;
+$topo_relative_timeline-color-background 		    = $modal-background-color-base;
+$topo-fill-color-inring 						    = #cbcdd4;
+$topo-stroke-color-inring 						    = #a6a8af;
+$topo-fill-color-inring-over    				    = #27657a;
+$topo-fill-color-inring-enter					    = $font-color-highlight-blue;
+$topo-fill-color-inring-onmenu 					    = $font-color-highlight-blue;
+$topo-fill-color-outring 						    = #a6a8af;
+$topo-fill-color-outring-over    				    = $font-color-highlight-blue;
+$topo-topology_message-backgroundColor              = $modal-background-color-base;
+$topo-topo_mapchartgis-backgroundColor              = $background-color-plus;
+$topo-checksecrchtitle-backgroundColor              = $font-color-highlight-blue;
+$topo-checksecrchtitle-color                        = $modal-background-color-base;
+$topo-topology_message_tabsLi-backgroundColor       = $background-color-plus;
+$topo-topology_message_tabs-color                   = $font-color-highlight-blue;
+$topo-buttontext-color                              = $font-color-base;
+$topo-tipBoxsListPathColl-backgroundColor           = $background-color-plus;
+$topoMessage-button-color-background                = $font-color-highlight-blue;
+$topoMessage-tab-color-border                       = $border-color-base;
+$topo-toolsBar-background                           = $background-color-plus;
+$topo-toolsBar-border                               = $border-color-base;
+$topo-hovertab-color-text-hover                     = $font-color-highlight-blue;
+$topo-hovertab-color-text                           = $font-color-base;
+$topo-hovertab-color-background                     = $background-color-plus;
+$topology-trajectory_item_border_selected           = $font-color-highlight-blue;
+$icon-color-highlight                               = $font-color-base;
+
+/**** topology思维导图 ****/
+$mm-initial-circle-bgcolor                          = #07a5ee;
+$mm-final-circle-bgcolor                            = #7c8996;
+$mm-circle-font-color                               = $WHITE;
+$mm-btn-bgcolor                                     = #07a5ee;
+$mm-initial-btn-bgcolor                             = transparent;
+$mm-initial-path-color                              = #07a5ee;
+$mm-final-path-color                                = #7c8996;
+$mm-tooltip-bgcolor                                 = $BLACK-1B;
+$mm-tooltip-border-color                            = #2b3843;
+$mm-tooltip-font-color                              = $BLUE;
+$mm-coarrow_final-color                             = $WHITE;
+
+/****图标默认覆盖色 ****/
+$chart-org                                          = $GRAY;
+$chart-person                                       = $GRAY;
+$chart-place                                        = $GRAY;
+$chart-case                                         = $GRAY;
+$document-white                                     = $GRAY;
+$entity-white                                       = $GRAY;
+$event                                              = $GRAY;
+//$homeicon                                           = $WHITE;
+//$searchlist                                         = $WHITE;
+
+/****dashboard ****/
+$dashboard-color-backaground                        = rgba(168, 209, 228, 0.7);
+$dashboard-color-tooltip-background                 = #8dd6f9;
+$dashboard-color-tooltip-border                     = #2199d6;
+$dashboard-color-svg-axis                           = #668792;
+$dashboard-gis-click-color                          = #ffc000;
+$dashboard-color-svg-backaground                    = rgba(39, 150, 210, 0.3);
+$dashboard-color-background-gis                     = rgba(24, 155, 220, 0.8);
+$dashboard-color-shadow-box                         = #4bb3f1;
+$dashboard-color-shadow-box-gis                     = #1a6379;
+$dashboard-color-AnimationText                      = $BLACK;
+$dashboard-color-text                               = #668792;
+$dashboard-color-AnimationCircleA                   = #40c8f1;
+$dashboard-color-AnimationCircleB                   = rgba(153, 215, 247,0.2);
+$dashboard-color-shadow-AnimationCircle             = #07a5ee;
+
+/****totip****/
+// 工作台
+$totip-content-color-background					    = $GRAY-F1;
+$totip-content-color-border                         = $border-color-blue;
+
+/****tree****/
+// 工作台
+$tree-color-text-title							    = $GRAY-D9;
+$tree-color-bar-hide							    = $GRAY;
+
+/****topo-toolbar****/
+// 工作台
+$toolbar-color-background						    = $background-color-plus;
+$toolbar-color-border							    = $BLACK-A32;
+$toolbar-color-border-bottom					    = $GRAY-764;

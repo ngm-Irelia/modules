@@ -1,0 +1,47 @@
+{
+  "development": {
+    "css": [
+      "/bower_components/epm-ui/dist/css/epm-ui.css"
+    ],
+    "js": [
+      "/js/public/babel-polyfill/polyfill.js",
+      "/bower_components/fetch/fetch.js",
+      "/bower_components/react/react.js",
+      "/bower_components/react/react-dom.js",
+      "/bower_components/epm-ui/dist/javascript/epm-ui.js",
+      "/components/magicube.js",
+      "/store/store.js",
+      "/common/common.js"
+    ]
+  },
+  "test": {
+    "css": [
+      "/bower_components/epm-ui/dist/css/epm-ui.min.css"
+    ],
+    "js": [
+      "/js/public/babel-polyfill/polyfill.min.js",
+      "/bower_components/fetch/fetch.js",
+      "/bower_components/react/react.min.js",
+      "/bower_components/react/react-dom.min.js",
+      "/bower_components/epm-ui/dist/javascript/epm-ui.min.js",
+      "/components/magicube.min.js",
+      "/store/store.js",
+      "/common/common.js"
+    ]
+  },
+  "production": {
+    "css": [
+      "/bower_components/epm-ui/dist/css/epm-ui.min.css"
+    ],
+    "js": [
+      "/js/public/babel-polyfill/polyfill.min.js",
+      "/bower_components/fetch/fetch.js",
+      "/bower_components/react/react.min.js",
+      "/bower_components/react/react-dom.min.js",
+      "/bower_components/epm-ui/dist/javascript/epm-ui.min.js",
+      "/components/magicube.min.js",
+      "/store/store.js",
+      "/common/common.js"
+    ]
+  }
+}

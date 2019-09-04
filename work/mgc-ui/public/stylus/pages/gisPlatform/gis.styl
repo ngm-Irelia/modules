@@ -1,0 +1,3131 @@
+.common-button-select-border {
+  border: 1px solid $border-color-blue;
+  color: $font-color-highlight-blue;
+}
+
+.warning-level-danger {
+  color: $warning-filter-btn-danger;
+}
+.warning-level-warning {
+  color: $warning-filter-btn-info;
+}
+.warning-level-info {
+  color: $font-color-highlight-blue;
+}
+.warning-level-normal {
+  color: $font-color-base;
+}
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.province {
+  stroke: $searchlist-map-color-text;
+}
+
+.mapArcPath {
+  stroke-width: 1px;
+  fill: $gis_arc_out_fill_color;
+  stroke: $gis_arc_out_stroke_color;
+}
+
+.southChinaSea {
+  stroke: $gis-line-stroke-color;
+  stroke-width: 1px;
+  fill: $gis-southSea-fill-color;
+  width: 54px;
+  height: 70px;
+}
+
+#gis_usual_tools {
+  position: absolute;
+  top: 95px;
+  right: 8px;
+  z-index: 10000;
+  display: none;
+}
+
+#gis_fullscreen,
+#gis_filter,
+#gis_findnodes,
+#gis_back,
+#gis_linepath,
+#gis_resetscreen,
+#gis_photo {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.tipBoxsMap {
+  display: none;
+}
+
+.tipBoxsMap_list {
+  width: 110px;
+  background: $gis-select-result-background-color;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  /* z-index: 11;*/
+}
+
+.tipBoxsMap_list div {
+  padding: 5px 0 5px 0;
+}
+
+.tipBoxsMap_list img {
+  width: 18px;
+  height: 18px;
+}
+
+.tipBoxsMap_list p {
+  font-size: 12px;
+  display: inline-block;
+  /* text-align: left;*/
+}
+
+.totipsMap {
+  display: inline-block;
+}
+
+.tipBoxsMap_img > img {
+  margin: 0 15px 0 10px
+}
+
+.BMapLib_Drawing_panel {
+  background-color: $gis-background-color;
+  height: 80px;
+  width: 91px;
+  border: 1px solid $gis-panel-border-color;
+  position: absolute;
+  top: 500px;
+  right: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.BMapLib_Drawing .BMapLib_box {
+  margin: 10px;
+  width: 64px;
+  color: $gis-search-color-font;
+  cursor: pointer
+}
+
+.BMapLib_Drawing_panel a:hover {
+  text-decoration: none;
+}
+
+.BMapLib_Drawing_panel img {
+  width: 17px;
+  height: 20px;
+  margin-left: 1px;
+  margin-right: 5px;
+}
+
+/*background-image:url(http://api.map.baidu.com/library/DrawingManager/1.4/src/bg_drawing_tool.png);
+.BMapLib_Drawing .BMapLib_box{border-right:1px solid #d2d2d2;float:left;height:100%;width:64px;height:100%;cursor:pointer}*/
+.BMapLib_Drawing .BMapLib_last {
+  border-right: 0
+}
+
+.BMapLib_Drawing .BMapLib_hander {
+  background-position: 0 0
+}
+
+.BMapLib_Drawing .BMapLib_hander_hover {
+  color: $gis-panel-hover-color;
+  background-position: 0 -52px;
+  cursor: pointer
+}
+
+.BMapLib_Drawing .BMapLib_marker {
+  background-position: -65px 0
+}
+
+.BMapLib_Drawing .BMapLib_marker_hover {
+  color: $gis-panel-hover-color;
+  background-position: -65px -52px
+}
+
+.BMapLib_Drawing .BMapLib_circle {
+  background-position: -130px 0
+}
+
+.BMapLib_Drawing .BMapLib_circle_hover {
+  color: $gis-panel-hover-color;
+  background-position: -130px -52px
+}
+
+.BMapLib_Drawing .BMapLib_polyline {
+  background-position: -195px 0
+}
+
+.BMapLib_Drawing .BMapLib_polyline_hover {
+  color: $gis-panel-hover-color;
+  background-position: -195px -52px
+}
+
+.BMapLib_Drawing .BMapLib_polygon {
+  background-position: -260px 0
+}
+
+.BMapLib_Drawing .BMapLib_polygon_hover {
+  color: $gis-panel-hover-color;
+  background-position: -260px -52px
+}
+
+.BMapLib_Drawing .BMapLib_rectangle {
+  background-position: -325px 0
+}
+
+.BMapLib_Drawing .BMapLib_rectangle_hover {
+  color: $gis-panel-hover-color;
+  background-position: -325px -52px
+}
+
+#topology_boncMap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.map_showHide_panel {
+  background-color: $gis-background-color;
+  height: 50px;
+  border: 1px solid $gis-panel-border-color;
+  position: absolute;
+  top: 312px;
+  right: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.map_box {
+  margin: 10px;
+  width: 64px;
+  color: $gis-search-color-font;
+  cursor: pointer
+}
+
+.map_showHide_panel a:hover {
+  text-decoration: none;
+  color: $gis-panel-hover-color;
+}
+
+.map_showHide_panel img {
+  width: 17px;
+  height: 17px;
+  margin-left: 1px;
+  margin-right: 5px;
+}
+
+.map_heatSmall_panel {
+  background-color: $gis-background-color;
+  height: 50px;
+  border: 1px solid $gis-panel-border-color;
+  position: absolute;
+  top: 278px;
+  right: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.map_box {
+  margin: 10px;
+  width: 64px;
+  color: $gis-search-color-font;
+  cursor: pointer
+}
+
+.map_heatSmall_panel a:hover {
+  text-decoration: none;
+  color: $gis-panel-hover-color;
+}
+
+.map_heatSmall_panel img {
+  width: 17px;
+  height: 17px;
+  margin-left: 1px;
+  margin-right: 5px;
+}
+
+.map_hander {
+  background-position: 0 0
+}
+
+.map_set_panel {
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  width: 650px;
+  margin: -215px 0 0 -275px;
+  padding: 10px 15px;
+  background-color: $gis-background-color;
+  border: 1px solid $gis-panel-border-color;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: none;
+  // filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  transition: width 1s, height 1s;
+  -webkit-transition: width 1s, height 1s;
+
+}
+
+.map_set_title {
+  line-height: 30px;
+  color: $gis-h6-color-font;
+  font-size: 16px;
+  padding-left: 26px;
+}
+
+.map_set_coverage {
+  border: 1px $gis-div-border-color solid;
+  height: 48px;
+  padding : 5px;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: $gis-h6-color-font;
+}
+
+.map_set_coverage_btn {
+  height: 48px;
+  margin-left: 20px;
+  color: $gis-h6-color-font;
+  position: absolute;
+  width: 96%;
+  bottom: 0;
+}
+
+.map_set_h6 {
+  float: left;
+  width: 17%;
+  color: $gis-h6-color-font;
+  height: 36px;
+  line-height: 33px;
+}
+
+.map_set_inputDiv {
+  float: left;
+  margin-top: 0;
+  margin-left: 20px;
+  font-size: 12px;
+  line-height: 36px;
+  color: $gis-search-color-font;
+  width: 75%;
+}
+
+.map_select_title {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.setradio {
+  float: left;
+  margin-right: 5px;
+  line-height: 40px;
+}
+
+.map_fontline {
+  float: left;
+  width: 33%;
+  cursor: pointer;
+}
+
+.map_fontline img {
+  width: 17px;
+  height: 17px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.map_set_btnDiv1 {
+  float: left;
+  margin-left: 50%;
+  margin-top: 8px;
+  color: $gis-search-color-font;
+}
+
+.map_set_btnDiv2 {
+  float: left;
+  margin-top: 8px;
+  color: $gis-search-color-font;
+}
+
+.map_set_btn {
+  height: 32px;
+  border: 1px $gis-button-border-color solid;
+  margin-right: 24px;
+  padding: 0 24px;
+  background-color: $gis-background-color;
+}
+
+.map_set_btn:hover {
+  border: 1px $gis-ensure-color-background-hover solid;
+}
+
+#circle_radius {
+  border-right-width: 3px;
+}
+
+.circledivr {
+  padding-top: 3px;
+  float: left;
+}
+
+.dbl_indiv {
+  width: 80px;
+  height: 90px;
+  padding-top: 5px;
+  padding-left: 5px;
+  background-color: $gis-div-border-color;
+  color: $gis-search-color-font;
+  // filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+}
+
+.dbl_indiv a {
+  text-decoration: none;
+  margin-top: 5px;
+  color: $gis-search-color-font;
+}
+
+.dbl_indiv a:hover {
+  text-decoration: none;
+  color: $gis-panel-hover-color;
+}
+
+.dbl_indiv img {
+  width: 17px;
+  height: 17px;
+  margin-left: 1px;
+  margin-right: 5px;
+}
+
+.dbl_topleft {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 1px $gis-h6-color-font solid;
+  border-top: 1px $gis-h6-color-font solid;
+  box-shadow: -1px -1px 0.5px $gis-h6-color-font;
+}
+
+.dbl_bottomright {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  border-bottom: 1px $gis-h6-color-font solid;
+  border-right: 1px $gis-h6-color-font solid;
+  box-shadow: 1px 1px 0.5px $gis-h6-color-font;
+}
+
+.address_indiv {
+  width: 152px;
+  height: 20px;
+  padding-top: 5px;
+  padding-left: 5px;
+  background-color: $gis-line-path-color;
+  color: $gis-search-color-font;
+  // filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  overflow: hidden;
+  transition: width 0.5s, height 0.5s;
+  -webkit-transition: width 0.5s, height 0.5s;
+}
+
+.address_div {
+  width: 100%;
+  height: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.address_bottomright {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px $gis-h6-color-font solid;
+  border-right: 1px $gis-h6-color-font solid;
+  box-shadow: 1px 1px 0.5px $gis-h6-color-font;
+}
+
+.address_bottomleft {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px $gis-h6-color-font solid;
+  border-left: 1px $gis-h6-color-font solid;
+  box-shadow: -1px 1px 0.5px $gis-h6-color-font;
+}
+
+.newDiv {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 12px;
+  width: 450px;
+  height: 450px;
+  z-index: 444;
+}
+
+.hot-point-div {
+  background-color: $gis-select-input-background-color;
+  font-size: 12px;
+  width: 190px;
+  height: 240px;
+  z-index: 444;
+  border: 1px solid $hot-point-border
+}
+
+.hot-content-div {
+  width: 180px;
+  height: 240px;
+  overflow: auto;
+  padding-top: 5px;
+  margin-left: 3px;
+}
+#hot-msg-div {
+
+}
+
+.hot-msg {
+  color: $gis-search-color-font;
+  padding-top:5px;
+  padding-left:5px;
+}
+
+.hot-msg td{
+  padding-left:5px;
+  width: 25%;
+}
+
+.hot-detail:hover{
+  color: $hot-point-border
+}
+
+.complexCustomOverlay {
+  width: 450px;
+  height: 450px;
+}
+
+/*左侧搜索css*/
+.map_select {
+  width: 330px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.map_selectDiv {
+  width: 550px;
+  height: 50px;
+}
+
+.map_select_input_div {
+  float: left;
+  width: 330px;
+  height: 35px;
+}
+
+.map_select_btn_div {
+  float: left;
+  height: 43px;
+  width: 1px;
+  overflow: hidden;
+  transition: width 0.5s;
+}
+
+.map_select_btn {
+  width: 82px;
+  height: 34px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+  border: 0;
+  text-align: center;
+  line-height: 33px;
+  color: $gis-select-search-font-color;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.5s;
+  background-color : $border-color-base;
+
+  .left_top1, .left_top2, .right_top1, .right_top2, .right_bottom1, .right_bottom2, .left_bottom1, .left_bottom2 {
+    height: 10px;
+    width: 1px;
+    border-right:1px solid $border-color-blue;
+  }
+  .left_top1{
+    float:left;
+    margin-top: -2px;
+    margin-left: 0;
+    transform:rotateZ(0deg);
+  }
+  .left_top2{
+    float:left;
+    margin-top: -4px;
+    margin-left: 0;
+    transform:rotateZ(90deg);
+  }
+  .right_top1{
+    float:right;
+    margin-right: 0;
+    margin-top: -2px;
+    transform:rotateZ(0deg);
+  }
+  .right_top2{
+    float:right;
+    margin-right: 0;
+    margin-top: -4px;
+    transform:rotateZ(90deg);
+  }
+  .right_bottom1{
+    float:right;
+    margin-top: 26px;
+    margin-right: -2px;
+    transform:rotateZ(0deg);
+  }
+  .right_bottom2{
+    float:right;
+    margin-top: 28px;
+    margin-right: 0;
+    transform:rotateZ(90deg);
+  }
+  .left_bottom1{
+    float:left;
+    margin-top: 26px;
+    margin-left: -2px;
+    transform:rotateZ(0deg);
+  }
+  .left_bottom2{
+    float:left;
+    margin-top: 28px;
+    margin-left: 0;
+    transform:rotateZ(90deg);
+  }
+}
+
+.map_select_btn_background {
+  /*background: url("../../../image/gis/btnback.svg") no-repeat;*/
+}
+
+.icon-gis-button .path1:before {
+  left: 102%;
+}
+
+.icon-gis-button span:before {
+  position: absolute;
+  top: 4px;
+  left: 128%;
+  font-size: 38px;
+}
+
+.iconspecial2 span:before {
+  position: absolute;
+  top: 4px;
+  left: 156%;
+  font-size: 38px;
+}
+
+.iconspecial2 .path1:before {
+  left: 130%;
+}
+
+.icon-gis-button span:nth-child(6) {
+  position: absolute;
+  top: 17px;
+  left: 108%;
+}
+
+.iconspecial2 span:nth-child(6) {
+  position: absolute;
+  top: 17px;
+  left: 134%;
+}
+
+#map_select_input {
+  width: 330px;
+  height: 35px;
+  margin-top: 5px;
+  font-size: 12px;
+  padding-left: 10px;
+  border-radius: 4px;
+  background-color: $gis-select-input-background-color;
+  color: $gis-search-color-font;
+  border-width: 0 !important;
+}
+
+.map_select_resultDiv {
+  width: 330px;
+  height: 0;
+  overflow: hidden;
+  background-color: $gis-select-one-background-color;
+  // filter: alpha(opacity=88);
+  -moz-opacity: 0.88;
+  -khtml-opacity: 0.88;
+  opacity: 0.88;
+  transition: height 0.2s;
+}
+
+.map_select_resultDivSmall {
+  width: 330px;
+  height: 0;
+  overflow: hidden;
+  background-color: $gis-line-path-color;
+  transition: height 0.5s;
+  text-align: center;
+  line-height: 42px;
+  font-size: 12px;
+  color: $gis-h6-color-font;
+}
+
+.mapselectTypeDiv {
+  height: 30px;
+  width: 330px;
+  margin-top: 15px;
+  background-color: $gis-select-two-background-color;
+}
+
+.mapEntityTypeJX {
+  height: 30px;
+  padding-top: 5px;
+  float: left;
+  color: $gis-line-path-color;
+  background-color: $gis-select-two-background-color;
+}
+
+.mapselectType {
+  float: left;
+  width: 107px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 28px;
+  background-color: $gis-select-two-background-color;
+  height: 30px;
+  font-size: 14px;
+  /*color : $gis-select-search-font-color;*/
+  cursor: pointer;
+  border: 0;
+}
+
+.mapResultPanel {
+  height: 100px;
+  border-bottom: 1px solid $gis-select-border-color;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.mapResultPanelIn {
+  height: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapResultPanelIn:hover {
+  border-bottom: 1px solid $gis-select-border-color;
+  margin-left: -15px;
+  background-color: $gis-select-border-color;
+  position: relative;
+  height: 140px;
+  width: 330px;
+  overflow-y: auto;
+}
+
+.mapResultPanelIn:hover .mapSelectMsgDivDocument {
+  overflow-y: auto;
+  height: auto;
+  color: $gis-search-color-font;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: pre-wrap;
+}
+
+.mapResultPanelIn::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mapResultPanelIn::-webkit-scrollbar-track {
+  border-radius: 5px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0);
+}
+
+.mapResultPanelIn::-webkit-scrollbar-thumb {
+  background: $gis-select-result-background-color;
+  border-radius: 4px;
+}
+
+.mapResultPanelIn:hover span {
+  color: $gis-h6-color-font;
+}
+
+#mapSelectResult {
+  height: 500px;
+}
+
+#mapSelectResultPage {
+  /*height:25px;*/
+  margin-top: 15px;
+  width: 330px;
+  text-align: center;
+}
+
+#mapSelectResultPage a, #mapSelectResultPage span {
+  padding: 2px 2px;
+  font-size: 12px;
+  background: $gis-select-span-background-color;
+  color: $gis-select-span-color;
+  border: 1px $gis-select-span-border-color solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#mapSelectResultPage a:focus {
+  padding: 4px 12px;
+  font-size: 14px;
+  background: $gis-h6-color-font;
+  color: $gis-select-span-color;
+  border: 1px $gis-select-span-border-color solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#mapSelectResultPage a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#mapSelectResultPage span {
+  cursor: default;
+  margin-top: 5px;
+}
+
+.prev {
+  margin-right: 10px;
+}
+
+.next {
+  margin-left: 10px;
+}
+
+#searchlist_pagination .current {
+  background: $gis-h6-color-font;
+  color: $gis-search-color-font;
+}
+
+#searchlist_pagination .btnactive {
+  cursor: default;
+}
+
+.selectMapType {
+  color: $gis-select-Type-color;
+}
+
+.noselectMapType {
+  color: $gis-noselect-Type-color;
+}
+
+.mapResultPanelbackground{
+  background-color: $gis-select-Type-color;
+}
+
+.nomapResultPanelbackground{
+  background-color:rgba(0, 0, 0, 0);
+}
+
+.mapSelectResultImg {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 8px;
+  float: left;
+  width: 60px;
+  height: @width;
+  border-radius: 50%;
+  background-color: $image-background-color;
+}
+
+.iconSpecial:before {
+  color: $gis-select-icon-color;
+  font-size: 43px;
+}
+
+.mapSelectResultImg img {
+  width:100%;
+  height: @width;
+}
+
+.mapSelectResultOne {
+  margin-top: 15px;
+  height: 80px;
+}
+
+.mapSelectMsgDiv {
+  /*height:25px;*/
+  color: $gis-search-color-font;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapSelectMsgDivPerson {
+  height: 25px;
+  color: $gis-search-color-font;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapSelectMsgDivTwo {
+  /*height:50px;*/
+  color: $gis-search-color-font;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapSelectMsgDivTwoEvent {
+  height: 75px;
+  color: $gis-search-color-font;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mapSelectMsgDivDocument {
+  height: 25px;
+  color: $gis-search-color-font;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.mapSelectMsg {
+  width: 33%;
+  height: 25px;
+  float: left;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mapSelectMsgTwo {
+  width: 50%;
+  height: 25px;
+  float: left;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.gis-bayonet-table-surveillance-show {
+  width: 320px;
+  height: 160px;
+  padding: 10px;
+  background-color: $gis-background-color;
+  z-index: 10000;
+  border: 1px solid $border-color-blue;
+  opacity: 0.9;
+  /*overflow: hidden;*/
+}
+
+#map_settings, #gis-add-keyarea {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 550px;
+  height: 260px;
+  margin: -215px 0 0 -275px;
+  padding: 10px;
+  /*background-color: $gis-background-color;*/
+  z-index: 10000;
+  display: none;
+  /*overflow: hidden;*/
+  border: 1px solid $gis-panel-border-color;
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  transition: width 1s, height 1s;
+  -webkit-transition: width 1s, height 1s;
+
+  #map_settings_box {
+    position: absolute;
+    top: 3px;
+    right: -5px;
+    bottom: 5px;
+    left: -5px;
+    z-index: 104;
+    overflow: hidden;
+    background-color: $gis-background-color;
+
+    .map_settings_message_hide {
+      display : none;
+    }
+
+    ul {
+      width: 100%;
+      padding: 10px 20px 0 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-bottom: 2px $topo-color-border solid;
+      font-size: 0;
+
+      li {
+        display: inline-block;
+        width: 72px;
+        height: 25px;
+        margin: 0 1px;
+        vertical-align: bottom;
+        line-height: 25px;
+        text-align: center;
+        background: $tabs-item-color-background-topo;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .map_settings_tab_active {
+        width: 72px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        background-color: $tabs-item-color-background-topo-active;
+        color: $tabs-item-color-text-acitve;
+        cursor: default;
+      }
+
+    }
+  }
+
+  .map_settings_message {
+
+  }
+}
+
+
+.map_left_setting {
+  float: left;
+  width: 33%;
+  margin-left : 60px;
+  cursor: pointer;
+}
+
+.map_left_setting img {
+  width: 17px;
+  height: 17px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.map_left_setting input::before,
+.map_left_setting input::before {
+  position: absolute;
+  /*content: '';*/
+  width: 14px;
+  height: 14px;
+  margin-left: -1px;
+  border: 1px $gis-line-border-color solid;
+  background-color: $gis-background-color;
+}
+
+.map_left_setting input[type=radio]::before {
+  border: none;
+}
+
+.map_left_setting input[type=radio]:checked::before {
+  content: icon-dot-circle;
+  color: $gis-h6-color-font;
+}
+
+.map_left_setting input[type=checkbox]:checked::before {
+  border: none;
+  content: icon-check-square-o;
+  color: $gis-h6-color-font;
+}
+
+#mapsetddiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 550px;
+  height: 260px;
+  margin: -215px 0 0 -275px;
+  padding: 10px 15px;
+  background-color: $gis-background-color;
+  z-index: 10000;
+  display: none;
+  overflow: hidden;
+  border: 1px solid $gis-panel-border-color;
+  // filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  transition: width 1s, height 1s;
+  -webkit-transition: width 1s, height 1s;
+}
+
+#mapsetddiv label {
+  display: inline-block;
+  width: 50%;
+  line-height: 1.35;
+  margin-bottom: 0.6em;
+}
+
+.map_fontline input::before,
+.gis_table_property_5 input::before {
+  position: absolute;
+  /*content: '';*/
+  width: 14px;
+  height: 14px;
+  margin-left: -1px;
+  /*border: 1px $border-color-blue solid;*/
+  background-color: $gis-background-color;
+}
+
+.map_fontline input[type=radio]::before {
+  border: none;
+}
+
+.map_fontline input[type=radio]:checked::before {
+  content: icon-dot-circle;
+  color: $gis-h6-color-font;
+}
+
+.map_fontline input[type=checkbox]:checked::before {
+  border: none;
+  content: icon-check-square-o;
+  color: $gis-h6-color-font;
+}
+
+.svgAreaMarker {
+  position: relative;
+  top: -61px;
+  left: 0;
+  cursor: pointer !important;
+}
+
+/*arcgis*/
+#topology_arcgis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+
+.esriMapTooltip {
+  color: $gis-line-stroke-color !important;
+}
+
+#asDiv {
+  color: $gis-line-stroke-color;
+  width: 500px;
+  height: 280px;
+  margin-top: -300px;
+  margin-left: -230px;
+  opacity:0.95;
+  border: 1px solid $gis-panel-border-color;
+  background-color: $modal-background-color-base;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.6);
+  border-radius: 12px;
+}
+
+.asDiv_top {
+  width:96%;
+  height:40px;
+  margin-left: 2%;
+}
+
+.asDiv_name {
+  width:90px;
+  height:25px;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding-top: 3px;
+  font-size: 16px;
+}
+
+.asDiv_classify {
+  width:190px;
+  height:25px;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.asDiv_func {
+  width:130px;
+  height:25px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.asDiv_close {
+    float: right;
+    font-size: 14px;
+    color: $gis-p-color-font;
+}
+
+.asDiv_foot {
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: 8px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.asDiv_footTip{
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+    margin: -10px auto 0;
+    background: $gis-as-background-color;
+    color: $gis-as-foot-color;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.asDiv_svg {
+  width:96%;
+  height:230px;
+  margin-left: 2%;
+}
+
+.asSvg {
+  padding-left: 40px;
+}
+
+.asAxis path,
+.asAxis line{
+  fill:none;
+  stroke: $gis-line-stroke-color;
+  shape-rendering: crispedges;
+}
+.asAxis text{
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: $gis-line-stroke-color;
+}
+
+.to_gis_background {
+  /*background-color:rgba(0,0,0,0.4) !important;*/
+  opacity:0.8;
+}
+
+.to_gis_title_background {
+  opacity:0.8;
+}
+
+.mapArcPath_over {
+  stroke : 2px;
+  fill: $gis_arc_over_fill_color;
+  stroke: $gis_arc_over_stroke_color;
+}
+
+.mapArcPath_out {
+  stroke-width : 1px;
+  fill: $gis_arc_out_fill_color;
+  stroke: $gis_arc_out_stroke_color;
+}
+
+.circle_arc {
+  stroke-width: 1px;
+  fill: $gis_arc_circle_out_fill_color;
+}
+
+.circle_arc_over {
+  fill: $gis_arc_circle_over_fill_color;
+}
+
+.circle_arc_out {
+  fill: $gis_arc_circle_out_fill_color;
+}
+
+.map_angle_path {
+  stroke:$gis_arc_out_stroke_color;
+  stroke-width:2px;
+  fill:$gis_arc_out_fill_color;
+}
+
+.angle_path_over {
+  fill: $gis_arc_circle_over_fill_color;
+}
+
+.angle_path_out {
+  fill: $gis_arc_out_fill_color;
+}
+
+.map_createtext {
+  fill: $gis_arc_text_color;
+  stroke:none;
+}
+.map_forceText{
+  fill: $gis_arc_text_color;
+  stroke:none;
+}
+.map_path{
+  position: absolute;
+  top: 30px;
+  right: 350px;
+  width: 470px;
+  height: 40px;
+  padding: 1px 15px;
+  background-color: $gis-background-color;
+  border-radius: 4px;
+  z-index: 10000;
+  display: none;
+  overflow: hidden;
+  border: 0;
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  transition: height 0.2s;
+  -webkit-transition: height 0.2s;
+}
+
+.map_path_title {
+  display: inline-block;
+  width: 90px;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: right;
+  color: $gis-h6-color-font;
+
+
+}
+
+.map_path_clandar_box{
+  position: relative;
+  display: inline-block;
+  width: 44%;
+  margin: 0 5px;
+}
+
+.map_path_clandar_box_sp {
+  margin: 0 12px;
+}
+
+#map_path_time{
+  text-indent: 8px;
+  background: transparent;
+  outline: none;
+  border: 1px $border-color solid;
+  width: 100%;
+  line-height: 25px;
+}
+
+#map_path_time_box{
+  width: 440px;
+  border: 1px $gis-div-border-color solid;
+}
+
+#map_path_time_btn{
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#map_path_time_btn{
+  font-size: 18px;
+}
+
+#map_path_foot_box{
+  margin-top: 10px;
+}
+.map_path_confirmed {
+  display: inline-block;
+  position: absolute;
+  right: 160px;
+  height: 26px;
+  padding: 0 17px;
+  color: $button-color-text;
+  line-height: 26px;
+  outline: none;
+}
+.map_path_canceled {
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+  height: 26px;
+  padding: 0 17px;
+  color: $button-color-text;
+  line-height: 26px;
+  outline: none;
+}
+.map_path_confirmed {
+  background: $gis-background-color;
+  border: 1px $gis-button-border-color solid;
+}
+
+.map_path_canceled {
+  background: $gis-background-color;
+  border: 1px $gis-button-border-color solid;
+  margin-right: 0;
+}
+
+.map_path_confirmed:hover {
+  background-color: $button-color-background-sure-hover;
+}
+
+.map_path_canceled:hover {
+  background-color: $button-color-background-cancel-hover;
+}
+
+.gis-warning-table, .gis-bayonet-table, .gis-keyarea-table{
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  width: 60%;
+  height: 520px;
+  margin-top:-250px;
+  padding: 1px 15px;
+  background-color: $modal-background-color-base;
+  border-top: 1px solid $border-color-blue;
+  border-bottom: 1px solid $border-color-blue;
+  border-radius: 4px;
+  z-index: 10000;
+  display: none;
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  transition: height 0.2s;
+  -webkit-transition: height 0.2s;
+}
+
+.gis_table_top {
+  width: 100%;
+}
+
+.map-table-close {
+  position: absolute;
+  margin-top: 10px;
+  bottom: 10px;
+  height: 40px;
+  width: 96%;
+}
+
+.map-table-ensure, .map-table-close-x {
+  height: 30px;
+  width: 60px;
+  line-height: 28px;
+  float: right;
+  font-size: 14px;
+  text-align: center;
+  margin-right: 10px;
+  border: 1px solid $border-color-base;
+  color: $button-color-text;
+  cursor:pointer;
+  &:hover {
+    border: 1px solid $border-color-blue;
+  }
+}
+
+.gis-table-time {
+  float:left;
+  width: 380px;
+}
+
+.gis-table-clandar-box{
+  position: relative;
+  display: inline-block;
+  width: 52%;
+}
+
+.gis_movepath_time_box{
+  position: relative;
+  display: inline-block;
+  width: 160px;
+}
+
+#gis_table_time,#gis_passCar_time, #gis_movepath_time {
+  width: 100%;
+  /*border: 1px solid $gis-panel-border-color;*/
+  text-indent: 8px;
+  background: transparent;
+  outline: none;
+  border: 1px $border-color solid;
+  line-height: 25px;
+}
+
+.gis-table-type {
+  float:left;
+  width: 60px;
+  margin-left: 10px;
+  border: 1px solid $border-color-base;
+}
+
+.gis-table-search-property {
+  float:right;
+  width: 200px;
+}
+
+.gis-table-right-attribute {
+  float:right;
+  width: 80px;
+  border: 1px solid $border-color-base;
+  margin-right: 10px;
+  cursor:pointer;
+  /*&:hover {
+    border: 1px solid $border-color-blue;
+  }*/
+}
+.gis-table-right-attribute-select {
+  float:right;
+  width: 80px;
+  margin-right: 10px;
+  cursor:pointer;
+  border: 1px solid $border-color-blue;
+}
+
+.gis-table-td:hover {
+  background-color : $background-color-blue;
+}
+
+#gis_table_time_btn{
+  position: absolute;
+  top: 3px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+#gis_data_type,
+#gis_data_relate,
+#gis_data_property {
+  width                    : 77px;
+  height                   : 24px;
+  padding                  : 1px 1px 1px 1px;
+  vertical-align           : middle;
+  border                   : 1px solid $gis-panel-border-color;
+  -moz-border-radius       : 1px;
+  -webkit-border-radius    : 1px;
+  border-radius            : 1px;
+  -webkit-appearance       : none;
+  -moz-appearance          : none;
+  appearance               : none;
+  background               : $gis-select-input-background-color;
+  font-size                : 14px;
+  color                    : $gis-select-span-color;
+  cursor                   : pointer;
+}
+
+.gis-table-title {
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+}
+
+.gis_table_property_5, .gis_table_property_7, .gis_table_property_10, .gis_table_property_15 {
+  cursor : pointer;
+  white-space: nowrap;
+  overflow:hidden;
+}
+.gis_table_property_5 {
+  width: 5%;
+}
+.gis_table_property_7 {
+  width: 7%;
+}
+.gis_table_property_10 {
+  width: 10%;
+}
+.gis_table_property_15 {
+  width: 15%;
+}
+
+#gis_table_conditions {
+  line-height: 24px;
+  width: 100%;
+  table-layout: fixed;
+  font-weight : 400;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#gis_table_conditions tr{
+  height: 30px;
+}
+
+#gis_table_conditions span{
+  /*text-align: center;*/
+  line-height: 24px;
+  font-size: 12px;
+}
+#gis_table_conditions h4{
+  line-height: 24px;
+  font-size: 14px;
+  color : $font-color-highlight-blue;
+  background-color : $table-even-color-base;
+}
+
+#gis_table_conditions td {
+  border-collapse: collapse;
+  height: 30px;
+  padding-left: 5px;
+}
+
+.gis-warning-table-page, .gis-bayonet-table-page, .gis-keyarea-table-page {
+  padding-top: 20px;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+}
+
+.gis-table-page a, .gis-table-page span {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: $gis-select-span-background-color;
+  color: $gis-select-span-color;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.gis-table-page a:focus {
+  padding: 4px 12px;
+  font-size: 14px;
+  background: $gis-h6-color-font;
+  color: $gis-select-span-color;
+  border: 1px $gis-select-span-border-color solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.gis-table-page a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.gis-table-page span {
+  cursor: default;
+  margin-top: 5px;
+}
+
+.mapTooltip{
+  font-size: 16px;
+  font-family: cursive;
+  color: $gis-Tooltip-color;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  left: -200px;
+  bottom: 30px;
+  width:200px;
+  height: 40px;
+  transition: left 0.5s;
+  z-index:999;
+}
+
+.supermap_draw {
+  position: absolute;
+  background-color: #fff;
+  overflow: hidden;
+  border: 0.1px solid #c2c5c7;
+  width: 66px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 15px;
+}
+.supermap_draw_active {
+  background-color: cornsilk;
+}
+
+#map_entity-shade{
+  position: fixed;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.6);
+  z-index: 99;
+  display: none;
+
+  #map_entity-alert{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 650px;
+    height: 620px;
+    font-size: 13px;
+    padding: 30px 40px;
+    background-color: $alert-color-background;
+    border: 1px solid $alert-border-color;
+
+    h4{
+      font-size: 16px;
+      color: $font-color-highlight;
+      line-height: 2em;
+      margin-bottom: 1em;
+      text-align: left;
+      border-bottom: 1px solid $alert-border-bottom-color;
+
+      span{
+        margin: 0 10px;
+      }
+      span:before{
+        font-size: 18px;
+        vertical-align: -2px;
+        color: $font-color-highlight;
+      }
+    }
+    .map_alert-content{
+      width: 100%;
+      height: 80%;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .tableStyle{
+        width: 100%;
+
+        p{
+          width: 98%;
+          height: 24px;
+          line-height: 24px;
+          border: 1px solid $table-color-border;
+          cursor: pointer;
+          margin: 5px 0;
+          padding: 0 20px;
+
+          span{
+            float: right;
+            margin-top: 5px;
+          }
+        }
+
+        table{
+          width: 98%;
+          background: $table-color-background;
+          border: 1px solid $table-color-border;
+          border-collapse: collapse;
+          display: none;
+
+          tbody{
+            tr{
+              td{
+                height: 24px;
+                border: 1px solid $table-color-border;
+                text-align: center;
+              }
+            }
+            tr:nth-of-type(odd){
+              background: $table-color-background-row-odd;
+            }
+          }
+        }
+      }
+      .tableStyle:nth-of-type(even){
+        p{
+          background: $table-color-background-row-odd;
+        }
+      }
+      .table-show{
+        p{
+          color: $font-color-highlight;
+        }
+        table{
+          display: inline-table;
+        }
+      }
+    }
+    .alert-operate{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      height: 30px;
+      margin: 20px 0;
+
+      button{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: inline-block;
+        height: 26px;
+        margin-right: 20px;
+        padding: 0 17px;
+        color: $button-color-text;
+        line-height: 26px;
+        outline: 0;
+      }
+      .cancel{
+        background: $button-color-background-cancel;
+        border: 1px solid $button-color-border-cancel;
+        margin-right: 0;
+        transform: translate(-50%,-50%);
+      }
+      .cancel:hover{
+        background-color: $button-color-background-cancel-hover;
+      }
+    }
+  }
+}
+
+.gis-passCar-table-title {
+  width: 100%;
+  height: 45px;
+  text-align: center;
+}
+
+.gis-passCar-table-title h6{
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 36px;
+}
+
+#map_passCar_ensure {
+  margin-top : 5px;
+}
+
+#map_kkxx_page {
+  margin-top: 15px;
+  text-align: center;
+}
+
+#map_kkxx_page a, #map_kkxx_page span {
+  padding: 2px 2px;
+  font-size: 12px;
+  background: $gis-select-span-background-color;
+  color: $gis-select-span-color;
+  border: 1px $gis-select-span-border-color solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#map_kkxx_page a:focus {
+  padding: 4px 12px;
+  font-size: 14px;
+  background: $gis-h6-color-font;
+  color: $gis-select-span-color;
+  border: 1px $gis-select-span-border-color solid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#map_kkxx_page a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#map_kkxx_page span {
+  cursor: default;
+  margin-top: 5px;
+}
+
+#map_kkxx_page .current {
+  background: $gis-h6-color-font;
+  color: $gis-search-color-font;
+}
+
+/*
+#map_event_visual {
+  margin-left:-45px !important;
+  margin-top:-256px !important;
+  width: 40px !important;
+  height: 27px !important;
+  background-color: $gis-select-result-background-color;
+  border: 1px solid $gis-select-border-color;
+  span:before {
+    font-size:24px !important;
+    margin-left: 7px;
+  }
+}*/
+
+/*.side1, .side2, .side3, .side4, .side5, .side6, .side7, .side8, .side9 {
+  opacity 0.9
+}*/
+/* 实时监控 */
+.gis-bayonet-table-surveillance-show {
+  .setting_border1 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    .side1 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 14px;
+      left: 10px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 15px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      left: 15px;
+      top:1px;
+      transform:rotateZ(45deg);
+    }
+    .side3 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: -7px;
+      left: 30px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 11px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 9px;
+      left: 23px;
+      transform:rotateZ(45deg);
+    }
+    .side5 {
+      border-top: 8px solid $modal-background-color-base;
+      border-left: 8px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 13px;
+      left: 19px;
+      transform: rotateZ(90deg);
+    }
+    .side6 {
+      position: absolute;
+      top: 10px;
+      left: 27px;
+      width: 286px;
+      height: 11px;
+      background-color: $modal-background-color-base;
+      border-top: 1px solid $border-color-blue;
+    }
+  }
+  .setting_border2 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    .side1 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 11px;
+      right: 8px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 13px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      right: 13px;
+      transform:rotateZ(-45deg);
+    }
+    .side3 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: -8px;
+      right: 28px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 12px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 9px;
+      right: 24px;
+      transform:rotateZ(-45deg);
+    }
+    .side5 {
+      border-top: 10px solid $modal-background-color-base;
+      border-left: 10px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 12px;
+      left: 11px;
+      transform: rotateZ(178deg);
+    }
+    .side6{
+      position: absolute;
+      top: 23px;
+      left: 7px;
+      width: 17px;
+      height: 251px;
+      background-color: $modal-background-color-base;
+      border-right: 1px solid $border-color-blue;
+    }
+
+  }
+
+  .setting_border3 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    .side1 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 20px;
+      right: 10px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 12px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 9px;
+      right: 15px;
+      transform:rotateZ(45deg);
+    }
+    .side3 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 0px;
+      right: 30px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 12px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 15px;
+      right: 25px;
+      transform:rotateZ(45deg);
+    }
+    .side5 {
+      border-top: 10px solid $modal-background-color-base;
+      border-left: 10px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 12px;
+      left: 9px;
+      transform: rotateZ(-90deg);
+    }
+    .side6{
+      position: absolute;
+      top: 6px;
+      left: -272px;
+      width: 281px;
+      height: 17px;
+      background-color: $modal-background-color-base;
+      border-bottom: 1px solid $border-color-blue;
+    }
+    .side7{
+      position: absolute;
+      top: 30px;
+      right: 60px;
+      width: 7px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+      transform: rotateZ(-45deg);
+    }
+    .side8{
+      position: absolute;
+      top: 33px;
+      right: 66px;
+      width: 30px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+    }
+    .side9{
+      position: absolute;
+      top: 31px;
+      right: 95px;
+      width: 5px;
+      height: 5px;
+      border: 1px solid $border-color-blue;
+      border-radius: 5px;
+    }
+  }
+  .setting_border4 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    .side1 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 19px;
+      left: 12px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 18px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom:4px;
+      left: 19px;
+      transform:rotateZ(-45deg);
+    }
+    .side3 {
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -2px;
+      left: 35px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 13px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 15px;
+      left: 25px;
+      transform:rotateZ(-45deg);
+    }
+    .side5 {
+      border-top: 10px solid $modal-background-color-base;
+      border-left: 10px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 12px;
+      left: 21px;
+      transform: rotateZ(0deg);
+    }
+
+  }
+  .border_right_side6 {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 11px;
+    height: 146px;
+    background-color: $modal-background-color-base;
+    border-right: 1px solid $border-color-blue;
+  }
+  .border_left_side6 {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 11px;
+    height: 143px;
+    background-color: $modal-background-color-base;
+    border-left: 1px solid $border-color-blue;
+  }
+
+}
+/* 设置菜单 添加重点区域 */
+#map_settings, #gis-add-keyarea {
+  .setting_border1 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    .side1 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 14px;
+      left: 3px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 18px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      left: 9px;
+      transform:rotateZ(45deg);
+    }
+    .side3 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: -12px;
+      left: 30px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 17px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      transform:rotateZ(45deg);
+    }
+    .side5 {
+      border-top: 13px solid $modal-background-color-base;
+      border-left: 13px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 11px;
+      left: 16px;
+      transform: rotateZ(90deg);
+    }
+    .side6{
+      position: absolute;
+      top: 11px;
+      left: 27px;
+      width: 534px;
+      height: 17px;
+      background-color: $modal-background-color-base;
+      border-top: 1px solid $border-color-blue;
+    }
+  }
+  .setting_border2 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    .side1 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 14px;
+      right: 3px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 18px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      right: 9px;
+      transform:rotateZ(-45deg);
+    }
+    .side3 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 17px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      top: 9px;
+      right: 21px;
+      transform:rotateZ(-45deg);
+    }
+    .side5 {
+      border-top: 13px solid $modal-background-color-base;
+      border-left: 13px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 11px;
+      left: 11px;
+      transform: rotateZ(178deg);
+    }
+    .side6{
+      position: absolute;
+      top: 23px;
+      left: 7px;
+      width: 17px;
+      height: 251px;
+      background-color: $modal-background-color-base;
+      border-right: 1px solid $border-color-blue;
+    }
+    .side7{
+      position: absolute;
+      top: 50px;
+      right: 11px;
+      width: 0px;
+      height: 7px;
+      border-right: 1px solid $border-color-blue;
+      transform: rotateZ(-45deg);
+    }
+    .side8{
+      position: absolute;
+      top: 56px;
+      right: 8px;
+      width: 0px;
+      height: 21px;
+      border-right: 1px solid $border-color-blue;
+    }
+    .side9{
+      position: absolute;
+      top: 76px;
+      right: 6px;
+      width: 5px;
+      height: 5px;
+      border: 1px solid $border-color-blue;
+      border-radius: 5px;
+    }
+  }
+
+  .setting_border3 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    .side1 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 15px;
+      right: 3px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 18px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 0px;
+      right: 10px;
+      transform:rotateZ(45deg);
+    }
+    .side3 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -12px;
+      right: 30px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 17px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      transform:rotateZ(45deg);
+    }
+    .side5 {
+      border-top: 12px solid $modal-background-color-base;
+      border-left: 12px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 15px;
+      left: 13px;
+      transform: rotateZ(-90deg);
+    }
+    .side6{
+      position: absolute;
+      top: 11px;
+      left: -521px;
+      width: 534px;
+      height: 17px;
+      background-color: $modal-background-color-base;
+      border-bottom: 1px solid $border-color-blue;
+    }
+    .side7{
+      position: absolute;
+      top: 30px;
+      right: 60px;
+      width: 7px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+      transform: rotateZ(-45deg);
+    }
+    .side8{
+      position: absolute;
+      top: 33px;
+      right: 66px;
+      width: 30px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+    }
+    .side9{
+      position: absolute;
+      top: 31px;
+      right: 95px;
+      width: 5px;
+      height: 5px;
+      border: 1px solid $border-color-blue;
+      border-radius: 5px;
+    }
+  }
+  .setting_border4 {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    .side1 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 15px;
+      left: 3px;
+      transform:rotateZ(0deg);
+    }
+    .side2 {
+      height: 18px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom:0px;
+      left: 9px;
+      transform:rotateZ(-45deg);
+    }
+    .side3 {
+      height: 28px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -11px;
+      left: 29px;
+      transform:rotateZ(90deg);
+    }
+    .side4 {
+      height: 17px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 10px;
+      left: 21px;
+      transform:rotateZ(-45deg);
+    }
+    .side5 {
+      border-top: 13px solid $modal-background-color-base;
+      border-left: 13px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      transform: rotateZ(0deg);
+    }
+    .side6{
+      position: absolute;
+      top: -234px;
+      left: 15px;
+      width: 17px;
+      height: 250px;
+      background-color: $modal-background-color-base;
+      border-left: 1px solid $border-color-blue;
+    }
+    .side7{
+      position: absolute;
+      top: 30px;
+      right: -70px;
+      width: 7px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+      transform: rotateZ(-45deg);
+    }
+    .side8{
+      position: absolute;
+      top: 33px;
+      right: -64px;
+      width: 30px;
+      height: 0px;
+      border-bottom: 1px solid $border-color-blue;
+    }
+    .side9{
+      position: absolute;
+      top: 31px;
+      right: -35px;
+      width: 5px;
+      height: 5px;
+      border: 1px solid $border-color-blue;
+      border-radius: 5px;
+    }
+  }
+  .setting_left_center {
+    width: 20px;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: -20px;
+    z-index: 105;
+    .side1{
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      transform:rotateZ(45deg);
+      position: absolute;
+      left: 7px;
+
+    }
+    .side2{
+      border-top: 15px solid $modal-background-color-base;
+      border-left: 15px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 4px;
+      left: 1px;
+      transform: rotateZ(90deg);
+
+    }
+    .side3{
+      width: 18px;
+      height: 100%;
+      position: absolute;
+      top: 18px;
+      left: 1px;
+      background-color: $modal-background-color-base;
+      border-left: 1px solid $border-color-blue;
+
+    }
+    .side4{
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -35px;
+      left: 8px;
+      transform:rotateZ(-45deg);
+
+    }
+    .side5{
+      border-top: 13px solid $modal-background-color-base;
+      border-left: 13px solid rgba(0,0,0,0);
+      position: absolute;
+      bottom: -31px;
+      left: 3px;
+      transform: rotateZ(0deg);
+
+    }
+  }
+
+  .setting_bottom_center {
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    left: 20%;
+    bottom: -20px;
+    z-index: 105;
+    .side1{
+      height: 20px;
+      width: 1px;
+      position: absolute;
+      left: -8px;
+      bottom: -5px;
+      border-right:1px solid $border-color-blue;
+      transform:rotateZ(-45deg);
+    }
+    .side2{
+      border-top: 15px solid $modal-background-color-base;
+      border-left: 15px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 5px;
+      left: -15px;
+      transform: rotateZ(0deg);
+
+    }
+    .side3{
+      height: 18px;
+      width: 100%;
+      position: absolute;
+      bottom: -2px;
+      left: 0px;
+      background-color: $modal-background-color-base;
+      border-bottom: 1px solid $border-color-blue;
+
+    }
+    .side4{
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -4px;
+      right: -8px;
+      transform:rotateZ(45deg);
+
+    }
+    .side5{
+      border-top: 16px solid $modal-background-color-base;
+      border-left: 16px solid rgba(0,0,0,0);
+      position: absolute;
+      bottom: 0px;
+      right: -16px;
+      transform: rotateZ(-90deg);
+
+    }
+  }
+
+  .setting_right_center {
+    width: 20px;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    right: -20px;
+    z-index: 105;
+    .side1{
+      height: 21px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      right: 8px;
+      transform:rotateZ(-45deg);
+    }
+    .side2{
+      border-top: 16px solid $modal-background-color-base;
+      border-left: 16px solid rgba(0,0,0,0);
+      position: absolute;
+      top: 3px;
+      right: 2px;
+      transform: rotateZ(180deg);
+    }
+    .side3{
+      width: 18px;
+      height: 100%;
+      position: absolute;
+      top: 18px;
+      right: 1px;
+      background-color: $modal-background-color-base;
+      border-right: 1px solid $border-color-blue;
+
+    }
+    .side4{
+      height: 20px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: -35px;
+      right: 8px;
+      transform:rotateZ(45deg);
+
+    }
+    .side5{
+      border-top: 15px solid $modal-background-color-base;
+      border-left: 15px solid rgba(0,0,0,0);
+      position: absolute;
+      bottom: -33px;
+      right: 3px;
+      transform: rotateZ(-90deg);
+
+    }
+    .side6{
+      height: 8px;
+      border-right: 4px dashed $border-color-blue;
+      position: absolute;
+      top: 37px;
+      right: 11px;
+    }
+    .side7{
+      border-right: 3px dotted $border-color-blue;
+      height: 50%;
+      position: absolute;
+      top: 50px;
+      right: 11px;
+    }
+
+    .side8{
+      height: 8px;
+      border-right: 4px dashed $border-color-blue;
+      position: absolute;
+      top: 124px;
+      right: 11px;
+    }
+  }
+
+  .border_right_side6 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 17px;
+    height: 100%;
+    background-color: $modal-background-color-base;
+    border-right: 1px solid $border-color-blue;
+  }
+  .border_left_side6 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 100%;
+    background-color: $modal-background-color-base;
+    border-left: 1px solid $border-color-blue;
+  }
+
+}
+
+#gis-add-keyarea {
+  .gis-add-keyarea-title {
+    font-size : 14px;
+    margin-left: 30px;
+    color: $font-color-highlight-blue;
+  }
+
+  .gis-add-keyarea-name-div, .gis-add-keyarea-address-div, .gis-add-keyarea-level-div {
+    margin-top: 10px;
+    padding-left: 60px;
+  }
+  #gis-add-keyarea-name,#gis-add-keyarea-address,#gis-add-keyarea-level {
+    margin-left: 20px;
+    padding-left: 20px;
+    width: 200px;
+    height: 30px;
+    font-size: 12px;
+    background-color: $gis-select-input-background-color;
+    color: $gis-search-color-font;
+    border: 1px $gis-line-border-color solid;
+  }
+  select {
+    outline-color: $border-color-blue;
+  }
+}
+
+#map_setting_tab_div {
+  font-size 14px
+  height 34px
+  line-height: 30px
+  padding 0 5px
+  position absolute
+  top 30px
+  right 100px
+  background-color $gis-$modal-background-color-base
+  opacity 0.8
+  border 1px solid $border-color-blue
+  border-radius 8px
+
+  .map_setting_tab_border1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .side1{
+      height: 10px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      top: 3px;
+      right: -7px;
+      transform:rotateZ(0deg);
+    }
+    .side2{
+      height: 12px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      top: -7px;
+      right: -3px;
+      transform:rotateZ(-45deg);
+    }
+    .side3{
+      height: 10px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      top: -10px;
+      right: 6px;
+      transform:rotateZ(90deg);
+    }
+  }
+  .map_setting_tab_border2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .side1{
+      height: 10px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      bottom: 0;
+      left: -8px;
+      transform:rotateZ(0deg);
+    }
+    .side2{
+      height: 8px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      bottom: -6px;
+      left: -5px;
+      transform:rotateZ(-45deg);
+    }
+    .side3{
+      height: 10px;
+      width: 1px;
+      border-right:2px solid $border-color-blue;
+      position: absolute;
+      bottom: -10px;
+      left: 2px;
+      transform:rotateZ(90deg);
+    }
+  }
+  .map_setting_tab_border3 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    .side1{
+      height: 7px;
+      width: 1px;
+      border-right:1px solid $border-color-blue;
+      position: absolute;
+      bottom: 0;
+      right: 3px;
+      transform:rotateZ(45deg);
+    }
+  }
+
+  .map_setting_center {
+
+  }
+
+  .map_setting_tab {
+    display inline-block
+    width 70px
+    text-align center
+    cursor pointer
+  }
+
+  .map_setting_tab_active {
+    color: $tabs-item-color-text-acitve;
+  }
+}
+
+#map_settings_base {
+  margin-top: 47px;
+}
+
+#map_settings_show {
+  margin-top: 70px;
+}
+
+#map_settings_area {
+  margin-top: 70px;
+}
+
+.gis_table_border1 {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: -13px;
+  left: -25px;
+
+  .side1, .side2, .side3, .side4 {
+    width: 1px;
+    border-right:1px solid $border-color-blue;
+    position: absolute;
+  }
+  .side1 {
+    height: 28px;
+    top: 15px;
+    left: 3px;
+    transform:rotateZ(0deg);
+  }
+  .side2 {
+    height: 18px;
+    left: 9px;
+    transform:rotateZ(45deg);
+  }
+  .side3 {
+    height: 28px;
+    top: -12px;
+    left: 30px;
+    transform:rotateZ(90deg);
+  }
+  .side4 {
+    height: 19px;
+    top: 10px;
+    left: 21px;
+    transform:rotateZ(45deg);
+  }
+  .side5 {
+    border-top: 13px solid $modal-background-color-base;
+    border-left: 13px solid rgba(0,0,0,0);
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    transform: rotateZ(90deg);
+  }
+}
+.gis_table_border2 {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: -13px;
+  right: -25px;
+
+  .side1, .side2, .side3, .side4 {
+    width: 1px;
+    border-right:1px solid $border-color-blue;
+    position: absolute;
+  }
+  .side1 {
+    height: 28px;
+    top: 15px;
+    right: 3px;
+    transform:rotateZ(0deg);
+  }
+  .side2 {
+    height: 18px;
+    right: 9px;
+    transform:rotateZ(-45deg);
+  }
+  .side3 {
+    height: 29px;
+    top: -12px;
+    right: 28px;
+    transform:rotateZ(90deg);
+  }
+  .side4 {
+    height: 17px;
+    top: 10px;
+    right: 21px;
+    transform:rotateZ(-45deg);
+  }
+  .side5 {
+    border-top: 13px solid $modal-background-color-base;
+    border-left: 13px solid rgba(0,0,0,0);
+    position: absolute;
+    top: 12px;
+    left: 11px;
+    transform: rotateZ(178deg);
+  }
+  .side6{
+    position: absolute;
+    top: 23px;
+    left: 7px;
+    width: 17px;
+    height: 498px;
+    background-color: $modal-background-color-base;
+    border-right: 1px solid $border-color-blue;
+  }
+}
+
+.gis_table_border3 {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: -13px;
+  right: -24px;
+
+  .side1, .side2, .side3, .side4 {
+    width: 1px;
+    border-right:1px solid $border-color-blue;
+    position: absolute;
+  }
+  .side1 {
+    height: 28px;
+    bottom: 15px;
+    right: 3px;
+    transform:rotateZ(0deg);
+  }
+  .side2 {
+    height: 18px;
+    bottom: 0px;
+    right: 9px;
+    transform:rotateZ(45deg);
+  }
+  .side3 {
+    height: 28px;
+    bottom: -12px;
+    right: 30px;
+    transform:rotateZ(90deg);
+  }
+  .side4 {
+    height: 17px;
+    bottom: 10px;
+    right: 20px;
+    transform:rotateZ(45deg);
+  }
+  .side5 {
+    border-top: 12px solid $modal-background-color-base;
+    border-left: 12px solid rgba(0,0,0,0);
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    transform: rotateZ(-90deg);
+  }
+}
+.gis_table_border4 {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: -13px;
+  left: -24px;
+
+  .side1, .side2, .side3, .side4 {
+    width: 1px;
+    border-right:1px solid $border-color-blue;
+    position: absolute;
+  }
+  .side1 {
+    height: 28px;
+    bottom: 15px;
+    left: 3px;
+    transform:rotateZ(0deg);
+  }
+  .side2 {
+    height: 18px;
+    bottom:0px;
+    left: 9px;
+    transform:rotateZ(-45deg);
+  }
+  .side3 {
+    height: 28px;
+    bottom: -11px;
+    left: 29px;
+    transform:rotateZ(90deg);
+  }
+  .side4 {
+    height: 17px;
+    bottom: 9px;
+    left: 20px;
+    transform:rotateZ(-45deg);
+  }
+  .side5 {
+    border-top: 13px solid $modal-background-color-base;
+    border-left: 13px solid rgba(0,0,0,0);
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    transform: rotateZ(0deg);
+  }
+  .side6{
+    position: absolute;
+    top: -478px;
+    left: 14px;
+    width: 17px;
+    height: 494px;
+    background-color: $modal-background-color-base;
+    border-left: 1px solid $border-color-blue;
+  }
+}
+
+
+.gis-table-search {
+  width: 200px;
+  height: 30px;
+  font-size: 12px;
+  padding-left: 10px;
+  background-color: $gis-select-input-background-color;
+  color: $gis-search-color-font;
+  border-width: 0 !important;
+}
+
+.gis_table_name {
+  position: absolute;
+  left: 50%;
+  max-width: 320px;
+  margin-left: -160px;
+  top: -43px;
+
+  p {
+    position: relative;
+    top: 29px;
+    font-size: 16px;
+    text-align: center;
+    color:$font-color-highlight-blue;
+  }
+}
+
+.gis-warning-table-tbody, .gis-bayonet-table-tbody, .gis-keyarea-table-tbody {
+  tr:nth-of-type(odd){
+    background: $table-odd-color-base;
+  }
+  tr:nth-of-type(even){
+    background: $table-even-color-base;
+  }
+}
+
+.gis_table_show_path {
+  font-size: 14px;
+  display: inline-block;
+  width: 60%;
+  color: $font-color-highlight-blue;
+}
+.gis_table_del_warning {
+  font-size: 14px;
+  display: inline-block;
+  width: 40%;
+  color: $font-color-highlight-blue;
+}
+
+.gis-table-search-btn {
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 22px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    background: none;
+  }
+
+.gis-bayonet-table-surveillance-show-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 10px;
+  font-size: 20px;
+  padding-bottom: 2px;
+  color: $font-color-base;
+  border: 1px $gis-button-border-color solid;
+  background-color: $gis-background-color;
+}

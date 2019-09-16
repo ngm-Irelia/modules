@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<script>
+			/**
+			 * 正则表达式 
+			 * 两种方式：
+			 * 1. let re = /a/;
+			 * 2. let reg = new RegExp('a');
+			 * 
+			 * 正则表达式常用方法:
+			 * 
+			 * 1.test      正则去匹配字符串,如果匹配成功,就返回 true ,匹配失败返回 false
+			 *             使用方式： 正则.test(字符串)
+			 * 
+			 * 2.search   正则去匹配字符串，如果匹配成功，返回匹配的位置，匹配失败 返回 -1 
+			 *            使用方式： 字符串.search(正则)
+			 * 
+			 * 3.replace  正则去匹配字符串，匹配成功的字符串替换成新的字符串
+			 *            使用方式： 字符串.search(正则，新的字符串)
+			 * 
+			 * 4.match    正则去匹配字符串，如果匹配成功，返回匹配成功的数组，匹配失败 返回 null
+			 *            使用方式： 字符串.match(正则)
+			 * 
+			 * 小括号  分组的意思
+			 * 中括号  一组相似的元素
+			 * 
+			 * 排除  ^ 写在中括号里面的 尖括号 就代表排除的意思
+			 * 
+			 * \d 数字 
+			 * \w 字符
+			 * \s 空格
+			 * . 任意字符
+			 * 
+			 * \b ： 独立的部分：三种情况（起始， 结束，空格）
+			 * \B :  非独立的部分
+			 * 
+			 * \1  重复的第一个子项
+			 * \2  重复的第二个子项
+			 * 
+			 * 
+			 * 量词：  { }   
+			 *     例： {4，7}  最少出现4次，最多出现7次
+			 * +  {1,}  至少1次
+			 * ?  {0,1} 0或1次
+			 * *  {0,}  至少0次
+			 * 
+			 */
+			
+			let data  = "正则去匹配字符串，如果匹配成功，返回匹配的位置，匹配失败 返回 -1";
+			
+			document.write(data);
+			document.write('</br>');
+			
+			let reg = /字符串|成功|失败/g;
+			let data2 = data.replace(reg, function(str){
+				let len = str.length;
+				let strStar = '';
+				for(let i=0;i<len;i++){
+					strStar += "*";
+				}
+				return strStar;
+			});
+			document.write(data2);
+			
+			/***********  小括号  ***************/
+			
+			let str11 = '2019-2-5';
+			let reg11 = /(\d-)+/g;
+			//alert(str11.match(reg11))
+			str11.replace(reg11, function(str, c1, c2){
+				return str;
+			});
+			
+			
+			let str22 = '2019-2-5';
+			let reg22 = /(\d+)(-)/g;
+			str22.replace(reg22, function(str, c1, c2, c3, c4){
+				console.log(str)
+				console.log(c1)
+				console.log(c2)
+				console.log(c3)
+				console.log(c4)
+				return str;
+			});
+			
+			
+			/***********  中括号  ***************/
+			let str33 = 'aec';
+			let reg33 = /a[bde]c/g;
+			console.log(str33.match(reg33));
+			
+			/*********** 排除功能 中括号里面的 ^  ***************/
+			
+			let str44 = 'afc';
+			let reg44 = /a[^bde]c/g;
+			console.log(str44.match(reg44));
+			
+			/*********** 范围 ： 使用 -  ***************/
+			let str55 = 'afc';
+			let reg55 = /a[a-z0-9A-Z]c/g;
+			console.log(str55.match(reg55));
+			
+			
+			//去掉标签
+			function fun66(){
+				let data  = "<span class='aaa'>正则去匹配字符串</span>，如果匹配成功，返回匹配的位置，匹配失败 返回 -1";
+				
+				document.write('</br>');
+				document.write(data);
+				document.write('</br>');
+				
+				let reg = /<[^>]+>/g;
+				let data2 = data.replace(reg, function(str){
+					console.log(str);
+					return '';
+				});
+				document.write(data2);
+			}
+			
+			fun66();
+			
+			/*********** \1  \2 重复的子项 ***************/
+			function fun77(){
+				let str = 'ccaaaaaddaaee';
+				
+				//字符串排序的好方法:!!
+			//let arr = str.split('');
+			//str = arr.sort().join('');
+				
+				let reg = /(\w)\1+/g;
+				let index = 0;
+				let value = '';
+				str.replace(reg, function(c0,c1){
+					if(index<c0.length){
+						index = c0.length;
+						value = c1;
+					}
+				})
+				
+				console.log("最多的字符是"+value+" 长度是："+index);
+				
+			}
+			
+			fun77();
+			
+			
+			/*********** 量词的使用 ， 匹配qq号 ***************/
+			function fun88(){
+				let str = '234251';
+				let reg = /^[1-9](\d){4,12}$/g;
+				
+				console.log( reg.test(str) );
+				
+			}
+			
+			fun88();
+			
+		</script>
+	</body>
+</html>

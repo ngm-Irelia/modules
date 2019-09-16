@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//深拷贝
+			
+			function deepCopy(obj){
+				if( typeof obj !== 'object'){
+					return obj;
+				}
+				
+				let newObj = {};
+				
+				for(let attr in obj){
+					newObj[attr] = deepCopy(obj[attr]);
+				}
+				
+				return newObj;
+			}
+			
+			let obj = {
+				a:1,
+				b:{
+					bname:"12",
+					bsize:{
+						bsa:"111",
+						bsb:"222"
+					}
+				},
+				c:[{caa:"111"},{cbb:"111"}]
+			}
+			
+			let newObj = deepCopy(obj);
+			console.log(newObj)
+			
+		</script>
+	</body>
+</html>

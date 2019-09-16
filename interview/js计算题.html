@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var a = 10;
+			function fn(){
+				var a = 20;
+				var b = 20;
+			}
+			
+			//console.log(a);  //10
+
+			//console.log(b);  //Uncaught ReferenceError: b is not defined
+			
+			// **************************************************
+			
+			function fn1 (){
+				var a = 0;
+				function fn2(){
+					a++;
+					console.log(a);
+				}
+				return fn2;
+			}
+			
+			let fn22 = fn1();
+			fn22();
+			fn22();
+		</script>
+	</body>
+</html>

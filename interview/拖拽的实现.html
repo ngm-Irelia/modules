@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#base-div {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: #01DDFF;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="base-div"></div>
+		
+		<script>
+			// *********  1.使用position  ***********
+			let baseDom = document.querySelector("#base-div");
+			
+			
+			baseDom.addEventListener('mousedown',function(ev){
+				console.log("move ----------- ");
+				
+				let baseY = ev.clientY-this.offsetTop; //是定值了
+				let baseX = ev.clientX-this.offsetLeft;//是定值了
+				
+				let moveFun = function(e){
+ 					baseDom.style.top = (e.clientY-baseY)+"px";
+ 					baseDom.style.left = (e.clientX-baseX)+"px";
+				};
+				baseDom.addEventListener('mousemove',moveFun)
+				
+				baseDom.addEventListener('mouseup',function(){
+					console.log("取消 move 事件")
+					baseDom.removeEventListener('mousemove',moveFun);
+				})
+			})
+			
+		</script>
+	</body>
+</html>

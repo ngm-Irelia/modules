@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css.css" />
+</head>
+
+<body>
+
+    <div id="dd">
+        <p><span id="txt">0</span>滴水</p>
+        <div id="count">
+            <div id="value"></div>
+        </div>
+		<p>第<span id="game-level">1</span>关</p>
+    </div>
+
+    <div id="wrap">
+        <!-- <div class="water-polo">
+            <img src="img/4.png" />
+        </div> -->
+
+        <!-- <div class="bullet left" style="left:10px;top:10px;"></div> -->
+    </div>
+	
+	<div id="next-level">下一关<div>
+
+    <!-- 
+        使用原生js的模块化，不借助webpack等
+
+        如果我们希望浏览器支持模块化加载，需要在script标签上添加一个属性：
+            type属性，值为：module
+
+        原生js的模块化必须在web服务器环境下才能使用
+
+        可以使用自己属性任何方式来搭建webserver，比apache，php，node，nginx
+
+        安装node环境
+            npx
+     -->
+
+     <script src="./js/index.js" type="module"></script>
+</body>
+
+</html>

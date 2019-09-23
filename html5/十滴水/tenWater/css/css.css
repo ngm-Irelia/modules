@@ -1,0 +1,130 @@
+@keyframes run{
+    0%{
+        transform: scale(1.04)
+    }
+    25%{
+        transform: scale(0.96)
+    }
+    50% {
+        transform: scale(1.02)
+    }
+    75% {
+        transform: scale(0.98)
+    }
+    100%{
+        transform: scale(1)
+    }
+
+}
+
+* {
+    margin:0;
+    padding:0;
+    border:0;
+}
+body{
+    background:#f0f8fb;
+}
+
+#dd {
+    height:400px;
+    width:200px;
+    position:absolute;
+    left:10%;
+    top:20px;
+}
+#dd p {
+    font-family:Arial;
+    font-weight:bold;
+    font-size:30px;
+    text-align:center;
+    color:#0d96c6;
+}
+#count {
+    height:300px;
+    width:150px;
+    position:relative;
+    left:10%;
+    top:50px;
+    border:1px solid #0CF;
+    border-radius:0 0 20px 20px;
+    border-top:none;
+    overflow:hidden;
+}
+#value {
+    height:0;
+    width:150px;
+    background:#6CF;
+    position:absolute;
+    bottom:0;
+    border-radius:0 0 20px 20px;
+}
+
+
+
+#wrap {
+    height:600px;
+    width:600px;
+    position:absolute;
+    top:10px;
+    left:30%;
+    padding:10px;
+    overflow:hidden;
+    background:#b8e4f8;
+    box-shadow:0px 0px 20px #37c6f5;
+}
+#wrap .water-polo {
+    height:80px;
+    width:80px;
+    float:left;
+    border-right:none;
+    border-top:none;
+    border-radius:20px;
+    background:#b8e2f6;
+    border:10px solid #c8e7f6;
+    box-shadow:-2px -2px 5px #37c6f5;
+}
+#wrap .water-polo img {
+    height:80px;
+    width:80px;
+    cursor:pointer;
+}
+#wrap .water-polo img:hover, #wrap .water-polo img.level-up {
+    animation: run .8s 1 ease-in;
+    transform-origin: top left;
+}
+.bullet {
+    height:100px;
+    width:100px;
+    position:absolute;
+    background: url('../img/bullet.png') no-repeat;
+    background-size: cover;
+}
+.bullet.left {
+    transform: rotate(0deg);
+}
+.bullet.top {
+    transform: rotate(90deg);
+}
+.bullet.right {
+    transform: rotate(180deg);
+}
+.bullet.bottom {
+    transform: rotate(270deg);
+}
+
+#next-level {
+	height: 30px;
+    cursor: pointer;
+    width: 69px;
+    position: absolute;
+    top: 680px;
+    left: 55%;
+    /* margin: 0 auto; */
+    padding: 10px;
+    overflow: hidden;
+    font-size: 22px;
+    background: #b8e4f8;
+    box-shadow: 0px 0px 20px #37c6f5;
+	display: none;
+}

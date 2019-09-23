@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{margin:0; padding:0;}
+				
+			body{
+				background: black;
+			}
+			
+			#div1 {
+				background: white;
+				width:600px;
+				margin: 200px auto;
+			}
+			
+			#game-start{
+				text-align: center;
+				font-size: 20px;
+				margin: 20px 0;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<canvas id="cl" width="600" height="600"></canvas>
+			<div id="game-start">开始</div>
+		</div>
+		
+		<script>
+			window.onload = function(){
+				let oc = document.getElementById("cl");
+				let ogc = oc.getContext('2d');
+				
+				let gameRuning = false;
+				//所有的setInterval , 以后要统一删除的
+				let moveSet; //移动时候用的 setInterval
+				let addBallSet; //添加小球用的 setInterval
+				
+				let isRotate = 0; //中间箭头的方向
+				
+				let Ball = [{
+					x:300,
+					y:0,
+					r:200,
+					num:0,
+					startX:300,
+					startY:0
+				}];
+				
+				//子弹数组
+				let bullet = [];
+				//显示运动线  添加中心发射子弹的武器图标
+				function showLine(){
+					ogc.beginPath();
+					ogc.arc(300,200,200,-90*Math.PI/180,180*Math.PI/180,false);
+					//ogc.closePath();
+					ogc.stroke();
+								
+					ogc.beginPath();
+					ogc.arc(250,200,150,0,180*Math.PI/180,true);
+					//ogc.closePath();
+					ogc.stroke();
+					
+					ogc.beginPath();
+					ogc.arc(400,200,20,0,360*Math.PI,true);
+					//ogc.closePath();
+					ogc.stroke();
+					
+					//添加中心发射子弹的武器图标
+					ogc.save();
+					ogc.translate(250,200);
+					ogc.rotate(isRotate);
+					ogc.translate(-30,-30);
+					ogc.drawImage(yImg,0,0)
+					ogc.restore();
+					
+				}
+				
+				//添加小球
+				function addBall(){
+					Ball.push( {
+						x:300,
+						y:0,
+						r:200,
+						num:0,
+						startX:300,
+						startY:0
+					})
+				}
+				
+				//小球移动
+				function moveBall (){
+					for(let i=0;i<Ball.length;i++){
+						Ball[i].num++;
+						Ball[i].x = Math.sin(Ball[i].num*Math.PI/180) * Ball[i].r + Ball[i].startX;
+						Ball[i].y = Ball[i].r - Math.cos(Ball[i].num*Math.PI/180) * Ball[i].r + Ball[i].startY;
+										
+					}
+				}
+				
+				//子弹移动
+				function moveBullet (){
+					for(let i=0;i<bullet.length;i++){
+						bullet[i].x = bullet[i].x + bullet[i].sx;
+						bullet[i].y = bullet[i].y + bullet[i].sy;
+					}
+					
+					for(let i=0;i<bullet.length;i++){
+						if(bullet[i].x > 1000){
+							bullet.splice(i,1);
+							break;
+						}
+						for(let j=0;j<Ball.length;j++){
+							if(pz(bullet[i].x, bullet[i].y, Ball[j].x, Ball[j].y)){
+								bullet.splice(i,1);
+								Ball.splice(j,1);
+								break;
+							}
+						}
+					}
+				}
+				
+				//碰撞检测函数
+				function pz(x1,y1,x2,y2){
+					let a = x1 - x2;
+					let b = y1 - y2;
+					
+					let c = Math.sqrt(a*a + b*b);
+					if(c < 40){
+						return true;
+					}else{
+						return false;
+					}
+					
+				}
+				
+				//oc绑定鼠标事件
+				oc.onmousemove = function(ev){
+					
+					ev = ev || window.event;
+					let x = ev.clientX - oc.offsetLeft;
+					let y = ev.clientY - oc.offsetTop;
+					
+					let a = x-300;
+					let b = y-200;
+					let c = Math.sqrt(a*a + b*b);
+					if(a>0 && b>0){
+						isRotate = Math.asin(b/c)+90*Math.PI/180;
+					}else if(a>0){
+						isRotate = Math.asin(a/c);
+					}
+					
+					if(a<0 && b>0){
+						isRotate = -(Math.asin(b/c)+90*Math.PI/180);
+					}else if(a<0){
+						isRotate = Math.asin(a/c);
+					}
+					
+				}
+				
+				//点击 发射子弹
+				oc.onmousedown = function(ev){
+					ev = ev || window.event;
+					let x = ev.clientX - oc.offsetLeft;
+					let y = ev.clientY - oc.offsetTop;
+					
+					let a = x-300;
+					let b = y-200;
+					let c = Math.sqrt(a*a + b*b);
+					
+					let speed = 15;
+					let sx = speed * a/c;
+					let sy = speed * b/c;
+					
+					bullet.push({
+						x:300,
+						y:200,
+						sx,
+						sy
+					})
+				}
+				
+				let yImg = new Image(20,20);
+				yImg.src = './center.png';
+				yImg.width = 20;
+				yImg.height = 20;
+				yImg.onload = function(){
+					//runGame();
+				}
+				
+				function runGame(){
+					gameRuning = true;
+					let baseSet = setInterval(function(){
+						ogc.clearRect(0,0,oc.width, oc.height); //清除所有的动画
+						
+						showLine();//显示路径线
+						
+						// canvas 文字
+						ogc.save();
+						ogc.font = '60px impact';
+						ogc.textBaseline = 'top';
+						ogc.fillStyle = 'red';
+						ogc.shadowOffsetX = 10;
+						ogc.shadowOffsetY = 10;
+						ogc.shadowColor = 'green';
+						ogc.shadowBlur = 5;
+						let w = ogc.measureText('ngm小游戏').width;
+						let height = 60;
+						ogc.fillText('ngm小游戏', (oc.width-w)/2 , 450);
+						ogc.restore();
+						
+						//显示小球
+						for(let i=0;i<Ball.length;i++){
+							
+							if(Ball[i].num === 270){
+								Ball[i].r = 150;
+								Ball[i].startX = 250;
+								Ball[i].startY = 50;
+							}
+							if(Ball[i].num === 270+180){
+								alert("游戏结束");
+								Ball = [];
+								bullet = [];
+								gameRuning = false;
+								clearInterval(baseSet);
+								clearInterval(moveSet);
+								clearInterval(addBallSet);
+								break;
+							}
+							ogc.beginPath();
+							ogc.arc(Ball[i].x,Ball[i].y,20,0,360*Math.PI,true);
+							ogc.fill();
+							
+						}
+						
+						//显示子弹
+						for(let i=0;i<bullet.length;i++){
+							ogc.save();
+							ogc.beginPath();
+							ogc.fillStyle = 'red';
+							ogc.moveTo(bullet[i].x,bullet[i].y);
+							ogc.arc(bullet[i].x,bullet[i].y,20,0,360*Math.PI,true);
+							ogc.fill();
+							ogc.restore();
+						}
+						
+					},1000/60)
+					
+					//这个控制小球的移动速度,放到上面也行,但是就不能修改速度了
+					moveSet = setInterval(function(){
+						moveBall();    // 小球移动
+						moveBullet();  // 子弹移动
+					},30);
+					//这个给Ball添加新的小球
+					addBallSet = setInterval(function(){ addBall(); },1000);
+				}
+				
+				//开始 事件
+				let start = document.getElementById('game-start');
+					
+				start.addEventListener('click',function(){
+					if(!gameRuning){
+						runGame();
+					}
+					
+				})
+			}
+		</script>
+	</body>
+</html>

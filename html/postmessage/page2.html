@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Field selection demo</title>
+	<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <style>
+        #trainPhase {
+            border: 1px solid #ddd;
+            padding: 10px;
+			width: 500px;
+        }
+		
+		#trainPhase::selection { background:lightblue; }
+    </style>
+</head>
+<body>
+    <div contentEditable="true" id="trainPhase">
+        分享到新浪微博功能实现之截图 是不小贺啊小贺分享到新浪<span>hahah</span>微博分享
+        <div>分享
+			<div>11111111111111222</div>
+			33333333333
+		</div>
+		<p>微博分享</p>
+		<p>微博分享</p>
+		<p>不小贺啊小贺</p>
+        微博分享到新浪微博分享到新浪微博分享到新浪微博
+    </div>
+    
+    <script>
+        (function() {
+            window.postMessage("hahaha")
+        }());
+    </script>
+</body>
+</html>

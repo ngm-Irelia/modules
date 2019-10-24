@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Custom data and display</title>
+  <style>
+  #project-label {
+    display: block;
+    height: 200px;
+	width: 300px;
+	background: #009688;
+    margin: 50px;
+	overflow: auto;
+  }
+  
+  #project {
+	 height: 600px;
+  }
+  
+  
+/* 滚动条相关的样式 在这呢 */  
+/*默认状态*/
+#project-label::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+/* 在顶部打开单个按钮，在底部打开单个按钮 */
+#project-label::-webkit-scrollbar-button:start:decrement,
+#project-label::-webkit-scrollbar-button:end:increment {
+    height:0px;
+	width:0px;
+}
+
+/* 关闭顶部的向下区域和底部的向上区域 */
+#project-label::-webkit-scrollbar-button:vertical:start:increment,
+#project-label::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+
+/* 放置向下按钮 */
+#project-label::-webkit-scrollbar-button:vertical:increment {
+    border: 1px solid #edf1f8;
+    height: 0px;
+    width: 0px;
+    background: url('img/bottom-san.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+/* 将向上滚动按钮置于向上 */
+#project-label::-webkit-scrollbar-button:vertical:decrement {
+    border: 1px solid #edf1f8;
+    height: 0px;
+    width: 0px;
+    background: url('img/top-san.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+
+/* 轨道下方和上方 */
+#project-label::-webkit-scrollbar-track-piece {
+    background-color: #edf1f8;
+}
+
+/* 拇指本身 */
+#project-label::-webkit-scrollbar-thumb:vertical {
+    background-color: #d2d6df;
+    background-clip: content-box;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 0 1px;
+	
+}
+
+
+
+
+/*hover 状态*/  
+#project-label:hover::-webkit-scrollbar:hover {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+/* 在顶部打开单个按钮，在底部打开单个按钮 */
+#project-label:hover::-webkit-scrollbar-button:start:decrement,
+#project-label:hover::-webkit-scrollbar-button:end:increment {
+    height:13px;
+	width:13px;
+}
+
+/* 关闭顶部的向下区域和底部的向上区域 */
+#project-label:hover::-webkit-scrollbar-button:vertical:start:increment,
+#project-label:hover::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+
+/* 放置向下按钮 */
+#project-label:hover::-webkit-scrollbar-button {
+    border: 1px solid #edf1f8;
+    height: 13px;
+    width: 13px;
+    background: url('img/bottom-san.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+/* 将向上滚动按钮置于向上 */
+#project-label:hover::-webkit-scrollbar-button:vertical:decrement {
+    border: 1px solid #edf1f8;
+    height: 13px;
+    width: 13px;
+    background: url('img/top-san.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+
+/* 轨道下方和上方 */
+#project-label:hover::-webkit-scrollbar-track-piece {
+    background-color: #edf1f8;
+}
+
+/* 拇指本身 */
+#project-label:hover::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #d2d6df;
+    background-clip: content-box;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 0 1px;
+}
+
+
+  </style>
+
+  
+</head>
+<body>
+ 
+<div id="project-label">Select a project (type "j" for a start):
+<div id="project">11111</div>
+</div>
+
+ 
+ 
+</body>
+</html>

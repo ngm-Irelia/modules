@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var scope = "global scope";
+			function checkScope(){
+				var scope = "local scope";
+				function f(){
+					//console.log(arguments)
+					return scope;
+				}
+				return f;
+			}
+			
+			var foo = checkScope();
+			//console.log(foo)
+			let aa = foo();
+			console.log(aa);
+			console.log(scope)
+			
+			
+			
+			var a = 10;
+			function b () {
+				console.log('全局的b函数')
+			};
+			function bar(a, b) {
+				console.log('1', a, b) 
+				var a = 1
+				function b() {
+					console.log('bar下的b函数')
+				}
+				console.log('2', a, b) 
+			}
+			bar(2, 3)         // 1, 2, function           2, 1, function 
+			console.log('3', a, b) // 3 10 function 
+			
+			
+			
+			
+			
+			
+			/* 1.  全局代码 gc{
+				 vo : {
+					 checkScope函数
+					 scope变量
+				     foo
+					}
+
+				}
+				
+			2. checkScope()调用
+			
+			函数执行上下文{
+				ao: {
+					f:函数,
+					scope: undefined  重点是这里是什么值？
+				}
+			}
+
+			3. foo() 调用
+			函数f是闭包, 函数中的函数,所以 f的环境是a的作用域, f的执行上下文中 就有f的AO,a的AO,GC. 返回scope变量的时候,是应该逐级往上找的
+			 */
+			
+			console.log(foo);
+			function foo(){
+				console.log('foo1');
+			}
+			var foo = 1;
+			console.log(foo)
+		</script>
+	</body>
+</html>

@@ -3,11 +3,12 @@
     <head></head>
 	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <body>
-        
-		<div>分享123</div>
-		<div>分享123</div>
-        <div>分享到新浪微博啊分博分</div>
+        分享到新浪微博功能实现之截图 是不小贺啊小贺
+        http://netsos.cnblogs.com/
+		<span>hahah</span>
+        分享到新浪微博啊分享到新浪<span>hahah</span>微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪微博分享到新浪
 		<div>分享</div>
+		微博分享到新浪微博分享到新浪微博分享到新浪微博
     <script>
         var funcGetSelectText = function(){
             var txt = '';
@@ -23,35 +24,20 @@
 		function replaceSelection() {
             if (window.getSelection) {
                 var selecter = window.getSelection();
-				console.log(selecter);
-                //var selectStr = selecter.toString();
-                /* if (selectStr.trim != "") {
+                var selectStr = selecter.toString();
+                if (selectStr.trim != "") {
                     var rang = selecter.getRangeAt(0);
                     var temp = $("<b>" + selectStr + "<b/>");
                     rang.surroundContents(temp[0]);
-                } */
-				
-				let baseNode = selecter.baseNode;
-				let sParent = baseNode.parentNode;  // div
-				
-				let tParent = sParent.parentNode; // div的父元素  // if(tParent.nodeName === "BODY")
-				
-				let childList = tParent.childNodes;
-				
-				for(let i=0;i<childList.length;i++){
-					if(childList[i] !== sParent){
-						console.log("不想等")
-					}else{
-						console.log("相等了啊");
-						console.log(childList[i]);
-					}
-				}
-				
+                }
             }
         }
 		
         var container = container || document;
         container.onmouseup = function(){
+            //var txt = funcGetSelectText();
+           // console.log(txt)
+			
 			replaceSelection();
         }
     </script>

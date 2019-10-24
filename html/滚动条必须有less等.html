@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Custom data and display</title>
+  <style>
+  #project-label {
+    display: block;
+    height: 200px;
+	width: 300px;
+	background: #009688;
+    margin: 50px;
+	overflow: auto;
+  }
+  
+  #project {
+	 height: 600px;
+  }
+  
+  .message-item-content {
+    transition: all 2s;
+  }
+  
+  /*初始是细滚动条，悬停放大*/
+/*要想使用如下效果，请使用class或id，手动添加~*/
+/*默认状态*/
+.message-item-content::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  transition: all 2s;
+}
+
+
+.message-item-content::-webkit-scrollbar-button:start:decrement,
+.message-item-content::-webkit-scrollbar-button:end:increment {
+  height:0px;
+  width:0px; 
+  transition: all 2s;
+}
+
+/* 关闭顶部的向下区域和底部的向上区域 */
+#project-label::-webkit-scrollbar-button:vertical:start:increment,
+#project-label::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+.message-item-content::-webkit-scrollbar-button:vertical:increment {
+  border: 1px solid #edf1f8;
+  height: 0px;
+  width: 0px;
+  background: url('img/bottom-san.jpg') no-repeat center center;
+  background-size:cover;
+}
+.message-item-content::-webkit-scrollbar-button:vertical:decrement {
+  border: 1px solid #edf1f8;
+  height: 0px;
+  width: 0px;
+  background: url('img/top-san.jpg') no-repeat center center;
+  background-size:cover;
+}
+.message-item-content::-webkit-scrollbar-track-piece {
+  background-color: #edf1f8;
+}
+.message-item-content::-webkit-scrollbar-thumb:vertical {
+  background-color: #d2d6df;
+  background-clip: content-box;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0 1px;
+
+}
+
+
+
+
+/*hover 状态*/  
+.message-item-content:hover::-webkit-scrollbar {
+  width: 15px !important;
+  height: 15px !important;
+  transition: all 2s;
+}
+
+.message-item-content:hover::-webkit-scrollbar-button:start:decrement,
+.message-item-content:hover::-webkit-scrollbar-button:end:increment {
+  height:13px;
+  transition: all 2s;
+}
+
+
+
+  </style>
+
+  
+</head>
+<body>
+ 
+<div class="message-item-content" id="project-label">Select a project (type "j" for a start):
+<div id="project">11111</div>
+</div>
+
+ 
+ 
+</body>
+</html>

@@ -62,7 +62,15 @@
 			return "33";
 		}
 		
-		console.log( t1() || t2() && t3() )
+		console.log( t1() || t2() && t3() ); // 111 222 333 33
+		
+		
+		
+		for(let i=0 ; i<5 ; i++){
+			setTimeout(function(){
+				console.log(i);
+			},1000)
+		}
 	
 	</script>
 </html>

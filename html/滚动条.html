@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Custom data and display</title>
+  <style>
+  #project-label {
+    display: block;
+    height: 200px;
+	width: 300px;
+	background: #009688;
+    margin: 50px;
+	overflow: auto;
+  }
+  
+  #project {
+	 height: 600px;
+  }
+  
+  
+  
+/* Turn on a 13x13 scrollbar */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+
+
+
+/* 在顶部打开单个按钮，在底部打开单个按钮 */
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    height:13px;
+		width:13px;
+}
+
+/* 关闭顶部的向下区域和底部的向上区域 */
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+
+/* 放置向下按钮 */
+::-webkit-scrollbar-button:vertical:increment {
+    background-color: black;
+    border: 1px solid #edf1f8;
+    height: 13px;
+    width: 13px;
+    background: url('img/bottom-san.jpg') no-repeat center center;
+    background-size:cover;
+}
+
+/* 将向上滚动按钮置于向上 */
+::-webkit-scrollbar-button:vertical:decrement {
+    background-color: purple;
+    border: 1px solid #edf1f8;
+		height: 13px;
+		width: 13px;
+		background: url('img/top-san.jpg') no-repeat center center;
+		background-size:cover;
+}
+
+::-webkit-scrollbar-track:vertical {
+    background-color: blue;
+    border: 1px dashed pink;
+}
+
+/* 拇指上方和向上按钮下方的顶部区域 */
+::-webkit-scrollbar-track-piece:vertical:start {
+/*     border: 1px solid #000; */
+}
+
+/* 拇指下方的底部区域和向下按钮 */
+::-webkit-scrollbar-track-piece:vertical:end {
+/*     border: 1px dashed pink; */
+}
+
+/* 轨道下方和上方 */
+::-webkit-scrollbar-track-piece {
+    background-color: #edf1f8;
+}
+
+/* 拇指本身 */
+::-webkit-scrollbar-thumb:vertical {
+    background-color: #d2d6df;
+		background-clip: content-box;
+		border-color: transparent;
+		border-style: solid;
+		border-width: 0 1px;
+}
+
+/* 角落 */
+::-webkit-scrollbar-corner:vertical {
+    background-color: black;
+}
+
+/* 调整器 */
+::-webkit-scrollbar-resizer:vertical {
+    background-color: gray;
+}
+
+/* ::-webkit-scrollbar 滚动条整体部分
+::-webkit-scrollbar-thumb  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+::-webkit-scrollbar-track  滚动条的轨道（里面装有Thumb）
+::-webkit-scrollbar-button 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
+::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分（除去）
+::-webkit-scrollbar-corner 边角，即两个滚动条的交汇处
+::-webkit-resizer 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件 */
+
+
+  </style>
+
+  
+</head>
+<body>
+ 
+<div id="project-label">Select a project (type "j" for a start):
+<div id="project">11111</div>
+</div>
+
+ 
+ 
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#basediv {
+				height: 300px;
+				width: 300px;
+				background: #0070A3;
+			}
+
+			#color-input-red {
+				position: relative;
+				background-color: #333;
+			}
+			 
+			/* content: "\2714"; */
+			#color-input-red:before{
+				content: '';
+				position: absolute;
+				width: 14px;
+				height: 14px;
+				border: 1px solid #33d0ff;
+				background-color: #fff;
+				color: #33d0ff;
+				font-size: 16px;
+				line-height: 15px;
+				text-align: center;
+			}
+			
+			#color-input-red:checked::before {
+				content: '\2714';
+				/* color: #fff;
+				background-color: #33d0ff; */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="basediv">
+			<input id="color-input-red" type="checkbox" />
+		</div>
+
+		<script>
+
+		</script>
+	</body>
+</html>

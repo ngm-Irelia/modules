@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery和CSS3超炫3D整屏垂直滚动页面特效</title>
+	<script type="text/javascript" src="js/modernizr.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="wrapper active-page1">
+	  <div class="page page1">
+	    <h2>First pages</h2>
+	  </div>
+	  <div class="page page2">
+	    <h2>Second page</h2>
+	  </div>
+	  <div class="page page3">
+	    <h2>Third page</h2>
+	  </div>
+	  <div class="page page4">
+	    <h2>Fourth pages</h2>
+	  </div>
+	</div>
+	<div class="nav-panel">
+	  <div class="scroll-btn up"></div>
+	  <div class="scroll-btn down"></div>
+	  <nav>
+	    <ul>
+	      <li data-target="1" class="nav-btn nav-page1 active"></li>
+	      <li data-target="2" class="nav-btn nav-page2"></li>
+	      <li data-target="3" class="nav-btn nav-page3"></li>
+	      <li data-target="4" class="nav-btn nav-page4"></li>
+	    </ul>
+	  </nav>
+	</div>
+	
+	<script src='js/stopExecutionOnTimeout.js?t=1'></script>
+	<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+	'use strict';
+	$(document).ready(function () {
+	    var $wrap = $('.wrapper'), pages = $('.page').length, scrolling = false, currentPage = 1, $navPanel = $('.nav-panel'), $scrollBtn = $('.scroll-btn'), $navBtn = $('.nav-btn');
+	    function manageClasses() {
+	        $wrap.removeClass(function (index, css) {
+	            return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+	        });
+	        $wrap.addClass('active-page' + currentPage);
+	        $navBtn.removeClass('active');
+	        $('.nav-btn.nav-page' + currentPage).addClass('active');
+	        $navPanel.addClass('invisible');
+	        scrolling = true;
+	        setTimeout(function () {
+	            $navPanel.removeClass('invisible');
+	            scrolling = false;
+	        }, 1000);
+	    }
+	    function navigateUp() {
+	        if (currentPage > 1) {
+	            currentPage--;
+	            if (Modernizr.csstransforms) {
+	                manageClasses();
+	            } else {
+	                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    }
+	    function navigateDown() {
+	        if (currentPage < pages) {
+	            currentPage++;
+	            if (Modernizr.csstransforms) {
+	                manageClasses();
+	            } else {
+	                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    }
+	    $(document).on('mousewheel DOMMouseScroll', function (e) {
+	        if (!scrolling) {
+	            if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+	                navigateUp();
+	            } else {
+	                navigateDown();
+	            }
+	        }
+	    });
+	    $(document).on('click', '.scroll-btn', function () {
+	        if ($(this).hasClass('up')) {
+	            navigateUp();
+	        } else {
+	            navigateDown();
+	        }
+	    });
+	    $(document).on('click', '.nav-btn:not(.active)', function () {
+	        if (!scrolling) {
+	            var target = $(this).attr('data-target');
+	            if (Modernizr.csstransforms) {
+	                $wrap.removeClass(function (index, css) {
+	                    return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+	                });
+	                $wrap.addClass('active-page' + target);
+	                $navBtn.removeClass('active');
+	                $(this).addClass('active');
+	                $navPanel.addClass('invisible');
+	                currentPage = target;
+	                scrolling = true;
+	                setTimeout(function () {
+	                    $navPanel.removeClass('invisible');
+	                    scrolling = false;
+	                }, 1000);
+	            } else {
+	                $wrap.animate({ 'top': '-' + (target - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    });
+	});
+	</script>
+</body>
+</html>

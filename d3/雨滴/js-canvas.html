@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas水滴</title>
+		<style>
+		    body{
+		        margin:0;   
+		    }
+			#rain{
+			    display:block;
+				background:"dark";
+			}
+		</style>
+	</head>
+    <body>
+        <canvas id="rain"></canvas>
+        <script>
+		    /*
+			程序逻辑：
+			1：设置canvas元素的宽高与浏览器一样
+				1.1：获取canvas元素
+				1.2：获取浏览器宽高
+				1.3：给canvas元素设置宽高
+			2:用canvas画图形
+				2.1:画一个矩形
+				2.2:画一个圆形
+			3: 
+			*/  
+			/* 1：设置canvas元素的宽高与浏览器一样*/
+			//1.1：获取canvas元素
+			var can=document.getElementById("rain");
+			//1.2：获取浏览器宽高
+			var w=window.innerWidth;
+			var h=window.innerHeight;
+			//1.3：给canvas元素设置宽高
+			can.width=w;
+			can.height=h;
+			//1.4: 当窗口大小变化的时候自动调整canvas的宽高
+			window.οnresize=function(){
+				w=window.innerWidth;
+				h=window.innerHeight;
+				can.width=w;
+				can.height=h;
+			}
+				
+			/*2:用canvas画图形*/
+			/*2.1 画一个矩形*/
+			//到画画的纸
+			var canContent=can.getContext("2d");
+			//拿一支红色的实心笔
+			//canContent.fillStyle="dark";
+			//画一个矩形
+			//canContent.fillRect(150,150,100,100);
+			//这是画空心的笔
+			//canContent.strokeStyle="dark";
+			//canContent.strokeRect(150,150,100,100);	
+			//先构思一个圆,其中0的意思是从哪个角度开始画(绘制起始点)(x,y,r,起始点,结束点)
+			//canContent.arc(400,400,50,0,Math.PI*2);
+			//这是画实心圆
+			//canContent.fill();
+			//这是画空心圆
+			//canContent.stroke();
+			//y 用来实现动画过程
+			//var x=0;
+			//var y=0;
+			//通过不断擦除和重画实现动态
+			/*通过不断添加透镜实现覆盖,实现颜色渐变
+			setInterval(function(){
+				//一个矩形的向平擦,其实坐标和末端坐标
+				//canContent.clearRect(0,0,w,h);
+				canContent.fillStyle="rgba(0,0,0,0.03)";
+				canContent.fillRect(0,0,w,h);
+				canContent.fillStyle="#fff";
+				for(x=0;x<8;x++){
+				canContent.fillRect(50*x,y++,10,10);}
+				//canContent.fillRect(30*2,y++,10,10);
+				//canContent.fillRect(30*3,y++,10,10);
+			},1000/60)	*/
+			//雨应该长什么样子
+			function Rain(){};
+			//var rain=new Rain();
+			function random(min,max){
+				//返回最大值和最小值之间的一个随机数
+				return Math.random()*(max-min)+min;
+			}
+			Rain.prototype={
+				/*雨滴的基本配置*/
+				init:function(){
+					this.x=random(0,w);
+					this.y=0;
+					//移动速度堆积
+					this.v=random(4,5);
+					this.h=random(0.8*h,0.9*h)
+					this.r=1; //一开始圆的半径
+					//this.vr=random(1,5);
+					//调整速率可以是圆显得无缝一点
+					this.vr=1;
+					this.a=1;
+					this.va=0.9;//透明变化系数
+				},
+				draw:function(){
+					if(this.y<this.h){
+						canContent.fillStyle="#00cccc";
+						canContent.fillRect(this.x,this.y,2,10);
+					}else{
+						canContent.strokeStyle="rgba(0,255,255,"+this.a+")";
+						//重新拿起笔
+						canContent.beginPath();
+						//canContent.arc(this.x,this.y,this.r,0,Math.PI*2);
+						canContent.ellipse(this.x,this.y,this.r*2,this.r,0,0,Math.PI*2);
+						
+						canContent.stroke();
+					}
+				},
+				move:function(){
+					//对比一下这两个代码,明显后面一个更简洁一点
+					if(this.y<this.h){
+						this.y+=this.v;
+					}else{
+						if(this.a>0.02){
+						   this.r+=this.vr;
+						   if(this.r>20){
+							   //半径到一定大小才开始变朦胧
+							   this.a*=this.va;
+							}
+						}else{
+						   //重新加载
+						   this.init();
+						}
+					}
+					
+					this.draw();
+				}
+			}
+			
+			var rainArray=[]; //存放所有雨滴
+			
+			/**
+			 * 创建雨滴
+			 */
+			function createRain(){
+				var rain=new Rain();
+				rain.init();
+				rain.draw();
+				rainArray.push(rain);
+			}
+			
+			function moveRain(){
+				canContent.fillStyle="rgba(0,0,0,0.1)";
+				canContent.fillRect(0,0,w,h);
+				for(var k=0;k<rainArray.length;k++){
+					rainArray[k].move();
+				}				    
+			}
+			
+			function timeOut(cb,time){
+				cb&&cb();
+				setTimeout(function(){
+					timeOut.call(this,cb,time);
+				}.bind(this),time)			
+			}
+			
+			for(let i=0;i<30;i++){
+				setTimeout(createRain,200*i);
+			}
+			
+			timeOut(moveRain,1000/60);
+			
+		</script>
+    </body>
+	
+	</html>

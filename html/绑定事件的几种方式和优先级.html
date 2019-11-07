@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div1" οnclick="ma()">1111</div>
+		<script>
+			var oDiv1=document.getElementById("div1");
+			oDiv1.addEventListener("click",function(){
+				console.log("addEventListener事件触发");
+			});
+// 			oDiv1.οnclick=function(){
+// 				console.log("on事件触发");
+// 			}
+			function ma(){
+				console.log("元素绑定方法触发");
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:176px; height:91px; background:url(265.png) no-repeat; position:absolute; left:300px; top:200px;}
+#div2{ border:2px #000 solid; position:absolute; left:115px; top:43px; border-radius:50%}
+#div3{ border:2px #000 solid; position:absolute; left:135px; top:43px; border-radius:50%}
+</style>
+<script>
+window.onload = function(){
+	var oDiv2 = document.getElementById('div2');
+	var oDiv3 = document.getElementById('div3');
+	
+	var r = 5;
+	var L2 = 115;
+	var T2 = 43;
+	var L3 = 135;
+	var T3 = 43;
+	
+	document.onmousemove = function(ev){
+		var ev = ev || window.event;
+		
+		change(oDiv2,ev.clientX,ev.clientY,L2,T2);
+		change(oDiv3,ev.clientX,ev.clientY,L3,T3);
+		
+		function change(obj,x,y,l,t){
+			
+			var changeX = 0;
+			var changeY = 0;
+			
+			var b = Math.abs( x - (obj.offsetLeft + obj.parentNode.offsetLeft) );
+			var a = Math.abs( y - (obj.offsetTop + obj.parentNode.offsetTop) );
+			
+			if( x > obj.offsetLeft + obj.parentNode.offsetLeft && y < obj.offsetTop + obj.parentNode.offsetTop ){   //右上
+			
+				changeX = Math.sin(Math.atan(b/a)) * r;
+				changeY = Math.cos(Math.atan(b/a)) * -r;
+			
+			}
+			else if(x > obj.offsetLeft + obj.parentNode.offsetLeft && y > obj.offsetTop + obj.parentNode.offsetTop){   //右下
+			
+				changeX = Math.sin(Math.atan(b/a)) * r;
+				changeY = Math.cos(Math.atan(b/a)) * r;
+			
+			}
+			else if(x < obj.offsetLeft + obj.parentNode.offsetLeft && y > obj.offsetTop + obj.parentNode.offsetTop){   //左下
+				changeX = Math.sin(Math.atan(b/a)) * -r;
+				changeY = Math.cos(Math.atan(b/a)) * r;
+			}
+			else if(x < obj.offsetLeft + obj.parentNode.offsetLeft && y < obj.offsetTop + obj.parentNode.offsetTop){   //左上
+			
+				changeX = Math.sin(Math.atan(b/a)) * -r;
+				changeY = Math.cos(Math.atan(b/a)) * -r;
+			
+			}
+			
+			obj.style.left = l + changeX + 'px';
+			obj.style.top = t + changeY + 'px';
+			
+		}
+		
+	};
+	
+	//Math.atan2()
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div id="div2"></div>
+    <div id="div3"></div>
+</div>
+</body>
+</html>

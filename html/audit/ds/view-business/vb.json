@@ -1,0 +1,830 @@
+{
+  "code": 200,
+  "data": {
+    "statistic": {
+      "modeltotal": 89679,
+      "issuetotal": 88841
+    },
+    "bank": {
+      "name": "南京银行",
+      "branch": [
+        {
+          "id": "999999",
+          "icon": "branch.png",
+          "open": true,
+          "pId": "0",
+          "name": "科瑞明软件有限公司"
+        },
+        {
+          "id": "9900",
+          "icon": "branch.png",
+          "open": true,
+          "pId": "0",
+          "name": "南京银行"
+        },
+        {
+          "id": "0106",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "总行消费金融中心"
+        },
+        {
+          "id": "9901",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "总行清算中心"
+        },
+        {
+          "id": "0109",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "总行交易银行部"
+        },
+        {
+          "id": "0110",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "总行资金运营中心"
+        },
+        {
+          "id": "0123",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "总行资产保全部"
+        },
+        {
+          "id": "4000",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "金融同业专营机构"
+        },
+        {
+          "id": "4099",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行南京分行专营"
+        },
+        {
+          "id": "4002",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行泰州分行专营"
+        },
+        {
+          "id": "4003",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行上海分行专营"
+        },
+        {
+          "id": "4014",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行连云港分行专营"
+        },
+        {
+          "id": "4016",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行徐州分行专营"
+        },
+        {
+          "id": "4017",
+          "icon": "subbranch.png",
+          "pId": "4000",
+          "name": "南京银行淮安分行专营"
+        },
+        {
+          "id": "0300",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "上海分行"
+        },
+        {
+          "id": "0301",
+          "icon": "subbranch.png",
+          "pId": "0300",
+          "name": "上海分行营业部"
+        },
+        {
+          "id": "6003",
+          "icon": "subbranch.png",
+          "pId": "0300",
+          "name": "上海分行消费金融中心"
+        },
+        {
+          "id": "0307",
+          "icon": "subbranch.png",
+          "pId": "0300",
+          "name": "上海浦东支行"
+        },
+        {
+          "id": "0308",
+          "icon": "subbranch.png",
+          "pId": "0300",
+          "name": "上海徐汇支行"
+        },
+        {
+          "id": "0200",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "泰州分行"
+        },
+        {
+          "id": "0220",
+          "icon": "subbranch.png",
+          "pId": "0200",
+          "name": "泰州分行营业部"
+        },
+        {
+          "id": "6002",
+          "icon": "subbranch.png",
+          "pId": "0200",
+          "name": "泰州分行消费金融中心"
+        },
+        {
+          "id": "0221",
+          "icon": "subbranch.png",
+          "pId": "0200",
+          "name": "靖江支行"
+        },
+        {
+          "id": "0222",
+          "icon": "subbranch.png",
+          "pId": "0200",
+          "name": "泰州高港支行"
+        },
+        {
+          "id": "0400",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "无锡分行"
+        },
+        {
+          "id": "0401",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "无锡分行营业部"
+        },
+        {
+          "id": "6004",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "无锡分行消费金融中心"
+        },
+        {
+          "id": "0415",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "江阴城东支行"
+        },
+        {
+          "id": "0406",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "江阴支行"
+        },
+        {
+          "id": "0407",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "无锡惠山支行"
+        },
+        {
+          "id": "0409",
+          "icon": "subbranch.png",
+          "pId": "0400",
+          "name": "宜兴支行"
+        },
+        {
+          "id": "0500",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "北京分行"
+        },
+        {
+          "id": "0501",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京分行清算中心"
+        },
+        {
+          "id": "6005",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京分行消费金融中心"
+        },
+        {
+          "id": "0506",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京分行营业部"
+        },
+        {
+          "id": "0508",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京万柳支行"
+        },
+        {
+          "id": "0511",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京中关村支行"
+        },
+        {
+          "id": "0509",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京朝阳门支行"
+        },
+        {
+          "id": "0513",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京顺义支行"
+        },
+        {
+          "id": "0512",
+          "icon": "subbranch.png",
+          "pId": "0500",
+          "name": "北京呼家楼支行"
+        },
+        {
+          "id": "0600",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "南通分行"
+        },
+        {
+          "id": "0601",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "南通分行营业部"
+        },
+        {
+          "id": "0609",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "启东支行"
+        },
+        {
+          "id": "0610",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "如东支行"
+        },
+        {
+          "id": "0612",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "海门支行"
+        },
+        {
+          "id": "0614",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "南通开发区支行"
+        },
+        {
+          "id": "0616",
+          "icon": "subbranch.png",
+          "pId": "0600",
+          "name": "海门临江新区支行"
+        },
+        {
+          "id": "0700",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "杭州分行"
+        },
+        {
+          "id": "0701",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州分行营业部"
+        },
+        {
+          "id": "0710",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州余杭支行"
+        },
+        {
+          "id": "0708",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州城北支行"
+        },
+        {
+          "id": "0711",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州城东小薇企业专营支行"
+        },
+        {
+          "id": "0715",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州城南小微企业专营支行"
+        },
+        {
+          "id": "0716",
+          "icon": "subbranch.png",
+          "pId": "0700",
+          "name": "杭州滨江科技支行"
+        },
+        {
+          "id": "0800",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "扬州分行"
+        },
+        {
+          "id": "6008",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "扬州分行营业部"
+        },
+        {
+          "id": "0807",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "江都支行"
+        },
+        {
+          "id": "0811",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "扬州龙川支行"
+        },
+        {
+          "id": "0810",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "高邮支行"
+        },
+        {
+          "id": "0812",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "宝应支行"
+        },
+        {
+          "id": "0813",
+          "icon": "subbranch.png",
+          "pId": "0800",
+          "name": "扬州城东支行"
+        },
+        {
+          "id": "0900",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "苏州分行"
+        },
+        {
+          "id": "0901",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "苏州分行营业部"
+        },
+        {
+          "id": "0909",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "苏州吴中支行"
+        },
+        {
+          "id": "0907",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "常熟支行"
+        },
+        {
+          "id": "0911",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "昆山支行"
+        },
+        {
+          "id": "1008611",
+          "icon": "subbranch.png",
+          "pId": "8100",
+          "name": "昆山高岭分行"
+        },
+        {
+          "id": "11111111",
+          "icon": "subbranch.png",
+          "pId": "1008611",
+          "name": "昆山高岭城北中心支行"
+        },
+        {
+          "id": "1800",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "淮安分行"
+        },
+        {
+          "id": "1801",
+          "icon": "subbranch.png",
+          "pId": "1800",
+          "name": "淮安分行营业部"
+        },
+        {
+          "id": "7100",
+          "icon": "branch.png",
+          "open": true,
+          "pId": "0",
+          "name": "宜兴阳羡村镇银行"
+        },
+        {
+          "id": "7107",
+          "icon": "subbranch.png",
+          "pId": "7100",
+          "name": "和桥支行"
+        },
+        {
+          "id": "7108",
+          "icon": "subbranch.png",
+          "pId": "7100",
+          "name": "周铁支行"
+        },
+        {
+          "id": "7115",
+          "icon": "subbranch.png",
+          "pId": "7107",
+          "name": "和桥支行营业部"
+        },
+        {
+          "id": "7116",
+          "icon": "subbranch.png",
+          "pId": "7107",
+          "name": "和桥支行清算中心"
+        },
+        {
+          "id": "7118",
+          "icon": "subbranch.png",
+          "pId": "7108",
+          "name": "周铁支行营业部"
+        },
+        {
+          "id": "8000",
+          "icon": "branch.png",
+          "open": true,
+          "pId": "0",
+          "name": "昆山银行"
+        },
+        {
+          "id": "8100",
+          "icon": "subbranch.png",
+          "pId": "8000",
+          "name": "昆山银行城北分行"
+        },
+        {
+          "id": "0912",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "苏州相城支行"
+        },
+        {
+          "id": "0913",
+          "icon": "subbranch.png",
+          "pId": "0900",
+          "name": "苏州新区支行"
+        },
+        {
+          "id": "1100",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "盐城分行"
+        },
+        {
+          "id": "1101",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "盐城分行营业部"
+        },
+        {
+          "id": "1107",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "盐城盐都支行"
+        },
+        {
+          "id": "1109",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "滨海支行"
+        },
+        {
+          "id": "1108",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "东台支行"
+        },
+        {
+          "id": "1110",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "建湖支行"
+        },
+        {
+          "id": "1113",
+          "icon": "subbranch.png",
+          "pId": "1100",
+          "name": "大丰支行"
+        },
+        {
+          "id": "1500",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "江北新区分行"
+        },
+        {
+          "id": "0160",
+          "icon": "subbranch.png",
+          "pId": "1500",
+          "name": "江北新区分行营业部"
+        },
+        {
+          "id": "0143",
+          "icon": "subbranch.png",
+          "pId": "1500",
+          "name": "大厂支行"
+        },
+        {
+          "id": "0148",
+          "icon": "subbranch.png",
+          "pId": "1500",
+          "name": "高新开发区支行"
+        },
+        {
+          "id": "0182",
+          "icon": "subbranch.png",
+          "pId": "1500",
+          "name": "六合支行"
+        },
+        {
+          "id": "1000",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "常州分行"
+        },
+        {
+          "id": "1001",
+          "icon": "subbranch.png",
+          "pId": "1000",
+          "name": "常州分行营业部"
+        },
+        {
+          "id": "1007",
+          "icon": "subbranch.png",
+          "pId": "1000",
+          "name": "金坛支行"
+        },
+        {
+          "id": "1010",
+          "icon": "subbranch.png",
+          "pId": "1000",
+          "name": "常州钟楼支行"
+        },
+        {
+          "id": "1200",
+          "icon": "subbranch.png",
+          "pId": "9900",
+          "name": "镇江分行"
+        },
+        {
+          "id": "1201",
+          "icon": "subbranch.png",
+          "pId": "1200",
+          "name": "镇江分行清算中心"
+        },
+        {
+          "id": "1206",
+          "icon": "subbranch.png",
+          "pId": "1200",
+          "name": "镇江分行营业部"
+        },
+        {
+          "id": "1008615",
+          "icon": "subbranch.png",
+          "pId": "123052",
+          "name": "第二分行下中心支行"
+        },
+        {
+          "id": "301001010010",
+          "icon": "subbranch.png",
+          "pId": "1230",
+          "name": "测试第一分行"
+        },
+        {
+          "id": "1230",
+          "icon": "branch.png",
+          "open": true,
+          "pId": "0",
+          "name": "测试总行"
+        },
+        {
+          "id": "123052",
+          "icon": "subbranch.png",
+          "pId": "1230",
+          "name": "测试第二分行"
+        },
+        {
+          "id": "1230503",
+          "icon": "subbranch.png",
+          "pId": "301001010010",
+          "name": "测试第一分行下中心支行"
+        },
+        {
+          "id": "1230501",
+          "icon": "subbranch.png",
+          "pId": "1230503",
+          "name": "测试第一支行"
+        }
+      ]
+    },
+    "lines": [
+      {
+        "amount": 10237,
+        "modeltotal": 111640,
+        "model": 10384,
+        "issuetotal": 51920,
+        "department": "授信审批部",
+        "amounttotal": 51185,
+        "issue": 11164
+      },
+      {
+        "amount": 10455,
+        "modeltotal": 110220,
+        "model": 10591,
+        "issuetotal": 52955,
+        "department": "金融同业部",
+        "amounttotal": 52275,
+        "issue": 11022
+      },
+      {
+        "amount": 9879,
+        "modeltotal": 115680,
+        "model": 10474,
+        "issuetotal": 52370,
+        "department": "零售金融部",
+        "amounttotal": 49395,
+        "issue": 11568
+      },
+      {
+        "amount": 10053,
+        "modeltotal": 112420,
+        "model": 9932,
+        "issuetotal": 49660,
+        "department": "运营管理部",
+        "amounttotal": 50265,
+        "issue": 11242
+      },
+      {
+        "amount": 10737,
+        "modeltotal": 113930,
+        "model": 9613,
+        "issuetotal": 48065,
+        "department": "公司金融部",
+        "amounttotal": 53685,
+        "issue": 11393
+      },
+      {
+        "amount": 9968,
+        "modeltotal": 111520,
+        "model": 11012,
+        "issuetotal": 55060,
+        "department": "交易银行部",
+        "amounttotal": 49840,
+        "issue": 11152
+      },
+      {
+        "amount": 10437,
+        "modeltotal": 114800,
+        "model": 11572,
+        "issuetotal": 57860,
+        "department": "小企业金融部",
+        "amounttotal": 52185,
+        "issue": 11480
+      },
+      {
+        "amount": 9598,
+        "modeltotal": 98920,
+        "model": 10512,
+        "issuetotal": 52560,
+        "amounttotal": 47990,
+        "issue": 9892,
+        "department": "风险合规部"
+    },
+    {
+        "amount": 10821,
+        "modeltotal": 99140,
+        "model": 9683,
+        "issuetotal": 48415,
+        "amounttotal": 54105,
+        "issue": 9914,
+        "department": "法律合规部"
+    }
+    ],
+    "bankRanking": {
+      "branch": [
+        {
+          "issuetotal": 20487,
+          "bankname": "南京分行",
+          "bankid": 1,
+          "issuefinished": 10410,
+          "ranking": "Top1"
+        },
+        {
+          "issuetotal": 20894,
+          "bankname": "南京银行",
+          "bankid": 2,
+          "issuefinished": 10640,
+          "ranking": "Top2"
+        },
+        {
+          "issuetotal": 21373,
+          "bankname": "上海分行",
+          "bankid": 3,
+          "issuefinished": 10841,
+          "ranking": "Top3"
+        },
+        {
+          "issuetotal": 21004,
+          "bankname": "泰州分行",
+          "bankid": 4,
+          "issuefinished": 10537,
+          "ranking": "Top4"
+        }
+      ]
+    },
+    "businesses": [
+      {
+        "amount": 9360,
+        "modeltotal": 102000,
+        "model": 9992,
+        "issuetotal": 49960,
+        "amounttotal": 46800,
+        "issue": 10200,
+        "business": "并购贷款"
+      },
+      {
+        "amount": 9873,
+        "modeltotal": 96740,
+        "model": 9373,
+        "issuetotal": 46865,
+        "amounttotal": 49365,
+        "issue": 9674,
+        "business": "非小企业贷后管理"
+      },
+      {
+        "amount": 10266,
+        "modeltotal": 100430,
+        "model": 10283,
+        "issuetotal": 51415,
+        "amounttotal": 51330,
+        "issue": 10043,
+        "business": "不规范经营"
+      },
+      {
+        "amount": 9919,
+        "modeltotal": 98250,
+        "model": 10166,
+        "issuetotal": 50830,
+        "amounttotal": 49595,
+        "issue": 9825,
+        "business": "票据业务"
+      },
+      {
+        "amount": 10016,
+        "modeltotal": 103600,
+        "model": 9498,
+        "issuetotal": 47490,
+        "amounttotal": 50080,
+        "issue": 10360,
+        "business": "对公存款"
+      },
+      {
+        "amount": 9258,
+        "modeltotal": 101500,
+        "model": 10578,
+        "issuetotal": 52890,
+        "amounttotal": 46290,
+        "issue": 10150,
+        "business": "贷后管理"
+      },
+      {
+        "amount": 9730,
+        "modeltotal": 97450,
+        "model": 9594,
+        "issuetotal": 47970,
+        "amounttotal": 48650,
+        "issue": 9745,
+        "business": "对公授信执行"
+      }
+    ]
+  },
+  "msg": "获取成功"
+}

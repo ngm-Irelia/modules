@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>机构违规画像</title>
+  <link rel="stylesheet" href="../stylesheets/common/cube.min.css">
+  <link rel="stylesheet" href="../stylesheets/common/jedate-6.5.0/skin/jedate.css">
+  <link rel="stylesheet" href="../stylesheets/common/base.css">
+  <link rel="stylesheet" href="../stylesheets/portrayal-org.css">
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-link left">
+        <p>
+          <a class="parent-page" href="./view-org.html">机构视角</a> > 
+          <span class="curr-page">机构违规画像</span>
+        </p>
+      </div>
+      <div class="search right">
+        <!-- <input class="input search-date" type="text">
+        <span>至</span> -->
+        <input id="js-date" class="input search-date" type="text" placeholder="请选择日期" autocomplete="off">
+        <div class="search-group">
+          <input id="js-search" class="input search-input" type="text" placeholder="请输入" autocomplete="off"/>
+          <span id="js-search-btn"><span class="search-icon"></span></span>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="left middle">
+        <div class="inner">
+          <div class="top content-block risk-statistics">
+            <p class="risk-title">问题画像</p>
+            <div class="left risk-left">
+              <div id="js-risk-title" class="risk-portrait-title">2018年10月  南京分行</div>
+              <!-- <div class="risk-portrait-title">B级  73分</div> -->
+              <div id="risk-portrait-content" class="risk-portrait-content">
+                
+              </div>
+            </div>
+            <div class="right risk-right">
+              <!-- <p class="risk-dim-title">维度得分</p> -->
+              <div id="js-risk-dim" class="risk-dim-content">
+                
+              </div>
+
+            </div>
+          </div>
+          <div class="bottom content-block trend-analysis">
+            <!-- 信息弹框 -->
+            <div class="org-risk-overview-model">
+              <div class="org-risk-overview-model-backImg"> </div>
+              <div class="org-risk-overview-model-centerTopImg"> </div>
+              <div class="org-risk-overview-model-centerBottomImg"> </div>
+              <div class="org-risk-overview-model-base">
+                <header class="model-header">未整改明细</header>
+                <div class="model-close">x</div>
+                <table class="model-table">
+                  <thead>
+                      <th style="width: 40px">序号</th>
+                      <th style="width: 80px">支行名称</th>
+                      <th style="width: 80px">数额</th>
+                  </thead>
+                  
+                  <tbody id="bodyBox"> 
+                  </tbody>
+                  
+                </table>
+              </div>	
+            </div>
+
+            <p class="trend-analysis-title">趋势分析</p>
+            <div class="change-chart-btn">
+              <div class="change-chart-btn-left"><div></div></div>
+              <div class="change-chart-btn-right change-chart-btn-selected"><div></div></div>
+            </div>
+            <div class="trend-analysis-header"> 
+              <div class="trend-analysis-name-hader"></div>
+              <div class="trend-analysis-name-explain">（按时间维度）</div>
+            </div>
+            <div class="trend-analysis-type-select">
+              <div class="trend-analysis-type trend-analysis-name trend-analysis-type-first">涉及客户数</div>
+              <div class="trend-analysis-type trend-analysis-name">涉及员工数</div>
+              <div class="trend-analysis-type trend-analysis-name">涉及金额</div>
+              <div class="trend-analysis-type trend-analysis-name trend-analysis-type-selected trend-analysis-type-last">问题数量</div>
+            </div>
+            <div id="trend-analysis-chart" class="trend-analysis-content">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left content-left content-block data-materialization">
+        <p class="data-title">基础信息</p>
+        <div class="data-content">
+          <div id="js-baseinfo" class="data-baseinfo h-50">
+            <p>
+              <span class="baseinfo-item-name">机构编号：</span>
+              <span class="right-btn baseinfo-item-value">1008102</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">机构名称：</span>
+              <span class="right-btn baseinfo-item-value">南京分行</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">机构专职合规人员：</span>
+              <span class="right-btn baseinfo-item-value">195人</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">占机构总人数比例：</span>
+              <span class="right-btn baseinfo-item-value">80%</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">占合规岗总人数比例：</span>
+              <span class="right-btn baseinfo-item-value">65%</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">机构兼职合规人员：</span>
+              <span class="right-btn baseinfo-item-value">195人</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">占机构总人数比例：</span>
+              <span class="right-btn baseinfo-item-value">80%</span>
+            </p>
+            <p class="baseinfo-item">
+              <span class="baseinfo-item-name">占合规岗总人数比例：</span>
+              <span class="right-btn baseinfo-item-value">65%</span>
+            </p>
+          </div>
+          <div id="problem-customers-pie" class="h-25"></div><!-- 问题客户数量占比 -->
+          <div id="problem-staff-pie" class="h-25"></div><!-- 问题员工数量占比 -->
+        </div>
+      </div>
+      <div class="left content-right content-block outline-target">
+        <p class="target-title">违规指标</p>
+        <div id="js-violation" class="target-content">
+          <!-- <div class="outline-target-block">
+            <p class="fs-16">问题数量统计 (个)</p>
+            <p class="outline-target-block-number">898</p>
+            <div>
+              <p class="w-50 left"><span class="outline-target-block-tong">10%</span>同比</p>
+              <p class="w-50 right"><span class="outline-target-block-chain">10%</span>环比</p>
+            </div>
+          </div>
+          <div class="outline-target-block">
+            <p class="fs-16">问题归属条线统计 (个)</p>
+            <p class="outline-target-block-number">898</p>
+            <div>
+              <p class="w-50 left"><span class="outline-target-block-tong">10%</span>同比</p>
+              <p class="w-50 right"><span class="outline-target-block-chain">10%</span>环比</p>
+            </div>
+          </div>
+          <div class="outline-target-block">
+            <p class="fs-16">下属机构涉及客户数量 (个)</p>
+            <p class="outline-target-block-number">898</p>
+            <div>
+              <p class="w-50 left"><span class="outline-target-block-tong">10%</span>同比</p>
+              <p class="w-50 right"><span class="outline-target-block-chain">10%</span>环比</p>
+            </div>
+          </div>
+          <div class="outline-target-block">
+            <p class="fs-16">下属机构涉及员工数量 (个)</p>
+            <p class="outline-target-block-number">898</p>
+            <div>
+              <p class="w-50 left"><span class="outline-target-block-tong">10%</span>同比</p>
+              <p class="w-50 right"><span class="outline-target-block-chain">10%</span>环比</p>
+            </div>
+          </div>    -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../javascripts/common/jquery-2.1.0.min.js" ></script>
+  <script src="../javascripts/common/jedate.min.js"></script>
+  <script src="../javascripts/common/echarts.min.js" ></script>
+  <script src='../javascripts/common/echarts-liquidfill.js'></script>
+  <script src="../javascripts/common/countUp.min.js"></script>
+  <script src="../javascripts/common/viewCommon.js"></script>
+  <script src="../javascripts/portrayal-org.js"></script>
+</body>
+</html>

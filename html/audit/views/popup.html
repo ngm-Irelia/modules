@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>弹框</title>
+  <link rel="stylesheet" href="http://g.alicdn.com/thx/cube/1.3.2/cube.min.css">
+  <link rel="stylesheet" href="../stylesheets/common/base.css">
+  <!-- <link rel="stylesheet" href="../stylesheets/portrayal-business.css"> -->
+  <style>
+    body{
+      color: #fff;
+    }
+    .popup-shade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .6);
+      z-index: 1;
+    }
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1042px;
+      height: 676px;
+      margin-top: -338px;
+      margin-left: -521px;
+      padding: 30px 40px;
+      background: url('../image/view/u2749.png') no-repeat left top,
+                  url('../image/view/u2751.png') no-repeat left 8px top 9px;
+    }
+    .popup .popup-block-title {
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+    }
+    .popup .popup-block-body {
+      height: 100%;
+      padding-top: 40px;
+      margin-top: -40px;
+    }
+    .popup-table-container {
+      height: 100%;
+      overflow: auto;
+    }
+
+    .ranking-table {
+      font-size: 14px;
+      width: 100%;
+      color: #97AFC9;
+    }
+    .ranking-table td, .ranking-table th {
+      border: 0;
+      padding: 5px 10px;
+    }
+    .ranking-table .third {
+      width: 50%;
+    }
+    .ranking-table-bar {
+      height: 12px;
+    }
+    .ranking-table-bar .inner {
+      height: 12px;
+    }
+
+    .close.icon {
+      /* color: #fff; */
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      width: 21px;
+      height: 21px;
+    }
+    .close.icon:before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      width: 21px;
+      height: 1px;
+      background-color: currentColor;
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+    }
+    .close.icon:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      width: 21px;
+      height: 1px;
+      background-color: currentColor;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="popup-shade">
+    <div class="popup">
+      <div class="close icon"></div>
+      <div class="left w-48 h-100 popup-left">
+        <h3 class="popup-block-title">分行整改完成情况排名</h3>
+        <div class="popup-block-body">
+          <div class="double-border popup-table-container">
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th class="text-center">序号</th>
+                  <th>机构</th>
+                  <th class="third"></th>
+                  <th></th>
+                  <th>排名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td>南京分行</td>
+                  <td class="third">
+                    <div class="circlebar ranking-table-bar" data-percent="78%">
+                      <div class="circlebar-bar blue inner"></div>
+                    </div>
+                  </td>
+                  <td>78</td>
+                  <td>TOP1</td>
+                </tr>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td>苏州分行</td>
+                  <td class="third">
+                    <div class="circlebar ranking-table-bar" data-percent="78%">
+                      <div class="circlebar-bar blue inner"></div>
+                    </div>
+                  </td>
+                  <td>78</td>
+                  <td>TOP2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="right w-48 h-100 popup-right">
+        <h3 class="popup-block-title">支行整改完成情况排名</h3>
+        <div class="popup-block-body">
+          <div class="double-border popup-table-container">表格</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

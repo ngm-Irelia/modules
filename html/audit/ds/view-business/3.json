@@ -1,0 +1,218 @@
+{
+  "code": 200,
+  "data": {
+      "models": [
+          {
+              "id": 1,
+              "modelname": "RE_MX023按客户经理统计不良贷款",
+              "risklevel": "低",
+              "involvedamount": 75704,
+              "besinessname": "票据业务",
+              "risknum": 307,
+              "solvedproblem": 618,
+              "modelnum": "MX0117"
+          },
+          {
+              "id": 2,
+              "modelname": "RE_MX023按客户经理统计不良贷款",
+              "risklevel": "低",
+              "involvedamount": 70065,
+              "besinessname": "对公存款",
+              "risknum": 205,
+              "solvedproblem": 17,
+              "modelnum": "JC01JC0JC0"
+          },
+          {
+              "id": 3,
+              "modelname": "JC01机构信息经理",
+              "risklevel": "较低",
+              "involvedamount": 65746,
+              "besinessname": "对公存款",
+              "risknum": 236,
+              "solvedproblem": 382,
+              "modelnum": "MX01MX0MX0"
+          },
+          {
+              "id": 4,
+              "modelname": "JC12机构信息经理",
+              "risklevel": "很高",
+              "involvedamount": 61092,
+              "besinessname": "不规范经营",
+              "risknum": 275,
+              "solvedproblem": 274,
+              "modelnum": "MX03MX0MX0"
+          },
+          {
+              "id": 5,
+              "modelname": "RE_MX023按客户经理统计不良贷款",
+              "risklevel": "极中",
+              "involvedamount": 60116,
+              "besinessname": "对公存款",
+              "risknum": 293,
+              "solvedproblem": 122,
+              "modelnum": "JC01JC0JC0"
+          },
+          {
+              "id": 6,
+              "modelname": "RE_MX023按行长经理统计不良贷款",
+              "risklevel": "极中",
+              "involvedamount": 57529,
+              "besinessname": "贷后管理",
+              "risknum": 297,
+              "solvedproblem": 513,
+              "modelnum": "JC0111"
+          },
+          {
+              "id": 7,
+              "modelname": "RE_mx025贷款担保汇总分析",
+              "risklevel": "较低",
+              "involvedamount": 55602,
+              "besinessname": "并购贷款",
+              "risknum": 406,
+              "solvedproblem": 557,
+              "modelnum": "JC02JC0JC0"
+          },
+          {
+              "id": 8,
+              "modelname": "JC89机构法务经理",
+              "risklevel": "很高",
+              "involvedamount": 54143,
+              "besinessname": "票据业务",
+              "risknum": 490,
+              "solvedproblem": 496,
+              "modelnum": "JC0117"
+          },
+          {
+              "id": 9,
+              "modelname": "JC89机构法务经理",
+              "risklevel": "较低",
+              "involvedamount": 50400,
+              "besinessname": "票据业务",
+              "risknum": 358,
+              "solvedproblem": 719,
+              "modelnum": "JC0117"
+          },
+          {
+              "id": 10,
+              "modelname": "RE_MX222按支行行长统计不良贷款",
+              "risklevel": "低",
+              "involvedamount": 47409,
+              "besinessname": "非小企业贷后管理",
+              "risknum": 201,
+              "solvedproblem": 368,
+              "modelnum": "JC0115"
+          },
+          {
+              "id": 11,
+              "modelname": "RE_MX456456按客户经理统计违规操作",
+              "risklevel": "低",
+              "involvedamount": 45840,
+              "besinessname": "对公授信执行",
+              "risknum": 159,
+              "solvedproblem": 352,
+              "modelnum": "MX0114"
+          },
+          {
+              "id": 12,
+              "modelname": "RE_mx025贷款担保汇总分析",
+              "risklevel": "很高",
+              "involvedamount": 35922,
+              "besinessname": "并购贷款",
+              "risknum": 418,
+              "solvedproblem": 167,
+              "modelnum": "JC02JC0JC0"
+          },
+          {
+              "id": 13,
+              "modelname": "RE_mx025贷款担保汇总分析",
+              "risklevel": "极中",
+              "involvedamount": 31655,
+              "besinessname": "不规范经营",
+              "risknum": 362,
+              "solvedproblem": 19,
+              "modelnum": "JC03JC0JC0"
+          },
+          {
+              "id": 14,
+              "modelname": "JC01机构信息经理",
+              "risklevel": "很高",
+              "involvedamount": 29456,
+              "besinessname": "非小企业贷后管理",
+              "risknum": 524,
+              "solvedproblem": 342,
+              "modelnum": "MX0115"
+          },
+          {
+              "id": 15,
+              "modelname": "RE_MX023按行长经理统计不良贷款",
+              "risklevel": "低",
+              "involvedamount": 29333,
+              "besinessname": "贷后管理",
+              "risknum": 162,
+              "solvedproblem": 708,
+              "modelnum": "JC0111"
+          },
+          {
+              "id": 16,
+              "modelname": "JC19机构大堂经理",
+              "risklevel": "较低",
+              "involvedamount": 28993,
+              "besinessname": "对公授信执行",
+              "risknum": 321,
+              "solvedproblem": 83,
+              "modelnum": "JC0114"
+          },
+          {
+              "id": 17,
+              "modelname": "RE_MX456456按客户经理统计违规操作",
+              "risklevel": "极中",
+              "involvedamount": 13823,
+              "besinessname": "对公授信执行",
+              "risknum": 404,
+              "solvedproblem": 720,
+              "modelnum": "MX0114"
+          },
+          {
+              "id": 18,
+              "modelname": "RE_MX023按产品经理统计中分法相",
+              "risklevel": "极中",
+              "involvedamount": 13616,
+              "besinessname": "并购贷款",
+              "risknum": 462,
+              "solvedproblem": 252,
+              "modelnum": "MX02MX0MX0"
+          },
+          {
+              "id": 19,
+              "modelname": "RE_mx025贷款担保汇总分析",
+              "risklevel": "很高",
+              "involvedamount": 8906,
+              "besinessname": "贷后管理",
+              "risknum": 238,
+              "solvedproblem": 56,
+              "modelnum": "MX0111"
+          },
+          {
+              "id": 20,
+              "modelname": "JC12机构信息经理",
+              "risklevel": "较低",
+              "involvedamount": 6246,
+              "besinessname": "不规范经营",
+              "risknum": 398,
+              "solvedproblem": 355,
+              "modelnum": "MX03MX0MX0"
+          },
+          {
+              "id": 21,
+              "modelname": "JC01机构信息经理",
+              "risklevel": "较低",
+              "involvedamount": 3697,
+              "besinessname": "非小企业贷后管理",
+              "risknum": 228,
+              "solvedproblem": 171,
+              "modelnum": "MX0115"
+          }
+      ]
+  },
+  "msg": "获取成功"
+}

@@ -1,0 +1,38 @@
+{
+  "status": 200,
+  "message": "获取成功",
+  "data": {
+    "branch": [
+      {
+        "bankId": "111",
+        "bankName": "南京分行",
+        "issueFinished": 118,
+        "issueTotal": 150,
+        "ranking": "TOP1"
+      },
+      {
+        "bankId": "222",
+        "bankName": "苏州分行",
+        "issueFinished": 65,
+        "issueTotal": 150,
+        "ranking": "TOP2"
+      }
+    ],
+    "subBranch": [
+      {
+        "bankId": "111",
+        "bankName": "城东支行",
+        "issueFinished": 118,
+        "issueTotal": 150,
+        "ranking": "TOP1"
+      },
+      {
+        "bankId": "222",
+        "bankName": "新街口支行",
+        "issueFinished": 65,
+        "issueTotal": 150,
+        "ranking": "TOP2"
+      }
+    ]
+  }
+}

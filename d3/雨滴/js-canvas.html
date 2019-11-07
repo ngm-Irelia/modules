@@ -85,6 +85,7 @@
 				//返回最大值和最小值之间的一个随机数
 				return Math.random()*(max-min)+min;
 			}
+			console.log(canContent)
 			Rain.prototype={
 				/*雨滴的基本配置*/
 				init:function(){
@@ -105,25 +106,24 @@
 						canContent.fillStyle="#00cccc";
 						canContent.fillRect(this.x,this.y,2,10);
 					}else{
+						canContent.fillStyle="rgba(0,0,0,0)";
 						canContent.strokeStyle="rgba(0,255,255,"+this.a+")";
-						//重新拿起笔
+						
 						canContent.beginPath();
 						//canContent.arc(this.x,this.y,this.r,0,Math.PI*2);
-						canContent.ellipse(this.x,this.y,this.r*2,this.r,0,0,Math.PI*2);
+						canContent.ellipse(this.x,this.y,this.r,this.r/3,0,0,Math.PI*2);
 						
 						canContent.stroke();
 					}
 				},
 				move:function(){
-					//对比一下这两个代码,明显后面一个更简洁一点
 					if(this.y<this.h){
 						this.y+=this.v;
 					}else{
 						if(this.a>0.02){
 						   this.r+=this.vr;
 						   if(this.r>20){
-							   //半径到一定大小才开始变朦胧
-							   this.a*=this.va;
+							   this.a*=this.va;//模糊
 							}
 						}else{
 						   //重新加载
@@ -148,7 +148,7 @@
 			}
 			
 			function moveRain(){
-				canContent.fillStyle="rgba(0,0,0,0.1)";
+				canContent.fillStyle="rgba(0,0,0,.1)";
 				canContent.fillRect(0,0,w,h);
 				for(var k=0;k<rainArray.length;k++){
 					rainArray[k].move();
@@ -162,8 +162,8 @@
 				}.bind(this),time)			
 			}
 			
-			for(let i=0;i<30;i++){
-				setTimeout(createRain,200*i);
+			for(let i=0;i<20;i++){
+				setTimeout(createRain,600*i);
 			}
 			
 			timeOut(moveRain,1000/60);

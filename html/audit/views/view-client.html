@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>客户视角</title>
+	<link rel="stylesheet" href="../javascripts/common/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="../stylesheets/common/jedate-6.5.0/skin/jedate.css">
+	<link rel="stylesheet" href="../stylesheets/common/base.css">
+  <link rel="stylesheet" href="../stylesheets/view-client/view-client.css" > </link>
+  
+	<script src="../javascripts/common/jquery-2.1.0.min.js" ></script>
+	<script type="text/javascript" src="../javascripts/common/echarts.min.js" ></script>
+</head>
+<body>
+	<nav class="client-nav"> </nav>
+	<div class="nav">
+		<div class="nav-wing-left left w-50 h-100"></div>
+		<div class="nav-wing-right right w-50 h-100"></div>
+		<ul class="nav-link">
+			<li class="left"><a href="./view-org.html" class="right-nav-btn first">机构视角</a></li>
+			<li class="left"><a href="./view-business.html" class="right-nav-btn">业务视角</a></li>
+			<li class="left"><a href="./view-client.html" class="right-nav-btn active">客户视角</a></li>
+			<li class="left"><a href="./view-staff.html" class="right-nav-btn last">员工视角</a></li>
+		</ul>
+	</div>
+  <div class="client-base">
+		<div class="search">
+			<input id="js-date-start" class="input search-date" type="text" autocomplete="off">
+			<span>至</span>
+			<input id="js-date-end" class="input search-date" type="text" autocomplete="off">
+			<div class="search-group">
+				<input id="js-search" class="input search-input" type="text" placeholder="请输入" autocomplete="off"/>
+				<span id="searchBtn">
+					<span class="search-icon"></span>
+				</span>
+				
+			</div>
+			<a id="js-month" class="round-btn">近一月</a>
+			<a id="js-half-year" class="round-btn">近半年</a>
+			<a id="js-year" class="round-btn">近一年</a>
+		</div>
+		<!-- <header class="client-base-header"></header> -->
+		<div id="client-map" class="client-content">
+			
+		</div>
+		<!-- 右侧信息弹框 -->
+		<div class="client-risk-overview-model">
+			<div class="client-risk-overview-model-backImg"> </div>
+			<div class="client-risk-overview-model-centerTopImg"> </div>
+			<div class="client-risk-overview-model-centerBottomImg"> </div>
+			<div class="client-risk-overview-model-base">
+				<header class="model-header">未整改明细</header>
+				<div class="model-close">x</div>
+				<table class="model-table">
+					<thead>
+							<th style="width: 40px">序号</th>
+							<th id="model-head-name" style="width: 80px">支行名称</th>
+							<th id="model-head-type" style="width: 80px">数额</th>
+					</thead> 
+				  <tbody id='bodyBox'>
+					</tbody>
+					
+				</table>
+			</div>	
+		</div>
+		<aside class="client-aside">
+			<div class="client-risk-overview">
+				<!-- <header>客户风险概览</header>
+			
+				<div class="client-risk-overview-list">
+					<div class="client-risk-overview-listname">
+						<p><span>机构名称：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>南京银行</span></p>
+					</div>
+					<div class="client-risk-overview-listname">
+							<p><span>占比：</span></p>
+						</div>
+						<div class="client-risk-overview-listvalue">
+							<p><span>34%</span></p>
+						</div>
+        </div>
+        
+        <div class="client-risk-overview-list">
+					<div class="client-risk-overview-listname">
+						<p><span>问题客户：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>34</span></p>
+					</div>
+					<div class="client-risk-overview-listname">
+						<p><span>涉及金额：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>1342万</span></p>
+					</div>
+        </div>
+        
+				<div class="client-risk-overview-list">
+					<div class="client-risk-overview-listname">
+						<p><span>客户问题：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>934</span></p>
+					</div>
+					<div class="client-risk-overview-listname">
+						<p><span>未整改：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>34</span></p>
+					</div>
+				</div>
+
+				<div class="client-risk-overview-list">
+					<div class="client-risk-overview-listname">
+						<p><span>已整改：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>900</span></p>
+					</div>
+					<div class="client-risk-overview-listname">
+						<p><span>整改完成率：</span></p>
+					</div>
+					<div class="client-risk-overview-listvalue">
+						<p><span>80%</span></p>
+					</div>
+				</div> -->
+				<div class="client-risk-overview-baseMsg"></div>
+				<div id="client-risk-overview-chart" class="client-risk-overview-chart">
+
+				</div>
+
+			</div>
+			<div class="client-problem-statistics">
+					<header>客户问题统计</header>
+					<div class="client-problem-statistics-list">
+						<table class="client-problem-statistics-table">
+							<thead>
+									<th class="client-table-10">序号</th>
+									<th class="client-table-20">机构</th>
+									<th class="client-table-40"> </th>
+									<th class="client-table-20"> </th>
+									<th class="client-table-10">排名</th>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>
+								<tr>
+									<td class="client-table-10"><div>123</div></td>
+									<td class="client-table-20">南京分行</td>
+									<td class="client-table-50"><div class="client-table-number-line-base"></div> <div class="client-table-number-line"></div></td>
+									<td class="client-table-10">118</td>
+									<td class="client-table-10">top1</td>
+								</tr>	
+										
+							</tbody>
+							
+						</table>
+					</div>
+			</div>
+		</aside>
+	</div>
+</body>
+<script src="../javascripts/common/jedate.min.js"></script>
+<script src="../javascripts/common/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="../javascripts/common/viewCommon.js"></script>
+<script type="text/javascript" src="../javascripts/view-client/view-client.js"></script>
+</html>

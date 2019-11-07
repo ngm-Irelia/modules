@@ -1,0 +1,293 @@
+/* 页面通用组件样式 */
+
+html {
+	box-sizing: border-box;
+}
+*,*::before,*::after {
+	box-sizing: inherit;
+}
+body {
+  background-color: rgba(19, 21, 34, 1);
+  font-size: 12px;
+  background:rgba(19, 21, 34, 1) url('../../image/bg-base.png') no-repeat left top;
+  background-size:100% ,100%; 
+}
+
+/* ====================================================== */
+/* 通用原子样式 */
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clearfix::after {
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+.text-rigth {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+/* 像素宽 */
+.wp-48 {
+  width: 48px;
+}
+/* 百分比width */
+.w-100 {
+  width: 100%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-48 {
+  width: 48%;
+}
+.w-33 {
+  width: 33%;
+}
+.w-25 {
+  width: 25%;
+}
+/* 像素高 */
+.h-p-12 {
+  height: 12px;
+}
+/* 百分比height */
+.h-50 {
+  height: 50%;
+}
+.h-25 {
+  height: 25%;
+  /* background-color: #eee; */
+}
+.h-100 {
+  height: 100%;
+}
+
+/* margin-top */
+.mt-20 {
+  margin-top: 20px;
+}
+/* font-size */
+.fs-16 {
+  font-size: 16px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-36 {
+  font-size: 36px;
+}
+/* font-color */
+.fc-red {
+  color: rgba(251, 75, 109, 1);
+}
+.fc-green {
+  color: #66cc33;
+}
+.fc-blue {
+  color: #00b8d8;
+}
+.fc-orange {
+  color: rgba(255, 102, 0, 1);
+}
+.fc-yellow {
+  color: #ff9900;
+}
+/* ====================================================== */
+/* css组件样式 */
+
+/* 左侧为直角条线 */
+.squarebar {
+	position: relative;
+  height: 20px;
+  background: #242b33;
+	border: 1px solid #222b34;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #191e28;
+}
+.squarebar-bar {
+	width: 0;
+	height: 20px;
+	border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-transition: width .6s, background-color .6s; /* Firefox 4 */
+  -webkit-transition: width .6s, background-color .6s; /* Safari 和 Chrome */
+  -o-transition: width .6s, background-color .6s; /* Opera */
+  transition: width .6s, background-color .6s;
+}
+.red {
+  background-color: rgba(251, 75, 109, 0.2);
+  border: 1px solid rgba(251, 75, 109, 1);
+}
+.blue {
+	background: rgba(0, 184, 216, .2);
+	border: 1px solid #00b8d8;
+}
+.yellow {
+  background: rgba(255, 153, 0, .2);
+	border: 1px solid #ff9900;
+}
+.orange {
+  background-color: rgba(255, 102, 0, 0.2);
+  border: 1px solid rgba(255, 102, 0, 1);
+}
+.green {
+  background: rgba(102, 204, 51, .2);
+	border: 1px solid #66cc33;
+}
+.squarebar-percent {
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	line-height: 20px;
+	color: #fff;
+}
+/* 圆角条线 */
+.circlebar {
+	/* position: relative; */
+  height: 10px;
+  background: #242b33;
+  border: 1px solid #222b34;
+  border-radius: 5px;
+	background-color: #191e28;
+}
+.circlebar-bar {
+  width: 0;
+  height: 10px;
+  margin-top: -1px;
+  border-radius: 5px;
+  -moz-transition: width .6s .6s, background-color .6s .6s; /* Firefox 4 */
+  -webkit-transition: width .6s .6s, background-color .6s .6s; /* Safari 和 Chrome */
+  -o-transition: width .6s .6s, background-color .6s .6s; /* Opera */
+  transition: width .6s .6s, background-color .6s .6s;
+}
+
+
+/* 盛放条线的表格 */
+.bar-table {
+  width: 100%;
+  color: #97AFC9;
+}
+.bar-table td, .bar-table th {
+  border: 0;
+  width: 28%;
+  padding: 5px 10px;
+}
+.bar-table .first {
+  padding-left: 0;
+  width: 16%;
+}
+
+/* 圆角按钮 */
+.round-btn {
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px;
+  color: #f2f2f2;
+  border: 1px solid rgba(23, 145, 212, .6);
+  border-radius: 4px;
+  background-color: rgba(23, 145, 212, .3);
+  cursor: pointer;
+}
+
+/* 直角按钮或直角边框 */
+.right-btn {
+  display: inline-block;
+  width: 100px;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid #016AB4;
+  text-align: center;
+  background: -webkit-linear-gradient(rgba(1, 36, 58, 1), rgba(1, 24, 40, .8)); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(rgba(1, 36, 58, 1), rgba(1, 24, 40, .8)); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(rgba(1, 36, 58, 1), rgba(1, 24, 40, .8)); /* Firefox 3.6 - 15 */
+  background: linear-gradient(rgba(1, 36, 58, 1), rgba(1, 24, 40, .8)); /* 标准的语法（必须放在最后） */
+}
+.right-nav-btn {
+  display: inline-block;
+  width: 108px;
+  height: 30px;
+  margin: 2px;
+  line-height: 30px;
+  /* border: 1px solid #016AB4; */
+  color: #c2feff;
+  text-align: center;
+  outline: none;
+  background:rgba(19, 21, 34, 1) url('../../image/view/u779.png') no-repeat left top;
+  /* background: -webkit-linear-gradient(rgba(2, 27, 58, 1), rgba(2, 106,187, .2)); Safari 5.1 - 6.0
+  background: -o-linear-gradient(rgba(2, 27, 58, 1), rgba(2, 106, 187, .2)); Opera 11.1 - 12.0
+  background: -moz-linear-gradient(rgba(2, 27, 58, 1), rgba(2, 106, 187, .2)); Firefox 3.6 - 15
+  background: linear-gradient(rgba(2, 27, 58, 1), rgba(2, 106, 187, .2)); 标准的语法（必须放在最后） */
+}
+.right-nav-btn:hover {
+  outline: none;
+}
+.right-nav-btn.active {
+  color: rgb(255, 204, 0);
+  background:rgba(19, 21, 34, 1) url('../../image/view/u779_selected.png') no-repeat left top;
+}
+.right-nav-btn.first {
+  width: 87px;
+  background:rgba(19, 21, 34, 0) url('../../image/view/u766.png') no-repeat left top;
+}
+.right-nav-btn.last {
+  width: 87px;
+  background:rgba(19, 21, 34, 0) url('../../image/view/u790.png') no-repeat right top;
+}
+
+/* input默认样式 */
+.input {
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid rgba(1, 106, 180, 1);
+  border-radius: 4px;
+  text-indent: 10px;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+  margin: 0 4px;
+}
+
+/* 双边框 */
+.double-border {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border: 1px solid #29476D;
+	border-radius: 4px;
+	box-shadow: 0 0 0 3px rgba(0, 20, 31, 1) inset,
+		0 0 0 4px #29476D inset;
+}
+
+#toViewStaff, #toViewClient {
+  cursor: pointer;
+}
+
+#searchBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 40px;
+  height: 30px;
+  background-color: rgba(23, 145, 212, 0.3);
+  cursor: pointer;
+}
+
+#js-search-btn {
+  position: absolute;
+  top: 5px;
+  right: 1px;
+  width: 40px;
+  height: 30px;
+  background-color: rgba(23, 145, 212, 0.3);
+  cursor: pointer;
+}

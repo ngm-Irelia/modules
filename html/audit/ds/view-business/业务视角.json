@@ -1,0 +1,157 @@
+1. 业务视角初始化数据接口
+参数
+{
+  searchType: 'Business', //Institution, Business, Customer, Employee
+  userID: string,       //
+  startDate: string,   // 2018-12-22
+  endDate: string,     // 2018-12-22
+  branchName: string   //'南京分行'
+}
+
+返回数据
+{
+  "status": 200,
+  "message": "获取成功",
+  "data": {
+    "bank": {
+      "name": "南京银行",  //银行名称
+      "branch": [
+        {
+        "id": 1,
+        "pId": 0,
+        "name": "南京分行（13）",
+        "open": true,
+        "icon": "../stylesheets/common/zTreeStyle/img/diy/bank.png"
+        },
+        {
+          "id": 11,
+          "pId": 1,
+          "name": "城东支行（13）",
+          "icon": "../stylesheets/common/zTreeStyle/img/diy/flag.png"
+        }
+      ]
+    },
+    "statistic": {
+      "modelTotal": 14214,
+      "issueTotal": 14214
+    },
+    "lines": [
+      {
+        "department": "交易银行部", //部门名称
+        "model": 7,             //模型发现问题个数
+        "modelTotal": 50,     //模型总个数
+        "amount": 24,           //涉及问题金额
+        "amountTotal": 1900,   //总金额
+        "issue": 24,            //问题整改情况（已经整改的问题个数）
+        "issueTotal": 50       //总问题个数
+      },
+      {
+        "department": "公司金融部",
+        "model": 18,
+        "modelTotal": 50,
+        "amount": 100,
+        "amountTotal": 10000,
+        "issue": 33,
+        "issueTotal": 100
+      }
+    ],
+    "businesses": [
+      {
+        "business": "票据业务",    //业务名称
+        "model": 7,             //模型发现问题个数
+        "modelTotal18": 50,     //模型总个数
+        "amount": 24,           //涉及问题金额
+        "amountTotal": 10000,   //总金额
+        "issue": 24,            //问题整改情况（已经整改的问题个数）
+        "issueTotal": 50        //总问题个数
+      },
+      {
+        "department": "同业客户授信",
+        "model": 18,
+        "modelTotal": 50,
+        "amount": 100,
+        "amountTotal": 10000,
+        "issue": 33,
+        "issueTotal": 100
+      }
+    ]
+  }
+}
+
+2. 业务视角-分行支行排名 接口
+参数
+无
+
+返回数据
+{
+  "status": 200,
+  "message": "获取成功",
+  "data": {
+    "branch": [  //分行
+      {
+        "bankId": "111",        //银行id
+        "bankName": "南京分行",  //银行名称
+        "issueFinished": 118,  //已经整改完的问题
+        "issueTotal": 150,     //问题总量
+        "ranking": "TOP1"      //排名
+      },
+      {
+        "bankId": "222",
+        "bankName": "苏州分行",
+        "issueFinished": 65,
+        "issueTotal": 150,
+        "ranking": "TOP2"
+      }
+    ],
+    "subBranch": [ //支行
+      {
+        "bankId": "111",
+        "bankName": "城东支行",
+        "issueFinished": 118,
+        "issueTotal": 150,
+        "ranking": "TOP1"
+      },
+      {
+        "bankId": "222",
+        "bankName": "新街口支行",
+        "issueFinished": 65,
+        "issueTotal": 150,
+        "ranking": "TOP2"
+      }
+    ]
+  }
+}
+
+3. 业务视角-模型明细 接口
+参数
+{
+  id: string // 部门/业务id
+}
+
+返回数据
+{
+  "status": 200,
+  "message": "获取成功",
+  "data": {
+    "models": [
+      {
+        "id": "111",                           //模型id
+        "modelName": "RE_mx025贷款担保汇总分析",  //模型名称
+        "businessName": "对公信贷",              //业务条线
+        "modelNum": "MX025",                   //模型编码
+        "riskLevel": "较高",                    //风险级别
+        "involvedAmount": 478,                 //涉及问题金额
+        "riskNum": 478                         //风险记录数
+      },
+      {
+        "id": "222",
+        "modelName": "RE_MX023按客户经理统计不良贷款",
+        "businessName": "对公信贷",
+        "modelNum": "MX023",
+        "riskLevel": "中等",
+        "involvedAmount": 155,
+        "riskNum": 155
+      }
+    ]
+  }
+}

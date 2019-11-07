@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>员工违规画像</title>
+  <link rel="stylesheet" href="../stylesheets/common/cube.min.css">
+  <link rel="stylesheet" href="../stylesheets/common/base.css">
+  <link rel="stylesheet" href="../stylesheets/portrayal-staff.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-link">
+        <p><span id="toViewStaff">员工视角</span> > 员工违规画像</p>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content-search">
+        <label for="staffName">姓名：</label>
+        <input type="text" name="" id="staffName" class="input search-condition" placeholder="请输入姓名">
+        <label for="staffNumber">工号：</label>
+        <input type="text" name="" id="staffNumber" class="input search-condition" placeholder="请输入工号">
+        <div id="staff-search" class="round-btn search-btn">搜索</div>
+      </div>
+      <div class="content-result">
+        <div class="result-top">
+          <div class="left result-block result-block-topleft">
+            <p class="fs-14 result-block-title">基本信息</p>
+            <div class="result-block-details">
+              <div class="result-block-people-img">
+
+              </div>
+              <div id="result-block-details-content" class="result-block-details-content">
+                    <!-- js获取 -->
+              </div>
+            </div>
+          </div>
+          <div class="right result-block result-block-topright">
+            <p class="fs-14 result-block-title">违规信息</p>
+            <div id="rule-details" class="result-block-details">
+               <!-- js获取 -->
+            </div>
+          </div>
+        </div>
+        <div class="result-bottom">
+          <div class="left w-50 result-block result-block-bottomleft">
+            <p class="fs-14 result-block-title">关系图谱</p>
+            <div id="relational-map" class="result-block-details"></div>
+          </div>
+          <div class="right w-50 result-block">
+            <p class="fs-14 result-block-title">关联问题群</p>
+            <div id="relevant-problems" class="result-block-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../javascripts/common/jquery-2.1.0.min.js"></script>
+  <script src="../javascripts/common/echarts.min.js" ></script>
+  <script src="../javascripts/common/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script type="text/javascript" src="../javascripts/common/viewCommon.js"></script>
+  <script src="../javascripts/portrayal-staff.js"></script>
+</body>
+
+</html>

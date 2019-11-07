@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>天气之子</title>
+		<style>
+		    body{
+		        margin:0;   
+		    }
+			#r{
+			  display:block;
+				background:"dark";
+			}
+		</style>
+	</head>
+    <body>
+        <canvas id="r"></canvas>
+        <script>
+		    
+			let can=document.getElementById("r");
+			let w=window.innerWidth;
+			let h=window.innerHeight;
+			can.width=w;
+			can.height=h;
+			window.οnresize=function(){
+				w=window.innerWidth;
+				h=window.innerHeight;
+				can.width=w;
+				can.height=h;
+			}
+			let c=can.getContext("2d");
+			function R(){};
+			function ran(n,x){
+				return Math.random()*(x-n)+n;
+			}
+			R.prototype={
+				i:function(){
+					this.x=ran(0,w);
+					this.y=0;
+					this.v=ran(5,6);
+					this.h=ran(0.8*h,0.9*h)
+					this.r=1;
+					this.vr=1;
+					this.a=1;
+					this.va=0.9;
+				},
+				d:function(){
+					if(this.y<this.h){
+						c.fillStyle="#00cccc";
+						c.fillRect(this.x,this.y,2,10);
+					}else{
+						c.fillStyle="rgba(0,0,0,0)";
+						c.strokeStyle="rgba(0,255,255,"+this.a+")";
+						c.beginPath();
+						c.ellipse(this.x,this.y,this.r,this.r/3,0,0,Math.PI*2);
+						c.stroke();
+					}
+				},
+				m:function(){
+					if(this.y<this.h){
+						this.y+=this.v;
+					}else{
+						if(this.a>0.02){
+						   this.r+=this.vr;
+						   if(this.r>20){
+							   this.a*=this.va;
+							}
+						}else{
+						   this.i();
+						}
+					}
+					this.d();
+				}
+			}
+			
+			var ra=[];
+			function cR(){
+				var r=new R();
+				r.i();
+				r.d();
+				ra.push(r);
+			}
+			
+			function mR(){
+				c.fillStyle="rgba(0,0,0,.1)";
+				c.fillRect(0,0,w,h);
+				for(var k=0;k<ra.length;k++){
+					ra[k].m();
+				}				    
+			}
+			
+			function tO(cb,time){
+				cb&&cb();
+				setTimeout(function(){
+					tO.call(this,cb,time);
+				}.bind(this),time)			
+			}
+			
+			for(let i=0;i<20;i++){
+				setTimeout(cR,600*i);
+			}
+			
+			tO(mR,1000/60);
+			
+		</script>
+    </body>
+	
+	</html>

@@ -1,0 +1,442 @@
+body {
+    margin: 0;
+    background-color: rgba(19, 21, 34, 1); 
+    background-image: url(../../image/bg-base.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+} 
+
+a {
+    text-decoration: none;
+}
+.org-nav {
+    height: 50px;
+}
+
+.org-base-header {
+	height: 80px;
+}
+ 
+.nav {
+    background-color: rgba(19, 21, 34, 1);
+    /* background-color: greenyellow; */
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .nav ul {
+    display: inline-block;
+  }
+  .nav .nav-link {
+    position: relative;
+    top: -40px;
+  }
+  .nav .nav-wing-left {
+    background: url('../../image/view/u820.png') no-repeat right 214px top 8px,
+                url('../../image/view/u814.png') no-repeat right 186px bottom 2px,
+                url('../../image/view/u818.png') no-repeat right 260px bottom 3px;
+  }
+  .nav .nav-wing-right {
+    background: url('../../image/view/u820.png') no-repeat left 214px top 8px,
+      url('../../image/view/u829.png') no-repeat left 186px bottom 2px,
+      url('../../image/view/u818.png') no-repeat left 260px bottom 3px;
+  }
+  .nav li {
+    list-style-type: none;
+    list-style-image: none;
+  }
+     
+.org-base {
+	width: 100%;
+	height: 100%;
+    display: flex;
+  position: fixed;
+  padding: 0 5px;
+}
+
+.org-content {
+	height: 100%;
+	color: #333333;
+	flex: 1;
+}
+
+.org-aside {
+	width: 400px;
+	height: 100%; 
+	flex: none; 
+	font-family: '.PingFang-SC-Regular', 'PingFang SC Medium', 'PingFang SC';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+	color:#CEE3FE;
+}
+
+.org-risk-overview{
+    width: 400px;
+	/* height: 60%; */
+	padding-top: 20px;
+}
+
+.org-problem-statistics{
+	width: 400px;
+	/* height: 40%; */
+	/* padding-top: 20px; */
+}
+
+.org-risk-overview-list {
+    width: 100%;
+    height: 25px;
+    margin-top: 30px;
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.org-risk-overview-listname {
+	display: inline-block;
+	width: 80px;
+    white-space: nowrap; 
+    overflow: hidden;
+    padding-top: 3px;
+	
+}
+.org-risk-overview-listvalue{
+	display: inline-block;
+    width: 76px;
+    height: 24px;
+	word-wrap: break-word;
+	background-repeat:no-repeat;
+	background-image: url("../../image/view/u504.png");
+	color: #C2FEFF;
+	text-align: center;
+	padding-top: 3px;
+	margin-right: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.client-risk-detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.org-risk-overview-chart{
+	width: 100%;
+	height: 230px;
+}
+
+.org-problem-statistics header {
+	margin-bottom: 15px;
+}
+
+.org-lineEchart-base-btn {
+  margin-top: 25px;
+}
+
+.org-lineEchart-btn {
+	display: inline-block;
+	text-align: center;
+    line-height: 20px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #1BA3F5;
+    border-radius: 5px;
+    width: 90px;
+    height: 20px;
+    font-family: 'PingFangSC-Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	background-repeat:no-repeat;
+	cursor: pointer;
+}
+.org-lineEchart-btn-checked {
+	background-color: rgba(27,163,245,1);
+}
+
+.org-problem-number-btn {
+	display: inline-block;
+	text-align: center;
+    line-height: 25px;
+	background-color: rgba(0,0,0,0);
+    border: 0;
+	width: 121px;
+    height: 28px;
+    font-family: 'PingFangSC-Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	background-repeat:no-repeat;
+	background-image: url("../../image/view/u967.png");
+	cursor: pointer;
+}
+.org-problem-number-btn:hover { 
+	background-image: url("../../image/view/u967_mouseOver.png");
+}
+.org-problem-number-btn-checked {
+	background-image: url("../../image/view/u967_mouseOver.png");
+}
+
+.org-problem-runp-btn {
+	display: inline-block;
+	text-align: center;
+    line-height: 25px;
+	background-color: rgba(0,0,0,0);
+    border: 0;
+	width: 107px;
+    height: 28px;
+    font-family: 'PingFangSC-Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	background-repeat:no-repeat;
+	background-image: url("../../image/view/u969.png");
+	cursor: pointer;
+}
+
+.org-problem-runp-btn:hover {
+	background-image: url("../../image/view/u969_mouseOver.png");
+}
+
+.org-problem-runp-btn-checked {
+	background-image: url("../../image/view/u969_mouseOver.png");
+}
+
+.org-problem-statistics-table {
+	font-family: 'PingFangSC-Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+	color:#97AFC9;
+	width: 98%;
+	height: 180px;
+	margin-top: 5px;
+	
+}
+
+.org-table-10 {
+    width: 10%;
+    text-align: center;
+}
+.org-table-20 {
+    width: 21%;
+    cursor: pointer;
+    text-align: center;
+}
+.org-table-40 {
+    width: 40%;
+    cursor: pointer;
+    text-align: center;
+}
+.org-table-50 {
+	width: 50%;
+    position: relative;
+    text-align: center;
+}
+.org-problem-statistics-table tr{ 
+	height: 28px; 
+}
+.org-problem-statistics-table thead{ 
+	display: block;
+}
+.org-problem-statistics-table tbody{ 
+	display: block;
+	height: 150px;
+	overflow: auto; 
+	 
+}
+
+ 
+.org-table-number-line-base {
+	position: absolute;
+    left: 0px;
+    top: 8px;
+    width: 128px;
+    height: 12px;
+    background: inherit;
+    background-color: rgba(36, 43, 51, 0.4);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(34, 43, 52, 1);
+    border-radius: 150px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.org-table-number-line {
+	position: absolute;
+    left: 0px;
+    top: 8px;
+    width: 0px;
+    height: 12px;
+    background: inherit;
+    background-color: rgba(255, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 0, 0, 1);
+    border-radius: 150px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 12px;
+    color: #F2F2F2;
+    text-align: right;
+    transition: width 1s;
+}
+
+.org-risk-overview-model {
+    display: none;
+    margin-right: 30px;
+    position: absolute;
+    color: #F2F2F2;
+    width: 0px;
+    z-index: 1111;
+    background-color: rgba(19, 21, 34, 1);
+    height: 375px;
+    overflow: hidden;
+    background-image: url("../../image/view/u1176.png");
+    background-repeat: no-repeat;
+    transition: width 0.5s, height 0.5s;
+    -webkit-transition: width 0.5s, height 0.5s;
+}
+
+.org-risk-overview-model-backImg {
+    width: 260px;
+    height: 366px;
+    z-index: -1;
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    background-image: url("../../image/view/u1178.png");
+    background-repeat: no-repeat;
+}
+
+.org-risk-overview-model-centerTopImg {
+    width: 176px;
+    height: 3px;
+    position: absolute;
+    top: 5px;
+    left: 42px;
+    background-image: url("../../image/view/u1180.png");
+    background-repeat: no-repeat;
+}
+
+.org-risk-overview-model-centerBottomImg {
+    width: 176px;
+    height: 3px;
+    transform: rotate(180deg);
+    position: absolute; 
+    bottom: 4px;
+    left: 42px;
+    background-image: url("../../image/view/u1180.png");
+    background-repeat: no-repeat;
+}
+
+.model-header {
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 181px;
+    height: 22px;
+    font-family: '.PingFang-SC-Regular', 'PingFang SC Medium', 'PingFang SC';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    color: #CEE3FE;
+}
+
+.model-close {
+    width: 34px;
+    height: 16px;
+    text-align: center;
+    line-height: 13px;
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    left: 215px;
+    cursor: pointer;
+    background-image: url("../../image/view/model-close.png");
+    background-repeat: no-repeat;
+}
+
+.model-table {
+    width: 86%;
+    margin-left: 18px;
+    border: 1px solid #102442;
+    font-family: 'PingFangSC-Regular', 'PingFang SC';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 24px;
+    display: table;
+}
+
+.model-table thead {
+    display: block;
+}
+.model-table tbody{
+    text-align: center;
+    display: block;
+    color: #00CCFF;
+    height: 260px;
+	overflow: auto; 
+} 
+
+/*时间选择器*/
+.search {
+    /* background-color: blue; */
+    height: 40px;
+    line-height: 40px;
+    color: #C2FEFF;
+    position: absolute;
+    z-index: 99;
+    }
+.search .search-date {
+    width: 88px;
+}
+.search .search-group {
+    display: inline-block;
+    position: relative;
+}
+.search .search-input {
+    position: relative;
+    width: 300px;
+    padding-right: 24px;
+}
+.search-group .search-icon {
+    display: inline-block;
+    color: rgb(206, 227, 254);
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    width: 12px;
+    height: 12px;
+    border: solid 1px currentColor;
+    border-radius: 100%;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -o-transform:rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.search-group .search-icon::before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    height: 6px;
+    width: 1px;
+    background-color: currentColor;
+} 

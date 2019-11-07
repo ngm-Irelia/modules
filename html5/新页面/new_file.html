@@ -16,11 +16,169 @@
 		body {
 			background-color: rgba(19, 21, 34, 1);
 			font-size: 12px;
-			background:rgba(19, 21, 34, 1) url('./bg-base.png') no-repeat left top;
+			background:rgba(41, 73, 79, .8) url('./bg-base.png') no-repeat left top;
 			background-size:100% ,100%; 
 		}
 		
-	</style>
+		
+		.org-aside {
+			position: absolute;
+			top: 100px;
+			left: 0px;
+			width: 300px;
+			height: 800px;
+			background: #00BFFF;
+		}
+ 
+		
+		li {
+			list-style: none
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		/* navMenuLeftPlus */
+		.navMenuLeftPlusbox {
+			width: 220px;
+			height: 500px;
+			background: #1c2229;
+			margin: 0 auto;
+			margin-top: 90px;
+			overflow: hidden;
+		}
+		
+		.navMenuLeftPlus-top {
+			padding: 10px;
+			color: #fff;
+			border-bottom: 1px solid rgba(255, 255, 255, .1)
+		}
+		
+		.navMenuLeftPlus>li {
+			display: block;
+			margin: 0;
+			padding: 0;
+			border: 0px;
+			position: relative;
+		}
+		
+		.navMenuLeftPlus>li>a {
+			display: block;
+			overflow: hidden;
+			padding-left: 0px;
+			line-height: 40px;
+			color: #ABB1B7;
+			transition: all .3s;
+			position: relative;
+			text-decoration: none;
+			font-size: 17px;
+			border-top: 1px solid #222932;
+			border-bottom: 2px solid #191e24;
+		}
+		
+		.navMenuLeftPlus>li:nth-of-type(1)>a {
+			border-top: 1px solid transparent;
+		}
+		
+		.navMenuLeftPlus>li:last-child>a {
+			border-bottom: 1px solid transparent;
+		}
+		
+		.navMenuLeftPlus>li>a>i {
+			font-size: 20px;
+			float: left;
+			font-style: normal;
+			margin: 0 5px;
+		}
+		
+		.navMenuLeftPlus li a .arrow:before {
+			
+			margin-top: 1px;
+			margin-right: 15px;
+			display: inline;
+			text-shadow: none; 
+			height: auto;
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			font-size: 18px;
+			content: "\008B";
+			background: url('圆环.svg') no-repeat;
+		}
+		
+		.navMenuLeftPlus li a .arrow.open:before {
+			margin-top: 1px;
+			margin-right: 15px;
+			display: inline;
+			text-shadow: none; 
+			height: auto;
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			font-size: 18px;
+			content: "\008B";
+			background: url('圆环.svg') no-repeat;
+			
+		}
+		
+		.navMenuLeftPlus>li>a.active,
+		.navMenuLeftPlus>li>a:hover {
+			color: #FFF;
+			background: #12181b;
+		}
+		
+		.navMenuLeftPlus>li>ul.sub-menu,
+		.navMenuLeftPlus>li>ul.sub-menu>li>ul.sub-menu {
+			display: none;
+			list-style: none;
+			clear: both;
+			margin: 8px 0px 0px 10px;
+			padding-bottom: 5px;
+		}
+		
+		.navMenuLeftPlus>li.active>ul.sub-menu,
+		.navMenuLeftPlus>li>ul.sub-menu>li.active>ul.sub-menu {}
+		
+		.navMenuLeftPlus>li>ul.sub-menu li {
+			background: none;
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		.navMenuLeftPlus>li>ul.sub-menu li>a {
+			display: block;
+			font-size: 16px;
+			line-height: 36px;
+			padding-left: 20px;
+			color: #ABB1B7;
+			clear: both;
+		}
+		
+		.navMenuLeftPlus>li>ul.sub-menu li>a.active,
+		.navMenuLeftPlus>li>ul.sub-menu li>a:hover,
+		.navMenuLeftPlus>li>ul.sub-menu>li.active>a {
+			color: #FFF;
+			background: #12181b;
+		}
+		
+		.icon_1:before {
+			content: "\f0ac";
+		}
+		
+		.icon_2:before {
+			content: "\f0ac";
+		}
+		
+		.icon_3:before {
+			content: "\f0ac";
+		}
+		
+		
+		.ring-i img{
+			margin-bottom: -4px;
+		}
+	</style> 
  
   
 	<script src="./jquery-2.1.0.min.js" ></script> 
@@ -35,9 +193,121 @@
 		 
 		 
 		<aside class="org-aside">
-			 
+			  
+			     <div class="navMenuLeftPlusbox">
+			     	<div id="slimtest1">
+			     		<div class="navMenuLeftPlus-top">  </div>
+			     		<ul class="navMenuLeftPlus">
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">主页</span> <span class="arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;"><span>用户管理</span></a></li>
+			     					<li><a href="javascript:;"><span>角色管理</span></a></li>
+			     					<li><a href="javascript:;"><span>权限管理</span></a></li>
+			     					<li><a href="javascript:;"><span>我的任务</span></a></li>
+			     					<li> <a href="javascript:;" class="afinve"><span>个人信息</span><span class="arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>我的个人资料</span></a></li>
+			     							<li><a href="javascript:;"><span>我的日历</span></a></li>
+			     							<li><a href="javascript:;"><span>我的收件箱</span></a></li>
+			     							<li><a href="javascript:;"><span>我的任务</span></a></li>
+			     						</ul>
+			     					</li>
+			     				</ul>
+			     			</li>
+			     			<li class=""> <a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>文章管理</span></a>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_2"></i> <span class="nav-text">网站配置</span> <span class="arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;"><span>网站设置</span></a></li>
+			     					<li><a href="javascript:;"><span>友情链接</span></a></li>
+			     					<li><a href="javascript:;"><span>分类管理</span></a></li>
+			     					<li><a href="javascript:;"><span>系统日志</span></a></li>
+			     				</ul>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">系统管理</span> <span class="arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;" class="afinve"><span>用户管理</span></a></li>
+			     					<li><a href="javascript:;"><span>角色管理</span></a></li>
+			     					<li><a href="javascript:;"><span>系统参数</span></a></li>
+			     				</ul>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">统计报表</span> <span class="arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;" class="afinve"><span>发运表</span></a></li>
+			     					<li><a href="javascript:;"><span>发运结算表</span></a></li>
+			     					<li><a href="javascript:;"><span>自营车表</span></a></li>
+			     					<li><a href="javascript:;"><span>导入发运报表</span></a></li>
+			     					<li> <a href="javascript:;" class="afinve"><span>打印</span><span class="arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>发运结算表</span></a></li>
+			     							<li><a href="javascript:;"><span>应收发运单</span></a></li>
+			     							<li><a href="javascript:;"><span>自营车</span></a></li>
+			     							<li><a href="javascript:;"><span>应付发运单</span></a></li>
+			     						</ul>
+			     					</li>
+			     					<li> <a href="javascript:;" class="afinve"><span>数据查询</span><span class="arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>发运单查询</span></a></li>
+			     							<li><a href="javascript:;"><span>自营车查询</span></a></li>
+			     							<li> <a href="javascript:;" class="afinve"><span>报账明细</span><span class="arrow"></span></a>
+			     								<ul class="sub-menu">
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li> <a href="javascript:;" class="afinve"><span>自营车汇总表</span><span class="arrow"></span></a>
+			     										<ul class="sub-menu">
+			     											<li><a href="javascript:;"><span>自营车汇总表1</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表2</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表4</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表3</span></a></li>
+			     										</ul>
+			     									</li>
+			     								</ul>
+			     							</li>
+			     						</ul>
+			     					</li>
+			     				</ul>
+			     			</li>
+			     		</ul>
+			     	</div>
+			     </div>
+			     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+			     
+			     <script>
+			     	$(function() {
+			     		// nav收缩展开
+			     		$('.navMenuLeftPlus li a').on('click', function() {
+			     			var parent = $(this).parent().parent(); //获取当前页签的父级的父级
+			     			var labeul = $(this).parent("li").find(">ul")
+			     			if ($(this).parent().hasClass('open') == false) {
+			     				//展开未展开
+			     				parent.find('ul').slideUp(300);
+			     				parent.find("li").removeClass("open")
+			     				parent.find('li a').removeClass("active").find(".arrow").removeClass("open")
+			     				$(this).parent("li").addClass("open").find(labeul).slideDown(300);
+			     				$(this).addClass("active").find(".arrow").addClass("open")
+			     			} else {
+			     				$(this).parent("li").removeClass("open").find(labeul).slideUp(300);
+			     				if ($(this).parent().find("ul").length > 0) {
+			     					$(this).removeClass("active").find(".arrow").removeClass("open")
+			     				} else {
+			     					$(this).addClass("active")
+			     				}
+			     			}
+			     
+			     		});
+			     	});
+			     </script>
+			  
 		</aside>
 	</div>
+	
+	 
 </body>
  
 </html>

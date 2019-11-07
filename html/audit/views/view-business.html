@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>业务视角</title>
+  <link rel="stylesheet" href="../stylesheets/common/cube.min.css">
+  <link rel="stylesheet" href="../stylesheets/common/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="../stylesheets/common/jedate-6.5.0/skin/jedate.css">
+  <link rel="stylesheet" href="../javascripts/common/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="../stylesheets/common/base.css">
+  <link rel="stylesheet" href="../stylesheets/view-business.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 分行支行排名模态框 -->
+    <div id="js-ranking-popup" class="popup-shade">
+      <div class="popup">
+        <div class="close icon js-close"></div>
+        <div class="left w-100 h-100 popup-left">
+          <h3 class="popup-block-title">问题数量排名</h3>
+          <div class="popup-block-body">
+            <div id="js-branch-box" class="double-border popup-table-container">
+              <table class="ranking-table" id="js-branch-ranking">
+                <thead>
+                  <tr>
+                    <th class="text-center wp-48">序号</th>
+                    <th>机构</th>
+                    <th class="third"></th>
+                    <th></th>
+                    <th>排名</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr>
+                    <td class="text-center">1</td>
+                    <td>南京分行</td>
+                    <td class="third">
+                      <div class="circlebar ranking-table-bar" data-percent="78%">
+                        <div class="circlebar-bar blue inner"></div>
+                      </div>
+                    </td>
+                    <td>78</td>
+                    <td>TOP1</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td>苏州分行</td>
+                    <td class="third">
+                      <div class="circlebar ranking-table-bar" data-percent="78%">
+                        <div class="circlebar-bar blue inner"></div>
+                      </div>
+                    </td>
+                    <td>78</td>
+                    <td>TOP2</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="right w-48 h-100 popup-right">
+          <h3 class="popup-block-title">支行问题数量排名</h3>
+          <div class="popup-block-body">
+            <div id="js-subbranch-box" class="double-border popup-table-container">
+              <table class="ranking-table" id="js-subbranch-ranking">
+                <thead>
+                  <tr>
+                    <th class="text-center wp-48">序号</th>
+                    <th>机构</th>
+                    <th class="third"></th>
+                    <th></th>
+                    <th>排名</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- 模型明细模态框 -->
+    <div id="js-model-popup" class="popup-shade">
+      <div class="popup">
+        <div class="close icon js-close"></div>
+        <div class="popup-title">问题展现</div>
+        <div class="popup-body">
+          <div id="js-model-box" class="popup-table-container double-border">
+            <table class="model-table" id="js-model">
+              <thead>
+                <tr>
+                  <th class="text-center"></th>
+                  <th>模型名称</th>
+                  <th>业务条线</th>
+                  <!-- <th>模型编码</th> -->
+                  <th>问题严重程度</th>
+                  <th>问题金额</th>
+                  <th>问题个数</th>
+                  <th>整改完成率</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td>1</td>
+                  <td>RE_mx025贷款担保汇总分析</td>
+                  <td>对公信贷</td>
+                  <td>MX025</td>
+                  <td>较高</td>
+                  <td>478</td>
+                  <td>478</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>RE_MX023按客户经理统计不良贷款</td>
+                  <td>对公信贷</td>
+                  <td>MX023</td>
+                  <td>中等</td>
+                  <td>155</td>
+                  <td>155</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <div class="nav-wing-left left w-50 h-100"></div>
+      <div class="nav-wing-right right w-50 h-100"></div>
+      <ul class="nav-link">
+        <li class="left"><a href="./view-org.html" class="right-nav-btn first">机构视角</a></li>
+        <li class="left"><a href="./view-business.html" class="right-nav-btn active">业务视角</a></li>
+        <li class="left"><a href="./view-client.html" class="right-nav-btn">客户视角</a></li>
+        <li class="left"><a href="./view-staff.html" class="right-nav-btn last">员工视角</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div class="search">
+        <input id="js-date-start" class="input search-date" type="text" autocomplete="off">
+        <span>至</span>
+        <input id="js-date-end" class="input search-date" type="text" autocomplete="off">
+        <div class="search-group">
+          <input id="js-search" class="input search-input" type="text" placeholder="请输入" autocomplete="off"/>
+          <span id="js-search-btn"><span class="search-icon"></span></span>
+        </div>
+        <a id="js-month" class="round-btn">近一月</a>
+        <a id="js-half-year" class="round-btn">近半年</a>
+        <a id="js-year" class="round-btn">近一年</a>
+      </div>
+
+      <div class="sidebar">
+        <p class="title">南京银行</p>
+        <div class="body">
+          <ul id="js-hiraOrg" class="ztree"></ul>
+        </div>
+        <span class="corner"></span>
+      </div>
+
+      <div class="statistics">
+        <div class="title">
+          <p class="caption-group">
+            <span class="caption left">模型问题总数 <strong id="js-model-total">0</strong></span>
+            <span class="caption right">涉及问题金额总数 <strong id="js-issue-total">0</strong></span>
+          </p>
+          <a id="js-ranking-btn" class="ranking-btn round-btn">分行支行排名</a>
+        </div>
+        <div class="module stripline">
+          <h2>条线</h2>
+          <table class="bar-table" id="js-stripline">
+            <thead>
+              <tr>
+                <th class="first">条线</td>
+                <th>模型发现问题个数</td>
+                <th>涉及问题金额</td>
+                <th>问题整改完成率</td>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr>
+                <td class="first"><a class="stripline-link" href="./portrayal-business.html">交易银行部</a></td>
+                <td>
+                  <div class="js-model-btn squarebar" data-percent="78%">
+                    <div class="squarebar-bar blue"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar yellow"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar green"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="first"><a class="stripline-link" href="./portrayal-business.html">公司金融部</a></td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar blue"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar yellow"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar green"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <div class="module business">
+          <h2>业务</h2>
+          <table class="bar-table" id="js-business">
+            <thead>
+              <tr>
+                <th class="first">业务</th>
+                <th>模型发现问题个数</th>
+                <th>涉及问题金额</th>
+                <th>问题整改情况</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr>
+                <td class="first">票据业务</td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar blue"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar yellow"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar green"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="first">非小企业贷后管理</td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar blue"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar yellow"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="squarebar" data-percent="78%">
+                    <div class="squarebar-bar green"></div>
+                    <span class="squarebar-percent">78%</span>
+                  </div>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../javascripts/common/jquery-2.1.0.min.js" ></script>
+  <script src="../javascripts/common/jquery.ztree.core.min.js"></script>
+  <script src="../javascripts/common/jedate.min.js"></script>
+  <script src="../javascripts/common/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="../javascripts/common/countUp.min.js"></script>
+  <script src="../javascripts/common/viewCommon.js"></script>
+  <script src="../javascripts/view-business.js"></script>
+</body>
+</html>

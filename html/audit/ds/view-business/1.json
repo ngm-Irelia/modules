@@ -1,0 +1,68 @@
+{
+  "status": 200,
+  "message": "获取成功",
+  "data": {
+    "bank": {
+      "name": "南京银行",
+      "branch": [
+        {
+        "id": 1,
+        "pId": 0,
+        "name": "南京分行（13）",
+        "open": true,
+        "icon": "../stylesheets/common/zTreeStyle/img/diy/bank.png"
+        },
+        {
+          "id": 11,
+          "pId": 1,
+          "name": "城东支行（13）",
+          "icon": "../stylesheets/common/zTreeStyle/img/diy/flag.png"
+        }
+      ]
+    },
+    "statistic": {
+      "modelTotal": 14214,
+      "issueTotal": 14214
+    },
+    "lines": [
+      {
+        "department": "交易银行部",
+        "model": 7,
+        "modelTotal": 50,
+        "amount": 24,
+        "amountTotal": 1900,
+        "issue": 24,
+        "issueTotal": 50
+      },
+      {
+        "department": "公司金融部",
+        "model": 18,
+        "modelTotal": 50,
+        "amount": 100,
+        "amountTotal": 10000,
+        "issue": 33,
+        "issueTotal": 100
+      }
+    ],
+    "businesses": [
+      {
+        "business": "票据业务",
+        "model": 7,
+        "modelTotal": 50,
+        "amount": 24,
+        "amountTotal": 10000,
+        "issue": 24,
+        "issueTotal": 50
+      },
+      {
+        "business": "同业客户授信",
+        "model": 18,
+        "modelTotal": 50,
+        "amount": 100,
+        "amountTotal": 10000,
+        "issue": 33,
+        "issueTotal": 100
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let i = 0;
+			
+			function run(){
+				window.requestAnimationFrame(run);
+				i++;
+				console.log("以每秒60帧的速度：我要持续运行"+i)
+			}
+			run();
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1{ width:50px; height:50px; background:red; position:absolute; left:100px; top:300px;}
+.box{ border:1px #000 solid; position:absolute;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	
+	var num = 0;
+	var val = 100;
+	
+	var L = 100;
+	var T = 300;
+	
+	//弧度控制 : left
+	//sin控制 : top
+	
+	setInterval(function(){
+		
+		num++;
+		
+		oDiv.style.left = L + (num*Math.PI/180)*val + 'px';
+		oDiv.style.top = T - Math.sin(num*Math.PI/180)*val + 'px';
+		
+		
+		var oBox = document.createElement('div');
+		oBox.className = 'box';
+		document.body.appendChild( oBox );
+		oBox.style.left = oDiv.offsetLeft + 'px';
+		oBox.style.top = oDiv.offsetTop + 'px';
+		
+	},30);
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

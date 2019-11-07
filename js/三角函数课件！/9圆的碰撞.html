@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:200px; height:200px; background:red; border-radius:50%; position:absolute; left:700px; top:100px;}
+#div2{ width:100px; height:100px; background:blue; border-radius:50%; position:absolute; left:100px; top:290px; }
+</style>
+<script>
+window.onload = function(){
+	
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	
+	var sX1 = 0;
+	var sY1 = 0;
+	var sX2 = 10;
+	var sY2 = 0;
+	
+	setInterval(function(){
+		
+		oDiv2.style.left = oDiv2.offsetLeft + sX2 + 'px';
+		
+		var a = Math.abs( (oDiv1.offsetLeft + 100) - (oDiv2.offsetLeft + 50) ); 
+		var b = Math.abs( (oDiv1.offsetTop + 100) - (oDiv2.offsetTop + 50) );
+		
+		var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
+		
+		if(c <= 150){
+			//alert( '碰上了' );
+			
+			var ang = Math.asin( b/c );
+			
+			var s1 = Math.cos( ang ) * sX2;
+			var s2 = Math.sin( ang ) * sX2;
+			
+			var x2change1 = Math.cos( ang ) * ( -s1 );
+			var y2change1 = Math.sin( ang ) * s1;
+			
+			var x2change2 = Math.sin( ang ) * s2;
+			var y2change2 = Math.cos( ang ) * s2;
+			
+			sX2 = x2change1 + x2change2;
+			sY2 = y2change1 + y2change2;
+			
+			sX1 = Math.cos( ang ) * s1;
+			sY1 = Math.sin( ang ) * ( -s1 );
+			
+		}
+		
+		oDiv2.style.left = oDiv2.offsetLeft + sX2 + 'px';
+		oDiv2.style.top = oDiv2.offsetTop + sY2 + 'px';
+		
+		oDiv1.style.left = oDiv1.offsetLeft + sX1 + 'px';
+		oDiv1.style.top = oDiv1.offsetTop + sY1 + 'px';
+		
+	},30);
+	
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

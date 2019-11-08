@@ -228,7 +228,84 @@
 			  
 			     <div class="navMenuLeftPlusbox">
 			     	<div id="navMenuLeftPlusdiv">
-			     		
+			     		<div class="navMenuLeftPlus-top">  </div>
+			     		<ul class="navMenuLeftPlus">
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">主页</span> <span class="arrow base-arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;"><span>用户管理</span></a></li>
+			     					<li><a href="javascript:;"><span>角色管理</span></a></li>
+			     					<li><a href="javascript:;"><span>权限管理</span></a></li>
+			     					<li><a href="javascript:;"><span>我的任务</span></a></li>
+			     					<li> <a href="javascript:;" class="afinve"><span>个人信息</span><span class="arrow small-arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>我的个人资料</span></a></li>
+			     							<li><a href="javascript:;"><span>我的日历</span></a></li>
+			     							<li><a href="javascript:;"><span>我的收件箱</span></a></li>
+			     							<li><a href="javascript:;"><span>我的任务</span></a></li>
+			     						</ul>
+			     					</li>
+			     				</ul>
+			     			</li>
+			     			<li class=""> <a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>文章管理</span></a>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_2"></i> <span class="nav-text">网站配置</span> <span class="arrow base-arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;"><span>网站设置</span></a></li>
+			     					<li><a href="javascript:;"><span>友情链接</span></a></li>
+			     					<li><a href="javascript:;"><span>分类管理</span></a></li>
+			     					<li><a href="javascript:;"><span>系统日志</span></a></li>
+			     				</ul>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">系统管理</span> <span class="arrow base-arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;" class="afinve"><span>用户管理</span></a></li>
+			     					<li><a href="javascript:;"><span>角色管理</span></a></li>
+			     					<li><a href="javascript:;"><span>系统参数</span></a></li>
+			     				</ul>
+			     			</li>
+			     			<li> <a href="javascript:;" class="afinve"> <i class="icon_3"></i> <span class="nav-text">统计报表</span> <span class="arrow base-arrow"></span>
+			     				</a>
+			     				<ul class="sub-menu">
+			     					<li><a href="javascript:;" class="afinve"><span>发运表</span></a></li>
+			     					<li><a href="javascript:;"><span>发运结算表</span></a></li>
+			     					<li><a href="javascript:;"><span>自营车表</span></a></li>
+			     					<li><a href="javascript:;"><span>导入发运报表</span></a></li>
+			     					<li> <a href="javascript:;" class="afinve"><span>打印</span><span class="arrow small-arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>发运结算表</span></a></li>
+			     							<li><a href="javascript:;"><span>应收发运单</span></a></li>
+			     							<li><a href="javascript:;"><span>自营车</span></a></li>
+			     							<li><a href="javascript:;"><span>应付发运单</span></a></li>
+			     						</ul>
+			     					</li>
+			     					<li> <a href="javascript:;" class="afinve"><span>数据查询</span><span class="arrow small-arrow"></span></a>
+			     						<ul class="sub-menu">
+			     							<li><a href="javascript:;"><span>发运单查询</span></a></li>
+			     							<li><a href="javascript:;"><span>自营车查询</span></a></li>
+			     							<li> <a href="javascript:;" class="afinve"><span>报账明细</span><span class="arrow small-arrow"></span></a>
+			     								<ul class="sub-menu">
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li><a href="javascript:;"><span>报账明细1</span></a></li>
+			     									<li> <a href="javascript:;" class="afinve"><span>自营车汇总表</span><span class="arrow small-arrow"></span></a>
+			     										<ul class="sub-menu">
+			     											<li><a href="javascript:;"><span>自营车汇总表1</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表2</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表4</span></a></li>
+			     											<li><a href="javascript:;"><span>自营车汇总表3</span></a></li>
+			     										</ul>
+			     									</li>
+			     								</ul>
+			     							</li>
+			     						</ul>
+			     					</li>
+			     				</ul>
+			     			</li>
+			     		</ul>
 			     	</div>
 			     </div>
 			     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -264,7 +341,7 @@
 							function initHtml(data,first){
 								let liHtml = ``;
 								for(let d=0;d<data.length;d++){
-									if(data[d].hasOwnProperty('children') && data[d].children ){
+									if(data[d].hasOwnProperty('children')){
 										liHtml += `<li> 
 											<a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span></a>
 											

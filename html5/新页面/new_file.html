@@ -7,15 +7,30 @@
 	<title>新页面</title> 
 	<style>
 		
-		html {
+		html,body {
 			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
 		}
 		*,*::before,*::after {
 			box-sizing: inherit;
 		}
 		body {
+			width: 100%;
+			height: 100%;
 			background-color: rgba(19, 21, 34, 1);
 			font-size: 12px;
+			background:rgba(41, 73, 79, .28) url('./back.jpg') no-repeat left top;
+			background-size:100% ,100%; 
+		}
+		
+		.org-base {
+			width: 100%;
+			height: 100%;
+			font-size: 12px;
+			background-color: rgba(19, 21, 34, 1);
 			background:rgba(41, 73, 79, .8) url('./bg-base.png') no-repeat left top;
 			background-size:100% ,100%; 
 		}
@@ -67,7 +82,7 @@
 		
 		.navMenuLeftPlus>li>a {
 			display: block;
-			overflow: hidden;
+			/* overflow: hidden; */
 			padding-left: 0px;
 			height: 50px;
 			line-height: 65px;
@@ -76,8 +91,8 @@
 			position: relative;
 			text-decoration: none;
 			font-size: 17px;
-			/* border-top: 1px solid #222932; */
-			border-bottom: 2px solid #fff;
+			/* border-bottom: 2px solid #fff; */
+			padding-left: 15px;
 		}
 	
 		.navMenuLeftPlus>li>a>i {
@@ -92,8 +107,8 @@
 		}
 		
 		.navMenuLeftPlus li a .base-arrow {
-			height: 22px;
-			width: 22px;
+			height: 20px;
+			width: 20px;
 			position: absolute;
 			right: 15px;
 			top: 21px;
@@ -105,8 +120,8 @@
 			height: 28px;
 			width: 28px;
 			position: absolute;
-			right: 1px;
-			top: -8px;
+			right: 0px;
+			top: -9px;
 			content: " ";
 			background: url(triangle.svg) no-repeat;
 		}
@@ -116,15 +131,15 @@
 			width: 28px;
 			transform: rotate(90deg);
 			position: absolute;
-			right: -8px;
+			right: -9px;
 			top: -8px;
 			content: " ";
 			background: url(triangle.svg) no-repeat;
 		}
 		
 		.navMenuLeftPlus li a .small-arrow {
-			height: 22px;
-			width: 22px;
+			height: 20px;
+			width: 20px;
 			position: absolute;
 			right: 15px;
 			top: 6px;
@@ -195,21 +210,175 @@
 		}
 		
 		.icon_1:before {
-			content: "\f0ac";
+			content: "";
 		}
 		
 		.icon_2:before {
-			content: "\f0ac";
+			content: "";
 		}
 		
 		.icon_3:before {
-			content: "\f0ac";
+			content: "";
 		}
 		
 		
 		.ring-i img{
 			margin-bottom: -4px;
 		}
+		
+		.under-line-a {
+			width: calc(100% - 30px);
+			height: 2px;
+			position: absolute;
+			bottom: 0px;
+			left: 15px;
+			background:#fff;
+		}
+		
+		.under-line-a:before {
+			content: "\21AD"; 
+			color: #c5c5c5;
+			height:5px;
+			width: 10px;
+			font-size: 15px;
+			position: absolute;
+			bottom: 30px;
+			left: -12px;
+		}
+		
+		.under-line-a:after {
+			content: "\2022"; 
+			color: #c5c5c5;
+			height:5px;
+			width: 10px;
+			font-size: 15px;
+			position: absolute;
+			bottom: 28px;
+			right: -12px;
+		}
+		
+		
+		
+		/*右上角*/
+		.head-right-bav {
+			position: fixed;
+			top: 0px;
+			right: 0px;
+			height: 50px;
+			width: 715px;
+		}
+		
+		.head-right-bav-line {
+			display: inline-block;
+			width: 200px;
+			height: 50px;
+			padding: 30px 0 0 0;
+			position: relative;
+		}
+		
+		.rect-line-top {
+			display: inline-block;
+			width: 100%;
+			border-top: 2px solid #c5c5c5;
+			position: absolute;
+			top: 20px;
+		}
+		
+		.rect-line-top:after {
+			content: "\2022"; 
+			color: #c5c5c5;
+			height:5px;
+			width: 10px;
+			font-size: 15px;
+			position: absolute;
+			bottom: 7px;
+			right: -12px;
+		}
+		
+		.rect-line-x {
+			float: right;
+			display: inline-block;
+			width: 40px;
+			height: 5px;
+			border: 1px solid rgba(52,50,59,1);
+			background: rgb(32,40,39);
+			margin-left: 5px;
+		}
+		.rect-line-y {
+			float: right;
+			display: inline-block;
+			width: 40px;
+			height: 5px;
+			border: 1px solid rgba(52,50,59,1);
+			background: rgb(93,96,100);
+			margin-left: 5px;
+		}
+		.rect-line-z {
+			float: right;
+			display: inline-block;
+			width: 40px;
+			height: 5px;
+			border: 1px solid rgba(52,50,59,1);
+			background: rgb(200,169,76);
+			margin-left: 5px;
+		}
+		
+		.head-right-bav-time {
+			font-size: 32px;
+			color: #f2f2f2;
+			font-family: cursive;
+			display: inline-block;
+			height: 50px;
+			width: 489px;
+			position: absolute;
+			right: 0;
+		}
+		
+		.rect-line-sfm, .rect-line-date, .rect-line-week,.rect-line-close {
+			margin: 0 0 0 15px;
+		}
+		
+		.rect-line-close {
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			position: relative;
+			background:rgba(253, 165, 33, .98) url('./关机.svg') no-repeat center center;
+			top: 9px;
+		}
+		
+		.rect-line-bottom {
+			width: calc(100% - 40px);
+			height: 2px;
+			position: absolute;
+			bottom: -8px;
+			left: 15px;
+			background:#c5c5c5;
+		}
+		
+		.rect-line-bottom:before {
+			content: "\2022"; 
+			color: #c5c5c5;
+			height:5px;
+			width: 10px;
+			font-size: 15px;
+			position: absolute;
+			bottom: 7px;
+			left: -8px;
+		}
+		
+		.rect-line-bottom:after {
+			content: ""; 
+			color: #c5c5c5;
+			height:5px;
+			width: 10px;
+			background:#C5C5C5;
+			font-size: 15px;
+			position: absolute;
+			bottom: -1px;
+			right: -12px;
+		}
+		
 	</style> 
  
   
@@ -223,6 +392,23 @@
 	</div>
   <div class="org-base"> 
 		 
+		<aside class="head-right-bav">
+			 
+				<span class="head-right-bav-line">
+					<span class="rect-line-top"></span>
+					<span class="rect-line-z"></span><span class="rect-line-y"></span><span class="rect-line-x"></span>
+				</span>
+			 
+				<span class="head-right-bav-time">
+					<span class="rect-line-sfm">09:34:45</span>
+					<span class="rect-line-date">2019/11/10</span>
+					<span class="rect-line-week">星期六</span>
+					<span class="rect-line-close"></span>
+					<span class="rect-line-bottom"></span>
+				</span>
+			 
+		</aside>
+		 
 		 
 		<aside class="org-aside">
 			  
@@ -233,6 +419,53 @@
 			     </div>
 			     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 			     
+					 <script>
+						 
+							function getDate(type){
+								var date = new Date();
+								if(type==="date"){
+									var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var day = date.getDate();
+									
+									if(month<10) {
+										month="0"+month;
+									}
+									
+									if(day<10) {
+										day="0"+day;
+									}
+									
+									return `${year}/${month}/${day}`;
+								}else{
+									var hour = date.getHours();
+									var minute = date.getMinutes();
+									var second = date.getSeconds();
+									if(hour<10) {
+										hour="0"+hour;
+									}
+									
+									if(minute<10) {
+										minute="0"+minute;
+									}
+									
+									if(second<10) {
+										second="0"+second;
+									}
+									
+									return `${hour}:${minute}:${second}`;
+								} 
+								
+							}
+						 
+						  setInterval(function(){ 
+								$(".rect-line-sfm").html(getDate())
+								$(".rect-line-date").html(getDate('date'))
+						 	},1000) 
+						 
+						 
+					 </script>
+					 
 			     <script>
 			     	$(function() {
 						function initLeftTreeEvent(){
@@ -266,17 +499,17 @@
 								for(let d=0;d<data.length;d++){
 									if(data[d].hasOwnProperty('children') && data[d].children ){
 										liHtml += `<li> 
-											<a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span></a>
+											<a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span>${first ? '<span class="under-line-a"></span>' : ''}</a>
 											
 											${ initHtml(data[d].children) }
 											
 										</li>`;
 									}else{
 										liHtml += `<li class=""> 
-											<a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>${data[d].title}</span></a>
+											<a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>${data[d].title}</span>${first ? '<span class="under-line-a"></span>' : ''}</a>
 										</li>`
 									}
-									
+									//<i class="under-line-a"></i><i class="under-line-a"></i>
 								}
 								
 								let ulHtml = ``;
@@ -350,6 +583,8 @@
 			     </script>
 			  
 		</aside>
+		
+		
 	</div>
 	
 	 

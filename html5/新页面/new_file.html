@@ -240,9 +240,10 @@
 			color: #c5c5c5;
 			height:5px;
 			width: 10px;
-			font-size: 15px;
+			font-size: 10px;
 			position: absolute;
-			bottom: 30px;
+			bottom: 15px;
+			transform: scale(.5);
 			left: -12px;
 		}
 		
@@ -324,7 +325,7 @@
 		}
 		
 		.head-right-bav-time {
-			font-size: 32px;
+			font-size: 28px;
 			color: #f2f2f2;
 			font-family: cursive;
 			display: inline-block;
@@ -379,6 +380,9 @@
 			right: -12px;
 		}
 		
+		
+
+		
 	</style> 
  
   
@@ -401,10 +405,10 @@
 			 
 				<span class="head-right-bav-time">
 					<span class="rect-line-sfm">09:34:45</span>
-					<span class="rect-line-date">2019/11/10</span>
+					<span class="rect-line-date">2019-11-10</span>
 					<span class="rect-line-week">星期六</span>
-					<span class="rect-line-close"></span>
-					<span class="rect-line-bottom"></span>
+					<!-- <span class="rect-line-close"></span>
+					<span class="rect-line-bottom"></span> -->
 				</span>
 			 
 		</aside>
@@ -458,10 +462,10 @@
 								
 							}
 						 
-						  setInterval(function(){ 
-								$(".rect-line-sfm").html(getDate())
-								$(".rect-line-date").html(getDate('date'))
-						 	},1000) 
+// 						  setInterval(function(){ 
+// 								$(".rect-line-sfm").html(getDate())
+// 								$(".rect-line-date").html(getDate('date'))
+// 						 	},1000) 
 						 
 						 
 					 </script>
@@ -494,22 +498,50 @@
 						async function initLeftTree(resdata){
 							
 							
+							function initHtml111(data,first){
+							  let liHtml = ``;
+							  for(let d=0;d<data.length;d++){
+							    if(data[d].hasOwnProperty('childNodeList') && data[d].childNodeList ){
+							      liHtml += `<li> 
+							        <a href="javascript:;" class="afinve" data-search="${data[d].title}"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span>${first ? '<span class="under-line-a"></span>' : ''}</a>
+							        
+							        ${ initHtml(data[d].childNodeList) }
+							        
+							      </li>`;
+							    }else{
+							      liHtml += `<li class=""> 
+							        <a href="javascript:;" class="afinve" data-search="${data[d].title}"><i class="my-icon nav-icon icon_2"></i><span>${data[d].title}</span>${first ? '<span class="under-line-a"></span>' : ''}</a>
+							      </li>`
+							    }
+							    //<i class="under-line-a"></i><i class="under-line-a"></i>
+							  }
+							  
+							  let ulHtml = ``;
+							  if(first){
+							    ulHtml = `<ul class="navMenuLeftPlus">${liHtml}</ul>`;
+							  }else{
+							    ulHtml = `<ul class="sub-menu">${liHtml}</ul>`;
+							  }
+							  
+							  return ulHtml;
+							}
+							
 							function initHtml(data,first){
 								let liHtml = ``;
 								for(let d=0;d<data.length;d++){
-									if(data[d].hasOwnProperty('children') && data[d].children ){
+									if(data[d].hasOwnProperty('children')){
 										liHtml += `<li> 
-											<a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span>${first ? '<span class="under-line-a"></span>' : ''}</a>
+											<a href="javascript:;" class="afinve"> <i class="icon_1"></i> <span class="">${data[d].title}</span> <span class="arrow ${first ? 'base-arrow' : 'small-arrow'}"></span></a>
 											
 											${ initHtml(data[d].children) }
 											
 										</li>`;
 									}else{
 										liHtml += `<li class=""> 
-											<a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>${data[d].title}</span>${first ? '<span class="under-line-a"></span>' : ''}</a>
+											<a href="javascript:;" class="afinve"><i class="my-icon nav-icon icon_2"></i><span>${data[d].title}</span></a>
 										</li>`
 									}
-									//<i class="under-line-a"></i><i class="under-line-a"></i>
+									
 								}
 								
 								let ulHtml = ``;
@@ -526,6 +558,25 @@
 							await $("#navMenuLeftPlusdiv").html( html );
 							initLeftTreeEvent();
 						}
+						
+						let data11 = [
+							{
+								id:"a1",
+								title:"主页",
+								type:'',
+								childNodeList:[
+									{
+										id:"a12",
+										title:"主页1",
+										type:''
+									}
+								]
+							},{
+								id:"a2",
+								title:"按装备划分",
+								type:''
+							}
+						];
 						
 						let data = [
 							{
@@ -550,6 +601,62 @@
 												id:"left122",
 												title:"主页12",
 												type:'' 
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
+											},{
+												id:"left132",
+												title:"主页22",
+												type:'' 
+											},{
+												id:"left142",
+												title:"主页32",
+												type:''
 											},{
 												id:"left132",
 												title:"主页22",

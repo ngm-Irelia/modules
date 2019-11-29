@@ -9,24 +9,28 @@
 	<script>
 		let a = {};
 		a.size = "json";
-		
+		a.title = Symbol("atitle");
 		function setSize(s){
 			let size = Symbol();
 			 
 			a[size] = s;
+			
 			console.log(a);
 			console.log(a[size]); 
 		}
 		setSize(12);
-		setSize(23);
 		
-		let str = "123aqw234";
-		console.log(parseInt(str));
+		console.log(a.title)
 		
-		let str1 = 'aa1234';
-		console.log(parseInt(str1))
-// 		console.log(a.size);
-// 		console.log(a[size]); 
+		let getattr = Object.getOwnPropertySymbols(a);
+		
+		console.log(getattr)
+		
+		console.log(a[getattr[0]])
+		
+		console.log(Symbol.for('size'))
+		console.log(Symbol.for('a'))
+
 	</script>
 	<script src="../js/jquery-3.3.1.js"></script>
 </html>

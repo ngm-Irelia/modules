@@ -1,4 +1,5 @@
 import {showBaseMessage} from './testbase.js';
 
-console.log("aaa")
 showBaseMessage();
+
+import('./t1.js').then(res=>{ console.log(res.t1)})

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>处理offset length</title>
+
+  <script src="dealOffsetLength.js"></script>
+  <style>
+    .aaaa{
+      color: purple;
+    }
+    .bbbb{
+      background: powderblue;
+    }
+  
+  
+  
+  </style>
+
+</head>
+<body>
+    <h3>获取</h3>
+<div id="project-label">处理<p style="background: blue;">得到发的</p><p><em style="color: yellowgreen">辅导费</em>得到<em style="color:saddlebrown">嵌套戴假发圣诞节开发</em>得到</p>在这<em style="color: pink">写需要测</em>试的文字<br>dfsadf在这写需要测试的文字
+</div>
+<br>
+<h3>设置</h3>
+<div id="test">戴假发考虑到积分卡拉斯的理发店地方进口量撒娇东方丽景阿萨德了的积分卡三等奖法拉盛领导发<br>范德萨地方撒旦法</div>
+<script>
+
+  // 在这调用~
+  let targetNode =  document.getElementById('project-label');
+  let baseHtml = targetNode.innerHTML;
+  //鼠标抬起事件
+  targetNode.onmouseup = function(){
+    window.dealOffsetLength.run(
+      'get', 
+      {
+        baseHtml, //正文
+        targetNode, //正文外层包裹的容器
+        HtmlTag: 'span'//可指定标签作为包裹选中文本的容器
+      }
+    );
+  }
+  //设置标签
+  let arr = [
+    {offset: 10, length: 3, class: ['aaaa']},
+    /* {offset: 1, length: 4, class: ['aaaa','bbbb']},
+    {offset: 5, length: 3, class: ['aaaa']},
+    {offset: 8, length: 3, class: ['bbbb','aaaa']}, */
+    {offset: 15, length: 6, class: ['aaaa']},
+    {offset: 16, length: 2, class: ['bbbb']},  //15-16 16-18 18-21
+    {offset: 17, length: 2, class: ['aaaa']},
+  ];
+  window.dealOffsetLength.run('set', {
+    OffsetLenList: arr, 
+    targetNode: document.getElementById('test')
+  });
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

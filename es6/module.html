@@ -5,7 +5,19 @@
 		<title></title>
 	</head>
 	<body>
-		
+		<script type="text/javascript">
+			/**
+			 * -- 静态加载模块 --
+			 * import { aa } from '../aa.js'
+			 * 这样只能放到最外层，如果放到if里面会报错！！
+			 * 
+			 * -- 动态加载模块 --
+			 * 使用 import('../aa.js').then(res=>{ console.log(res)})
+			 * 
+			 * 
+			 * 
+			 */
+		</script>
 		
 		<script type="module" src="js/module.js"></script>
 	</body>
